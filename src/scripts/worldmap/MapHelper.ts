@@ -208,12 +208,26 @@ class MapHelper {
         const openModal = () => {
             $('#ShipModal').modal('show');
         };
+        let title = 'Dock';
+        let message = '';
+        let type = NotificationConstants.NotificationOption.warning;
         if (player.highestRegion() > 0 && (TownList[GameConstants.DockTowns[player.region]].isUnlocked())) {
-            openModal();
+            if (App.game.gameState === GameConstants.GameState.battleFrontier) {
+                message = 'You cannot access to the dock while you are inside the Battle Frontier';
+            } else if (App.game.gameState === GameConstants.GameState.dungeon) {
+                message = 'You cannot access to the dock while you are inside a dungeon';
+            } else {
+                openModal();
+            }
         } else {
+            message = 'You cannot access this dock yet!\n<i>Progress further to return to previous regions!</i>';
+        }
+        if (message) {
             Notifier.notify({
-                message: 'You cannot access this dock yet!\n<i>Progress further to return to previous regions!</i>',
-                type: NotificationConstants.NotificationOption.warning,
+                title: title,
+                message: message,
+                type: type,
+                //timeout: 1 * GameConstants.MINUTE,
             });
         }
     }

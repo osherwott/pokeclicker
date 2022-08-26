@@ -2323,6 +2323,7 @@ dungeonList['Meteor Falls'] = new Dungeon('Meteor Falls',
     [
         new DungeonBossPokemon('Solrock', 1240000, 20),
         new DungeonBossPokemon('Lunatone', 1240000, 20),
+        new DungeonBossPokemon('Bagon', 1240000, 20, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Meteor Falls'))}), // Crobat Fork
         new DungeonTrainer('Dragon Tamer',
             [
                 new GymPokemon('Altaria', 640000, 37),
@@ -3099,6 +3100,7 @@ dungeonList['Valley Windworks'] = new Dungeon('Valley Windworks',
                 new GymPokemon('Purugly', 1901500, 17),
             ], { weight: 1 }, 'Mars', '(mars)'),
         new DungeonBossPokemon('Drifloon', 3803000, 14, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Valley Windworks'))}),
+        new DungeonBossPokemon('Pachirisu', 3803000, 14, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Valley Windworks'))}), // Crobat Fork
     ],
     43000, 204);
 
@@ -3311,7 +3313,10 @@ dungeonList['Wayward Cave'] = new Dungeon('Wayward Cave',
         ],
     },
     903000,
-    [new DungeonBossPokemon('Bronzor', 4400000, 100)],
+    [
+        new DungeonBossPokemon('Bronzor', 4400000, 100),
+        new DungeonBossPokemon('Gible', 4400000, 100, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Wayward Cave'))}), // Crobat Fork
+    ],
     56500, 206);
 
 dungeonList['Mt. Coronet South'] = new Dungeon('Mt. Coronet South',
@@ -5466,6 +5471,7 @@ dungeonList['Victory Road Unova'] = new Dungeon('Victory Road Unova',
         new DungeonBossPokemon('Terrakion', 45000000, 100),
         new DungeonBossPokemon('Audino', 45000000, 100),
         new DungeonBossPokemon('Druddigon', 44000000, 100),
+        new DungeonBossPokemon('Zweilous', 44000000, 100, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Victory Road Unova'))}), // Crobat Fork
     ],
     326500, 23);
 
@@ -7163,6 +7169,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
         {pokemon: 'Basculin (Blue-Striped)', options: { weight: 1.43 }},
         {pokemon: 'Alomomola', options: { weight: 1.43 }},
         {pokemon: 'Dewpider', options: { weight: 1.43 }},
+        {pokemon: 'Morelull', options: { weight: 1.43, hide: true, requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Brooklet Hill'))}}, // Crobat Fork
         new DungeonTrainer('Fisherman',
             [new GymPokemon('Tentacool', 12138060, 16)], { weight: 1 }, 'Hal'),
         new DungeonTrainer('Fisherman',
@@ -7262,6 +7269,7 @@ dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
         {pokemon: 'Comfey', options: { weight: 1 }},
         {pokemon: 'Oranguru', options: { weight: 1 }},
         {pokemon: 'Passimian', options: { weight: 1 }},
+        {pokemon: 'Morelull', options: { weight: 1, hide: true, requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Lush Jungle'))}}, // Crobat Fork
         {pokemon: 'Xurkitree', options: { weight: 1, hide: true, requirement: new QuestLineStepCompletedRequirement('Ultra Beast Hunt', 9)}},
     ],    {
         common: [
@@ -7960,6 +7968,7 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
         new DungeonBossPokemon('Absol', 81064250, 50),
         new DungeonBossPokemon('Glalie', 81064250, 50),
         new DungeonBossPokemon('Vanilluxe', 81064250, 50),
+        new DungeonBossPokemon('Drampa', 81064250, 50, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Mount Lanakila'))}), // Crobat Fork
         new DungeonBossPokemon('Necrozma', 83527125, 65),
     ],
     1175000, 26);

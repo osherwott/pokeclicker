@@ -38,6 +38,9 @@ class SafariPokemon implements PokemonInterface {
         { name: 'Cubone', weight: 10 },
         { name: 'Marowak', weight: 5 },
         { name: 'Tangela', weight: 4 },
+        // Crobat Fork
+        { name: 'Dratini', weight: 5 },
+        { name: 'Dragonair', weight: 4 },
     ];
 
     public static calcPokemonWeight(pokemon): number {

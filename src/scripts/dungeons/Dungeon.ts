@@ -221,6 +221,7 @@ class Dungeon {
     }
 
     public getLootTierWeights(clears: number, highestRegion: GameConstants.Region): Record<LootTier, number> {
+        /*
         if (GameConstants.getDungeonRegion(this.name) < highestRegion - 2) {
             return Object.entries(nerfedLootTierChance).reduce((chances, [tier, chance]) => {
                 if (tier in this.lootTable &&
@@ -230,6 +231,7 @@ class Dungeon {
                 return chances;
             }, {} as Record<LootTier, number>);
         }
+        */
 
         const timesCleared = Math.min(500, Math.max(1, clears));
         const redist = lootRedistibuteAmount * timesCleared / 500;

@@ -1,6 +1,6 @@
 <div class="modal fade noselect" id="saveModal" tabindex="-1" role="dialog"
      aria-labelledby="saveModalLabel">
-    <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style='justify-content: space-around;'>
                 <h5 class="modal-title">Save Data</h5>
@@ -12,18 +12,13 @@
             <div class="modal-body p-0">
                 <ul class="nav nav-tabs nav-fill">
                     <li class="nav-item"><a class="nav-link active" href="#saveTab" data-toggle="tab">Save</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#codeTab" data-toggle="tab">Redeem Code</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trainerIdTab" data-toggle="tab">Trainer ID</a></li>
                     <li class="nav-item"><a class="nav-link" href="#saveConvert" data-toggle="tab">Convert Original Save</a></li>
                 </ul>
-                <div class="tab-content p-3">
+                <div class="tab-content w-75 m-auto p-3">
                     <div id="saveTab" class="tab-pane fade in active show">
                         <div>
-                            <form class="form-inline input-group">
-                                <input class="outline-dark form-control" placeholder="Enter code..." id="redeemable-code-input" type="text" />
-                                <div class="input-group-append">
-                                    <button class="btn btn-info" name="name" value="value" type="submit" onclick="RedeemableCodeController.enterCode(); return false;">Claim!</button>
-                                </div>
-                            </form>
-                            <hr>
                             <!-- ko if: App.game.discord.enabled -->
                             <button class="btn btn-primary btn-block" onClick="App.game.discord.login()" data-bind="visible: !App.game.discord.ID()">Link Discord</button>
                             <button class="btn btn-warning btn-block" onClick="App.game.discord.logout()" data-bind="visible: App.game.discord.ID()">Unlink Discord</button>
@@ -31,6 +26,7 @@
                             <hr>
                             <!-- /ko -->
 
+                            <h3>Save Data</h3>
                             <button class="btn btn-primary btn-block" onClick="Save.download()">Download Save</button>
                             <i>If this does not work, you can copy the contents of the save and paste it into a '.txt' file</i>
                             <button class="btn btn-primary btn-block" onclick="Save.copySaveToClipboard()">Copy to Clipboard</button>
@@ -43,6 +39,28 @@
                             <h5 class="text-danger">You will not be able to recover your savefile!</h5>
                             <button class="btn btn-danger btn-block" onClick="Save.delete()">DELETE SAVE</button>
                         </div>
+                    </div>
+
+                    <div id="codeTab" class="tab-pane fade">
+                        <h3>Redeem Code</h3>
+                        <form class="form-inline input-group">
+                            <input class="outline-dark form-control" placeholder="Enter code..." id="redeemable-code-input" type="text" />
+                            <div class="input-group-append">
+                                <button class="btn btn-info" name="name" value="value" type="submit" onclick="RedeemableCodeController.enterCode(); return false;">Claim!</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="trainerIdTab" class="tab-pane fade">
+                        <h3>Trainer ID</h3>
+                        <!-- ko if: App.game.discord.FinalID() -->
+                        <i data-bind="visible: App.game.discord.FinalID()">Your Trainer ID is: </i>
+                        <i data-bind="visible: App.game.discord.FinalID(), html: App.game.discord.FinalID().slice(-6)">Trainer ID.</i>
+                        <!-- /ko -->
+                        <i data-bind="visible: !App.game.discord.FinalID()">Trainer ID needs to be generated in order to make Enigma Berry obtainable.</i>
+                        <button class="btn btn-primary btn-block" onClick="App.game.discord.generateRandomKey()" data-bind="visible: !App.game.discord.FinalID()">
+                            Generate Trainer ID
+                        </button>
                     </div>
 
                     <div id="saveConvert" class="tab-pane fade">

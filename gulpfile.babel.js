@@ -75,6 +75,7 @@ const srcs = {
     libs: [
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap-icons/font/bootstrap-icons.css', // Crobat Fork
         'node_modules/intro.js/minified/intro.min.js',
         'node_modules/intro.js/introjs.css',
         'node_modules/intro.js/themes/introjs-modern.css',
@@ -85,6 +86,11 @@ const srcs = {
         'node_modules/sortablejs/Sortable.min.js',
         'src/libs/*.js',
     ],
+    fonts: [
+        'node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff', // Crobat Fork
+        'node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2', // Crobat Fork
+        'src/libs/fonts/*.woff*',
+    ]
 };
 
 
@@ -96,6 +102,7 @@ const dests = {
     declarations: 'src/declarations/',
     styles: 'build/styles/',
     githubPages: 'docs/',
+    fonts: 'build/libs/fonts/', // Crobat Fork
 };
 
 gulp.task('copy', (done) => {
@@ -104,6 +111,10 @@ gulp.task('copy', (done) => {
 
     gulp.src(srcs.libs)
         .pipe(gulp.dest(dests.libs))
+        .pipe(browserSync.reload({stream: true}));
+    
+    gulp.src(srcs.fonts)
+        .pipe(gulp.dest(dests.fonts))
         .pipe(browserSync.reload({stream: true}));
 
     done();

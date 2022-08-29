@@ -66,7 +66,11 @@ export default class Profile implements Saveable {
         card.addEventListener('click', () => {
             // If no key provided, this is a preview
             if (key === undefined) {
-                Notifier.notify({ message: 'What a lovely profile!' });
+                if (pokemon === 169) {
+                    Notifier.notify({ message: '<img src="assets/images/based-department.jpg"> ' });
+                } else {
+                    Notifier.notify({ message: 'What a lovely profile!' });
+                }
                 return;
             }
             document.querySelector('#saveSelector').remove();

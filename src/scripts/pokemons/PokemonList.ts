@@ -8188,6 +8188,11 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 147,
         'catchRate': 45,
+        'evolutions': [
+            new WeatherRestrictedLevelEvolution('Castform', 'Castform (Sunny)', 1, [WeatherType.Sunny]),
+            new WeatherRestrictedLevelEvolution('Castform', 'Castform (Rainy)', 1, [WeatherType.Rain, WeatherType.Thunderstorm]),
+            new WeatherRestrictedLevelEvolution('Castform', 'Castform (Snowy)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail, WeatherType.Fog]),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 70,

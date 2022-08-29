@@ -594,4 +594,7 @@ namespace GameConstants {
         IsleofArmor,
         CrownTundra,
     }
+    // Sort Icons
+    declare const ICON_SORT_UP: string;
+    declare const ICON_SORT_DOWN: string;
 }

@@ -1480,3 +1480,7 @@ export enum GalarSubRegions {
     IsleofArmor,
     CrownTundra,
 }
+
+// Sort Icons
+export const ICON_SORT_UP = '<i class=\'bi bi-sort-up\'>';
+export const ICON_SORT_DOWN = '<i class=\'bi bi-sort-down\'>';

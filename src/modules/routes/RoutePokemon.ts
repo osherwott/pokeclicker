@@ -11,22 +11,30 @@ export default class RoutePokemon {
     public land: PokemonNameType[];
     public water: PokemonNameType[];
     public headbutt: PokemonNameType[];
+    public eggExclusive: PokemonNameType[];
+    public afterJohtoLeague: PokemonNameType[];
     public special: SpecialRoutePokemon[];
 
     constructor({
         land = [],
         water = [],
         headbutt = [],
+        eggExclusive = [],
+        afterJohtoLeague = [],
         special = [],
     }: {
         land?: PokemonNameType[],
         water?: PokemonNameType[],
         headbutt?: PokemonNameType[],
+        eggExclusive?: PokemonNameType[],
+        afterJohtoLeague?: PokemonNameType[],
         special?: SpecialRoutePokemon[],
     }) {
         this.land = land;
         this.water = water;
         this.headbutt = headbutt;
+        this.eggExclusive = eggExclusive;
+        this.afterJohtoLeague = afterJohtoLeague;
         this.special = special;
     }
 }

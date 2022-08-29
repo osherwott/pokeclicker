@@ -12,7 +12,7 @@ class RouteHelper {
      * @param includeHeadbutt
      * @returns {string[]} list of all Pokémon that can be caught
      */
-    public static getAvailablePokemonList(route: number, region: GameConstants.Region, includeHeadbutt = true): PokemonNameType[] {
+    public static getAvailablePokemonList(route: number, region: GameConstants.Region, includeHeadbutt = true, includeEggExclusive = true): PokemonNameType[] {
         // If the route is somehow higher than allowed, use the first route to generateWildPokemon Pokémon
         const possiblePokemons = Routes.getRoute(region, route)?.pokemon;
         if (!possiblePokemons) {
@@ -30,6 +30,16 @@ class RouteHelper {
         // Headbutt Pokémon
         if (includeHeadbutt) {
             pokemonList = pokemonList.concat(possiblePokemons.headbutt);
+        }
+
+        // Egg Exclusive Pokémon
+        if (includeEggExclusive) {
+            pokemonList = pokemonList.concat(possiblePokemons.eggExclusive);
+        }
+
+        // Johto Pokémon native from Kanto (Houndour, Murkrow, Slugma)
+        if (App.game.badgeCase.hasBadge(BadgeEnums.Elite_JohtoChampion)) {
+            pokemonList = pokemonList.concat(possiblePokemons.afterJohtoLeague);
         }
 
         // Special requirement Pokémon

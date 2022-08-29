@@ -1047,6 +1047,11 @@ class Update implements Saveable {
                 playerData._townName = 'Iki Town Outskirts';
             }
         },
+        '0.9.13': ({playerData, saveData}) => {
+            // Rename Rotom (Discord) to Rotom (Crobat)
+            const renamePokemon = Update.renamePokemonInSaveData;
+            renamePokemon(saveData, 'Rotom (Discord)', 'Rotom (Crobat)');
+        }
 
     };
 

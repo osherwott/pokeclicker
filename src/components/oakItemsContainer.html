@@ -69,16 +69,14 @@
     </div>
     <!-- ko if: !App.game.challenges.list.disableOakItems.active() -->
     <div id="oakItemLoadout">
-      <table class="table table-bordered table-striped m-0">
-        <tr data-bind="foreach: App.game.oakItemLoadouts.loadouts">
-          <td class="p-1 tight">
-            <button class='btn btn-block btn-primary' style="height: 100%;"
-              data-bind='click: function(){ App.game.oakItemLoadouts.activateLoadout($index()) }, text: $index() + 1, tooltip: { title: $data.name(), trigger: "hover", placement: "bottom" }'>
-              1
-            </button>
-          </td>
-        </tr>
-      </table>
+      <div class="row w-100 m-0" data-bind="foreach: App.game.oakItemLoadouts.loadouts">
+        <div class="col-4 my-1 px-1">
+          <button class='btn btn-block btn-primary' style="height: 100%;"
+            data-bind='click: function(){ App.game.oakItemLoadouts.activateLoadout($index()) }, text: $index() + 1, tooltip: { title: $data.name(), trigger: "hover", placement: "bottom" }'>
+            1
+          </button>
+        </div>
+      </div>
     </div>
     <!-- /ko -->
 </div>

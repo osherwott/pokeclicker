@@ -75,5 +75,8 @@
         <img src="" data-bind="attr: { src: PokemonHelper.getImage(pokemonMap[$data], App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true)) }">
       </div>
     </div>
+    <button class='btn btn-sm btn-danger' data-bind='click: function(){ App.game.breeding.removeAllPokemonFromQueue(); } '>
+      Empty queue
+    </button>
     <!-- /ko -->
 </div>

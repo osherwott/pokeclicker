@@ -252,6 +252,14 @@ class Breeding implements Feature {
         }
     }
 
+    // Empty queue button
+    public removeAllPokemonFromQueue() {
+        const queueList = this.queueList();
+        while (queueList.length) {
+            this.removeFromQueue(0);
+        }
+    }
+
     public addPokemonToHatchery(pokemon: PartyPokemon): boolean {
         // If they have a free eggslot, add the pokemon to the egg now
         if (this.hasFreeEggSlot()) {

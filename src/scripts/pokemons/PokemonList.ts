@@ -11909,6 +11909,7 @@ const pokemonList = createPokemonArray(
         'exp': 59,
         'catchRate': 190,
         'evolutions': [new LevelEvolution('Blitzle', 'Zebstrika', 27)],
+        'baby': true,
         'base': {
             'hitpoints': 45,
             'attack': 60,
@@ -14107,6 +14108,7 @@ const pokemonList = createPokemonArray(
         'exp': 60,
         'catchRate': 45,
         'evolutions': [new LevelEvolution('Deino', 'Zweilous', 50)],
+        'baby': true,
         'base': {
             'hitpoints': 52,
             'attack': 65,

@@ -14,6 +14,7 @@ class Discord implements Saveable {
     SecretID: KnockoutObservable<string> = ko.observable(null);
     FinalID: KnockoutObservable<string> = ko.observable(null);
     codes: Array<DiscordCode> = [
+        /*
         new DiscordPokemonCode(pokemonMap['Unown (D)'], 700, 'An alternate form of Unown.'),
         new DiscordPokemonCode(pokemonMap['Unown (I)'], 700, 'An alternate form of Unown.'),
         new DiscordPokemonCode(pokemonMap['Unown (S)'], 700, 'An alternate form of Unown.'),
@@ -21,7 +22,8 @@ class Discord implements Saveable {
         new DiscordPokemonCode(pokemonMap['Unown (O)'], 700, 'An alternate form of Unown.'),
         new DiscordPokemonCode(pokemonMap['Unown (R)'], 700, 'An alternate form of Unown.'),
         new DiscordPokemonCode(pokemonMap['Surfing Pikachu'], 1500, 'It\'s a Pikachu on a surfboard!'),
-        new DiscordPokemonCode(pokemonMap['Rotom (Discord)'], 10000, 'A Discord-style Rotom!'),
+        new DiscordPokemonCode(pokemonMap['Rotom (Crobat)'], 10000, 'A Discord-style Rotom!'),
+        */
     ];
 
     get enabled(): boolean {

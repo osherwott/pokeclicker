@@ -4986,6 +4986,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 201,
         'name': 'Unown (A)',
+        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 225,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.mediumfast,
@@ -5003,6 +5004,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 201.01,
         'name': 'Unown (B)',
+        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 225,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.mediumfast,
@@ -5020,6 +5022,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 201.02,
         'name': 'Unown (C)',
+        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 225,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.mediumfast,
@@ -5224,6 +5227,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 201.14,
         'name': 'Unown (O)',
+        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 225,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.mediumfast,
@@ -5275,6 +5279,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 201.17,
         'name': 'Unown (R)',
+        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 225,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.mediumfast,
@@ -5309,6 +5314,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 201.19,
         'name': 'Unown (T)',
+        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 225,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.mediumfast,
@@ -10821,7 +10827,8 @@ const pokemonList = createPokemonArray(
     },
     {
         'id': 479.6,
-        'name': 'Rotom (Discord)',
+        'name': 'Rotom (Crobat)',
+        'nativeRegion': GameConstants.Region.sinnoh,
         'type': [PokemonType.Electric, PokemonType.Ghost],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,

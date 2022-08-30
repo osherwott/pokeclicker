@@ -594,7 +594,21 @@ namespace GameConstants {
         IsleofArmor,
         CrownTundra,
     }
+    /* Crobat Fork */
     // Sort Icons
     declare const ICON_SORT_UP: string;
     declare const ICON_SORT_DOWN: string;
+
+    // Gender types
+    declare const GENDERLESS;
+    declare const MALE_ONLY;
+    declare const FEMALE_ONLY;
+    declare const MALE_FEMALE;
+    
+    // Gender ratio
+    declare const MALE_12_5;
+    declare const MALE_25;
+    declare const MALE_50;
+    declare const MALE_75;
+    declare const MALE_87_5;
 }

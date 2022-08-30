@@ -64,7 +64,7 @@ class PartyController {
         return list.sort(PartyController.compareBy(Settings.getSetting('partySort').observableValue(), Settings.getSetting('partySortDirection').observableValue()));
     }).extend({ rateLimit: 500 });
 
-    private static hatcherySortedList = [];
+    public static hatcherySortedList = [];
     static getHatcherySortedList = (region = -1) => {
         return ko.pureComputed(() => {
             // If the breeding modal is open, we should sort it.

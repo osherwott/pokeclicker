@@ -219,6 +219,39 @@ class Breeding implements Feature {
         return this.multiplier.getBonus('eggStep');
     }
 
+    // Fill queue button
+    public fillHatcheryQueue() {
+        const hatcheryList = PartyController.hatcherySortedList;
+        const hatcheryListFiltered = [];
+
+        for (const partyPokemonObject of hatcheryList) {
+            //if (this.filterFillQueue(partyPokemonObject)) {
+            if (BreedingController.visible(partyPokemonObject)()) {
+                //console.log(partyPokemonObject);
+                hatcheryListFiltered.push(partyPokemonObject);
+            }
+        }
+
+        let hideHatchery;
+
+        for (const pokemonObject of hatcheryListFiltered) {
+            if (Settings.getSetting('hideHatchery').value == 'queue') {
+                hideHatchery = !this.hasFreeEggSlot() && !this.hasFreeQueueSlot();
+            } else if (Settings.getSetting('hideHatchery').value == 'egg') {
+                hideHatchery = !this.hasFreeEggSlot();
+            } else {
+                hideHatchery = true;
+            }
+
+            if (!hideHatchery) {
+                this.addPokemonToHatchery(pokemonObject);
+                this.checkCloseModal();
+            } else {
+                break;
+            }
+        }
+    }
+
     public addPokemonToHatchery(pokemon: PartyPokemon): boolean {
         // If they have a free eggslot, add the pokemon to the egg now
         if (this.hasFreeEggSlot()) {

@@ -249,7 +249,7 @@
                                 </knockout>
 
                                 <knockout>
-                                    <knockout data-bind="text: Battle.enemyPokemon().name">Pokémon name</knockout>
+                                    <knockout data-bind="html: Battle.enemyPokemon().name + ' ' + PokemonFactory.genderText(Battle.enemyPokemon().gender)">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
                                 </knockout>
 

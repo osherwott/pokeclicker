@@ -8,7 +8,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="text: TemporaryBattleBattle.enemyPokemon().name">Pokémon name</knockout>
+                <knockout data-bind="html: TemporaryBattleBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(Battle.enemyPokemon().gender)">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">

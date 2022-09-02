@@ -23499,6 +23499,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 23,
             'speed': 0,
         },
+        'gender'{
+            'type': GameConstants.GENDERLESS,
+        }
     },
     // Megas only between -100 → -199
     {
@@ -24235,6 +24238,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 100,
             'speed': 115,
         },
+        'gender'{
+            'type': GameConstants.GENDERLESS,
+        }
     },
     // {
     //     'id': -143,
@@ -24372,6 +24378,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 131,
             'speed': 103,
         },
+        'gender'{
+            'type': GameConstants.GENDERLESS,
+        }
     }
 );
 

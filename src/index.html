@@ -258,7 +258,7 @@
                             <div>
                                 <div data-bind="visible: !Battle.catching()">
                                     <img class="enemy"
-                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny) }"
+                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny, Battle.enemyPokemon().gender) }"
                                          src=""/>
                                 </div>
                                 <div data-bind="visible: Battle.catching()" class="catchChance">

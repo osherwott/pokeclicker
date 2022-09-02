@@ -299,20 +299,20 @@ class PokemonFactory {
         let gender;
         switch (genderType) {
             case GameConstants.GENDERLESS:
-                gender = 0;
+                gender = GameConstants.NO_GENDER;
                 break;
             case GameConstants.MALE_ONLY:
-                gender = 1;
+                gender = GameConstants.GENDER_MALE;
                 break;
             case GameConstants.FEMALE_ONLY:
-                gender = 2;
+                gender = GameConstants.GENDER_FEMALE;
                 break;
             case GameConstants.MALE_FEMALE:
                 if (Rand.chance(chance)) { // Female
-                    gender = 2;
+                    gender = GameConstants.GENDER_FEMALE;
                 }
                 else { // Male
-                    gender = 1;
+                    gender = GameConstants.GENDER_MALE;
                 }
                 break;
             default:
@@ -324,13 +324,13 @@ class PokemonFactory {
     public static genderText(gender: number) {
         let genderText;
         switch(gender) {
-            case 0:
+            case GameConstants.NO_GENDER:
                 genderText = GameConstants.TEXT_GENDERLESS;
                 break;
-            case 1:
+            case GameConstants.GENDER_MALE:
                 genderText = GameConstants.TEXT_MALE
                 break;
-            case 2:
+            case GameConstants.GENDER_FEMALE:
                 genderText = GameConstants.TEXT_FEMALE
                 break;
             default:

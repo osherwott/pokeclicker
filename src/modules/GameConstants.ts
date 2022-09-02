@@ -1503,3 +1503,8 @@ export const MALE_87_5 = 8;
 export const TEXT_GENDERLESS = '';
 export const TEXT_MALE = '<i class="bi bi-gender-male gender-icon-male"></i>';
 export const TEXT_FEMALE = '<i class="bi bi-gender-female gender-icon-female"></i>';
+
+// Current Pokémon Gender
+export const NO_GENDER = 0;
+export const GENDER_MALE = 1;
+export const GENDER_FEMALE = 2;

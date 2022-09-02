@@ -61,7 +61,7 @@ class PokemonHelper {
         const type2: PokemonType = basePokemon.type[1] ?? PokemonType.None;
 
         const eggCycles: number = basePokemon.eggCycles || 20;
-        return new DataPokemon(basePokemon.id, basePokemon.name, basePokemon.catchRate, basePokemon.evolutions, type1, type2, basePokemon.attack, basePokemon.base.hitpoints, basePokemon.levelType, basePokemon.exp, eggCycles, basePokemon.heldItem);
+        return new DataPokemon(basePokemon.id, basePokemon.name, basePokemon.catchRate, basePokemon.evolutions, type1, type2, basePokemon.attack, basePokemon.base.hitpoints, basePokemon.levelType, basePokemon.exp, eggCycles, basePokemon.heldItem, basePokemon.gender);
     }
 
     public static typeStringToId(id: string) {
@@ -72,12 +72,19 @@ class PokemonHelper {
         return PokemonType[id];
     }
 
-    public static getImage(pokemon: PokemonInterface, shiny: boolean): string {
+    public static getImage(pokemon: PokemonInterface, shiny: boolean, gender: number = GameConstants.NO_GENDER): string {
         let src = 'assets/images/';
         if (shiny) {
             src += 'shiny';
         }
-        src += `pokemon/${pokemon.id}.png`;
+        let genderString = '';
+        if (gender == GameConstants.GENDER_FEMALE) { 
+            const hasDiff = this.getPokemonById(pokemon.id).gender.difference;
+            if (hasDiff) {
+                genderString = '-f';
+            }
+        }
+        src += `pokemon/${pokemon.id}${genderString}.png`;
         return src;
     }
 

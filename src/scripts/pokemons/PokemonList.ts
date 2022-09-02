@@ -23499,7 +23499,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 23,
             'speed': 0,
         },
-        'gender'{
+        'gender':{
             'type': GameConstants.GENDERLESS,
         }
     },
@@ -24238,7 +24238,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 100,
             'speed': 115,
         },
-        'gender'{
+        'gender':{
             'type': GameConstants.GENDERLESS,
         }
     },
@@ -24378,7 +24378,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 131,
             'speed': 103,
         },
-        'gender'{
+        'gender':{
             'type': GameConstants.GENDERLESS,
         }
     }

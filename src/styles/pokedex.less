@@ -52,10 +52,21 @@
 
 /* Crobat Fork */
 .pokedex-modal {
-  max-width: 950px!important;
+  max-width: 1250px!important;
 }
 .pokedexEntry .item-icon{
   padding: 2px;
   margin: 16px 0;
   background:rgba(0, 0, 0, 0.5);
+}
+
+#pokedex-filter-container, #pokemon-list{
+  overflow-y: auto;
+  max-height: calc(100vh - 270px);
+  position: sticky;
+  top:0;
+}
+
+#pokemon-list {
+  height: 100%;
 }

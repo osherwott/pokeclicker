@@ -2,7 +2,12 @@ import TypeColor = GameConstants.TypeColor;
 
 class PokedexHelper {
     public static toggleStatisticShiny = ko.observable(true);
-    public static hideShinyImages = ko.observable(false);
+    public static toggleAllShiny = ko.observable(false);
+    public static showAllPokemon = ko.observable(false);
+    public static toggleFemale = ko.observable(false);
+
+    // For showing 50 more Pokémon when scrolling
+    public static scrollIndex: KnockoutObservable<number> = ko.observable(0);
 
     public static getBackgroundColors(name: PokemonNameType): string {
         const pokemon = PokemonHelper.getPokemonByName(name);
@@ -54,7 +59,21 @@ class PokedexHelper {
         }
     }
 
+    // Shows 50 Pokémon at first
+    public static shortenedListByIndex(id = 0) {
+        return this.showAllPokemon() ? this.filteredList() : this.filteredList().slice(0, (this.scrollIndex() * 50));
+    }
+    // Adds 50 more Pokémon on scroll
+    public static addPokemonItem(){
+        this.setScrollIndex(this.scrollIndex() + 1);
+    }
+    public static setScrollIndex(index: number): void {
+        this.scrollIndex(index);
+    }
+
     public static updateList() {
+        $('#pokemon-list').scrollTop(0);
+        PokedexHelper.scrollIndex(1);
         PokedexHelper.filteredList(PokedexHelper.getList());
     }
 
@@ -172,7 +191,7 @@ class PokedexHelper {
 
     public static getImage(id: number) {
         let src = 'assets/images/';
-        if (App.game.party.alreadyCaughtPokemon(id, true) && !this.hideShinyImages()) {
+        if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleAllShiny()) {
             src += 'shiny';
         }
         src += `pokemon/${id}.png`;
@@ -196,5 +215,29 @@ class PokedexHelper {
 $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
         PokedexHelper.toggleStatisticShiny(true);
+    });
+    // Adds 50 more Pokémon
+    $('#pokemon-list').on('scroll', () => {
+        let scrollY = $('#pokemon-list').scrollTop();
+        let divHeight = $('#pokemon-elements').height();
+        if (scrollY >= divHeight - 500) {
+            PokedexHelper.addPokemonItem();
+        }
+    });
+
+    // Reset to 50 Pokémon when Pokédex modal closes
+    $('#pokedexModal').on('hidden.bs.modal', () => {
+        PokedexHelper.scrollIndex(1);
+    });
+    // Show All Pokémon toggle
+    $('#pokedex-filter-show-all').on('click', () => {
+        $('#pokemon-list').scrollTop(0);
+        if ($('#pokedex-filter-show-all').is(':checked')) {
+            PokedexHelper.showAllPokemon(true);
+        } else {
+            PokedexHelper.scrollIndex(1);
+            PokedexHelper.showAllPokemon(false);
+        }
+
     });
 });

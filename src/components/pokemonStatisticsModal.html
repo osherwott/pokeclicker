@@ -1,5 +1,5 @@
 <div class="modal noselect fade" id="pokemonStatisticsModal" tabindex="-1" role="dialog" aria-labelledby="pokemonStatisticsModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content" data-bind="with: App.game.statistics.selectedPokemonID()">
             <div class="modal-header bg-dark text-light" style='justify-content: space-around;'>
                 <h5 class="modal-title text-muted" data-bind="text: `#${pokemonMap[$data].id <= 0 ? '???' : Math.floor(pokemonMap[$data].id).toString().padStart(3,0)}&nbsp;&nbsp;`"></h5>
@@ -15,11 +15,32 @@
               <div style="position: absolute; top: 0px; right: 0px;" data-bind="if: App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus">
                   <img width="40px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus]}.png`}"/>
               </div>
-                <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id) }" src=""/>
+              <div style="display: inline-block;">
+                <div>
+                  <!-- General sprite -->
+                  <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id) }" src=""/>
+                  <!-- Female sprite -->
+                  <!-- ko if: pokemonMap[$data].gender.difference -->
+                  <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id, true) }" src=""/>
+                  <!-- /ko -->
+                </div>
+                <div class="row m-0">
+                  <!-- ko if: pokemonMap[$data].gender.type == GameConstants.MALE_ONLY || pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE  -->
+                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-right': !pokemonMap[$data].gender.difference && pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE }">
+                    <span data-bind="html: GameConstants.TEXT_MALE"></span>
+                  </div>
+                  <!-- /ko -->
+                  <!-- ko if: pokemonMap[$data].gender.type == GameConstants.FEMALE_ONLY || pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE  -->
+                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-left': !pokemonMap[$data].gender.difference && pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE }">
+                    <span data-bind="html: GameConstants.TEXT_FEMALE"></span>
+                  </div>
+                  <!-- /ko -->
+                </div>
+              </div>
                 <table class="table table-striped table-hover table-bordered table-sm m-0">
                   <thead>
                     <tr class="text-light">
-                      <th class="text-left bg-dark">Type</th>
+                      <th class="text-left bg-dark">Pokémon Skills</th>
                       <th class="text-left bg-dark">Amount</th>
                     </tr>
                   </thead>
@@ -73,10 +94,25 @@
                       <td class="text-left">Rare Hold Item</td>
                       <td class="text-left tight"><code data-bind="text: BagHandler.displayName(pokemonMap[$data].heldItem)"></code></td>
                     </tr>
+                    <tr>
+                      <td class="text-left align-middle">Gender Ratio</td>
+                      <td class="text-justify tight">
+                        <!-- ko if: pokemonMap[$data].gender.type === GameConstants.GENDERLESS -->
+                          <code data-bind="html: 'Genderless'"></code>
+                        <!-- /ko -->
+                        <!-- ko if: pokemonMap[$data].gender.type != GameConstants.GENDERLESS -->
+                          <code data-bind="html: '♂: '"></code>
+                          <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).male + '%'"></code>
+                          <br />
+                          <code data-bind="html: '♀: '"></code>
+                          <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).female + '%'"></code>
+                        <!-- /ko -->
+                      </td>
+                    </tr>
                   </tbody>
                   <thead>
                     <tr class="text-light">
-                      <th class="text-left bg-dark">Statistic</th>
+                      <th class="text-left bg-dark">Trainer Memo</th>
                       <th class="text-left bg-dark">Amount</th>
                     </tr>
                   </thead>

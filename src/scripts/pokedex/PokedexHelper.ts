@@ -1,7 +1,7 @@
 import TypeColor = GameConstants.TypeColor;
 
 class PokedexHelper {
-    public static toggleStatisticShiny = ko.observable(true);
+    public static toggleStatisticShiny = ko.observable(false);
     public static toggleAllShiny = ko.observable(false);
     public static showAllPokemon = ko.observable(false);
     public static toggleFemale = ko.observable(false);
@@ -211,13 +211,38 @@ class PokedexHelper {
         return src;
     }
 
-    public static getImageStatistics(id: number) {
+    public static getImageStatistics(id: number, isFemale = false) {
+        const pokemon = PokemonHelper.getPokemonById(id);
         let src = 'assets/images/';
+        // Shiny
         if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleStatisticShiny()) {
             src += 'shiny';
         }
-        src += `pokemon/${id}.png`;
+        // Female
+        let genderString = '';
+        if (isFemale && pokemon.gender.difference) {
+            genderString = '-f';
+        }
+        src += `pokemon/${id}${genderString}.png`;
         return src;
+    }
+
+    public static getGenderRatioData(pokemon) {
+        const genderType = pokemon.gender.type;
+        const genderRatio = pokemon.gender.ratio;
+        const genderObject = {'male': 0, 'female': 0};
+        // console.log(pokemon);
+        if (genderType === GameConstants.MALE_ONLY) {
+            genderObject.male = 100;
+            genderObject.female = 0;
+        } else if (genderType === GameConstants.FEMALE_ONLY) {
+            genderObject.male = 0;
+            genderObject.female = 100;
+        } else {
+            genderObject.male = 100 - (100 / genderRatio);
+            genderObject.female = 100 / genderRatio;
+        }
+        return genderObject;
     }
 
     private static isPureType(pokemon: PokemonListData, type: (PokemonType | null)): boolean {
@@ -227,7 +252,7 @@ class PokedexHelper {
 
 $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
-        PokedexHelper.toggleStatisticShiny(true);
+        PokedexHelper.toggleStatisticShiny(false);
     });
     // Adds 50 more Pokémon
     $('#pokemon-list').on('scroll', () => {

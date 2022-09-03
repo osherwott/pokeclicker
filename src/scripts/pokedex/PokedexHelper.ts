@@ -172,6 +172,11 @@ class PokedexHelper {
                 return false;
             }
 
+            // Only pokemon with gender differences
+            if (filter['gender-diff'] && !(pokemon as PokemonListData).gender.difference) {
+                return false;
+            }
+
             return true;
         });
     }
@@ -186,15 +191,23 @@ class PokedexHelper {
         res['status-pokerus'] = $('#pokedex-filter-pokerus-status').val();
         res['held-item'] = $('#pokedex-filter-held-item').is(':checked');
         res['hide-alternate'] = $('#pokedex-filter-hide-alternate').is(':checked');
+        res['gender-diff'] = $('#pokedex-filter-gender-diff').is(':checked');
         return res;
     }
 
     public static getImage(id: number) {
+        const pokemon = PokemonHelper.getPokemonById(id);
         let src = 'assets/images/';
+        // Shiny
         if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleAllShiny()) {
             src += 'shiny';
         }
-        src += `pokemon/${id}.png`;
+        // Female
+        let genderString = '';
+        if (this.toggleFemale() && pokemon.gender.difference) {
+            genderString = '-f';
+        }
+        src += `pokemon/${id}${genderString}.png`;
         return src;
     }
 

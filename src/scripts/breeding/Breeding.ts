@@ -25,11 +25,15 @@ class Breeding implements Feature {
 
     public hatchList: { [name: number]: PokemonNameType[][] } = {};
 
+    public isModalOpen: KnockoutObservable<boolean>;
+
     constructor(private multiplier: Multiplier) {
         this._eggList = this.defaults.eggList;
         this._eggSlots = ko.observable(this.defaults.eggSlots);
         this._queueList = ko.observableArray(this.defaults.queueList);
         this.queueSlots = ko.observable(this.defaults.queueSlots);
+
+        this.isModalOpen = ko.observable(false);
 
         this._eggList.forEach((egg) => {
             egg.extend({deferred: true});
@@ -225,9 +229,7 @@ class Breeding implements Feature {
         const hatcheryListFiltered = [];
 
         for (const partyPokemonObject of hatcheryList) {
-            //if (this.filterFillQueue(partyPokemonObject)) {
             if (BreedingController.visible(partyPokemonObject)()) {
-                //console.log(partyPokemonObject);
                 hatcheryListFiltered.push(partyPokemonObject);
             }
         }
@@ -493,3 +495,11 @@ class Breeding implements Feature {
     }
 
 }
+$(document).ready(() => {
+    $('#breedingModal').on('shown.bs.modal', () => {
+        App.game.breeding.isModalOpen(true);
+    });
+    $('#breedingModal').on('hidden.bs.modal', () => {
+        App.game.breeding.isModalOpen(false);
+    });
+});

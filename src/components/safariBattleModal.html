@@ -11,7 +11,7 @@
                           </knockout>
 
                           <knockout>
-                              <knockout data-bind="text: SafariBattle.enemy.name">Pokémon name</knockout>
+                              <knockout data-bind="html: SafariBattle.enemy.name + ' ' + PokemonFactory.genderText(SafariBattle.enemy.gender)">Pokémon name</knockout>
                               <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(SafariBattle.enemy.id)}}"></knockout>
                           </knockout>
 
@@ -20,7 +20,7 @@
                       </h2>
 
                       <div>
-                          <img class="enemy" data-bind="attr: { src: `assets/images/${SafariBattle.enemy.shiny ? 'shiny' : ''}pokemon/${SafariBattle.enemy.id}.png` }" src=""/>
+                          <img class="enemy" data-bind="attr: { src: PokemonHelper.getImage(SafariBattle.enemy, SafariBattle.enemy.shiny, SafariBattle.enemy.gender) }" src=""/>
                       </div>
 
                       <h2 class="pageItemFooter" style="display: block;">

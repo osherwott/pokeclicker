@@ -8,7 +8,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="html: TemporaryBattleBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(Battle.enemyPokemon().gender)">Pokémon name</knockout>
+                <knockout data-bind="html: TemporaryBattleBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(TemporaryBattleBattle.enemyPokemon().gender)">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">
@@ -39,7 +39,7 @@
         </div>
 
         <div>
-            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(TemporaryBattleBattle.enemyPokemon(), TemporaryBattleBattle.enemyPokemon().shiny, Battle.enemyPokemon().gender) }" src=""/>
+            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(TemporaryBattleBattle.enemyPokemon(), TemporaryBattleBattle.enemyPokemon().shiny, TemporaryBattleBattle.enemyPokemon().gender) }" src=""/>
         </div>
 
         <div class="progress hitpoints" style="height: 20px;">

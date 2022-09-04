@@ -30,6 +30,115 @@
                 </tr>
             </thead>
         </table>
+
+        <div class="card-header collapsed p-0" data-toggle="collapse" aria-expanded="false" href="#pokeballByTypeSelectorBody">
+            <span>Selections by type</span>
+        </div>
+        <div id="pokeballByTypeSelectorBody" class="card-body p-0 table-responsive collapse">
+            <table class="table table-sm m-0">
+                <thead>
+                    <!-- Normal, Fire, Water, Electric -->
+                    <tr>
+                        <th width="20%" data-toggle="tooltip" title="Normal-type Pokémon will use this ball selection , regardless if captured or not">Normal</th>
+                        <th width="20%" data-toggle="tooltip" title="Fire-type Pokémon will use this ball selection, regardless if captured or not">Fire</th>
+                        <th width="20%" data-toggle="tooltip" title="Water-type Pokémon will use this ball selection, regardless if captured or not">Water</th>
+                        <th width="20%" data-toggle="tooltip" title="Electric-type Pokémon will use this ball selection, regardless if captured or not">Electric</th>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeNormalSelection, 'field': App.game.pokeballs._typeNormalSelection, 'title': 'Normal-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFireSelection, 'field': App.game.pokeballs._typeFireSelection, 'title': 'Fire-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeWaterSelection, 'field': App.game.pokeballs._typeWaterSelection, 'title': 'Water-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeElectricSelection, 'field': App.game.pokeballs._typeElectricSelection, 'title': 'Electric-type Pokémon'}}"></td>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeNormalSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFireSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeWaterSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeElectricSelection)}"></td>
+                    </tr>
+    
+                    <!-- Grass, Ice, Fighting, Poison -->
+                    <tr>
+                        <th width="20%" data-toggle="tooltip" title="Grass-type Pokémon will use this ball selection, regardless if captured or not">Grass</th>
+                        <th width="20%" data-toggle="tooltip" title="Ice-type Pokémon will use this ball selection, regardless if captured or not">Ice</th>
+                        <th width="20%" data-toggle="tooltip" title="Fighting-type Pokémon will use this ball selection, regardless if captured or not">Fighting</th>
+                        <th width="20%" data-toggle="tooltip" title="Poison-type Pokémon will use this ball selection, regardless if captured or not">Poison</th>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeGrassSelection, 'field': App.game.pokeballs._typeGrassSelection, 'title': 'Grass-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeIceSelection, 'field': App.game.pokeballs._typeIceSelection, 'title': 'Ice-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFightingSelection, 'field': App.game.pokeballs._typeFightingSelection, 'title': 'Fighting-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typePoisonSelection, 'field': App.game.pokeballs._typePoisonSelection, 'title': 'Poison-type Pokémon'}}"></td>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeGrassSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeIceSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFightingSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typePoisonSelection)}"></td>
+                    </tr>
+    
+                    <!-- Ground, Flying, Psychic, Bug -->
+                    <tr>
+                        <th width="20%" data-toggle="tooltip" title="Ground-type Pokémon will use this ball selection, regardless if captured or not">Ground</th>
+                        <th width="20%" data-toggle="tooltip" title="Flying-type Pokémon will use this ball selection, regardless if captured or not">Flying</th>
+                        <th width="20%" data-toggle="tooltip" title="Psychic-type Pokémon will use this ball selection, regardless if captured or not">Psychic</th>
+                        <th width="20%" data-toggle="tooltip" title="Bug-type Pokémon will use this ball selection, regardless if captured or not">Bug</th>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeGroundSelection, 'field': App.game.pokeballs._typeGroundSelection, 'title': 'Ground-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFlyingSelection, 'field': App.game.pokeballs._typeFlyingSelection, 'title': 'Flying-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typePsychicSelection, 'field': App.game.pokeballs._typePsychicSelection, 'title': 'Psychic-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeBugSelection, 'field': App.game.pokeballs._typeBugSelection, 'title': 'Bug-type Pokémon'}}"></td>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeGroundSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFlyingSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typePsychicSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeBugSelection)}"></td>
+                    </tr>
+    
+                    <!-- Rock, Ghost, Dragon, Dark -->
+                    <tr>
+                        <th width="20%" data-toggle="tooltip" title="Rock-type Pokémon will use this ball selection, regardless if captured or not">Rock</th>
+                        <th width="20%" data-toggle="tooltip" title="Ghost-type Pokémon will use this ball selection, regardless if captured or not">Ghost</th>
+                        <th width="20%" data-toggle="tooltip" title="Dragon-type Pokémon will use this ball selection, regardless if captured or not">Dragon</th>
+                        <th width="20%" data-toggle="tooltip" title="Dark-type Pokémon will use this ball selection, regardless if captured or not">Dark</th>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeRockSelection, 'field': App.game.pokeballs._typeRockSelection, 'title': 'Rock-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeGhostSelection, 'field': App.game.pokeballs._typeGhostSelection, 'title': 'Ghost-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeDragonSelection, 'field': App.game.pokeballs._typeDragonSelection, 'title': 'Dragon-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeDarkSelection, 'field': App.game.pokeballs._typeDarkSelection, 'title': 'Dark-type Pokémon'}}"></td>
+                    </tr>
+                    <tr>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeRockSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeGhostSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeDragonSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeDarkSelection)}"></td>
+                    </tr>
+    
+                    <!-- Steel, Fairy -->
+                    <tr>
+                        <th width="20%" data-toggle="tooltip" title=""></th>
+                        <th width="20%" data-toggle="tooltip" title="Steel-type Pokémon will use this ball selection, regardless if captured or not">Steel</th>
+                        <th width="20%" data-toggle="tooltip" title="Fairy-type Pokémon will use this ball selection, regardless if captured or not">Fairy</th>
+                        <th width="20%" data-toggle="tooltip" title=""></th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeSteelSelection, 'field': App.game.pokeballs._typeSteelSelection, 'title': 'Steel-type Pokémon'}}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFairySelection, 'field': App.game.pokeballs._typeFairySelection, 'title': 'Fairy-type Pokémon'}}"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeSteelSelection)}"></td>
+                        <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFairySelection)}"></td>
+                        <td></td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 
     <script type="text/html" id="selectedPokeballDisplayTemplate">

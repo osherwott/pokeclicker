@@ -9226,12 +9226,14 @@ dungeonList['Chargestone Cave'].lootTable.epic.push({loot: 'Wacan', weight: 1, r
 dungeonList['Mistralton Cave'].lootTable.common.push({loot: 'Pamtre', weight: 3.75});
 dungeonList['Celestial Tower'].lootTable.epic.push({loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Celestial Tower'))});
 dungeonList['Reversal Mountain'].lootTable.common.push({loot: 'Cornn', weight: 3});
+/*
 dungeonList['Team Plasma Assault'].lootTable.common.push({loot: 'Pomeg', weight: 3.75});
 dungeonList['Team Plasma Assault'].lootTable.epic.push(
     {loot: 'Durin', weight: 2, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
     {loot: 'Haban', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
     {loot: 'Yache', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
 );
+*/
 dungeonList['Cave of Being'].lootTable.epic.push({loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Cave of Being'))});
 dungeonList['Abundant Shrine'].lootTable.common.push({loot: 'Hondew', weight: 3.5});
 dungeonList['Abundant Shrine'].lootTable.legendary.push(

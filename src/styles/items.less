@@ -1,7 +1,7 @@
 @import "variables.less";
 
 .item-selected {
-  background-color: @itemSelectionColor;
+  background-color: @itemSelectionColor !important;
   border-radius:5px;
 }
 
@@ -13,4 +13,12 @@
 .amount-button {
   height:50px;
   text-align:center;
+}
+
+/* Crobat Fork */
+@media (min-width: 768px) {
+  .scrolling-div {
+    overflow-y: auto;
+    max-height: calc(100vh - 420px);
+  }
 }

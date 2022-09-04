@@ -64,7 +64,7 @@ class PokedexHelper {
         return this.showAllPokemon() ? this.filteredList() : this.filteredList().slice(0, (this.scrollIndex() * 50));
     }
     // Adds 50 more Pokémon on scroll
-    public static addPokemonItem(){
+    public static addPokemonItem() {
         this.setScrollIndex(this.scrollIndex() + 1);
     }
     public static setScrollIndex(index: number): void {
@@ -256,8 +256,8 @@ $(document).ready(() => {
     });
     // Adds 50 more Pokémon
     $('#pokemon-list').on('scroll', () => {
-        let scrollY = $('#pokemon-list').scrollTop();
-        let divHeight = $('#pokemon-elements').height();
+        const scrollY = $('#pokemon-list').scrollTop();
+        const divHeight = $('#pokemon-elements').height();
         if (scrollY >= divHeight - 500) {
             PokedexHelper.addPokemonItem();
         }

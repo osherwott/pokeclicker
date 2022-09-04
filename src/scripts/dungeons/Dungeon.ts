@@ -9148,13 +9148,13 @@ dungeonList['Meteor Falls'].lootTable.common.push({loot: 'Cornn', weight: 4});
 dungeonList['Magma Hideout'].lootTable.rare.push({loot: 'Tamato', weight: 2});
 dungeonList['Magma Hideout'].lootTable.legendary.push(
     {loot: 'Spelon', weight: 0.5},
-    {loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Magma Hideout'))},
+    {loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Magma Hideout'))}
 );
 dungeonList['Sky Pillar'].lootTable.common.push({loot: 'Durin', weight: 3.5});
 // Sinnoh
 dungeonList['Oreburgh Gate'].lootTable.epic.push(
     {loot: 'Watmel', weight: 2},
-    {loot: 'Shuca', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate'))},
+    {loot: 'Shuca', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate'))}
 );
 dungeonList['Oreburgh Gate'].lootTable.legendary.push({loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Oreburgh Gate'))});
 dungeonList['Valley Windworks'].lootTable.common.push(
@@ -9180,12 +9180,12 @@ dungeonList['Spear Pillar'].lootTable.epic.push(
 dungeonList['Spear Pillar'].lootTable.legendary.push(
     {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
     {loot: 'Apicot', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
-    {loot: 'Lansat', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
+    {loot: 'Lansat', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))}
 );
 dungeonList['Distortion World'].lootTable.common.push({loot: 'Nomel', weight: 3.5});
 dungeonList['Distortion World'].lootTable.legendary.push(
     {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Distortion World'))},
-    {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Distortion World'))},
+    {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Distortion World'))}
 );
 dungeonList['Victory Road Sinnoh'].lootTable.rare.push({loot: 'Spelon', weight: 2.5});
 dungeonList['Hall of Origin'].lootTable.mythic.push({loot: 'Starf', weight: 0, requirement: new ClearDungeonRequirement(1000, GameConstants.getDungeonIndex('Hall of Origin'))});
@@ -9195,25 +9195,25 @@ dungeonList['Fullmoon Island'].lootTable.legendary.push(
     {loot: 'Rindo', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
     {loot: 'Passho', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
     {loot: 'Wacan', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
-    {loot: 'Yache', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
+    {loot: 'Yache', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))}
 );
 dungeonList['Newmoon Island'].lootTable.epic.push({loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))});
 dungeonList['Newmoon Island'].lootTable.legendary.push(
     {loot: 'Shuca', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
     {loot: 'Coba', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
     {loot: 'Kebia', weight: 0.5, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Newmoon Island'))},
-    {loot: 'Chople', weight: 0.5, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island'))},
+    {loot: 'Chople', weight: 0.5, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island'))}
 );
 dungeonList['Flower Paradise'].lootTable.epic.push({loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))});
 dungeonList['Flower Paradise'].lootTable.legendary.push(
     {loot: 'Coba', weight: 0.75, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
     {loot: 'Tanga', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
     {loot: 'Charti', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-    {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
+    {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))}
 );
 dungeonList['Snowpoint Temple'].lootTable.legendary.push(
     {loot: 'Chilan', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Snowpoint Temple'))},
-    {loot: 'Roseli', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Snowpoint Temple'))},
+    {loot: 'Roseli', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Snowpoint Temple'))}
 );
 // Unova
 dungeonList['Floccesy Ranch'].lootTable.epic.push({loot: 'Chilan', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Floccesy Ranch'))});
@@ -9240,7 +9240,7 @@ dungeonList['Abundant Shrine'].lootTable.legendary.push(
     {loot: 'Micle', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
     {loot: 'Custap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
     {loot: 'Rowap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-    {loot: 'Jaboca', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Abundant Shrine'))},
+    {loot: 'Jaboca', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Abundant Shrine'))}
 );
 dungeonList['Twist Mountain'].lootTable.common.push({loot: 'Nomel', weight: 3.75});
 dungeonList['Moor of Icirrus'].lootTable.common.push({loot: 'Belue', weight: 3});
@@ -9249,17 +9249,17 @@ dungeonList['Pledge Grove'].lootTable.common.push({loot: 'Qualot', weight: 3.5})
 // dungeonList['Parfum Palace'].lootTable.epic.push({loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Parfum Palace'))});
 dungeonList['Connecting Cave'].lootTable.epic.push(
     {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
-    {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
+    {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))}
 );
 dungeonList['Lost Hotel'].lootTable.epic.push({loot: 'Wacan', weight: 1});
 dungeonList['Frost Cavern'].lootTable.epic.push(
     {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Frost Cavern'))},
-    {loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Frost Cavern'))},
+    {loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Frost Cavern'))}
 );
 dungeonList['Team Flare Secret HQ'].lootTable.epic.push(
     {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
     {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
-    {loot: 'Roseli', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
+    {loot: 'Roseli', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Flare Secret HQ'))}
 );
 dungeonList['Pokémon Village'].lootTable.epic.push(
     {loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
@@ -9268,6 +9268,6 @@ dungeonList['Pokémon Village'].lootTable.epic.push(
     {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
     {loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
     {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Pokémon Village'))},
+    {loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Pokémon Village'))}
 );
 dungeonList['Pokémon Village'].lootTable.legendary.push({loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Pokémon Village'))});

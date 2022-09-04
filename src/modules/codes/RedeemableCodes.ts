@@ -3,11 +3,10 @@ import BerryType from '../enums/BerryType';
 import NotificationConstants from '../notifications/NotificationConstants';
 import Notifier from '../notifications/Notifier';
 import RedeemableCode from './RedeemableCode';
-import * as GameConstants from '../GameConstants'; 
+import * as GameConstants from '../GameConstants';
 import Rand from '../utilities/Rand';
 import OakItemType from '../enums/OakItemType';
 import BadgeEnums from '../enums/Badges';
-import PokemonType from '../enums/PokemonType';
 
 export default class RedeemableCodes implements Saveable {
     defaults: Record<string, any>;
@@ -45,6 +44,7 @@ export default class RedeemableCodes implements Saveable {
             }),
             /* Crobat Fork Codes */
             // Rotom (Crobat)
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('rotom-crobat', 855696596, false, () => { // CROBATISBASED
                 const successfulCode = this.pokemonCode('Rotom (Crobat)', 'Rotom', BadgeEnums.Beacon);
                 // Needs to be undefined to be counted as code reedemed
@@ -54,6 +54,7 @@ export default class RedeemableCodes implements Saveable {
                 }
             }),
             // Surfing Pikachu
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('surfing-pikachu', -1621513525, false, () => { // FATRATDROWNED
                 const successfulCode = this.pokemonCode('Surfing Pikachu', 'Pikachu', BadgeEnums.Earth);
                 if (successfulCode === false) {
@@ -61,36 +62,42 @@ export default class RedeemableCodes implements Saveable {
                 }
             }),
             // Unown C-R-O-B-A-T
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-c', 64085966, false, () => { // CHASE
                 const successfulCode = this.pokemonCode('Unown (C)', undefined, BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-r', -70124742, false, () => { // REASSURE
                 const successfulCode = this.pokemonCode('Unown (R)', undefined, BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-o', -933339908, false, () => { // OBSERVE
                 const successfulCode = this.pokemonCode('Unown (O)', undefined, BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-b', 2034612, false, () => { // BEAR
                 const successfulCode = this.pokemonCode('Unown (B)', undefined, BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-a', 62423425, false, () => { // ANGRY
                 const successfulCode = this.pokemonCode('Unown (A)', undefined, BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
+            // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-t', 2571185, false, () => { // TELL
                 const successfulCode = this.pokemonCode('Unown (T)', undefined, BadgeEnums.Rising);
                 if (successfulCode === false) {
@@ -106,7 +113,8 @@ export default class RedeemableCodes implements Saveable {
      * @param chance Base chance, should be from GameConstants.SHINY_CHANCE.*
      * @returns {boolean}
      */
-     generateShiny(chance: number, skipBonus = false): boolean {
+    // eslint-disable-next-line class-methods-use-this
+    generateShiny(chance: number, skipBonus = false): boolean {
         const bonus = skipBonus ? 1 : App.game.multiplier.getBonus('shiny');
 
         if (Rand.chance(chance / bonus)) {
@@ -116,33 +124,37 @@ export default class RedeemableCodes implements Saveable {
         return false;
     }
 
-    checkRegion(pokemon, currentRegion){
+    // eslint-disable-next-line class-methods-use-this
+    checkRegion(pokemon, currentRegion) {
         if (currentRegion >= pokemon.nativeRegion) {
             return true;
         }
         return false;
     }
 
-    checkOriginalForm(originalForm){
-        //If MissingNo., no original form is required (This is mostly for the Unowns)
+    // eslint-disable-next-line class-methods-use-this
+    checkOriginalForm(originalForm) {
+        // If MissingNo., no original form is required (This is mostly for the Unowns)
         if (App.game.party.alreadyCaughtPokemon(originalForm.id) || originalForm.id === 0) {
             return true;
         }
         return false;
     }
 
-    checkBadge(badge){
+    // eslint-disable-next-line class-methods-use-this
+    checkBadge(badge) {
         if (App.game.badgeCase.hasBadge(badge)) {
             return true;
         }
         return false;
     }
 
-    pokemonCode(pokemonName, originalName = 'MissingNo.', badge){
+    // eslint-disable-next-line consistent-return
+    pokemonCode(pokemonName, originalName = 'MissingNo.', badge) {
         const shiny = this.generateShiny(GameConstants.SHINY_CHANCE_SHOP);
         const pokemon = pokemonMap[pokemonName];
         const originalForm = pokemonMap[originalName];
-        //const badge = BadgeEnums.Earth;
+        // const badge = BadgeEnums.Earth;
         const badgeSatisfied = this.checkBadge(badge);
         const regionSatisfied = this.checkRegion(pokemon, player.highestRegion());
         const originalFormSatisfied = this.checkOriginalForm(originalForm);
@@ -155,14 +167,13 @@ export default class RedeemableCodes implements Saveable {
                 type: NotificationConstants.NotificationOption.success,
                 timeout: 1e4,
             });
-        }
-        else {
+        } else {
             // Notify that the region of code pokemon is not reached yet
-            const messageGeneral = `You can't get this Pokémon yet!`;
+            const messageGeneral = 'You can\'t get this Pokémon yet!';
             const messageOriginalForm = `Requires ${originalForm.name} to be caught.`;
             const messageBadge = `Requires the ${GameConstants.camelCaseToString(BadgeEnums[badge])} Badge.`;
-            const mergeMessages = messageGeneral + (!originalFormSatisfied ? '\n' + messageOriginalForm : '') + (!badgeSatisfied ? '\n' + messageBadge : '');
-            const messageRegion = `You need to progress further to unlock this pokemon.`;
+            const mergeMessages = messageGeneral + (!originalFormSatisfied ? `\n${messageOriginalForm}` : '') + (!badgeSatisfied ? `\n${messageBadge}` : '');
+            const messageRegion = 'You need to progress further to unlock this pokemon.';
             Notifier.notify({
                 message: regionSatisfied ? mergeMessages : messageRegion,
                 type: NotificationConstants.NotificationOption.danger,

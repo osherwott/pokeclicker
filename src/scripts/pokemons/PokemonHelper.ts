@@ -78,7 +78,7 @@ class PokemonHelper {
             src += 'shiny';
         }
         let genderString = '';
-        if (gender == GameConstants.GENDER_FEMALE) { 
+        if (gender == GameConstants.GENDER_FEMALE) {
             const hasDiff = this.getPokemonById(pokemon.id).gender.difference;
             if (hasDiff) {
                 genderString = '-f';

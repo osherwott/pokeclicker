@@ -208,9 +208,9 @@ class MapHelper {
         const openModal = () => {
             $('#ShipModal').modal('show');
         };
-        let title = 'Dock';
+        const title = 'Dock';
         let message = '';
-        let type = NotificationConstants.NotificationOption.warning;
+        const type = NotificationConstants.NotificationOption.warning;
         if (player.highestRegion() > 0 && (TownList[GameConstants.DockTowns[player.region]].isUnlocked())) {
             if (App.game.gameState === GameConstants.GameState.battleFrontier) {
                 message = 'You cannot access to the dock while you are inside the Battle Frontier';

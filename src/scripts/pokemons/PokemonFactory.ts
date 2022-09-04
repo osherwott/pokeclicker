@@ -295,7 +295,7 @@ class PokemonFactory {
      * @param genderType Gender type (Genderless, male only, etc.), should be from GameConstants under Gender Types comment
      * @returns {number} 0 = Genderless, 1 = male, 2 = female
      */
-     public static generateGender(chance: number, genderType: number): number {
+    public static generateGender(chance: number, genderType: number): number {
         let gender;
         switch (genderType) {
             case GameConstants.GENDERLESS:
@@ -310,8 +310,7 @@ class PokemonFactory {
             case GameConstants.MALE_FEMALE:
                 if (Rand.chance(chance)) { // Female
                     gender = GameConstants.GENDER_FEMALE;
-                }
-                else { // Male
+                } else { // Male
                     gender = GameConstants.GENDER_MALE;
                 }
                 break;
@@ -323,15 +322,15 @@ class PokemonFactory {
 
     public static genderText(gender: number) {
         let genderText;
-        switch(gender) {
+        switch (gender) {
             case GameConstants.NO_GENDER:
                 genderText = GameConstants.TEXT_GENDERLESS;
                 break;
             case GameConstants.GENDER_MALE:
-                genderText = GameConstants.TEXT_MALE
+                genderText = GameConstants.TEXT_MALE;
                 break;
             case GameConstants.GENDER_FEMALE:
-                genderText = GameConstants.TEXT_FEMALE
+                genderText = GameConstants.TEXT_FEMALE;
                 break;
             default:
                 console.warn('Invalid gender');

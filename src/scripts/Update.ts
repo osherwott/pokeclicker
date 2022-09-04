@@ -1128,6 +1128,12 @@ class Update implements Saveable {
             renamePokemon(saveData, 'Rotom (Discord)', 'Rotom (Crobat)');
         },
 
+        '0.9.14': ({ playerData, saveData }) => {
+            if (saveData.party.caughtPokemon.filter(p => p.id === 103.02).length) {
+                saveData.wallet.currencies[1] += 50000;
+            }
+        },
+
     };
 
     constructor() {

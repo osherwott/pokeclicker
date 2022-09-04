@@ -1392,7 +1392,7 @@ dungeonList['Ruby Path'] = new Dungeon('Ruby Path',
     },
     720600,
     [new DungeonBossPokemon('Magcargo', 3703000, 20)],
-    43000, 101,
+    43000, 30,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1424,7 +1424,7 @@ dungeonList['Icefall Cave'] = new Dungeon('Icefall Cave',
                 new GymPokemon('Golbat', 250000, 20),
             ], { weight: 1 }, undefined, '(male)'),
     ],
-    43000, 101,
+    43000, 30,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1450,7 +1450,7 @@ dungeonList['Sunburst Island'] = new Dungeon('Sunburst Island',
     },
     720600,
     [new DungeonBossPokemon('Crystal Onix', 4500000, 20)],
-    43000, 101,
+    43000, 31,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1494,7 +1494,7 @@ dungeonList['Lost Cave'] = new Dungeon('Lost Cave',
                 new GymPokemon('Persian', 1800000, 49),
             ], { weight: 1 }, 'Selphy'),
     ],
-    36000, 101,
+    36000, 33,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1590,7 +1590,7 @@ dungeonList['Pattern Bush'] = new Dungeon('Pattern Bush',
     },
     500000,
     [new DungeonBossPokemon('Heracross', 3703000, 20)],
-    43000, 101,
+    43000, 35,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1616,7 +1616,7 @@ dungeonList['Altering Cave'] = new Dungeon('Altering Cave',
         new DungeonBossPokemon('Stantler', 3703000, 20),
         new DungeonBossPokemon('Smeargle', 3703000, 20),
     ],
-    43000, 101,
+    43000, 36,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1659,7 +1659,7 @@ dungeonList['Tanoby Ruins'] = new Dungeon('Tanoby Ruins',
             requirement: new SeededDateRequirement(() => SeededDateRand.fromArray(TanobyUnownList) == char),
         })),
     ],
-    43000, 101,
+    43000, 39,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 
@@ -1690,7 +1690,7 @@ dungeonList['Pinkan Mountain'] = new Dungeon('Pinkan Mountain',
         new DungeonBossPokemon('Pinkan Rhydon', 7000000, 40),
         new DungeonBossPokemon('Pinkan Nidoking', 7000000, 40),
     ],
-    89500, 101,
+    89500, 42,
     () => {},
     {dungeonRegionalDifficulty: GameConstants.Region.hoenn});
 

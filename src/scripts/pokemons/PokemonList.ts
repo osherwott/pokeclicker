@@ -1315,6 +1315,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 112,
         'eggCycles': 10,
+        'evolutions': [new LevelEvolution('Detective Pikachu', 'Detective Raichu', 1234)],
         'base': {
             'hitpoints': 35,
             'attack': 55,
@@ -1464,7 +1465,7 @@ const pokemonList = createPokemonArray(
             'hitpoints': 55,
             'attack': 47,
             'specialAttack': 40,
-            'defense': 120,
+            'defense': 52,
             'specialDefense': 40,
             'speed': 41,
         },
@@ -1484,7 +1485,7 @@ const pokemonList = createPokemonArray(
             'hitpoints': 55,
             'attack': 47,
             'specialAttack': 40,
-            'defense': 120,
+            'defense': 52,
             'specialDefense': 40,
             'speed': 41,
         },
@@ -3112,6 +3113,23 @@ const pokemonList = createPokemonArray(
         'gender': {
             'difference': true,
         }
+    },
+    {
+        'id': 85.01,
+        'name': 'Pinkan Dodrio',
+        'catchRate': 45,
+        'type': [PokemonType.Normal, PokemonType.Flying],
+        'levelType': LevelType.mediumfast,
+        'exp': 165,
+        'eggCycles': 30,
+        'base': {
+            'hitpoints': 60,
+            'attack': 110,
+            'specialAttack': 60,
+            'defense': 70,
+            'specialDefense': 60,
+            'speed': 110,
+        },
     },
     {
         'id': 86,
@@ -14098,7 +14116,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 63,
         'catchRate': 120,
-        'evolutions': [new LevelEvolution('Darumaka', 'Darmanitan', 35)],
+        'evolutions': [
+            new LevelEvolution('Darumaka', 'Darmanitan', 35),
+            new LevelEvolution('Darumaka', 'Darmanitan (Zen)', 1234),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 90,
@@ -14117,7 +14138,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 63,
         'catchRate': 120,
-        'evolutions': [new StoneEvolution('Galarian Darumaka', 'Galarian Darmanitan', GameConstants.StoneType.Ice_stone)],
+        'evolutions': [
+            new StoneEvolution('Galarian Darumaka', 'Galarian Darmanitan', GameConstants.StoneType.Ice_stone),
+            new LevelEvolution('Galarian Darumaka', 'Galarian Darmanitan (Zen)', 1234),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 90,

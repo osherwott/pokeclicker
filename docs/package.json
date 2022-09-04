@@ -79,6 +79,7 @@
     "@types/knockout": "^3.4.66",
     "@typescript-eslint/parser": "^3.6.1",
     "bootstrap": "^4.5.3",
+    "bootstrap-icons": "^1.9.1",
     "eslint": "^7.4.0",
     "intro.js": "^2.9.3",
     "jquery": "^3.5.1",

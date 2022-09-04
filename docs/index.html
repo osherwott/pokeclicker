@@ -29,6 +29,9 @@
     <link href="libs/bootstrap.min.css" rel="stylesheet">
     <script src="libs/bootstrap.min.js"></script>
 
+    <!--Bootstrap Icons-->
+    <link href="libs/bootstrap-icons.css" rel="stylesheet">
+
     <!--Notify-->
     <script src="libs/bootstrap-notify.min.js"></script>
 
@@ -41,24 +44,6 @@
     <link href="styles/styles.min.css?v=0.9.14" rel="stylesheet">
 
     <!-- Google Analytics-->
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171657234-1"></script>
-    <script>
-        if (true) {
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-
-            gtag('js', new Date());
-
-            gtag('config', 'UA-171657234-1');
-        } else {
-            function gtag(){};
-        }
-    </script>
-
     <style>
         #game.loading {
             display: none !important;
@@ -313,7 +298,7 @@
 
 <!-- Show profile modal -->
 <div class="modal noselect fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header" style='justify-content: space-around;'>
                 <h5 class="modal-title">Profile</h5>
@@ -323,17 +308,37 @@
             </div>
             <div class="modal-body text-left p-2">
                 <div class="form-row p-0" id="profileEdit">
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <label>Name</label>
                         <input autocomplete="off" class="form-control" oninput="App.game.profile.name(this.value)" placeholder="name" data-bind="value: App.game.profile.name()"/>
                     </div>
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <label>Pokemon</label>
-                        <select autocomplete="off" class="custom-select" onchange="App.game.profile.pokemon(+this.value)">
+                        <select autocomplete="off" class="custom-select" onchange="App.game.profile.pokemon(+this.value), App.game.profile.pokemonShiny(false), App.game.profile.pokemonFemale(false)">
                             <!-- ko foreach: App.game.party.caughtPokemon.sort((a, b) => a.id - b.id) -->
                             <option data-bind="attr: { value: $data.id, selected: App.game.profile.pokemon() === $data.id }, text: '#'+($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)+' '+$data.name">Pokemon</option>
                             <!-- /ko -->
                         </select>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Shiny</label>
+                        <label class="form-check-label toggler-wrapper style-1 float-right">
+                            <input class="form-check-input" type="checkbox" id="profile-shiny-toggle"
+                                data-bind="checked: App.game.profile.pokemonShiny, enable: App.game.party.alreadyCaughtPokemon(App.game.profile.pokemon(), true)">
+                            <div class="toggler-slider" data-bind="tooltip: { title: !App.game.party.alreadyCaughtPokemon(App.game.profile.pokemon(), true) ? `Shiny ${PokemonHelper.getPokemonById(App.game.profile.pokemon()).name} is not unlocked yet` : '', trigger: 'hover' }">
+                                <div class="toggler-knob" data-bind="css: { 'checkbox-disabled': !App.game.party.alreadyCaughtPokemon(App.game.profile.pokemon(), true) }"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Female</label>
+                        <label class="form-check-label toggler-wrapper style-1 float-right">
+                            <input class="form-check-input" type="checkbox" id="profile-female-toggle"
+                                data-bind="checked: App.game.profile.pokemonFemale, enable: PokemonHelper.getPokemonById(App.game.profile.pokemon()).gender.difference">
+                            <div class="toggler-slider" data-bind="tooltip: { title: !PokemonHelper.getPokemonById(App.game.profile.pokemon()).gender.difference ? `${PokemonHelper.getPokemonById(App.game.profile.pokemon()).name} has no gender differences` : '', trigger: 'hover' }">
+                                <div class="toggler-knob" data-bind="css: { 'checkbox-disabled': !PokemonHelper.getPokemonById(App.game.profile.pokemon()).gender.difference }"></div>
+                            </div>
+                        </label>
                     </div>
                     <div class="form-group col-12">
                         <label>Text Color</label>
@@ -341,10 +346,10 @@
                           <label style="width:100%; min-height: 28px; padding:0px; margin: 0px;"><input style="opacity: 0;" type="color" data-bind="value: App.game.profile.textColor"/></label>
                         </p>
                     </div>
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <a class="btn btn-block btn-primary text-left" href="#profileTrainerModal" data-toggle="modal">Trainer <img style="position:absolute; right: 10px;" data-bind="attr: { src: `assets/images/profile/trainer-${App.game.profile.trainer() || 0}.png` }"/></a>
                     </div>
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <a class="btn btn-block btn-primary text-left" href="#profileBackgroundModal" data-toggle="modal">Background <knockout style="position:absolute; right: 10px;" data-bind="text: `#${App.game.profile.background()}`"></knockout></a>
                     </div>
                 </div>
@@ -426,57 +431,89 @@
                 </ul>
                 <div class="tab-content">
                     <div id="evoStones" class="tab-pane active p-3">
-                        <h3 data-bind="text: ItemList[ItemHandler.stoneSelected()].displayName"></h3>
-
-                        <div class="row justify-content-sm-center">
-                            <div class="row col-10" data-bind="foreach: Object.keys(GameConstants.StoneType).filter(stone => isNaN(stone) && stone !== 'None')">
-                                <div class="col-2" style="cursor: pointer"
-                                        data-bind="css:{'item-selected': ItemHandler.stoneSelected() === $data},
-                                            click: function(){ ItemHandler.stoneSelected($data); ItemHandler.pokemonSelected('')},
-                                            visible: ItemList[$data].unlockedRegion <= player.highestRegion() || player.amountOfItem($data) > 0">
-                                    <img data-bind="attr: {src: ItemList[$data].image }" style="max-width: 32px;">
-                                    <div data-bind="text: player._itemList[$data]().toLocaleString('en-US')"></div>
+                        <!--<h3 data-bind="text: ItemList[ItemHandler.stoneSelected()].displayName"></h3>-->
+                        <div class="row">
+                            <div class="col-12 d-md-none d-block">
+                                <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                                        data-target="#evo-item-list" aria-expanded="false" aria-controls="evo-item-list">
+                                    Evolution Item
+                                </button>
+                            </div>
+                            <!-- Evo items -->
+                            <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="evo-item-list">
+                                <h4>Evolution Items</h4>
+                                <div class="scrolling-div" data-bind="foreach: Object.keys(GameConstants.StoneType).filter(stone => isNaN(stone) && stone !== 'None')">
+                                    <div class="col-12 breedingListItem">
+                                        <button class="btn btn-secondary smallButton list-group-item-action" style="cursor: pointer; padding-right:15px"
+                                                data-bind="css:{'item-selected': ItemHandler.stoneSelected() === $data},
+                                                    click: function(){ ItemHandler.stoneSelected($data); ItemHandler.pokemonSelected('')},
+                                                    visible: ItemList[$data].unlockedRegion <= player.highestRegion() || player.amountOfItem($data) > 0">
+                                            <img data-bind="attr: {src: ItemList[$data].image }" style="max-width: 32px; margin: -10px; padding: 12px 0px;">
+                                            <div class="d-inline-block" data-bind="text: ItemList[$data].displayName" style="margin-left: 20px; margin-top:8px;"></div>
+                                            <span data-bind="text: player._itemList[$data]().toLocaleString('en-US')" style="float:right; margin-top:8px;"></span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <hr/>
-
-                        <div class="row justify-content-sm-center" >
-                            <div class="row col-lg-11 offset-md-0"
-                                data-bind="foreach: PokemonHelper.getPokemonsWithEvolution(GameConstants.StoneType[ItemHandler.stoneSelected()])">
-                                <div class="col-md-6 col-sm-10 col-lg-4 offset-sm-1 offset-md-0 offset-md-0 breedingListItem">
-                                    <button class="btn btn-secondary smallButton list-group-item-action" style="padding-right:15px"
-                                            data-bind="click: function() {ItemHandler.pokemonSelected(name)}, css:{ 'pokemon-selected': ItemHandler.pokemonSelected() === name}">
-                                        <img class="smallImage" data-bind="attr:{src: 'assets/images/' + (App.game.party.alreadyCaughtPokemon($data.id, true) ? 'shiny' : '') + 'pokemon/' + id +'.png' }"/>
-                                        <span data-bind="text: name" style="margin-left: 20px">Name</span>
-
-                                        <span style="float:right; margin-top:8px"  data-bind="using: { statuses: PartyController.getStoneEvolutionsCaughtStatus($data.id, GameConstants.StoneType[ItemHandler.stoneSelected()]) }">
-                                            <div class="row" data-bind="foreach: statuses">
-                                                <div class="col-2" data-bind="template: { name: 'caughtStatusTemplate', data: { 'status': $data } }"></div>
+                            <div class="col-12 d-md-none d-block">
+                                <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                                        data-target="#evo-pokemon-list" aria-expanded="false" aria-controls="evo-pokemon-list">
+                                    Pokémon
+                                </button>
+                            </div>
+                            <!-- Pokemon list -->
+                            <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="evo-pokemon-list">
+                                <h4>Pokémon</h4>
+                                <div class="scrolling-div"
+                                    data-bind="foreach: PokemonHelper.getPokemonsWithEvolution(GameConstants.StoneType[ItemHandler.stoneSelected()])">
+                                    <div class="col-md-6 col-sm-10 col-lg-12 breedingListItem"> <!--offset-sm-1 offset-md-0 offset-md-0 -->
+                                        <button class="btn btn-secondary smallButton list-group-item-action" style="padding-right:15px"
+                                                data-bind="click: function() {ItemHandler.pokemonSelected(name)}, css:{ 'pokemon-selected': ItemHandler.pokemonSelected() === name}">
+                                            <img class="smallImage" data-bind="attr:{src: 'assets/images/' + (App.game.party.alreadyCaughtPokemon($data.id, true) ? 'shiny' : '') + 'pokemon/' + id +'.png' }"/>
+                                            <div class="d-inline-block" data-bind="text: name" style="margin-left: 20px; margin-top: 8px;">Name</div>
+                                            <span style="float:right; margin-top:8px"  data-bind="using: { statuses: PartyController.getStoneEvolutionsCaughtStatus($data.id, GameConstants.StoneType[ItemHandler.stoneSelected()]) }">
+                                                <div class="row" data-bind="foreach: statuses">
+                                                    <div class="col-2" data-bind="template: { name: 'caughtStatusTemplate', data: { 'status': $data } }"></div>
+                                                </div>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Amount buttons -->
+                            <div class="col-12 scrolling-div ">
+                                <div class="pt-3">
+                                    <i>Stops using evolution items once a shiny is encountered</i>
+                                </div>
+                                <!--
+                                // Since Pikachu and Exeggcute fix, random evolution is not possible anymore
+                                <div class="pt-3" data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
+                                    <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected</i>
+                                </div>
+                                -->
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="row justify-content-center" style="padding:15px;"
+                                            data-bind="template: { 
+                                                name:'multiOptionTemplate', 
+                                                data: { observable: ItemHandler.amountSelected, 
+                                                    optionValues: [1,10,100,1000,Infinity] 
+                                                } 
+                                            }">
                                             </div>
-                                        </span>
-                                    </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="row justify-content-center" style="padding:15px;">
+                                                <button data-bind="click: function(){ItemHandler.useStones()}" class="btn btn-lg btn-success">Use evolution items!</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <hr/>
-
-                        <div class="row justify-content-center"
-                             data-bind="template: { name:'multiOptionTemplate',
-                                                    data: { observable: ItemHandler.amountSelected,
-                                                            optionValues: [1,10,100,1000,Infinity]
-                                                          }
-                                                  }">
-                        </div>
-                        <p><i>Stops using evolution items once a shiny is encountered</i></p>
-                        <p data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
-                            <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected</i>
-                        </p>
-                        <div class="row no-gutters justify-content-sm-center">
-                            <div class="row justify-content-center" style="padding:15px;">
-                                <button data-bind="click: function(){ItemHandler.useStones()}" class="btn btn-lg btn-success">Use evolution items!</button>
                             </div>
                         </div>
                     </div>
@@ -548,7 +585,6 @@
         <div data-bind="text: player._itemList[$data]().toLocaleString('en-US')"></div>
     </div>
 </script>
-
 
 <!--Templates -->
 <script type="text/html" id="currencyTemplate">
@@ -690,6 +726,152 @@
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.alreadyCaughtShinySelection)}"></td>
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.notCaughtSelection)}"></td>
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.notCaughtShinySelection)}"></td>
+                </tr>
+                <!-- ko if: new TemporaryBattleRequirement('Anabel').isCompleted() -->
+                <tr>
+                    <td class="align-middle" width="20%"
+                        data-bind="tooltip: {
+                                title: 'Enable this option to catch Ultra Beasts<br/>' + App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) + ` Beast Ball${App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) != 1 ? 's' : ''} remaining`,
+                                trigger:'hover',
+                                html:true
+                        }">
+                        <img class="pokeball-small pokeball-selected" src="assets/images/pokeball/Beastball.svg">
+                    </td>
+                    <td class="align-middle">
+                        <label class="form-check-label toggler-wrapper style-1 m-auto">
+                            <input class="form-check-input" type="checkbox" id="pokeball-catch-ub"
+                                data-bind="checked: App.game.pokeballs.catchUltraBeast">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                    </td>
+                    <td class="align-middle" width="20%"
+                        data-bind="tooltip: {
+                            title: 'Enable this option to catch only Shiny Ultra Beasts<br/>' + App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) + ' Beast Balls remaining',
+                            trigger:'hover',
+                            html:true
+                        }">
+                        <img class="pokeball-small pokeball-selected" src="assets/images/pokeball/Beastball.svg">✨
+                    </td>
+                    <td class="align-middle">
+                        <label class="form-check-label toggler-wrapper style-1 m-auto">
+                            <input class="form-check-input" type="checkbox" id="pokeball-catch-ub-shiny"
+                                data-bind="checked: App.game.pokeballs.catchUltraBeastShiny">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                    </td>
+                </tr>
+                <!-- /ko -->
+            </thead>
+        </table>
+    </div>
+    <div class="card-header collapsed p-0" data-toggle="collapse" aria-expanded="false" href="#pokeballByTypeSelectorBody">
+        <span>Selections by type</span>
+    </div>
+    <div id="pokeballByTypeSelectorBody" class="card-body p-0 table-responsive collapse">
+        <table class="table table-sm m-0">
+            <thead>
+                <!-- Normal, Fire, Water, Electric -->
+                <tr>
+                    <th width="20%" data-toggle="tooltip" title="Normal-type Pokémon will use this ball selection , regardless if captured or not">Normal</th>
+                    <th width="20%" data-toggle="tooltip" title="Fire-type Pokémon will use this ball selection, regardless if captured or not">Fire</th>
+                    <th width="20%" data-toggle="tooltip" title="Water-type Pokémon will use this ball selection, regardless if captured or not">Water</th>
+                    <th width="20%" data-toggle="tooltip" title="Electric-type Pokémon will use this ball selection, regardless if captured or not">Electric</th>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeNormalSelection, 'field': App.game.pokeballs._typeNormalSelection, 'title': 'Normal-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFireSelection, 'field': App.game.pokeballs._typeFireSelection, 'title': 'Fire-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeWaterSelection, 'field': App.game.pokeballs._typeWaterSelection, 'title': 'Water-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeElectricSelection, 'field': App.game.pokeballs._typeElectricSelection, 'title': 'Electric-type Pokémon'}}"></td>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeNormalSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFireSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeWaterSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeElectricSelection)}"></td>
+                </tr>
+
+                <!-- Grass, Ice, Fighting, Poison -->
+                <tr>
+                    <th width="20%" data-toggle="tooltip" title="Grass-type Pokémon will use this ball selection, regardless if captured or not">Grass</th>
+                    <th width="20%" data-toggle="tooltip" title="Ice-type Pokémon will use this ball selection, regardless if captured or not">Ice</th>
+                    <th width="20%" data-toggle="tooltip" title="Fighting-type Pokémon will use this ball selection, regardless if captured or not">Fighting</th>
+                    <th width="20%" data-toggle="tooltip" title="Poison-type Pokémon will use this ball selection, regardless if captured or not">Poison</th>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeGrassSelection, 'field': App.game.pokeballs._typeGrassSelection, 'title': 'Grass-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeIceSelection, 'field': App.game.pokeballs._typeIceSelection, 'title': 'Ice-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFightingSelection, 'field': App.game.pokeballs._typeFightingSelection, 'title': 'Fighting-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typePoisonSelection, 'field': App.game.pokeballs._typePoisonSelection, 'title': 'Poison-type Pokémon'}}"></td>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeGrassSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeIceSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFightingSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typePoisonSelection)}"></td>
+                </tr>
+
+                <!-- Ground, Flying, Psychic, Bug -->
+                <tr>
+                    <th width="20%" data-toggle="tooltip" title="Ground-type Pokémon will use this ball selection, regardless if captured or not">Ground</th>
+                    <th width="20%" data-toggle="tooltip" title="Flying-type Pokémon will use this ball selection, regardless if captured or not">Flying</th>
+                    <th width="20%" data-toggle="tooltip" title="Psychic-type Pokémon will use this ball selection, regardless if captured or not">Psychic</th>
+                    <th width="20%" data-toggle="tooltip" title="Bug-type Pokémon will use this ball selection, regardless if captured or not">Bug</th>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeGroundSelection, 'field': App.game.pokeballs._typeGroundSelection, 'title': 'Ground-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFlyingSelection, 'field': App.game.pokeballs._typeFlyingSelection, 'title': 'Flying-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typePsychicSelection, 'field': App.game.pokeballs._typePsychicSelection, 'title': 'Psychic-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeBugSelection, 'field': App.game.pokeballs._typeBugSelection, 'title': 'Bug-type Pokémon'}}"></td>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeGroundSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFlyingSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typePsychicSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeBugSelection)}"></td>
+                </tr>
+
+                <!-- Rock, Ghost, Dragon, Dark -->
+                <tr>
+                    <th width="20%" data-toggle="tooltip" title="Rock-type Pokémon will use this ball selection, regardless if captured or not">Rock</th>
+                    <th width="20%" data-toggle="tooltip" title="Ghost-type Pokémon will use this ball selection, regardless if captured or not">Ghost</th>
+                    <th width="20%" data-toggle="tooltip" title="Dragon-type Pokémon will use this ball selection, regardless if captured or not">Dragon</th>
+                    <th width="20%" data-toggle="tooltip" title="Dark-type Pokémon will use this ball selection, regardless if captured or not">Dark</th>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeRockSelection, 'field': App.game.pokeballs._typeRockSelection, 'title': 'Rock-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeGhostSelection, 'field': App.game.pokeballs._typeGhostSelection, 'title': 'Ghost-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeDragonSelection, 'field': App.game.pokeballs._typeDragonSelection, 'title': 'Dragon-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeDarkSelection, 'field': App.game.pokeballs._typeDarkSelection, 'title': 'Dark-type Pokémon'}}"></td>
+                </tr>
+                <tr>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeRockSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeGhostSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeDragonSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeDarkSelection)}"></td>
+                </tr>
+
+                <!-- Steel, Fairy -->
+                <tr>
+                    <th width="20%" data-toggle="tooltip" title=""></th>
+                    <th width="20%" data-toggle="tooltip" title="Steel-type Pokémon will use this ball selection, regardless if captured or not">Steel</th>
+                    <th width="20%" data-toggle="tooltip" title="Fairy-type Pokémon will use this ball selection, regardless if captured or not">Fairy</th>
+                    <th width="20%" data-toggle="tooltip" title=""></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeSteelSelection, 'field': App.game.pokeballs._typeSteelSelection, 'title': 'Steel-type Pokémon'}}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.typeFairySelection, 'field': App.game.pokeballs._typeFairySelection, 'title': 'Fairy-type Pokémon'}}"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeSteelSelection)}"></td>
+                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.typeFairySelection)}"></td>
+                    <td></td>
                 </tr>
             </thead>
         </table>
@@ -839,12 +1021,12 @@
             <div class="input-group-append bg-primary text-light">
                 <label
                     for="partySortDirection"
-                    class="clickable m-0 pl-2 pr-2"
+                    class="clickable m-0 pl-2 pr-2 sort-icons"
                     style="font-size: 22px;"
                     data-bind="
-                        text: Settings.getSetting('partySortDirection').observableValue() ? '⥄' : '⥂',
+                        html: Settings.getSetting('partySortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
                         tooltip: { title: Settings.getSetting('partySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }"
-                >⥂</label>
+                >⥄⥂</label>
                 <input
                     id="partySortDirection"
                     style="vertical-align: middle"
@@ -1071,7 +1253,7 @@
                                 </knockout>
 
                                 <knockout>
-                                    <knockout data-bind="text: Battle.enemyPokemon().name">Pokémon name</knockout>
+                                    <knockout data-bind="html: Battle.enemyPokemon().name + ' ' + PokemonFactory.genderText(Battle.enemyPokemon().gender)">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
                                 </knockout>
 
@@ -1080,7 +1262,7 @@
                             <div>
                                 <div data-bind="visible: !Battle.catching()">
                                     <img class="enemy"
-                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny) }"
+                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny, Battle.enemyPokemon().gender) }"
                                          src=""/>
                                 </div>
                                 <div data-bind="visible: Battle.catching()" class="catchChance">
@@ -1108,7 +1290,7 @@
         data-bind="click: function() { DungeonRunner.handleClick() }">
         <h2 class="pageItemTitle" style="display: block;">
             <knockout data-bind="if: DungeonBattle.enemyPokemon() && DungeonBattle.enemyPokemon().health()">
-                <knockout data-bind="text: DungeonBattle.enemyPokemon().name">Pokémon name</knockout>
+                <knockout data-bind="html: DungeonBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(DungeonBattle.enemyPokemon().gender)">Pokémon name</knockout>
                 <!-- ko if: !DungeonBattle.trainer() -->
                 <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(DungeonBattle.enemyPokemon().id)}}"></knockout>
                 <!-- /ko -->
@@ -1176,7 +1358,7 @@
             <div>
                 <div data-bind="ifnot: DungeonBattle.catching">
                     <img class="enemy"
-                         data-bind="attr:{ src: PokemonHelper.getImage(DungeonBattle.enemyPokemon(), DungeonBattle.enemyPokemon().shiny) }"
+                         data-bind="attr:{ src: PokemonHelper.getImage(DungeonBattle.enemyPokemon(), DungeonBattle.enemyPokemon().shiny, DungeonBattle.enemyPokemon().gender) }"
                          src=""/>
                 </div>
                 <div data-bind="if: DungeonBattle.catching" class="catchChance">
@@ -1233,7 +1415,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="text: GymBattle.enemyPokemon().name">Pokémon name</knockout>
+                <knockout data-bind="html: GymBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(GymBattle.enemyPokemon().gender)">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">
@@ -1267,7 +1449,7 @@
             <!-- TODO: Add after all Gym Leader images are formatted correctly (same sizes, style etc)
             <img style="position:absolute; left:65%; top: 64px; height: 64px" data-bind="attr:{ src: GymBattle.gym.imagePath }" onerror="this.src = 'assets/images/transparent.png'"/>
             -->
-            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(GymBattle.enemyPokemon(), GymBattle.enemyPokemon().shiny) }" src=""/>
+            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(GymBattle.enemyPokemon(), GymBattle.enemyPokemon().shiny, GymBattle.enemyPokemon().gender) }" src=""/>
         </div>
 
         <div class="progress hitpoints" style="height: 20px;">
@@ -1297,7 +1479,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="text: TemporaryBattleBattle.enemyPokemon().name">Pokémon name</knockout>
+                <knockout data-bind="html: TemporaryBattleBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(TemporaryBattleBattle.enemyPokemon().gender)">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">
@@ -1328,7 +1510,7 @@
         </div>
 
         <div>
-            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(TemporaryBattleBattle.enemyPokemon(), TemporaryBattleBattle.enemyPokemon().shiny) }" src=""/>
+            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(TemporaryBattleBattle.enemyPokemon(), TemporaryBattleBattle.enemyPokemon().shiny, TemporaryBattleBattle.enemyPokemon().gender) }" src=""/>
         </div>
 
         <div class="progress hitpoints" style="height: 20px;">
@@ -1353,7 +1535,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="text: BattleFrontierBattle.enemyPokemon().name">Pokémon name</knockout>
+                <knockout data-bind="html: BattleFrontierBattle.enemyPokemon().name + ' ' + PokemonFactory.genderText(BattleFrontierBattle.enemyPokemon().gender)">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right" data-bind="html: BattleFrontierRunner.pokemonLeftImages">
@@ -1372,7 +1554,7 @@
 
         <div>
             <img class="enemy"
-                    data-bind="attr:{ src: PokemonHelper.getImage(BattleFrontierBattle.enemyPokemon(), BattleFrontierBattle.enemyPokemon().shiny) }"
+                    data-bind="attr:{ src: PokemonHelper.getImage(BattleFrontierBattle.enemyPokemon(), BattleFrontierBattle.enemyPokemon().shiny, BattleFrontierBattle.enemyPokemon().gender) }"
                     src=""/>
         </div>
         <div class="progress hitpoints" style="height: 20px;">
@@ -1474,11 +1656,12 @@
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="
             hidden: !$data.lock,
             tooltip: {
-                title: 'Try progressing in the story, catching new Pokémon, or talking to the locals!',
+                title: $data.lockMessage,
                 html: true,
                 placement: 'bottom',
                 trigger: 'hover'
             }">
+            <!-- title: 'Try progressing in the story, catching new Pokémon, or talking to the locals!', -->
           </li>
           <!-- /ko -->
           <!--Display all available bosses in this dungeon-->
@@ -1490,11 +1673,12 @@
             <sup class="shiny" data-bind="visible: $data.shiny">✨</sup>
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="hidden: !$data.lock,
             tooltip: {
-                title: 'Try progressing in the story, catching new Pokémon, or talking to the locals!',
+                title: $data.lockMessage,
                 html: true,
                 placement: 'bottom',
                 trigger: 'hover'
             }">
+            <!-- title: 'Try progressing in the story, catching new Pokémon, or talking to the locals!', -->
           </li>
           <!-- /ko -->
         </ul>
@@ -1605,6 +1789,7 @@
             When you are ready, click Start!<br/>
             <i>Note: there is no click damage in the Battle Frontier.</i>
         </p>
+        <h5 data-bind="text: `Highest Stage: ${App.game.statistics.battleFrontierHighestStageCompleted()}`"></h5>
         <a class="btn btn-block btn-success text-light" onclick="BattleFrontierRunner.start(false)">Start</a>
         <!-- ko if: BattleFrontierRunner.hasCheckpoint() -->
             <a class="btn btn-block btn-success text-light" onclick="BattleFrontierRunner.start(true)">Start at latest checkpoint (Stage <knockout data-bind="text: BattleFrontierRunner.checkpoint">0</knockout>)</a>
@@ -31438,16 +31623,14 @@
     </div>
     <!-- ko if: !App.game.challenges.list.disableOakItems.active() -->
     <div id="oakItemLoadout">
-      <table class="table table-bordered table-striped m-0">
-        <tr data-bind="foreach: App.game.oakItemLoadouts.loadouts">
-          <td class="p-1 tight">
-            <button class='btn btn-block btn-primary' style="height: 100%;"
-              data-bind='click: function(){ App.game.oakItemLoadouts.activateLoadout($index()) }, text: $index() + 1, tooltip: { title: $data.name(), trigger: "hover", placement: "bottom" }'>
-              1
-            </button>
-          </td>
-        </tr>
-      </table>
+      <div class="row w-100 m-0" data-bind="foreach: App.game.oakItemLoadouts.loadouts">
+        <div class="col-4 my-1 px-1">
+          <button class='btn btn-block btn-primary' style="height: 100%;"
+            data-bind='click: function(){ App.game.oakItemLoadouts.activateLoadout($index()) }, text: $index() + 1, tooltip: { title: $data.name(), trigger: "hover", placement: "bottom" }'>
+            1
+          </button>
+        </div>
+      </div>
     </div>
     <!-- /ko -->
 </div>
@@ -31631,6 +31814,9 @@
         <img src="" data-bind="attr: { src: PokemonHelper.getImage(pokemonMap[$data], App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true)) }">
       </div>
     </div>
+    <button class='btn btn-sm btn-danger' data-bind='click: function(){ App.game.breeding.removeAllPokemonFromQueue(); } '>
+      Empty queue
+    </button>
     <!-- /ko -->
 </div>
 
@@ -31661,6 +31847,13 @@
             <td class="p-0">
               <button class="btn btn-block btn-primary m-0" onclick="ShopHandler.showShop(pokeMartShop);" href="#shopModal" data-toggle="modal">
                   Poké Mart
+              </button>
+            </td>
+          </tr>
+          <tr data-bind="visible: player.highestRegion() > 0">
+            <td class="p-0">
+              <button class="btn btn-block btn-primary m-0" data-bind="css: {disabled: App.game.gameState == GameConstants.GameState.battleFrontier || App.game.gameState === GameConstants.GameState.dungeon}" onclick="MapHelper.openShipModal()">
+                  Dock
               </button>
             </td>
           </tr>
@@ -31940,10 +32133,10 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                                             <option data-bind="text: $data.text, value: $data.value"></option>
                                         </select>
                                         <div class="input-group-append bg-primary text-light">
-                                            <label for="achievementSortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
-                                            text: Settings.getSetting('achievementSortDirection').observableValue() ? '⥄' : '⥂',
+                                            <label for="achievementSortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                                            html: Settings.getSetting('achievementSortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
                                             tooltip: { title: Settings.getSetting('achievementSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-                                            ">⥂</label>
+                                            ">⥄⥂</label>
                                             <input id="achievementSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                                                    data-bind="checked: Settings.getSetting('achievementSortDirection').observableValue()"
                                                    onchange="Settings.setSettingByName('achievementSortDirection', this.checked)"/>
@@ -32805,39 +32998,64 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
 
 <!-- Changelog Modal -->
 <div class="modal fade noselect" id="changelogModal" tabindex="-1" role="dialog" aria-badgeledby="changelogModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-       <div class="modal-content">
-           <div class="modal-header">
-               <h5>Changelog</h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-               </button>
-           </div>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Changelog</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-           <div class="modal-body p-0">
-               <table class="table table-striped table-hover table-bordered table-sm m-0">
-                   <thead>
-                     <tr>
-                       <th>Type</th>
-                       <th>Message</th>
-                     </tr>
-                   </thead>
-                   <tbody data-bind="foreach: ChangelogItems">
-                     <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
-                       <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
-                       <td class="text-left" data-bind="html: description">-</td>
-                     </tr>
-                   </tbody>
-               </table>
-           </div>
+      <div class="modal-body p-0">
+        <ul class="nav nav-tabs nav-fill">
+          <li class="nav-item"><a class="nav-link active" href="#changelog-official" data-toggle="tab">Official</a></li>
+          <li class="nav-item"><a class="nav-link" href="#changelog-crobat" data-toggle="tab">Crobat Fork</a></li>
+        </ul>
 
-           <div class="modal-footer">
-               <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-           </div>
-       </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="changelog-official">
+            <table class="table table-striped table-hover table-bordered table-sm m-0">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: ChangelogItems">
+                <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
+                  <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
+                  <td class="text-left" data-bind="html: description">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="changelog-crobat">
+            <table class="table table-striped table-hover table-bordered table-sm m-0">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: ChangelogCrobatItems">
+                <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
+                  <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
+                  <td class="text-left" data-bind="html: description">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
 </div>
-
 
 <!-- Credits Modal -->
 <div class="modal noselect fade" id="creditsModal" tabindex="-1" role="dialog" aria-labelledby="creditsModal">
@@ -33200,7 +33418,11 @@ aria-labelledby="hallOfFameModalLabel" aria-hidden="true">
                         data-bind="tooltip: { title: 'Use gems to upgrade the type effectiveness of your Pokémon. When you defeat a Pokémon, you get gems based on its type.', trigger: 'hover', placement:'left' }">
                     ?
                 </button>
-
+            </div>
+            <div class="py-1">
+                <a href="https://docs.google.com/spreadsheets/d/1IxPh59_lNxZUa3Qo3r5ZbawGHL_nfqqd/edit#gid=1964739412" target="_blank">
+                    Best routes/gyms for Gem farming (for both Official and Crobat forks) by Anon
+                </a>
             </div>
             <div class="modal-body p-0">
                 <p data-bind="visible: App.game.challenges.list.disableGems.active()" class="bg-danger my-0 sticky-top">
@@ -33279,6 +33501,10 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
             </button>
             <button class="btn btn-secondary" type="button" style="margin-left: 25px;" href="#categoryModal" data-toggle="modal">
                 Categories
+            </button>
+            <button class="btn btn-primary" type="button" style="margin-left: 25px;"
+                data-bind="click: function() { App.game.breeding.fillHatcheryQueue(); }">
+                Fill queue
             </button>
             <button type="button" class="btn btn-info"
             style="position: absolute; right: 0px; top: 0px; width: auto; height: 69px; padding: 10px;"
@@ -33387,11 +33613,11 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                         <option data-bind="text: $data.text, value: $data.value"></option>
                                     </select>
                                     <div class="input-group-append bg-primary text-light">
-                                        <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
-                                        text: Settings.getSetting('hatcherySortDirection').observableValue() ? '⥄' : '⥂',
+                                        <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                                        html: Settings.getSetting('hatcherySortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
                                         tooltip: { title: Settings.getSetting('hatcherySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
 
-                                        ">⥂</label>
+                                        ">⥄⥂</label>
                                         <input id="hatcherySortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                                             data-bind="checked: Settings.getSetting('hatcherySortDirection').observableValue()"
                                             onchange="Settings.setSettingByName('hatcherySortDirection', this.checked)"/>
@@ -33406,6 +33632,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                             Unfortunately, you don't have any Pokémon of level 100 to breed.
                         </p>
                         <!-- ko if: App.game.party.hasMaxLevelPokemon() -->
+                        <!-- ko if: App.game.breeding.isModalOpen() -->
                         <ul class="row justify-content-center p-0" data-bind="foreach: PartyController.getHatcherySortedList(BreedingController.regionalAttackDebuff())">
                             <li class="eggSlot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="visible: BreedingController.visible($data), style:{background: PokedexHelper.getBackgroundColors($data.name)}, class: App.game.breeding.hasFreeEggSlot() || App.game.breeding.hasFreeQueueSlot() ? '' : 'disabled'">
                                 <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: $data.name">name</span>
@@ -33427,6 +33654,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                 </div>
                             </li>
                         </ul>
+                        <!-- /ko -->
                         <!-- /ko -->
                     </div>
                 </div>
@@ -33548,11 +33776,11 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                                 <div class="input-group input-group-sm">
                                                     <select autocomplete="off" class="custom-select" data-bind="options: GameHelper.enumSelectOption(SortOptions), optionsValue: 'value', optionsText: i => GameConstants.camelCaseToString(i.name), value: $data.sortOption"></select>
                                                     <div class="input-group-append bg-primary text-light">
-                                                        <label class="clickable m-0 px-2" style="font-size: 20px;" data-bind="
+                                                        <label class="clickable m-0 px-2 sort-icons" style="font-size: 20px;" data-bind="
                                                             attr: {for: 'hatcheryHelperSortDirection' + $index() },
-                                                            text: $data.sortDirection() ? '⥄' : '⥂',
+                                                            html: $data.sortDirection() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
                                                             tooltip: { title: $data.sortDirection() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-                                                            ">⥂</label>
+                                                            ">⥄⥂</label>
                                                         <input class="hidden" type="checkbox"
                                                             data-bind="attr: { id: 'hatcheryHelperSortDirection' + $index() }, checked:  $data.sortDirection" />
                                                     </div>
@@ -33961,24 +34189,26 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
 <!-- Pokedex Modal-->
 <div class="modal noselect" id="pokedexModal" tabindex="-1" role="dialog"
 aria-labelledby="pokedexModalLabel">
-<div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+<div class="modal-dialog modal-dialog-scrollable modal-lg pokedex-modal" role="document">
    <div class="modal-content">
        <div class="modal-header">
            <h4 style="margin-bottom: 0">Pokédex</h4>
-           <button style="float:right;" class="btn btn-secondary" type="button" data-toggle="collapse"
-                   data-target="#pokedex-filter-container" aria-expanded="false" aria-controls="pokedex-filter-container">
+           <button style="float:right;" class="btn btn-secondary d-block d-md-none" type="button" data-toggle="collapse"
+                   data-target="#pokedex-filter-collapse" aria-expanded="false" aria-controls="pokedex-filter-collapse">
                Filters
            </button>
        </div>
-       <div class="modal-body">
-            <div class="collapse" id="pokedex-filter-container">
-                <div class="container-fluid" style="border-bottom: 1px solid #eceeef">
+       <div class="modal-body row mx-0">
+            <div class="col-md-3 collapse dont-collapse-sm" id="pokedex-filter-collapse">
+                <div class="w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                    <h4>Filters and Settings</h4>
+                </div>
+                <div class="container-fluid pl-0" id="pokedex-filter-container">
                     <div class="form-row text-left">
-
                         <!--Name-->
                         <div class="form-group col-md-6 col-6">
                             <label>Name</label>
-                            <input id="nameFilter" class="form-control" placeholder="Bulbasaur" value=""
+                            <input id="nameFilter" class="form-control" placeholder="Crobat" value=""
                                    oninput="PokedexHelper.updateList()">
                         </div>
 
@@ -33993,14 +34223,14 @@ aria-labelledby="pokedexModalLabel">
 
                         <!--Types-->
                         <div class="form-group col-md-6 col-6">
-                            <label>Type</label>
+                            <label>Types</label>
                             <select id="pokedex-filter-type1" class="custom-select"
                                     oninput="PokedexHelper.updateList()" style="margin-right: 8px">
                                 <option value="" selected>All</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6 col-6">
-                            <label>Type</label>
+                            <label> </label>
                             <select id="pokedex-filter-type2" class="custom-select"
                                     oninput="PokedexHelper.updateList()">
                                 <option value="" selected>All</option>
@@ -34026,73 +34256,148 @@ aria-labelledby="pokedexModalLabel">
                                 <!-- /ko -->
                             </select>
                         </div>
-                        <div class="form-group col-md-6 col-6">
-                            <!--Rare Hold Item-->
-                            <div class="col-12">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
-                                            value="false" onclick="PokedexHelper.updateList()"> Rare Hold Item
-                                </label>
-                            </div>
-                            <!--Hide shiny images-->
-                            <div class="col-12">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
-                                        data-bind="checked: PokedexHelper.hideShinyImages"> Hide shiny image
-                                </label>
-                            </div>
-                            <!--Hide alternate forms-->
-                            <div class="col-12">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="pokedex-filter-hide-alternate"
-                                            value="false" onclick="PokedexHelper.updateList()"> Hide alternate forms
-                                </label>
-                            </div>
+                        <!-- Rare Hold Item -->
+                        <div class="form-group col-md-9 col-6">
+                            <span>Rare Hold Item</span>
+                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Filters Pokémon with a chance to drop an item', trigger: 'hover' }"></i>
                         </div>
-
-                   </div>
-
-                   <div class="row justify-content-center">
-                      <h4 data-bind="text: `Showing ${PokedexHelper.filteredList().length} Pokémon`"></h4>
+                        <div class="form-group col-md-3 col-6">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
+                                        value="false" onclick="PokedexHelper.updateList()">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <!--Hide alternate forms-->
+                        <div class="form-group col-md-9 col-6">
+                            <span>Alternate forms</span>
+                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Filters all alternate forms out', trigger: 'hover' }"></i>
+                        </div>
+                        <div class="form-group col-md-3 col-6">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-hide-alternate"
+                                        value="false" onclick="PokedexHelper.updateList()">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Gender differences -->
+                        <div class="form-group col-md-9 col-6">
+                            <span>Gender differences</span>
+                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Filters all Pokémon with gender differences', trigger: 'hover' }"></i>
+                        </div>
+                        <div class="form-group col-md-3 col-6">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-gender-diff"
+                                    value="false" onclick="PokedexHelper.updateList()">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <hr style="margin-top:0; border-color:white;"/>
+                        </div>
+                        <!-- Show/Hide Shiny images -->
+                        <div class="form-group col-md-9 col-6">
+                            <span>Shiny images</span>
+                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Shows Shiny image of Pokémon with its Shiny variant unlocked', trigger: 'hover' }"></i>
+                        </div>
+                        <div class="form-group col-md-3 col-6">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
+                                    data-bind="checked: PokedexHelper.toggleAllShiny">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Show/Hide Female images -->
+                        <div class="form-group col-md-9 col-6">
+                            <span>Female images</span>
+                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Shows female image of Pokémon with gender differences', trigger: 'hover' }"></i>
+                        </div>
+                        <div class="form-group col-md-3 col-6">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
+                                    data-bind="checked: PokedexHelper.toggleFemale">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Load all Pokémon -->
+                        <div class="form-group col-md-9 col-6">
+                            <span>Load all Pokémon</span>
+                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Loads all the Pokémon (By default, Pokédex shows 50 Pokémon at first and loads 50 more the more you scroll)', trigger: 'hover' }"></i>
+                        </div>
+                        <div class="form-group col-md-3 col-6">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-show-all"
+                                    data-bind="checked: false">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
                    </div>
                </div>
 
-           </div>
-           <div>
-               <ul class="row justify-content-center p-0" data-bind="foreach: PokedexHelper.filteredList()"
-                   style="max-width: 100%; padding:0; margin:0;">
-                   <li class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
-                        data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
-                        <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)">number</span>
-                            <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(name)" style="position: absolute;right: 2px;top: -15px;">
-                                <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.id, true) ? '-shiny' : ''}.svg`}"/>
-                            </div>
-                            <!-- ko ifnot: App.game.party.getPokemon($data.id) == undefined -->
-                            <div data-bind="if: App.game.party.alreadyCaughtPokemonByName(name) && App.game.party.getPokemon($data.id)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
-                                <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id)?.pokerus]}.png`}"/>
-                            </div>
-                            <!-- /ko -->
-                            <img src="" width="80px" data-bind="css: { 'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.id)(), 'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(name) && PokedexHelper.pokemonSeen($data.id)() }, attr:{ src: PokedexHelper.getImage($data.id)}">
-                            <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
-                            <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: $data.name">name</span>
-                            <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => {App.game.statistics.selectedPokemonID($data.id)},
-                                tooltip: {
-                                    html: true,
-                                    title: `<u>Information:</u>
-                                        <br/>Base Attack: <strong>${$data.attack}</strong>
-                                        <br/>Catch Rate: <strong>${PokemonFactory.catchRateHelper($data.catchRate, true)}%</strong>
-                                        <br/>Hatch Steps: <strong>${App.game.breeding.getSteps($data.eggCycles).toLocaleString('en-US')}</strong>` +
-                                        (App.game.party.getPokemon($data.id)?.pokerus >= GameConstants.Pokerus.Contagious ?
-                                            `<br/>EVs: <strong>${App.game.party.getPokemon($data.id).evs().toLocaleString('en-US')}</strong>
-                                            <br/>EV bonus: <strong>×${App.game.party.getPokemon($data.id).calculateEVAttackBonus().toLocaleString('en-US')}</strong>`
-                                            : ''),
-                                    trigger: 'hover',
-                                    placement:'bottom'
-                                }"></a>
-                            <!-- /ko -->
-                   </li>
-               </ul>
-           </div>
+            </div>
+            <div class="col-md-9">
+                <!-- ko if: PokedexHelper.shortenedListByIndex().length == 0 -->
+                <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                    <h4 data-bind="text: 'No Pokémon found'"></h4>
+                </div>
+                <span>Missing a Pokémon but is not appearing here? Look around the region, you haven't seen yet.</span>
+                <!-- /ko -->
+                <!-- ko if: PokedexHelper.shortenedListByIndex().length != 0 -->
+                <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                    <h4 data-bind="text: `Showing ${PokedexHelper.filteredList().length} Pokémon`"></h4>
+                </div>
+                <!-- /ko -->
+                <div id="pokemon-list">
+                    <ul class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: PokedexHelper.shortenedListByIndex()"
+                        style="max-width: 100%; padding:0; margin:0;">
+                        <li class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                                data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
+                                <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)">number</span>
+                                    <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(name)" style="position: absolute;right: 2px;top: -15px;">
+                                        <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.id, true) ? '-shiny' : ''}.svg`}"/>
+                                    </div>
+                                    <div style="position: absolute;right: 2px;top: 49px;">
+                                        <img class="item-icon rounded-circle" src="" width="24px" data-bind="visible: BagHandler.displayName($data.heldItem) && App.game.party.alreadyCaughtPokemonByName(name), attr: {src: BagHandler.image($data.heldItem)}">
+                                    </div>
+                                    <!-- ko ifnot: App.game.party.getPokemon($data.id) == undefined -->
+                                    <div data-bind="if: App.game.party.alreadyCaughtPokemonByName(name) && App.game.party.getPokemon($data.id)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
+                                        <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id)?.pokerus]}.png`}"/>
+                                    </div>
+                                    <!-- /ko -->
+                                    <img src="" width="80px" data-bind="css: { 'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.id)(), 'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(name) && PokedexHelper.pokemonSeen($data.id)() }, attr:{ src: PokedexHelper.getImage($data.id)}">
+                                    <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
+                                    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: $data.name">name</span>
+                                    <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => {App.game.statistics.selectedPokemonID($data.id)},
+                                        tooltip: {
+                                            html: true,
+                                            title: `<u>Information:</u>
+                                                <br/>Base Attack: <strong>${$data.attack}</strong>
+                                                <br/>Catch Rate: <strong>${PokemonFactory.catchRateHelper($data.catchRate, true)}%</strong>
+                                                <br/>Hatch Steps: <strong>${App.game.breeding.getSteps($data.eggCycles).toLocaleString('en-US')}</strong>` +
+                                                (App.game.party.getPokemon($data.id)?.pokerus >= GameConstants.Pokerus.Contagious ?
+                                                    `<br/>EVs: <strong>${App.game.party.getPokemon($data.id).evs().toLocaleString('en-US')}</strong>
+                                                    <br/>EV bonus: <strong>×${App.game.party.getPokemon($data.id).calculateEVAttackBonus().toLocaleString('en-US')}</strong>`
+                                                    : ''),
+                                            trigger: 'hover',
+                                            placement:'bottom'
+                                        }"></a>
+                                    <!-- /ko -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
        </div>
 
        <div class="modal-footer">
@@ -34105,7 +34410,7 @@ aria-labelledby="pokedexModalLabel">
 
 <!-- Statistics Modal-->
 <div class="modal noselect fade" id="pokemonStatisticsModal" tabindex="-1" role="dialog" aria-labelledby="pokemonStatisticsModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content" data-bind="with: App.game.statistics.selectedPokemonID()">
             <div class="modal-header bg-dark text-light" style='justify-content: space-around;'>
                 <h5 class="modal-title text-muted" data-bind="text: `#${pokemonMap[$data].id <= 0 ? '???' : Math.floor(pokemonMap[$data].id).toString().padStart(3,0)}&nbsp;&nbsp;`"></h5>
@@ -34121,11 +34426,32 @@ aria-labelledby="pokedexModalLabel">
               <div style="position: absolute; top: 0px; right: 0px;" data-bind="if: App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus">
                   <img width="40px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus]}.png`}"/>
               </div>
-                <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id) }" src=""/>
-                <table class="table table-striped table-hover table-bordered table-sm m-0">
+              <div style="display: inline-block;">
+                <div>
+                  <!-- General sprite -->
+                  <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id) }" src=""/>
+                  <!-- Female sprite -->
+                  <!-- ko if: pokemonMap[$data].gender.difference -->
+                  <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id, true) }" src=""/>
+                  <!-- /ko -->
+                </div>
+                <div class="row m-0">
+                  <!-- ko if: pokemonMap[$data].gender.type == GameConstants.MALE_ONLY || pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE  -->
+                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-right': !pokemonMap[$data].gender.difference && pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE }">
+                    <span data-bind="html: GameConstants.TEXT_MALE"></span>
+                  </div>
+                  <!-- /ko -->
+                  <!-- ko if: pokemonMap[$data].gender.type == GameConstants.FEMALE_ONLY || pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE  -->
+                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-left': !pokemonMap[$data].gender.difference && pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE }">
+                    <span data-bind="html: GameConstants.TEXT_FEMALE"></span>
+                  </div>
+                  <!-- /ko -->
+                </div>
+              </div>
+                <table class="table table-striped table-hover table-bordered table-sm m-0 pkmn-statistics-table">
                   <thead>
                     <tr class="text-light">
-                      <th class="text-left bg-dark">Type</th>
+                      <th class="text-left bg-dark">Pokémon Skills</th>
                       <th class="text-left bg-dark">Amount</th>
                     </tr>
                   </thead>
@@ -34179,10 +34505,25 @@ aria-labelledby="pokedexModalLabel">
                       <td class="text-left">Rare Hold Item</td>
                       <td class="text-left tight"><code data-bind="text: BagHandler.displayName(pokemonMap[$data].heldItem)"></code></td>
                     </tr>
+                    <tr>
+                      <td class="text-left align-middle">Gender Ratio</td>
+                      <td class="text-justify tight">
+                        <!-- ko if: pokemonMap[$data].gender.type === GameConstants.GENDERLESS -->
+                          <code data-bind="html: 'Genderless'"></code>
+                        <!-- /ko -->
+                        <!-- ko if: pokemonMap[$data].gender.type != GameConstants.GENDERLESS -->
+                          <code data-bind="html: '♂: '"></code>
+                          <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).male + '%'"></code>
+                          <br />
+                          <code data-bind="html: '♀: '"></code>
+                          <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).female + '%'"></code>
+                        <!-- /ko -->
+                      </td>
+                    </tr>
                   </tbody>
                   <thead>
                     <tr class="text-light">
-                      <th class="text-left bg-dark">Statistic</th>
+                      <th class="text-left bg-dark">Trainer Memo</th>
                       <th class="text-left bg-dark">Amount</th>
                     </tr>
                   </thead>
@@ -34267,10 +34608,10 @@ aria-labelledby="pokedexModalLabel">
                           <option data-bind="text: $data.text, value: $data.value"></option>
                       </select>
                       <div class="input-group-append bg-primary text-light">
-                          <label for="proteinSortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
-                            text: Settings.getSetting('proteinSortDirection').observableValue() ? '⥄' : '⥂',
+                          <label for="proteinSortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                            html: Settings.getSetting('proteinSortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
                             tooltip: { title: Settings.getSetting('proteinSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-                            ">⥂</label>
+                            ">⥄⥂</label>
                           <input id="proteinSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                               data-bind="checked: Settings.getSetting('proteinSortDirection').observableValue()"
                               onchange="Settings.setSettingByName('proteinSortDirection', this.checked)"/>
@@ -34385,7 +34726,7 @@ aria-labelledby="badgeCaseModalLabel">
 <!-- Save Modal-->
 <div class="modal fade noselect" id="saveModal" tabindex="-1" role="dialog"
      aria-labelledby="saveModalLabel">
-    <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style='justify-content: space-around;'>
                 <h5 class="modal-title">Save Data</h5>
@@ -34397,18 +34738,13 @@ aria-labelledby="badgeCaseModalLabel">
             <div class="modal-body p-0">
                 <ul class="nav nav-tabs nav-fill">
                     <li class="nav-item"><a class="nav-link active" href="#saveTab" data-toggle="tab">Save</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#codeTab" data-toggle="tab">Redeem Code</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trainerIdTab" data-toggle="tab">Trainer ID</a></li>
                     <li class="nav-item"><a class="nav-link" href="#saveConvert" data-toggle="tab">Convert Original Save</a></li>
                 </ul>
-                <div class="tab-content p-3">
+                <div class="tab-content w-75 m-auto p-3">
                     <div id="saveTab" class="tab-pane fade in active show">
                         <div>
-                            <form class="form-inline input-group">
-                                <input class="outline-dark form-control" placeholder="Enter code..." id="redeemable-code-input" type="text" />
-                                <div class="input-group-append">
-                                    <button class="btn btn-info" name="name" value="value" type="submit" onclick="RedeemableCodeController.enterCode(); return false;">Claim!</button>
-                                </div>
-                            </form>
-                            <hr>
                             <!-- ko if: App.game.discord.enabled -->
                             <button class="btn btn-primary btn-block" onClick="App.game.discord.login()" data-bind="visible: !App.game.discord.ID()">Link Discord</button>
                             <button class="btn btn-warning btn-block" onClick="App.game.discord.logout()" data-bind="visible: App.game.discord.ID()">Unlink Discord</button>
@@ -34416,6 +34752,7 @@ aria-labelledby="badgeCaseModalLabel">
                             <hr>
                             <!-- /ko -->
 
+                            <h3>Save Data</h3>
                             <button class="btn btn-primary btn-block" onClick="Save.download()">Download Save</button>
                             <i>If this does not work, you can copy the contents of the save and paste it into a '.txt' file</i>
                             <button class="btn btn-primary btn-block" onclick="Save.copySaveToClipboard()">Copy to Clipboard</button>
@@ -34428,6 +34765,28 @@ aria-labelledby="badgeCaseModalLabel">
                             <h5 class="text-danger">You will not be able to recover your savefile!</h5>
                             <button class="btn btn-danger btn-block" onClick="Save.delete()">DELETE SAVE</button>
                         </div>
+                    </div>
+
+                    <div id="codeTab" class="tab-pane fade">
+                        <h3>Redeem Code</h3>
+                        <form class="form-inline input-group">
+                            <input class="outline-dark form-control" placeholder="Enter code..." id="redeemable-code-input" type="text" />
+                            <div class="input-group-append">
+                                <button class="btn btn-info" name="name" value="value" type="submit" onclick="RedeemableCodeController.enterCode(); return false;">Claim!</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="trainerIdTab" class="tab-pane fade">
+                        <h3>Trainer ID</h3>
+                        <!-- ko if: App.game.discord.FinalID() -->
+                        <i data-bind="visible: App.game.discord.FinalID()">Your Trainer ID is: </i>
+                        <i data-bind="visible: App.game.discord.FinalID(), html: App.game.discord.FinalID().slice(-6)">Trainer ID.</i>
+                        <!-- /ko -->
+                        <i data-bind="visible: !App.game.discord.FinalID()">Trainer ID needs to be generated in order to make Enigma Berry obtainable.</i>
+                        <button class="btn btn-primary btn-block" onClick="App.game.discord.generateRandomKey()" data-bind="visible: !App.game.discord.FinalID()">
+                            Generate Trainer ID
+                        </button>
                     </div>
 
                     <div id="saveConvert" class="tab-pane fade">
@@ -35564,7 +35923,7 @@ aria-labelledby="badgeCaseModalLabel">
                           </knockout>
 
                           <knockout>
-                              <knockout data-bind="text: SafariBattle.enemy.name">Pokémon name</knockout>
+                              <knockout data-bind="html: SafariBattle.enemy.name + ' ' + PokemonFactory.genderText(SafariBattle.enemy.gender)">Pokémon name</knockout>
                               <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(SafariBattle.enemy.id)}}"></knockout>
                           </knockout>
 
@@ -35573,7 +35932,7 @@ aria-labelledby="badgeCaseModalLabel">
                       </h2>
 
                       <div>
-                          <img class="enemy" data-bind="attr: { src: `assets/images/${SafariBattle.enemy.shiny ? 'shiny' : ''}pokemon/${SafariBattle.enemy.id}.png` }" src=""/>
+                          <img class="enemy" data-bind="attr: { src: PokemonHelper.getImage(SafariBattle.enemy, SafariBattle.enemy.shiny, SafariBattle.enemy.gender) }" src=""/>
                       </div>
 
                       <h2 class="pageItemFooter" style="display: block;">

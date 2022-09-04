@@ -499,7 +499,7 @@ class Farming implements Feature {
             0.5, 0, 15000, 20,
             [40, 10, 0, 0, 0], BerryColor.Purple,
             ['A completely enigmatic Berry. It apparently has the power of the stars that fill the night sky.'], undefined, 
-            ['Oricorio (Sensu)']);
+            ['Detective Pikachu', 'Oricorio (Sensu)']);
         //#endregion
 
         //#endregion

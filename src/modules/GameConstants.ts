@@ -1562,3 +1562,11 @@ export const TEXT_FEMALE = '<i class="bi bi-gender-female gender-icon-female"></
 export const NO_GENDER = 0;
 export const GENDER_MALE = 1;
 export const GENDER_FEMALE = 2;
+
+// Poké Ball Selectors
+export enum PokeballSelector {
+    alreadyCaught = 0,
+    alreadyCaughtShiny,
+    notCaught,
+    notCaughtShiny,
+}

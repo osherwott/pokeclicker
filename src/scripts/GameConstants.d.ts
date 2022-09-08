@@ -633,5 +633,6 @@ namespace GameConstants {
         alreadyCaughtShiny,
         notCaught,
         notCaughtShiny,
+        type,
     }
 }

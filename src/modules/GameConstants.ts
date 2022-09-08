@@ -1569,4 +1569,5 @@ export enum PokeballSelector {
     alreadyCaughtShiny,
     notCaught,
     notCaughtShiny,
+    type,
 }

@@ -10,52 +10,18 @@ class Pokeballs implements Feature {
         alreadyCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         notCaughtSelection: GameConstants.Pokeball.Pokeball,
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
-        // Types
-        typeNormalSelection: GameConstants.Pokeball.None,
-        typeFireSelection: GameConstants.Pokeball.None,
-        typeWaterSelection: GameConstants.Pokeball.None,
-        typeElectricSelection: GameConstants.Pokeball.None,
-        typeGrassSelection: GameConstants.Pokeball.None,
-        typeIceSelection: GameConstants.Pokeball.None,
-        typeFightingSelection: GameConstants.Pokeball.None,
-        typePoisonSelection: GameConstants.Pokeball.None,
-        typeGroundSelection: GameConstants.Pokeball.None,
-        typeFlyingSelection: GameConstants.Pokeball.None,
-        typePsychicSelection: GameConstants.Pokeball.None,
-        typeBugSelection: GameConstants.Pokeball.None,
-        typeRockSelection: GameConstants.Pokeball.None,
-        typeGhostSelection: GameConstants.Pokeball.None,
-        typeDragonSelection: GameConstants.Pokeball.None,
-        typeDarkSelection: GameConstants.Pokeball.None,
-        typeSteelSelection: GameConstants.Pokeball.None,
-        typeFairySelection: GameConstants.Pokeball.None,
+        typeSelection: GameConstants.Pokeball.None,
     };
 
     public pokeballs: Pokeball[];
     public pokeballSelectors: PokeballSelector[];
-    
-    // Types
-    private _typeNormalSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeFireSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeWaterSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeElectricSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeGrassSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeIceSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeFightingSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typePoisonSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeGroundSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeFlyingSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typePsychicSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeBugSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeRockSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeGhostSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeDragonSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeDarkSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeSteelSelection: KnockoutObservable<GameConstants.Pokeball>;
-    private _typeFairySelection: KnockoutObservable<GameConstants.Pokeball>;
+
     // Beast Ball Toggles
     public catchUltraBeast: KnockoutObservable<boolean>;
     public catchUltraBeastShiny: KnockoutObservable<boolean>;
+
+    // Types
+    public typeArray: KnockoutObservable<boolean>[];
 
     public selectedSelection: KnockoutObservable<KnockoutObservable<GameConstants.Pokeball>>;
     public selectedTitle: KnockoutObservable<string>;
@@ -147,29 +113,18 @@ class Pokeballs implements Feature {
             new PokeballSelector(GameConstants.PokeballSelector.alreadyCaughtShiny, 'Already Caught Shiny Pokémon', '', this.defaults.alreadyCaughtShinySelection),
             new PokeballSelector(GameConstants.PokeballSelector.notCaught, 'New Pokémon', '', this.defaults.notCaughtSelection),
             new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', '', this.defaults.notCaughtShinySelection),
+            new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', '', this.defaults.typeSelection),
         ];
-        // Types
-        this._typeNormalSelection = ko.observable(this.defaults.typeNormalSelection);
-        this._typeFireSelection = ko.observable(this.defaults.typeFireSelection);
-        this._typeWaterSelection = ko.observable(this.defaults.typeWaterSelection);
-        this._typeElectricSelection = ko.observable(this.defaults.typeElectricSelection);
-        this._typeGrassSelection = ko.observable(this.defaults.typeGrassSelection);
-        this._typeIceSelection = ko.observable(this.defaults.typeIceSelection);
-        this._typeFightingSelection = ko.observable(this.defaults.typeFightingSelection);
-        this._typePoisonSelection = ko.observable(this.defaults.typePoisonSelection);
-        this._typeGroundSelection = ko.observable(this.defaults.typeGroundSelection);
-        this._typeFlyingSelection = ko.observable(this.defaults.typeFlyingSelection);
-        this._typePsychicSelection = ko.observable(this.defaults.typePsychicSelection);
-        this._typeBugSelection = ko.observable(this.defaults.typeBugSelection);
-        this._typeRockSelection = ko.observable(this.defaults.typeRockSelection);
-        this._typeGhostSelection = ko.observable(this.defaults.typeGhostSelection);
-        this._typeDragonSelection = ko.observable(this.defaults.typeDragonSelection);
-        this._typeDarkSelection = ko.observable(this.defaults.typeDarkSelection);
-        this._typeSteelSelection = ko.observable(this.defaults.typeSteelSelection);
-        this._typeFairySelection = ko.observable(this.defaults.typeFairySelection);
+     
         // Beast Ball Toggles
         this.catchUltraBeast = ko.observable(false);
         this.catchUltraBeastShiny = ko.observable(false);
+
+        // Types
+        this.typeArray = [];
+        for (const type of GameHelper.enumNumbers(PokemonType).filter(value => !isNaN(value) && value != -1)) {
+            this.typeArray[type] = ko.observable(false);
+        }
 
         this.selectedTitle = ko.observable('');
         this.selectedSelection = ko.observable(ko.observable(this.defaults.alreadyCaughtSelection));
@@ -181,25 +136,7 @@ class Pokeballs implements Feature {
             this.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball,
-            // Types
-            this._typeNormalSelection,
-            this._typeFireSelection,
-            this._typeWaterSelection,
-            this._typeElectricSelection,
-            this._typeGrassSelection,
-            this._typeIceSelection,
-            this._typeFightingSelection,
-            this._typePoisonSelection,
-            this._typeGroundSelection,
-            this._typeFlyingSelection,
-            this._typePsychicSelection,
-            this._typeBugSelection,
-            this._typeRockSelection,
-            this._typeGhostSelection,
-            this._typeDragonSelection,
-            this._typeDarkSelection,
-            this._typeSteelSelection,
-            this._typeFairySelection,
+            this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball,
         ]).forEach(selection => {
             selection.subscribe(value => {
                 // switch to Ultraball if Masterball is selected
@@ -247,59 +184,13 @@ class Pokeballs implements Feature {
         }
 
         // Types
-        if (pokemon.type1 == PokemonType.Normal || pokemon.type2 == PokemonType.Normal) {
-            pref = Math.max(pref, this.typeNormalSelection);
-        }
-        if (pokemon.type1 == PokemonType.Fire || pokemon.type2 == PokemonType.Fire) {
-            pref = Math.max(pref, this.typeFireSelection);
-        }
-        if (pokemon.type1 == PokemonType.Water || pokemon.type2 == PokemonType.Water) {
-            pref = Math.max(pref, this.typeWaterSelection);
-        }
-        if (pokemon.type1 == PokemonType.Electric || pokemon.type2 == PokemonType.Electric) {
-            pref = Math.max(pref, this.typeElectricSelection);
-        }
-        if (pokemon.type1 == PokemonType.Grass || pokemon.type2 == PokemonType.Grass) {
-            pref = Math.max(pref, this.typeGrassSelection);
-        }
-        if (pokemon.type1 == PokemonType.Ice || pokemon.type2 == PokemonType.Ice) {
-            pref = Math.max(pref, this.typeIceSelection);
-        }
-        if (pokemon.type1 == PokemonType.Fighting || pokemon.type2 == PokemonType.Fighting) {
-            pref = Math.max(pref, this.typeFightingSelection);
-        }
-        if (pokemon.type1 == PokemonType.Poison || pokemon.type2 == PokemonType.Poison) {
-            pref = Math.max(pref, this.typePoisonSelection);
-        }
-        if (pokemon.type1 == PokemonType.Ground || pokemon.type2 == PokemonType.Ground) {
-            pref = Math.max(pref, this.typeGroundSelection);
-        }
-        if (pokemon.type1 == PokemonType.Flying || pokemon.type2 == PokemonType.Flying) {
-            pref = Math.max(pref, this.typeFlyingSelection);
-        }
-        if (pokemon.type1 == PokemonType.Psychic || pokemon.type2 == PokemonType.Psychic) {
-            pref = Math.max(pref, this.typePsychicSelection);
-        }
-        if (pokemon.type1 == PokemonType.Bug || pokemon.type2 == PokemonType.Bug) {
-            pref = Math.max(pref, this.typeBugSelection);
-        }
-        if (pokemon.type1 == PokemonType.Rock || pokemon.type2 == PokemonType.Rock) {
-            pref = Math.max(pref, this.typeRockSelection);
-        }
-        if (pokemon.type1 == PokemonType.Ghost || pokemon.type2 == PokemonType.Ghost) {
-            pref = Math.max(pref, this.typeGhostSelection);
-        }
-        if (pokemon.type1 == PokemonType.Dragon || pokemon.type2 == PokemonType.Dragon) {
-            pref = Math.max(pref, this.typeDragonSelection);
-        }
-        if (pokemon.type1 == PokemonType.Dark || pokemon.type2 == PokemonType.Dark) {
-            pref = Math.max(pref, this.typeDarkSelection);
-        }
-        if (pokemon.type1 == PokemonType.Steel || pokemon.type2 == PokemonType.Steel) {
-            pref = Math.max(pref, this.typeSteelSelection);
-        }
-        if (pokemon.type1 == PokemonType.Fairy || pokemon.type2 == PokemonType.Fairy) {
-            pref = Math.max(pref, this.typeFairySelection);
+        const typeIndexes = this.typeArray
+            .map((typeChecked, i) => typeChecked() ? i : null)
+            .filter(i => i !== null)
+        for (const typeIndex of typeIndexes) {
+            if (pokemon.type1 == typeIndex || pokemon.type2 == typeIndex) {
+                pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball());
+            }
         }
 
         let use: GameConstants.Pokeball = GameConstants.Pokeball.None;
@@ -387,25 +278,12 @@ class Pokeballs implements Feature {
         if (json.pokeballSelectors != null) {
             json.pokeballSelectors.map((pokeball: GameConstants.Pokeball, type: number) => this.pokeballSelectors[type].pokeball(pokeball));
         }
+        
         // Types
-        this.typeNormalSelection = json.typeNormalSelection ?? this.defaults.typeNormalSelection;
-        this.typeFireSelection = json.typeFireSelection ?? this.defaults.typeFireSelection;
-        this.typeWaterSelection = json.typeWaterSelection ?? this.defaults.typeWaterSelection;
-        this.typeElectricSelection = json.typeElectricSelection ?? this.defaults.typeElectricSelection;
-        this.typeGrassSelection = json.typeGrassSelection ?? this.defaults.typeGrassSelection;
-        this.typeIceSelection = json.typeIceSelection ?? this.defaults.typeIceSelection;
-        this.typeFightingSelection = json.typeFightingSelection ?? this.defaults.typeFightingSelection;
-        this.typePoisonSelection = json.typePoisonSelection ?? this.defaults.typePoisonSelection;
-        this.typeGroundSelection = json.typeGroundSelection ?? this.defaults.typeGroundSelection;
-        this.typeFlyingSelection = json.typeFlyingSelection ?? this.defaults.typeFlyingSelection;
-        this.typePsychicSelection = json.typePsychicSelection ?? this.defaults.typePsychicSelection;
-        this.typeBugSelection = json.typeBugSelection ?? this.defaults.typeBugSelection;
-        this.typeRockSelection = json.typeRockSelection ?? this.defaults.typeRockSelection;
-        this.typeGhostSelection = json.typeGhostSelection ?? this.defaults.typeGhostSelection;
-        this.typeDragonSelection = json.typeDragonSelection ?? this.defaults.typeDragonSelection;
-        this.typeDarkSelection = json.typeDarkSelection ?? this.defaults.typeDarkSelection;
-        this.typeSteelSelection = json.typeSteelSelection ?? this.defaults.typeSteelSelection;
-        this.typeFairySelection = json.typeFairySelection ?? this.defaults.typeFairySelection;
+        if (json.typeArray != null) {
+            json.typeArray.map((typeChecked: boolean, type: number) => this.typeArray[type](typeChecked));
+        }
+
         // Beast Ball
         this.catchUltraBeast(json.catchUltraBeast ?? false);
         this.catchUltraBeastShiny(json.catchUltraBeastShiny ?? false);
@@ -416,24 +294,7 @@ class Pokeballs implements Feature {
             'pokeballs': this.pokeballs.map(p => p.quantity()),
             'pokeballSelectors': this.pokeballSelectors.map(ps => ps.pokeball()),
             // Types
-            'typeNormalSelection': this.typeNormalSelection,
-            'typeFireSelection': this.typeFireSelection,
-            'typeWaterSelection': this.typeWaterSelection,
-            'typeElectricSelection': this.typeElectricSelection,
-            'typeGrassSelection': this.typeGrassSelection,
-            'typeIceSelection': this.typeIceSelection,
-            'typeFightingSelection': this.typeFightingSelection,
-            'typePoisonSelection': this.typePoisonSelection,
-            'typeGroundSelection': this.typeGroundSelection,
-            'typeFlyingSelection': this.typeFlyingSelection,
-            'typePsychicSelection': this.typePsychicSelection,
-            'typeBugSelection': this.typeBugSelection,
-            'typeRockSelection': this.typeRockSelection,
-            'typeGhostSelection': this.typeGhostSelection,
-            'typeDragonSelection': this.typeDragonSelection,
-            'typeDarkSelection': this.typeDarkSelection,
-            'typeSteelSelection': this.typeSteelSelection,
-            'typeFairySelection': this.typeFairySelection,
+            'typeArray': this.typeArray.map(tChk => tChk()),
             // Beast Ball Toggles
             'catchUltraBeast': this.catchUltraBeast(),
             'catchUltraBeastShiny': this.catchUltraBeastShiny(),
@@ -445,6 +306,7 @@ class Pokeballs implements Feature {
     }
 
     // Types
+    /*
     get typeNormalSelection() {
         return this._typeNormalSelection();
     }
@@ -570,4 +432,5 @@ class Pokeballs implements Feature {
     set typeFairySelection(ball: GameConstants.Pokeball) {
         this._typeFairySelection(ball);
     }
+    */
 }

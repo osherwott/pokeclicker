@@ -13,10 +13,17 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.1
+    new ChangelogUpdate('v0.3.1', new Date(2022, 9 - 1, 4)),
+    new Changelog(changelogType.CHANGE, 'Poké Balls menu: layout changed'),
+    new Changelog(changelogType.CHANGE, 'Pokédex: Sprite width changed'),
+    new Changelog(changelogType.FIXED, 'Pinkan Nidoran, Pinkan Nidoking and Spiky-eared Pichu showing wrong gender'),
+    // v0.3.0
     new ChangelogUpdate('v0.3.0', new Date(2022, 9 - 1, 4)),
     new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.10 - v0.9.14)'),
     new Changelog(changelogType.CHANGE, 'Notification text improved'),
     new Changelog(changelogType.REMOVED, 'Some updates temporarily removed (check changelog in Github wiki)'),
+    // v0.2.11
     new ChangelogUpdate('v0.2.11', new Date(2022, 8 - 1, 3)),
     new Changelog(changelogType.NEW, 'Added options to enable the use of Beast Balls (they can still be used if selected in ball selection)'),
     new Changelog(changelogType.CHANGE, 'Beast Balls won\'t be used automatically with any ball selected anymore'),
@@ -28,6 +35,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Nidoran(F) renamed to Nidoran♀'),
     new Changelog(changelogType.FIXED, 'Pokémon in Safari not showing its gender'),
     new Changelog(changelogType.FIXED, 'Fill hatchery button ignoring Pokérus filters'),
+    // v0.2.10
     new ChangelogUpdate('v0.2.10', new Date(2022, 7 - 1, 24)),
     new Changelog(changelogType.NEW, 'Pokedex: Pokémon with gender differences can now be filtered'),
     new Changelog(changelogType.NEW, 'Pokedex: Added option to show female sprites'),
@@ -37,12 +45,15 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Profile: UI changes'),
     new Changelog(changelogType.FIXED, 'Battle Frontier damage not working properly'),
     new Changelog(changelogType.FIXED, 'Starter not showing its gender'),
+    // v0.2.9
     new ChangelogUpdate('v0.2.9', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.CHANGE, 'All Pikachu (Cap) and Ash-Greninja gender type changed'),
     new Changelog(changelogType.CHANGE, 'Both Nidoran\'s name change reverted'),
     new Changelog(changelogType.FIXED, 'Save file not generating'),
+    // v0.2.8
     new ChangelogUpdate('v0.2.8', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.FIXED, 'Nidoran turning into MissingNo. if you have them in the hatchery prior the update'),
+    // v0.2.7
     new ChangelogUpdate('v0.2.7', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.8 and v0.9.9)'),
     new Changelog(changelogType.NEW, 'Added Gender feature'),
@@ -56,18 +67,21 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, '"Hide shiny image" option moved from Pokédex to Settings'),
     new Changelog(changelogType.CHANGE, 'Evolution Items layout changed'),
     new Changelog(changelogType.REMOVED, 'Setting to increase game width (Official fork added it)'),
+    // v0.2.6
     new ChangelogUpdate('v0.2.6', new Date(2022, 6 - 1, 29)),
     new Changelog(changelogType.NEW, 'Added Official update v0.9.7'),
     new Changelog(changelogType.NEW, 'Added button to empty hatchery queue automatically'),
     new Changelog(changelogType.CHANGE, 'Temporarily reverted update: EXP rebalance fix'),
     new Changelog(changelogType.CHANGE, 'Pokémon seen but not caught are now more noticeable in the Pokédex'),
     new Changelog(changelogType.REMOVED, 'Removed codes to refund gems'),
+    // v0.2.5
     new ChangelogUpdate('v0.2.5', new Date(2022, 6 - 1, 26)),
     new Changelog(changelogType.NEW, 'Added Official update v0.9.6'),
     new Changelog(changelogType.NEW, 'Added button to fill hatchery queue automatically'),
     new Changelog(changelogType.NEW, 'Added codes to refund gems used on removed flutes (They will be removed after a while)'),
     new Changelog(changelogType.CHANGE, 'Reverted update: EXP rebalance'),
     new Changelog(changelogType.FIXED, 'Shiny checkbox in Profile Card not working properly after the update'),
+    // v0.2.4
     new ChangelogUpdate('v0.2.4', new Date(2022, 6 - 1, 14)),
     new Changelog(changelogType.NEW, 'Added setting to increase the game width'),
     new Changelog(changelogType.NEW, 'Pokémon shows Rare Hold Item image in the Pokédex'),
@@ -83,6 +97,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.FIXED, 'Pokémon list in Profile is now sorted by ID'),
     new Changelog(changelogType.FIXED, 'Shiny selection in Profile not working correctly'),
     new Changelog(changelogType.REMOVED, 'Removed flashing effect on highlighted locations (quests)'),
+    // v0.2.3
     new ChangelogUpdate('v0.2.3', new Date(2022, 6 - 1, 4)),
     new Changelog(changelogType.CHANGE, 'Changed sort icons: ⥂ to <i class="bi bi-sort-up"></i> (asc) and ⥄ to <i class="bi bi-sort-down"></i> (desc)'),
     new Changelog(changelogType.CHANGE, 'Pokémon in Profile Card can now be selected as either normal or shiny (if possible)'),

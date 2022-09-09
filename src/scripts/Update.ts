@@ -1134,6 +1134,16 @@ class Update implements Saveable {
             }
         },
 
+        '0.9.15': ({ playerData, saveData }) => {
+            /* Crobat Fork */
+            // Moving balls from old selectors to new selectors
+            saveData.pokeballs.pokeballSelectors = [];
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught] = saveData.pokeballs.alreadyCaughtSelection;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny] = saveData.pokeballs.alreadyCaughtShinySelection;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught] = saveData.pokeballs.notCaughtSelection;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny] = saveData.pokeballs.notCaughtShinySelection;
+        },
+
     };
 
     constructor() {

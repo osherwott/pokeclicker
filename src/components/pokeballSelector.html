@@ -28,44 +28,6 @@
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball())}"></td>
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball())}"></td>
                 </tr>
-                <!-- ko if: new TemporaryBattleRequirement('Anabel').isCompleted() -->
-                <tr>
-                    <td class="align-middle" width="20%"
-                        data-bind="tooltip: {
-                                title: 'Enable this option to catch Ultra Beasts<br/>' + App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) + ` Beast Ball${App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) != 1 ? 's' : ''} remaining`,
-                                trigger:'hover',
-                                html:true
-                        }">
-                        <img class="pokeball-small pokeball-selected" src="assets/images/pokeball/Beastball.svg">
-                    </td>
-                    <td class="align-middle">
-                        <label class="form-check-label toggler-wrapper style-1 m-auto">
-                            <input class="form-check-input" type="checkbox" id="pokeball-catch-ub"
-                                data-bind="checked: App.game.pokeballs.catchUltraBeast">
-                            <div class="toggler-slider">
-                                <div class="toggler-knob"></div>
-                            </div>
-                        </label>
-                    </td>
-                    <td class="align-middle" width="20%"
-                        data-bind="tooltip: {
-                            title: 'Enable this option to catch only Shiny Ultra Beasts<br/>' + App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) + ' Beast Balls remaining',
-                            trigger:'hover',
-                            html:true
-                        }">
-                        <img class="pokeball-small pokeball-selected" src="assets/images/pokeball/Beastball.svg">✨
-                    </td>
-                    <td class="align-middle">
-                        <label class="form-check-label toggler-wrapper style-1 m-auto">
-                            <input class="form-check-input" type="checkbox" id="pokeball-catch-ub-shiny"
-                                data-bind="checked: App.game.pokeballs.catchUltraBeastShiny">
-                            <div class="toggler-slider">
-                                <div class="toggler-knob"></div>
-                            </div>
-                        </label>
-                    </td>
-                </tr>
-                <!-- /ko -->
             </thead>
         </table>
     </div>

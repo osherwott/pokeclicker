@@ -1125,7 +1125,7 @@ class Update implements Saveable {
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 41);
 
             // Rename Rotom (Discord) to Rotom (Crobat)
-            const renamePokemon = Update.renamePokemonInSaveData;
+            const renamePokemon = Update.changeHatcheryKey;
             renamePokemon(saveData, 'Rotom (Discord)', 'Rotom (Crobat)');
         },
 

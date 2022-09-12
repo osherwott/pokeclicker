@@ -14,18 +14,16 @@
                       <knockout data-bind="visible: QuestLineHelper.isQuestLineCompleted('Tutorial Quests')">clears</knockout>
                   </knockout>
                   <!-- /ko -->
-                  <!--If all Pokémon in the dungeon are caught-->
-                  <knockout data-bind="if: (!DungeonRunner.dungeonCompleted(player.town().dungeon, true) && DungeonRunner.dungeonCompleted(player.town().dungeon, false))">
-                      <img title="You have captured all Pokémon in this dungeon!" class="pokeball-smallest"
-                           src="assets/images/pokeball/Pokeball.svg"/>
-                  </knockout>
 
-                  <!--If all Pokémon in the dungeon are caught shiny-->
-                  <knockout data-bind="if: DungeonRunner.dungeonCompleted(player.town().dungeon, true)">
-                      <img title="You have captured all Pokémon shiny in this dungeon!"
-                           class="pokeball-smallest"
-                           src="assets/images/pokeball/Pokeball-shiny.svg"/>
-                  </knockout>
+                  <knockout data-bind="template: { 
+                    name: 'caughtStatusAreaTemplate', 
+                    data: { 
+                        'areaTypeText': 'in this dungeon',
+                        'areaCompleted': DungeonRunner.dungeonCompleted(player.town().dungeon, false),
+                        'areaCompletedShiny': DungeonRunner.dungeonCompleted(player.town().dungeon, true)
+                    }
+                }"></knockout>
+                
               </knockout>
             </h2>
         </div>

@@ -11,7 +11,7 @@
                           </knockout>
 
                           <knockout>
-                              <knockout data-bind="html: SafariBattle.enemy.name + ' ' + PokemonFactory.genderText(SafariBattle.enemy.gender)">Pokémon name</knockout>
+                              <knockout data-bind="template: { name: 'pokemonNameTemplate', data: { 'pokemon': SafariBattle.enemy } }">Pokémon name</knockout>
                               <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(SafariBattle.enemy.id)}}"></knockout>
                           </knockout>
 

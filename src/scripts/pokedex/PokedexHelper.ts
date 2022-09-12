@@ -36,6 +36,10 @@ class PokedexHelper {
         });
     }
 
+    public static pokemonSeenByName(name: PokemonNameType): KnockoutComputed<boolean> {
+        return this.pokemonSeen(PokemonHelper.getPokemonByName(name).id);
+    }
+
     public static filteredList: KnockoutObservableArray<Record<string, any>> = ko.observableArray([]);
 
     public static populateFilters() {

@@ -6455,7 +6455,7 @@ dungeonList['Reflection Cave'] = new Dungeon('Reflection Cave',
                 new GymPokemon('Granbull', 23366400, 24),
                 new GymPokemon('Helioptile', 25476400, 25),
             ], { weight: 1 }, 'Monique', '(female)'),
-        new DungeonBossPokemon('Diancie', 69694200, 100, {requirement: new GymBadgeRequirement(BadgeEnums.Elite_KalosChampion)}),
+        new DungeonBossPokemon('Diancie', 69694200, 100, {requirement: new QuestLineStepCompletedRequirement('Princess Diancie', 7)}),
     ],
     555000, 11);
 
@@ -7039,7 +7039,7 @@ dungeonList['Victory Road Kalos'] = new Dungeon('Victory Road Kalos',
                 new GymPokemon('Florges (Red)', 3500000, 56),
             ], { weight: 1 }, 'Corinne'),
         new DungeonTrainer('Hex Maniac',
-            [new GymPokemon('Gourgeist', 3500000, 58)],
+            [new GymPokemon('Gourgeist (Average)', 3500000, 58)],
             { weight: 1 }, 'Raziah'),
         new DungeonTrainer('Pokémon Ranger',
             [
@@ -8607,7 +8607,7 @@ dungeonList['Rose Tower'] = new Dungeon('Rose Tower',
     1800000, 32);
 
 dungeonList['Energy Plant'] = new Dungeon('Energy Plant',
-    ['Steelix', 'Mawile', 'Bronzong', 'Durant', 'Bisharp', 'Doublade', 'Golisopod', 'Galarian Stunfisk', 'Sirfetch\'d'],
+    ['Steelix', 'Mawile', 'Bronzong', 'Durant', 'Bisharp', 'Doublade', 'Golisopod', 'Galarian Stunfisk'],
     {
         common: [
             {loot: 'Token_collector'},
@@ -9131,6 +9131,10 @@ dungeonList['Crown Shrine'] = new Dungeon('Crown Shrine',
             {loot: 'Spooky Plate'},
         ],
         legendary: [{loot: 'Max Revive'}],
+        mythic: [
+            {loot: 'Heart Scale'},
+            {loot: 'Galarian Darmanitan (Zen)'},
+        ],
     },
     33915762,
     [

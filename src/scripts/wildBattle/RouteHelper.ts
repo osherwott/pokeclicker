@@ -86,4 +86,37 @@ class RouteHelper {
         });
     }
 
+    public static getAvailablePokemonListForTooltip(route: number, region: GameConstants.Region) {
+        const possiblePokemon = this.getAvailablePokemonList(route, region);
+        const possiblePokemonSanitized = [...new Set(possiblePokemon)]; // Remove duplicates AKA Wingull
+        let pokeballFilename = '';
+        let pokemonName = '';
+        let pokemonListString = '';
+        pokemonListString += '<strong>Available Pokémon</strong>'
+        pokemonListString += '<table class="w-100">';
+        for (const pokemon of possiblePokemonSanitized) {
+            pokemonListString += '<tr>';
+            pokemonName = pokemon;
+            switch (PartyController.getCaughtStatusByName(pokemon)) {
+                case CaughtStatus.NotCaught:
+                    pokeballFilename = 'None';
+                    if (!PokedexHelper.pokemonSeenByName(pokemon)()) {
+                        pokemonName = '???';
+                    }
+                    break;
+                case CaughtStatus.Caught:
+                    pokeballFilename = 'Pokeball';
+                    break;
+                case CaughtStatus.CaughtShiny:
+                    pokeballFilename = 'Pokeball-shiny';
+                    break;
+                default: console.error('Invalid Caught Status');
+            }
+            pokemonListString += `<td class="text-left">${pokemonName}</td>`;
+            pokemonListString += `<td class="text-right"><img class="pokeball-smallest" src="assets/images/pokeball/${pokeballFilename}.svg" /></td>`;
+            pokemonListString += '</tr>';
+        }
+        pokemonListString += '</table>';
+        return pokemonListString;
+    }
 }

@@ -543,5 +543,6 @@ $(document).ready(() => {
     });
     $('#breedingModal').on('hidden.bs.modal', () => {
         App.game.breeding.isModalOpen(false);
+        $('.loader-pokeball').remove();
     });
 });

@@ -140,7 +140,8 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </label>
                         </div>
-                        <!-- Load all Pokémon -->
+                        <!-- Load all Pokémon (Temporarily removed) -->
+                        <!--
                         <div class="form-group col-md-9 col-6">
                             <span>Load all Pokémon</span>
                             <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Loads all the Pokémon (By default, Pokédex shows 50 Pokémon at first and loads 50 more the more you scroll)', trigger: 'hover' }"></i>
@@ -154,32 +155,34 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </label>
                         </div>
+                        -->
                    </div>
                </div>
 
             </div>
             <div class="col-md-9">
-                <!-- ko if: PokedexHelper.shortenedListByIndex().length == 0 -->
+                <!-- ko if: PokedexHelper.filteredList().length == 0 -->
                 <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
                     <h4 data-bind="text: 'No Pokémon found'"></h4>
                 </div>
                 <span>Missing a Pokémon but is not appearing here? Look around the region, you haven't seen yet.</span>
                 <!-- /ko -->
-                <!-- ko if: PokedexHelper.shortenedListByIndex().length != 0 -->
+                <!-- ko if: PokedexHelper.filteredList().length != 0 -->
                 <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
                     <h4 data-bind="text: `Showing ${PokedexHelper.filteredList().length} Pokémon`"></h4>
                 </div>
                 <!-- /ko -->
                 <div id="pokemon-list">
+                    <!-- ko if: PokedexHelper.isModalOpen() -->
                     <ul class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList)"
                         style="max-width: 100%; padding:0; margin:0;">
                         <li class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                                 data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
                                 <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)">number</span>
-                                    <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(name)" style="position: absolute;right: 2px;top: -15px;">
+                                    <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(name)" style="position: absolute; right: 2px; top: -15px;">
                                         <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.id, true) ? '-shiny' : ''}.svg`}"/>
                                     </div>
-                                    <div style="position: absolute;right: 2px;top: 49px;">
+                                    <div style="position: absolute; right: 2px; top: 65px;">
                                         <img class="item-icon rounded-circle" src="" width="24px" data-bind="visible: BagHandler.displayName($data.heldItem) && App.game.party.alreadyCaughtPokemonByName(name), attr: {src: BagHandler.image($data.heldItem)}">
                                     </div>
                                     <!-- ko ifnot: App.game.party.getPokemon($data.id) == undefined -->
@@ -207,6 +210,7 @@ aria-labelledby="pokedexModalLabel">
                                     <!-- /ko -->
                         </li>
                     </ul>
+                    <!-- /ko -->
                 </div>
             </div>
        </div>

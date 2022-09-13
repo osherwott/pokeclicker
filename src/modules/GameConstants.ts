@@ -1607,4 +1607,5 @@ export enum PokeballSelector {
     notCaught,
     notCaughtShiny,
     type,
+    roaming,
 }

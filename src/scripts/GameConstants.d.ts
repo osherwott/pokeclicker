@@ -650,5 +650,6 @@ namespace GameConstants {
         notCaught,
         notCaughtShiny,
         type,
+        roaming,
     }
 }

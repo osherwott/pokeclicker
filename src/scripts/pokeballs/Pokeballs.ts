@@ -11,6 +11,7 @@ class Pokeballs implements Feature {
         notCaughtSelection: GameConstants.Pokeball.Pokeball,
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         typeSelection: GameConstants.Pokeball.None,
+        roamingSelection: GameConstants.Pokeball.None,
     };
 
     public pokeballs: Pokeball[];
@@ -22,6 +23,9 @@ class Pokeballs implements Feature {
 
     // Types
     public typeArray: KnockoutObservable<boolean>[];
+
+    // Roaming
+    public isRoaming: KnockoutObservable<boolean>;
 
     public selectedSelection: KnockoutObservable<KnockoutObservable<GameConstants.Pokeball>>;
     public selectedTitle: KnockoutObservable<string>;
@@ -114,6 +118,7 @@ class Pokeballs implements Feature {
             new PokeballSelector(GameConstants.PokeballSelector.notCaught, 'New Pokémon', 'Uncaptured Pokémon will use this ball selection', this.defaults.notCaughtSelection),
             new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', 'Uncaptured Shiny Pokémon will use this ball selection', this.defaults.notCaughtShinySelection),
             new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', 'Any Pokémon will use this ball selection if their types match with the selected types<br/>Select the types in the Settings', this.defaults.typeSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
         ];
      
         // Beast Ball Toggles
@@ -125,6 +130,9 @@ class Pokeballs implements Feature {
         for (const type of GameHelper.enumNumbers(PokemonType).filter(value => !isNaN(value) && value != -1)) {
             this.typeArray[type] = ko.observable(false);
         }
+
+        // Roaming
+        this.isRoaming = ko.observable(false);
 
         this.selectedTitle = ko.observable('');
         this.selectedSelection = ko.observable(ko.observable(this.defaults.alreadyCaughtSelection));
@@ -191,6 +199,11 @@ class Pokeballs implements Feature {
             if (pokemon.type1 == typeIndex || pokemon.type2 == typeIndex) {
                 pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball());
             }
+        }
+
+        // Roamings
+        if (this.isRoaming()) {
+            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.roaming].pokeball());
         }
 
         let use: GameConstants.Pokeball = GameConstants.Pokeball.None;

@@ -6,8 +6,10 @@ class PokedexHelper {
     public static showAllPokemon = ko.observable(false);
     public static toggleFemale = ko.observable(false);
 
+    public static isModalOpen: KnockoutObservable<boolean> = ko.observable(false);
+
     // For showing 50 more Pokémon when scrolling
-    public static scrollIndex: KnockoutObservable<number> = ko.observable(0);
+    //public static scrollIndex: KnockoutObservable<number> = ko.observable(0);
 
     public static getBackgroundColors(name: PokemonNameType): string {
         const pokemon = PokemonHelper.getPokemonByName(name);
@@ -64,6 +66,7 @@ class PokedexHelper {
     }
 
     // Shows 50 Pokémon at first
+    /*
     public static shortenedListByIndex(id = 0) {
         return this.showAllPokemon() ? this.filteredList() : this.filteredList().slice(0, (this.scrollIndex() * 50));
     }
@@ -74,11 +77,24 @@ class PokedexHelper {
     public static setScrollIndex(index: number): void {
         this.scrollIndex(index);
     }
+    */
 
     public static updateList() {
+        /*
         $('#pokemon-list').scrollTop(0);
         PokedexHelper.scrollIndex(1);
+        */
         PokedexHelper.filteredList(PokedexHelper.getList());
+        $('#pokemon-list').scrollTop(0);
+        /*
+        PokedexHelper.isModalOpen(false);
+        if ($('#pokemon-list .loader-pokeball').length > 1) {
+            $('#pokemon-list .loader-pokeball').first().remove();
+        }
+        setTimeout(() => {
+            PokedexHelper.isModalOpen(true)
+        }, 2000);
+        */
     }
 
     public static getList(): Array<Record<string, any>> {
@@ -259,6 +275,7 @@ $(document).ready(() => {
         PokedexHelper.toggleStatisticShiny(false);
     });
     // Adds 50 more Pokémon
+    /*
     $('#pokemon-list').on('scroll', () => {
         const scrollY = $('#pokemon-list').scrollTop();
         const divHeight = $('#pokemon-elements').height();
@@ -281,5 +298,13 @@ $(document).ready(() => {
             PokedexHelper.showAllPokemon(false);
         }
 
+    });
+    */
+    $('#pokedexModal').on('shown.bs.modal', () => {
+        PokedexHelper.isModalOpen(true);
+    });
+    $('#pokedexModal').on('hidden.bs.modal', () => {
+        PokedexHelper.isModalOpen(false);
+        $('.loader-pokeball').remove();
     });
 });

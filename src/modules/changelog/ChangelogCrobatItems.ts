@@ -15,6 +15,8 @@ const ChangelogCrobatItems = [
     // ⥂⥄
     // v0.3.1
     new ChangelogUpdate('v0.3.1', new Date(2022, 9 - 1, 4)),
+    new Changelog(changelogType.NEW, 'Added list of available Pokémon on routes'),
+    new Changelog(changelogType.CHANGE, 'Misc tooltip changes'),
     new Changelog(changelogType.CHANGE, 'Poké Balls menu: layout changed'),
     new Changelog(changelogType.CHANGE, 'Pokédex: Sprite width changed'),
     new Changelog(changelogType.FIXED, 'Pinkan Nidoran, Pinkan Nidoking and Spiky-eared Pichu showing wrong gender'),

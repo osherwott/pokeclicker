@@ -1608,4 +1608,5 @@ export enum PokeballSelector {
     notCaughtShiny,
     type,
     roaming,
+    dungeonBoss,
 }

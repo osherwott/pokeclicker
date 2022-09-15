@@ -25,6 +25,7 @@ class DungeonBattle extends Battle {
      */
     public static defeatPokemon() {
         const enemyPokemon: BattlePokemon = this.enemyPokemon();
+        App.game.pokeballs.isDungeonBoss(false);
 
         // Handle Trainer Pokemon defeat
         if (this.trainer()) {
@@ -42,6 +43,7 @@ class DungeonBattle extends Battle {
         if (DungeonRunner.fightingBoss()) {
             DungeonRunner.fightingBoss(false);
             DungeonRunner.defeatedBoss(true);
+            App.game.pokeballs.isDungeonBoss(true);
         }
         enemyPokemon.defeat();
         App.game.breeding.progressEggsBattle(DungeonRunner.dungeon.difficultyRoute, player.region);
@@ -70,6 +72,7 @@ class DungeonBattle extends Battle {
         } else if (DungeonRunner.defeatedBoss()) {
             DungeonRunner.dungeonWon();
         }
+        App.game.pokeballs.isDungeonBoss(false);
     }
 
     /**

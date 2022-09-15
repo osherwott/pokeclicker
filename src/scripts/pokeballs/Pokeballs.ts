@@ -12,6 +12,7 @@ class Pokeballs implements Feature {
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         typeSelection: GameConstants.Pokeball.None,
         roamingSelection: GameConstants.Pokeball.None,
+        dungeonBossSelection: GameConstants.Pokeball.None,
     };
 
     public pokeballs: Pokeball[];
@@ -26,6 +27,9 @@ class Pokeballs implements Feature {
 
     // Roaming
     public isRoaming: KnockoutObservable<boolean>;
+
+    // Dungeon Boss
+    public isDungeonBoss: KnockoutObservable<boolean>;
 
     public selectedSelection: KnockoutObservable<KnockoutObservable<GameConstants.Pokeball>>;
     public selectedTitle: KnockoutObservable<string>;
@@ -119,6 +123,7 @@ class Pokeballs implements Feature {
             new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', 'Uncaptured Shiny Pokémon will use this ball selection', this.defaults.notCaughtShinySelection),
             new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', 'Any Pokémon will use this ball selection if their types match with the selected types<br/>Select the types in the Settings', this.defaults.typeSelection),
             new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
         ];
      
         // Beast Ball Toggles
@@ -134,6 +139,9 @@ class Pokeballs implements Feature {
         // Roaming
         this.isRoaming = ko.observable(false);
 
+        // Dungeon Boss
+        this.isDungeonBoss = ko.observable(false);
+
         this.selectedTitle = ko.observable('');
         this.selectedSelection = ko.observable(ko.observable(this.defaults.alreadyCaughtSelection));
     }
@@ -145,6 +153,8 @@ class Pokeballs implements Feature {
             this.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball,
+            this.pokeballSelectors[GameConstants.PokeballSelector.roaming].pokeball,
+            this.pokeballSelectors[GameConstants.PokeballSelector.dungeonBoss].pokeball,
         ]).forEach(selection => {
             selection.subscribe(value => {
                 // switch to Ultraball if Masterball is selected
@@ -204,6 +214,11 @@ class Pokeballs implements Feature {
         // Roamings
         if (this.isRoaming()) {
             pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.roaming].pokeball());
+        }
+
+        // Dungeon Boss
+        if (this.isDungeonBoss()) {
+            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.dungeonBoss].pokeball());
         }
 
         let use: GameConstants.Pokeball = GameConstants.Pokeball.None;

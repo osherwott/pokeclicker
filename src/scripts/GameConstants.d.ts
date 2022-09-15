@@ -651,5 +651,6 @@ namespace GameConstants {
         notCaughtShiny,
         type,
         roaming,
+        dungeonBoss,
     }
 }

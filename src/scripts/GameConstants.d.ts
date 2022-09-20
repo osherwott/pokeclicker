@@ -641,7 +641,7 @@ namespace GameConstants {
     declare const NO_GENDER;
     declare const GENDER_MALE;
     declare const GENDER_FEMALE;
-    
+
     // Poké Ball Selectors
     declare enum PokeballSelector {
         alreadyCaught,

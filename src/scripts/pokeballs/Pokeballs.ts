@@ -125,7 +125,7 @@ class Pokeballs implements Feature {
             new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
             new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
         ];
-     
+
         // Beast Ball Toggles
         this.catchUltraBeast = ko.observable(false);
         this.catchUltraBeastShiny = ko.observable(false);
@@ -204,7 +204,7 @@ class Pokeballs implements Feature {
         // Types
         const typeIndexes = this.typeArray
             .map((typeChecked, i) => typeChecked() ? i : null)
-            .filter(i => i !== null)
+            .filter(i => i !== null);
         for (const typeIndex of typeIndexes) {
             if (pokemon.type1 == typeIndex || pokemon.type2 == typeIndex) {
                 pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball());
@@ -306,7 +306,7 @@ class Pokeballs implements Feature {
         if (json.pokeballSelectors != null) {
             json.pokeballSelectors.map((pokeball: GameConstants.Pokeball, type: number) => this.pokeballSelectors[type].pokeball(pokeball));
         }
-        
+
         // Types
         if (json.typeArray != null) {
             json.typeArray.map((typeChecked: boolean, type: number) => this.typeArray[type](typeChecked));

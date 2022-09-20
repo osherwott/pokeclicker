@@ -5572,7 +5572,7 @@ const pokemonList = createPokemonArray(
         },
         'gender': {
             'type': GameConstants.FEMALE_ONLY,
-        }
+        },
     },
     {
         'id': 173,

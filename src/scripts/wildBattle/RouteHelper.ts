@@ -92,7 +92,7 @@ class RouteHelper {
         let pokeballFilename = '';
         let pokemonName = '';
         let pokemonListString = '';
-        pokemonListString += '<strong>Available Pokémon</strong>'
+        pokemonListString += '<strong>Available Pokémon</strong>';
         pokemonListString += '<table class="w-100">';
         for (const pokemon of possiblePokemonSanitized) {
             pokemonListString += '<tr>';

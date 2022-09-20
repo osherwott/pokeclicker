@@ -1194,6 +1194,10 @@ class Update implements Saveable {
             saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny] = saveData.pokeballs.notCaughtShinySelection;
         },
 
+        '0.9.16': ({ playerData, saveData }) => {
+            // Pinkan Berry
+            saveData.statistics.berriesHarvested = Update.moveIndex(saveData.statistics.berriesHarvested, 35);
+        },
     };
 
     constructor() {

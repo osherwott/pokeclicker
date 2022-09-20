@@ -15,6 +15,7 @@ const ChangelogCrobatItems = [
     // ⥂⥄
     // v0.3.1
     new ChangelogUpdate('v0.3.1', new Date(2022, 9 - 1, 4)),
+    new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.15)'),
     new Changelog(changelogType.NEW, 'Added list of available Pokémon on routes'),
     new Changelog(changelogType.NEW, 'Added Poké Ball selection for Roaming Pokémon'),
     new Changelog(changelogType.NEW, 'Added Poké Ball selection for Dungeon Boss Pokémon'),

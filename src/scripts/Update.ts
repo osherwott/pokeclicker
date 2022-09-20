@@ -1178,6 +1178,13 @@ class Update implements Saveable {
             Update.changePokemonNameToId(saveData, eggList);
             Update.changePokemonNameToId(saveData, queueList);
             
+            // Adding more Galar badges
+            saveData.statistics.gymsDefeated = Update.moveIndex(saveData.statistics.gymsDefeated, 109);
+            saveData.statistics.gymsDefeated = Update.moveIndex(saveData.statistics.gymsDefeated, 110);
+            saveData.statistics.gymsDefeated = Update.moveIndex(saveData.statistics.gymsDefeated, 111);
+            saveData.statistics.gymsDefeated = Update.moveIndex(saveData.statistics.gymsDefeated, 112);
+            saveData.statistics.gymsDefeated = Update.moveIndex(saveData.statistics.gymsDefeated, 113);
+
             /* Crobat Fork */
             // Moving balls from old selectors to new selectors
             saveData.pokeballs.pokeballSelectors = [];

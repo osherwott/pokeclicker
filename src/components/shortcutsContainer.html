@@ -40,7 +40,7 @@
       <!-- ko if: player.highestRegion() > 0 -->
       <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Dock', trigger: 'hover', placement: 'right', html: true },
-            css: {'disabled-icon': !(player.highestRegion() > 0 && (TownList[GameConstants.DockTowns[player.region]].isUnlocked())) || App.game.gameState == GameConstants.GameState.battleFrontier || App.game.gameState === GameConstants.GameState.dungeon}"
+            css: {'disabled-icon': !(TownList[GameConstants.DockTowns[player.region]].isUnlocked()) || App.game.gameState == GameConstants.GameState.battleFrontier || App.game.gameState === GameConstants.GameState.dungeon}"
             onclick="MapHelper.openShipModal()">
             <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/dock.png` }">
         </div>

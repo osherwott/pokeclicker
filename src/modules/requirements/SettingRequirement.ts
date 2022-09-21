@@ -13,7 +13,8 @@ export default class SettingRequirement extends Requirement {
         return Settings.getSetting(this.setting).observableValue();
     }
 
+    // eslint-disable-next-line class-methods-use-this
     public hint(): string {
-        return `Requires the respective setting to be enabled.`;
+        return 'Requires the respective setting to be enabled.';
     }
 }

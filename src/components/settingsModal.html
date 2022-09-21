@@ -266,6 +266,11 @@
                                         ">
                                     </td>
                                 </tr>
+
+                                <!-- Crobat Fork -->
+                                <!-- ko if: App.game.gameState != GameConstants.GameState.dungeon -->
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('enableRemovedBerries')}"></tr>
+                                <!-- /ko -->
                             </tbody>
                         </table>
                         <div class="btn-group btn-block">

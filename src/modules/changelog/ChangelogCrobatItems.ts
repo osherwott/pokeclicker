@@ -13,8 +13,14 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.2
+    new ChangelogUpdate('v0.3.2', new Date(2022, 9 - 1, 21)),
+    new Changelog(changelogType.CHANGE, 'Shortcuts: Layout changed'),
+    new Changelog(changelogType.CHANGE, 'Log Book moved to Shortcuts'),
+    new Changelog(changelogType.CHANGE, 'Damage Calculator moved to Shortcuts'),
+    new Changelog(changelogType.FIXED, 'Pinkan Electabuzz gender ratio'),
     // v0.3.1
-    new ChangelogUpdate('v0.3.1', new Date(2022, 9 - 1, 4)),
+    new ChangelogUpdate('v0.3.1', new Date(2022, 9 - 1, 20)),
     new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.15)'),
     new Changelog(changelogType.NEW, 'Added list of available Pokémon on routes'),
     new Changelog(changelogType.NEW, 'Added Poké Ball selection for Roaming Pokémon'),

@@ -1744,6 +1744,7 @@ dungeonList['Sprout Tower'] = new Dungeon('Sprout Tower',
         legendary: [
             {loot: 'Meadow Plate', weight: 2},
             {loot: 'SmallRestore'},
+            {loot: 'Miracle_Seed'},
         ],
     },
     56735,
@@ -1790,6 +1791,7 @@ dungeonList['Ruins of Alph'] = new Dungeon('Ruins of Alph',
         legendary: [
             {loot: 'SmallRestore', weight: 2},
             {loot: 'Star Piece'},
+            {loot: 'Twisted_Spoon'},
         ],
         mythic: [
             {loot: 'LargeRestore'},
@@ -1848,6 +1850,7 @@ dungeonList['Union Cave'] = new Dungeon('Union Cave',
         legendary: [
             {loot: 'SmallRestore'},
             {loot: 'Revive'},
+            {loot: 'Soft_Sand', weight: 3},
         ],
         mythic: [
             {loot: 'Ultraball'},
@@ -1905,6 +1908,7 @@ dungeonList['Slowpoke Well'] = new Dungeon('Slowpoke Well',
         legendary: [
             {loot: 'Splash Plate', weight: 2},
             {loot: 'MediumRestore'},
+            {loot: 'Poison_Barb'},
         ],
     },
     67900,
@@ -1941,6 +1945,7 @@ dungeonList['Ilex Forest'] = new Dungeon('Ilex Forest',
             {loot: 'Revive'},
             {loot: 'Insect Plate'},
             {loot: 'MediumRestore'},
+            {loot: 'Silver_Powder'},
         ],
         mythic: [{loot: 'Zap Plate'}],
     },
@@ -1965,6 +1970,7 @@ dungeonList['Burned Tower'] = new Dungeon('Burned Tower',
             {loot: 'Revive'},
             {loot: 'Flame Plate'},
             {loot: 'Ultraball'},
+            {loot: 'Charcoal'},
         ],
     },
     88500,
@@ -1988,6 +1994,7 @@ dungeonList['Tin Tower'] = new Dungeon('Tin Tower',
             {loot: 'Flame Plate'},
             {loot: 'Spooky Plate'},
             {loot: 'Sky Plate'},
+            {loot: 'Sharp_Beak'},
         ],
         mythic: [{loot: 'Max Revive'}],
     },
@@ -2012,6 +2019,7 @@ dungeonList['Whirl Islands'] = new Dungeon('Whirl Islands',
             {loot: 'Ultraball'},
             {loot: 'Mind Plate'},
             {loot: 'Sky Plate'},
+            {loot: 'Mystic_Water'},
         ],
         mythic: [{loot: 'Max Revive'}],
     },
@@ -2059,6 +2067,7 @@ dungeonList['Mt. Mortar'] = new Dungeon('Mt. Mortar',
             {loot: 'Ultraball'},
             {loot: 'LargeRestore'},
             {loot: 'Revive'},
+            {loot: 'Black_Belt'},
         ],
         mythic: [{loot: 'Max Revive'}],
     },
@@ -2158,6 +2167,7 @@ dungeonList['Team Rocket\'s Hideout'] = new Dungeon('Team Rocket\'s Hideout',
             {loot: 'LargeRestore'},
             {loot: 'Dread Plate'},
             {loot: 'Splash Plate'},
+            {loot: 'Black_Glasses'},
         ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(400, GameConstants.getDungeonIndex('Team Rocket\'s Hideout'))}],
     },
@@ -2309,7 +2319,10 @@ dungeonList['Radio Tower'] = new Dungeon('Radio Tower',
             {loot: 'Aguav'},
             {loot: 'Iapapa'},
         ],
-        legendary: [{loot: 'Ultraball'}],
+        legendary: [
+            {loot: 'Ultraball'},
+            {loot: 'Magnet'},
+        ],
         mythic: [
             {loot: 'Max Revive'},
             {loot: 'Lum', requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Radio Tower'))},
@@ -2359,6 +2372,7 @@ dungeonList['Ice Path'] = new Dungeon('Ice Path',
         legendary: [
             {loot: 'Icicle Plate'},
             {loot: 'Revive'},
+            {loot: 'Never_Melt_Ice'},
         ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(450, GameConstants.getDungeonIndex('Ice Path'))}],
     },
@@ -2379,6 +2393,7 @@ dungeonList['Dark Cave'] = new Dungeon('Dark Cave',
             {loot: 'Revive'},
             {loot: 'Star Piece'},
             {loot: 'SmallRestore'},
+            {loot: 'Silk_Scarf'},
         ],
         mythic: [
             {loot: 'Heart Scale'},
@@ -2466,6 +2481,7 @@ dungeonList['Mt. Silver'] = new Dungeon('Mt. Silver',
             {loot: 'LargeRestore'},
             {loot: 'Revive'},
             {loot: 'Star Piece'},
+            {loot: 'Spell_Tag'},
         ],
         mythic: [
             {loot: 'Max Revive'},
@@ -9144,130 +9160,388 @@ dungeonList['Crown Shrine'] = new Dungeon('Crown Shrine',
 
 // Berries removed in v0.9.4 nerf
 // Hoenn
-dungeonList['Meteor Falls'].lootTable.common.push({loot: 'Cornn', weight: 4});
-dungeonList['Magma Hideout'].lootTable.rare.push({loot: 'Tamato', weight: 2});
+dungeonList['Meteor Falls'].lootTable.common.push({loot: 'Cornn', weight: 4, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Magma Hideout'].lootTable.rare.push({loot: 'Tamato', weight: 2, requirement: new SettingRequirement('enableRemovedBerries')});
 dungeonList['Magma Hideout'].lootTable.legendary.push(
-    {loot: 'Spelon', weight: 0.5},
-    {loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Magma Hideout'))}
+    {loot: 'Spelon', weight: 0.5, requirement: new SettingRequirement('enableRemovedBerries')},
+    {loot: 'Chople', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Magma Hideout')),
+            new SettingRequirement('enableRemovedBerries'),
+        ]),
+    }
 );
-dungeonList['Sky Pillar'].lootTable.common.push({loot: 'Durin', weight: 3.5});
+dungeonList['Sky Pillar'].lootTable.common.push({loot: 'Durin', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')});
 // Sinnoh
 dungeonList['Oreburgh Gate'].lootTable.epic.push(
-    {loot: 'Watmel', weight: 2},
-    {loot: 'Shuca', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate'))}
+    {loot: 'Watmel', weight: 2, requirement: new SettingRequirement('enableRemovedBerries')},
+    {loot: 'Shuca', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Oreburgh Gate'].lootTable.legendary.push({loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Oreburgh Gate'))});
+dungeonList['Oreburgh Gate'].lootTable.legendary.push({loot: 'Chople', weight: 0,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Oreburgh Gate')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])}
+);
 dungeonList['Valley Windworks'].lootTable.common.push(
-    {loot: 'Pamtre', weight: 3.5},
-    {loot: 'Belue', weight: 3.5}
+    {loot: 'Pamtre', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')},
+    {loot: 'Belue', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')}
 );
-dungeonList['Solaceon Ruins'].lootTable.epic.push({loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Solaceon Ruins'))});
+dungeonList['Solaceon Ruins'].lootTable.epic.push({loot: 'Payapa', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Solaceon Ruins')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])}
+);
 dungeonList['Lake Valor'].lootTable.epic.push(
-    {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Valor'))},
-    {loot: 'Chople', weight: 1, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Lake Valor'))}
+    {loot: 'Kebia', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Valor')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Chople', weight: 1, requirement: new MultiRequirement([
+        new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Lake Valor')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])}
 );
-dungeonList['Lake Verity'].lootTable.epic.push({loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Verity'))});
-dungeonList['Mt. Coronet North'].lootTable.common.push({loot: 'Kelpsy', weight: 3.5});
+dungeonList['Lake Verity'].lootTable.epic.push({loot: 'Chilan', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Verity')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])}
+);
+dungeonList['Mt. Coronet North'].lootTable.common.push({loot: 'Kelpsy', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')});
 dungeonList['Lake Acuity'].lootTable.epic.push(
-    {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Acuity'))},
-    {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity'))},
-    {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity'))}
+    {loot: 'Colbur', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Acuity')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Payapa', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Kebia', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
 dungeonList['Spear Pillar'].lootTable.epic.push(
-    {loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
-    {loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))}
+    {loot: 'Babiri', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Passho', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
 dungeonList['Spear Pillar'].lootTable.legendary.push(
-    {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
-    {loot: 'Apicot', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
-    {loot: 'Lansat', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))}
+    {loot: 'Haban', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Apicot', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Lansat', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Distortion World'].lootTable.common.push({loot: 'Nomel', weight: 3.5});
+dungeonList['Distortion World'].lootTable.common.push({loot: 'Nomel', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')});
 dungeonList['Distortion World'].lootTable.legendary.push(
-    {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Distortion World'))},
-    {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Distortion World'))}
+    {loot: 'Kasib', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Distortion World')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Haban', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Distortion World')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Victory Road Sinnoh'].lootTable.rare.push({loot: 'Spelon', weight: 2.5});
-dungeonList['Hall of Origin'].lootTable.mythic.push({loot: 'Starf', weight: 0, requirement: new ClearDungeonRequirement(1000, GameConstants.getDungeonIndex('Hall of Origin'))});
-dungeonList['Fullmoon Island'].lootTable.epic.push({loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Fullmoon Island'))});
+dungeonList['Victory Road Sinnoh'].lootTable.rare.push({loot: 'Spelon', weight: 2.5, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Hall of Origin'].lootTable.mythic.push({loot: 'Starf', weight: 0,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(1000, GameConstants.getDungeonIndex('Hall of Origin')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Fullmoon Island'].lootTable.epic.push({loot: 'Payapa', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Fullmoon Island')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
 dungeonList['Fullmoon Island'].lootTable.legendary.push(
-    {loot: 'Occa', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
-    {loot: 'Rindo', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
-    {loot: 'Passho', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
-    {loot: 'Wacan', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
-    {loot: 'Yache', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))}
+    {loot: 'Occa', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Rindo', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Passho', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Wacan', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Yache', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Newmoon Island'].lootTable.epic.push({loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))});
+dungeonList['Newmoon Island'].lootTable.epic.push({loot: 'Colbur', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
 dungeonList['Newmoon Island'].lootTable.legendary.push(
-    {loot: 'Shuca', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
-    {loot: 'Coba', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
-    {loot: 'Kebia', weight: 0.5, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Newmoon Island'))},
-    {loot: 'Chople', weight: 0.5, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island'))}
+    {loot: 'Shuca', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Coba', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Kebia', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Newmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Chople', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Flower Paradise'].lootTable.epic.push({loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))});
+dungeonList['Flower Paradise'].lootTable.epic.push({loot: 'Rindo', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
 dungeonList['Flower Paradise'].lootTable.legendary.push(
-    {loot: 'Coba', weight: 0.75, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-    {loot: 'Tanga', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-    {loot: 'Charti', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-    {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))}
+    {loot: 'Coba', weight: 0.75,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Tanga', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Charti', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Kasib', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
 dungeonList['Snowpoint Temple'].lootTable.legendary.push(
-    {loot: 'Chilan', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Snowpoint Temple'))},
-    {loot: 'Roseli', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Snowpoint Temple'))}
+    {loot: 'Chilan', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Snowpoint Temple')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Roseli', weight: 0.5,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Snowpoint Temple')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
 // Unova
-dungeonList['Floccesy Ranch'].lootTable.epic.push({loot: 'Chilan', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Floccesy Ranch'))});
-dungeonList['Liberty Garden'].lootTable.common.push({loot: 'Magost', weight: 3});
-dungeonList['Liberty Garden'].lootTable.legendary.push({loot: 'Occa', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Liberty Garden'))});
-dungeonList['Relic Passage'].lootTable.epic.push({loot: 'Charti', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Relic Passage'))});
-dungeonList['Relic Castle'].lootTable.common.push({loot: 'Hondew', weight: 3.25});
-dungeonList['Lostlorn Forest'].lootTable.common.push({loot: 'Qualot', weight: 3.75});
-dungeonList['Chargestone Cave'].lootTable.epic.push({loot: 'Wacan', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Chargestone Cave'))});
-dungeonList['Mistralton Cave'].lootTable.common.push({loot: 'Pamtre', weight: 3.75});
-dungeonList['Celestial Tower'].lootTable.epic.push({loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Celestial Tower'))});
-dungeonList['Reversal Mountain'].lootTable.common.push({loot: 'Cornn', weight: 3});
-/*
-dungeonList['Team Plasma Assault'].lootTable.common.push({loot: 'Pomeg', weight: 3.75});
-dungeonList['Team Plasma Assault'].lootTable.epic.push(
-    {loot: 'Durin', weight: 2, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
-    {loot: 'Haban', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
-    {loot: 'Yache', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
+dungeonList['Floccesy Ranch'].lootTable.epic.push({loot: 'Chilan', weight: 1.5,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Floccesy Ranch')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Liberty Garden'].lootTable.common.push({loot: 'Magost', weight: 3, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Liberty Garden'].lootTable.legendary.push({loot: 'Occa', weight: 0.5,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Liberty Garden')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Relic Passage'].lootTable.epic.push({loot: 'Charti', weight: 1.5,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Relic Passage')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Relic Castle'].lootTable.common.push({loot: 'Hondew', weight: 3.25, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Lostlorn Forest'].lootTable.common.push({loot: 'Qualot', weight: 3.75, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Chargestone Cave'].lootTable.epic.push({loot: 'Wacan', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Chargestone Cave')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Mistralton Cave'].lootTable.common.push({loot: 'Pamtre', weight: 3.75, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Celestial Tower'].lootTable.epic.push({loot: 'Kasib', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Celestial Tower')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Reversal Mountain'].lootTable.common.push({loot: 'Cornn', weight: 3, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Plasma Frigate'].lootTable.common.push({loot: 'Pomeg', weight: 3.75, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Plasma Frigate'].lootTable.epic.push(
+    {loot: 'Durin', weight: 2,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Plasma Frigate')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Haban', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Plasma Frigate')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Yache', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Plasma Frigate')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-*/
-dungeonList['Cave of Being'].lootTable.epic.push({loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Cave of Being'))});
-dungeonList['Abundant Shrine'].lootTable.common.push({loot: 'Hondew', weight: 3.5});
+dungeonList['Cave of Being'].lootTable.epic.push({loot: 'Payapa', weight: 1,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Cave of Being')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])});
+dungeonList['Abundant Shrine'].lootTable.common.push({loot: 'Hondew', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')});
 dungeonList['Abundant Shrine'].lootTable.legendary.push(
-    {loot: 'Micle', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-    {loot: 'Custap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-    {loot: 'Rowap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-    {loot: 'Jaboca', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Abundant Shrine'))}
+    {loot: 'Micle', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Custap', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Rowap', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Jaboca', weight: 0,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Abundant Shrine')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Twist Mountain'].lootTable.common.push({loot: 'Nomel', weight: 3.75});
-dungeonList['Moor of Icirrus'].lootTable.common.push({loot: 'Belue', weight: 3});
-dungeonList['Pledge Grove'].lootTable.common.push({loot: 'Qualot', weight: 3.5});
+dungeonList['Twist Mountain'].lootTable.common.push({loot: 'Nomel', weight: 3.75, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Moor of Icirrus'].lootTable.common.push({loot: 'Belue', weight: 3, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Pledge Grove'].lootTable.common.push({loot: 'Qualot', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')});
 // Kalos
 // dungeonList['Parfum Palace'].lootTable.epic.push({loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Parfum Palace'))});
 dungeonList['Connecting Cave'].lootTable.epic.push(
-    {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
-    {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))}
+    {loot: 'Kebia', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Coba', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Lost Hotel'].lootTable.epic.push({loot: 'Wacan', weight: 1});
+dungeonList['Lost Hotel'].lootTable.epic.push({loot: 'Wacan', weight: 1, requirement: new SettingRequirement('enableRemovedBerries')});
 dungeonList['Frost Cavern'].lootTable.epic.push(
-    {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Frost Cavern'))},
-    {loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Frost Cavern'))}
+    {loot: 'Coba', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Frost Cavern')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Passho', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Frost Cavern')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
 dungeonList['Team Flare Secret HQ'].lootTable.epic.push(
-    {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
-    {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
-    {loot: 'Roseli', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Flare Secret HQ'))}
+    {loot: 'Colbur', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Coba', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Roseli', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Flare Secret HQ')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
 dungeonList['Pokémon Village'].lootTable.epic.push(
-    {loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Tanga', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-    {loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Pokémon Village'))}
+    {loot: 'Rindo', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Kebia', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Tanga', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Payapa', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Kasib', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Colbur', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])},
+    {loot: 'Babiri', weight: 1,
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Pokémon Village')),
+            new SettingRequirement('enableRemovedBerries'),
+        ])}
 );
-dungeonList['Pokémon Village'].lootTable.legendary.push({loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Pokémon Village'))});
+dungeonList['Pokémon Village'].lootTable.legendary.push({loot: 'Chople', weight: 0,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Pokémon Village')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])}
+);

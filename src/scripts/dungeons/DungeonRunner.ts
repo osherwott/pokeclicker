@@ -179,7 +179,7 @@ class DungeonRunner {
         let setting = NotificationConstants.NotificationSetting.Dungeons.common_dungeon_item_found;
 
         if (typeof BerryType[input] == 'number') {
-            const berryPlural = (amount < 2) ? 'Berry' : 'Berries';
+            const berryPlural = (amount === 1) ? 'Berry' : 'Berries';
             message = `Found ${Math.floor(amount)} × <img src="${image}" height="24px"/> ${GameConstants.humanifyString(input)} ${berryPlural} in a dungeon chest.`;
         } if (ItemList[input] instanceof PokeballItem) {
             message = `Found ${amount} × <img src="${image}" height ="24px"/> ${ItemList[input].displayName}${multiple} in a dungeon chest.`;
@@ -203,13 +203,21 @@ class DungeonRunner {
         });
     }
 
-    public static startBossFight() {
+    public static async startBossFight(shouldConfirm = Settings.getSetting('confirmFightBoss').observableValue()) {
         if (DungeonRunner.map.currentTile().type() !== GameConstants.DungeonTile.boss || DungeonRunner.fightingBoss()) {
             return;
         }
 
-        DungeonRunner.fightingBoss(true);
-        DungeonBattle.generateNewBoss();
+        if (!shouldConfirm || await Notifier.confirm({
+            title: 'Dungeon',
+            message: 'Fight the boss?\n\nIf you start the fight against the boss, you won\'t be able to fight the remaining Pokémon or open the remaining chests.',
+            type: NotificationConstants.NotificationOption.warning,
+            confirm: 'Fight',
+            timeout: 1 * GameConstants.MINUTE,
+        })) {
+            DungeonRunner.fightingBoss(true);
+            DungeonBattle.generateNewBoss();
+        }
     }
 
     public static async dungeonLeave(shouldConfirm = Settings.getSetting('confirmLeaveDungeon').observableValue()): Promise<void> {

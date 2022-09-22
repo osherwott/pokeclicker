@@ -748,6 +748,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 80,
             'speed': 70,
         },
+        'gender': {
+            'type': GameConstants.FEMALE_ONLY,
+        }
     },
     {
         'id': 12.03,
@@ -765,6 +768,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 80,
             'speed': 70,
         },
+        'gender': {
+            'type': GameConstants.MALE_ONLY,
+        }
     },
     {
         'id': 12.04,

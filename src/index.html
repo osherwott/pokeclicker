@@ -234,9 +234,12 @@
                                     <knockout data-bind="visible: $data < GameConstants.ROUTE_KILLS_NEEDED">/10</knockout>
                                     &nbsp;defeated
                                 </knockout>
-
+                                <!-- Pokemon List -->
                                 <knockout class="left">
-                                    <div class="d-inline position-relative">
+                                    <div class="d-inline position-relative" data-bind="tooltip: { 
+                                        title: 'Click here to see the available Pokémon on this route',
+                                        trigger: 'hover' 
+                                    }">
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),
                                             html: true,

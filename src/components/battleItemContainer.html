@@ -85,9 +85,10 @@
                                 click: function(){ItemHandler.useItem($data)}
                             },
                             tooltip: {
-                              title: ItemList[$data].displayName + '<br/>' + ItemList[$data].getDescription() + '<br/>' + 'Consumes: ' + ItemList[$data].gemTypes[0] + ' (' + App.game.gems.gemWallet[PokemonType[ItemList[$data].gemTypes[0]]]().toLocaleString('en-US') + '), ' + ItemList[$data].gemTypes[1] + ' (' + App.game.gems.gemWallet[PokemonType[ItemList[$data].gemTypes[1]]]().toLocaleString('en-US') + '), and ' + ItemList[$data].gemTypes[2] + ' (' + App.game.gems.gemWallet[PokemonType[ItemList[$data].gemTypes[2]]]().toLocaleString('en-US') + ') Gems',
+                              title: ItemList[$data].getFormattedTooltip(ItemList[$data]),
                               trigger: 'hover',
                               placement: $(window).innerWidth() < 768 ? 'bottom' : 'left',
+                              sanitize: false,
                               html: true
                             }">
                 <img src="" class="clickable" data-bind="attr: { src: ItemList[$data].image }" width="26px">

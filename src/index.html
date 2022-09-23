@@ -9,6 +9,7 @@
 
     <!--jQuery-->
     <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery-ui.min.js"></script>
 
     <!--Knockout-->
     <script src="libs/knockout-latest.js"></script>
@@ -110,6 +111,7 @@
 <!-- Show keyitems modal-->
 @import "itemModal.html"
 
+@import "gemsModalSmall.html"
 <!--Templates -->
 @import "templates/currencyTemplate.html"
 @import "templates/caughtStatusTemplate.html"
@@ -673,6 +675,39 @@
 
 <!-- Held Item Modal -->
 @import "heldItemModal.html"
+
+
+
+<script>
+$("#edit_row_btn").click(function () {
+  //open modal
+  $( "body" ).addClass( "forceScroll" );
+  $("#dragable_modal").modal({
+    backdrop: false,
+    show: true,
+  });
+  // reset modal if it isn't visible
+  if (!$(".modal.in").length) {
+    $("#dragable_modal").css({
+      top: 20,
+      left: 100,
+    });
+  }
+
+  $(".modal-dialog").draggable({
+    cursor: "move",
+    handle: ".dragable_touch",
+  });
+});
+
+$('#dragable_modal').on('hidden.bs.modal', () => {
+    $( "body" ).removeClass( "forceScroll" );
+    $("#dragable_modal").css({
+      top: 0,
+      left: 0,
+    });
+});
+</script>
 
 </body>
 </html>

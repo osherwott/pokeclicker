@@ -63,8 +63,9 @@
       <div class="card-header p-0" style="position: relative;" data-toggle="collapse" href="#fluteItemContainerBody" data-bind="visible: App.game.badgeCase.hasBadge(BadgeEnums.Heat)">
         <span>Flutes</span>
       </div>
-      <button class='btn btn-sm btn-primary' id="edit_row_btn" style="position: absolute; right: 0px; top: 0px; width: auto; height: 41px;" href="#myModal" data-backdrop="false" data-toggle="modal">
-        List
+      <button class='btn btn-sm btn-primary px-1' id="draggable_modal_btn" style="position: absolute; right: 0px; top: 0px; width: auto; height: 41px;" data-backdrop="false" data-toggle="modal"
+      data-bind="tooltip: { title: 'Open a draggable Gem list', trigger: 'hover' }">
+        <img src="assets/images/shortcut-icons/gems.png">
       </button>
       <div id="fluteItemContainerBody" class="card-body p-0 show">
         <p data-bind="visible: (App.game.challenges.list.disableBattleItems.active() || App.game.challenges.list.disableGems.active()) && App.game.badgeCase.hasBadge(BadgeEnums.Heat)" class="bg-danger my-0">

@@ -38,7 +38,7 @@
                                 click: function(){ItemHandler.useItem($data, EffectEngineRunner.amountToUse())}
                             },
                             tooltip: {
-                              title: ItemList[$data].displayName + '<br/>' + ItemList[$data].description,
+                              title: '<strong>' + ItemList[$data].displayName + '</strong>' + '<br/>' + ItemList[$data].description,
                               trigger: 'hover',
                               placement: $(window).innerWidth() < 768 ? 'bottom' : 'left',
                               html: true

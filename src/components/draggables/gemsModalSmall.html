@@ -1,9 +1,9 @@
-<!-- Dragable bootsttrap modal -->
-<div class="modal fade" id="dragable_modal" tabindex="-1" role="dialog" aria-labelledby="gemModalSmallLabel" data-backdrop="static" data-keyboard="false">
+<!-- Draggable bootstrap modal -->
+<div class="modal fade draggable_modal" id="draggable_gem_list_modal" tabindex="-1" role="dialog" aria-labelledby="gemModalSmallLabel" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-dialog-scrollable" role="document" style="max-width: 100%; width: 550px;">
     <div class="modal-content">
 
-      <div class="modal-header dragable_touch py-1">
+      <div class="modal-header draggable_touch py-1">
         <div class="">Gem list</div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -26,17 +26,17 @@
 
 <script>
   $(document).ready(() => {
-      $("#draggable_modal_btn").click(function () {
+      $("#draggable_gem_list_btn").click(function () {
           // Open modal
           $( "body" ).addClass( "forceScroll" );
-          $("#dragable_modal").modal({
+          $("#draggable_gem_list_modal").modal({
               backdrop: false,
               show: true,
           });
 
           // Reset modal if it isn't visible
           if (!$(".modal.in").length) {
-              $("#dragable_modal").css({
+              $("#draggable_gem_list_modal").css({
                   top: 20,
                   left: 100,
               });
@@ -44,15 +44,15 @@
 
           $(".modal-dialog").draggable({
               cursor: "move",
-              handle: ".dragable_touch",
+              handle: ".draggable_touch",
               containment: "#window-container",
               scroll: false,
           });
       });
 
-      $('#dragable_modal').on('hidden.bs.modal', () => {
+      $('#draggable_gem_list_modal').on('hidden.bs.modal', () => {
           $( "body" ).removeClass( "forceScroll" );
-          $("#dragable_modal").css({
+          $("#draggable_gem_list_modal").css({
               top: 0,
               left: 0,
           });

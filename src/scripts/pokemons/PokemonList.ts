@@ -738,7 +738,7 @@ const pokemonList = createPokemonArray(
         },
         'gender': {
             'type': GameConstants.FEMALE_ONLY,
-        }
+        },
     },
     {
         'id': 12.03,
@@ -758,7 +758,7 @@ const pokemonList = createPokemonArray(
         },
         'gender': {
             'type': GameConstants.MALE_ONLY,
-        }
+        },
     },
     {
         'id': 12.04,

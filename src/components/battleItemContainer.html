@@ -64,7 +64,7 @@
         <span>Flutes</span>
       </div>
       <button class='btn btn-sm btn-primary px-1' id="draggable_modal_btn" style="position: absolute; right: 0px; top: 0px; width: auto; height: 41px;" data-backdrop="false" data-toggle="modal"
-      data-bind="tooltip: { title: 'Open a draggable Gem list', trigger: 'hover' }">
+      data-bind="tooltip: { title: 'Show Gem list', trigger: 'hover' }, visible: App.game.badgeCase.hasBadge(BadgeEnums.Heat)">
         <img src="assets/images/shortcut-icons/gems.png">
       </button>
       <div id="fluteItemContainerBody" class="card-body p-0 show">

@@ -23,3 +23,39 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(() => {
+      $("#draggable_modal_btn").click(function () {
+          // Open modal
+          $( "body" ).addClass( "forceScroll" );
+          $("#dragable_modal").modal({
+              backdrop: false,
+              show: true,
+          });
+
+          // Reset modal if it isn't visible
+          if (!$(".modal.in").length) {
+              $("#dragable_modal").css({
+                  top: 20,
+                  left: 100,
+              });
+          }
+
+          $(".modal-dialog").draggable({
+              cursor: "move",
+              handle: ".dragable_touch",
+              containment: "#window-container",
+              scroll: false,
+          });
+      });
+
+      $('#dragable_modal').on('hidden.bs.modal', () => {
+          $( "body" ).removeClass( "forceScroll" );
+          $("#dragable_modal").css({
+              top: 0,
+              left: 0,
+          });
+      });
+  });
+</script>

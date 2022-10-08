@@ -178,11 +178,15 @@ class Mine {
             return;
         }
 
-        const tiles = App.game.underground.getSurvey_Efficiency();
-        for (let i = 0; i < tiles; i++) {
+        let tiles = App.game.underground.getSurvey_Efficiency();
+        while (tiles > 0) {
             const x = Rand.intBetween(0, this.getHeight() - 1);
             const y = Rand.intBetween(0, Underground.sizeX - 1);
-            this.breakTile(x, y, 5);
+            // Always break N (survey efficiency) tiles or check if all items were already found to avoid endless loop
+            if (Mine.grid[x][y]() > 0 || Mine.itemsFound() >= Mine.itemsBuried()) {
+                this.breakTile(x, y, 5);
+                tiles--;
+            }
         }
 
         App.game.underground.energy -= surveyCost;
@@ -289,10 +293,14 @@ class Mine {
 
         let tiles = App.game.underground.getBombEfficiency();
         if (App.game.underground.energy >= Underground.BOMB_ENERGY) {
-            while (tiles-- > 0) {
+            while (tiles > 0) {
                 const x = Rand.intBetween(0, this.getHeight() - 1);
                 const y = Rand.intBetween(0, Underground.sizeX - 1);
-                this.breakTile(x, y, 2);
+                // Always break N (bomb efficiency) tiles or check if all items were already found to avoid endless loop
+                if (Mine.grid[x][y]() > 0 || Mine.itemsFound() >= Mine.itemsBuried()) {
+                    this.breakTile(x, y, 2);
+                    tiles--;
+                }
             }
             App.game.underground.energy -= Underground.BOMB_ENERGY;
         }

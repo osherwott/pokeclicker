@@ -183,6 +183,7 @@ class Mine {
             const x = Rand.intBetween(0, this.getHeight() - 1);
             const y = Rand.intBetween(0, Underground.sizeX - 1);
             // Always break N (survey efficiency) tiles or check if all items were already found to avoid endless loop
+            // TODO: Make an array with uncleared tiles and grab the random tiles from there
             if (Mine.grid[x][y]() > 0 || Mine.itemsFound() >= Mine.itemsBuried()) {
                 this.breakTile(x, y, 5);
                 tiles--;
@@ -297,6 +298,7 @@ class Mine {
                 const x = Rand.intBetween(0, this.getHeight() - 1);
                 const y = Rand.intBetween(0, Underground.sizeX - 1);
                 // Always break N (bomb efficiency) tiles or check if all items were already found to avoid endless loop
+                // TODO: Make an array with uncleared tiles and grab the random tiles from there
                 if (Mine.grid[x][y]() > 0 || Mine.itemsFound() >= Mine.itemsBuried()) {
                     this.breakTile(x, y, 2);
                     tiles--;

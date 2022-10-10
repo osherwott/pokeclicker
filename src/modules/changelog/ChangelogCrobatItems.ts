@@ -13,6 +13,9 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.5
+    new ChangelogUpdate('v0.3.5', new Date(2022, 10 - 1, 10)),
+    new Changelog(changelogType.FIXED, 'Background not being clickable when draggable gem modal is open'),
     // v0.3.4
     new ChangelogUpdate('v0.3.4', new Date(2022, 10 - 1, 10)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.9.17 and v0.9.18)'),

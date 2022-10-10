@@ -17,6 +17,9 @@ const ChangelogCrobatItems = [
     new ChangelogUpdate('v0.3.4', new Date(2022, 9 - 1, 21)),
     new Changelog(changelogType.NEW, 'Added draggable container that shows the gem list with their amount'),
     new Changelog(changelogType.CHANGE, 'Misc tooltips and settings text changes'),
+    new Changelog(changelogType.CHANGE, 'Poké Balls: Container layout changed'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb now only works on uncleared tiles'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb energy cost increased'),
     new Changelog(changelogType.FIXED, 'Pinkan Butterfree and Ash\'s Butterfree gender types'),
     // v0.3.3
     new ChangelogUpdate('v0.3.3', new Date(2022, 9 - 1, 21)),

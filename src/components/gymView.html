@@ -57,16 +57,14 @@
                 onclick="GymRunner.autoRestart(false)">
             Stop Auto
         </button>
-        <h2 class="pageItemFooter" style="display: block;">
+        <h2 class="pageItemFooter" style="display: block; font-size: 1rem;">
           <table width="100%">
               <tr>
                 <td width="50%">
                     <knockout data-bind="template: { name: 'pokemonAttackTemplate', data: { 'pokemon': Battle.enemyPokemon() } }"></knockout>
                 </td>
                 <td width="50%" data-bind="css: { 'text-muted': App.game.challenges.list.disableClickAttack.active() }">
-                    <span style="display: inline;">Click Attack:
-                        <span data-bind="text: App.game.party.calculateClickAttack().toLocaleString('en-US')"></span>
-                    </span>
+                    <knockout data-bind="template: { name: 'clickAttackTemplate' }">Click attack</knockout>
                 </td>
               </tr>
           </table>

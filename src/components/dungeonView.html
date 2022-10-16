@@ -20,17 +20,6 @@
                 <!-- ko if: DungeonBattle.trainer() -->
                 <knockout data-bind="text: DungeonBattle.trainer().name">Trainer name</knockout>
                 <!-- /ko -->
-
-                <!-- ko if: !DungeonBattle.trainer() -->
-                <knockout data-bind="template: { 
-                    name: 'caughtStatusAreaTemplate', 
-                    data: { 
-                        'areaTypeText': 'in this dungeon',
-                        'areaCompleted': DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, false),
-                        'areaCompletedShiny': DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, true)
-                    }
-                }"></knockout>
-                <!-- /ko -->
             </knockout>
 
             <!-- ko ifnot: DungeonBattle.trainer() -->
@@ -115,30 +104,23 @@
           <table width="100%">
               <tr>
                 <td width="50%">
-                  <knockout data-bind="text: DungeonRunner.dungeon.name">Dungeon name</knockout>
-                  <!--If all Pokémon in the dungeon are caught-->
-                  <knockout data-bind="if: (!DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, true) && DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, false))">
-                      <img title="You have captured all Pokémon in this dungeon!" class="pokeball-smallest"
-                           src="assets/images/pokeball/Pokeball.svg"/>
-                  </knockout>
-
-                  <!--If all Pokémon in the dungeon are caught shiny-->
-                  <knockout data-bind="if: DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, true)">
-                      <img title="You have captured all Pokémon shiny in this dungeon!"
-                           class="pokeball-smallest"
-                           src="assets/images/pokeball/Pokeball-shiny.svg"/>
-                  </knockout>
-
+                    <knockout data-bind="template: { name: 'areaNameTemplate', data: { 'areaName': DungeonRunner.dungeon.name } }">Dungeon name</knockout>
+                    <knockout data-bind="template: { 
+                        name: 'caughtStatusAreaTemplate', 
+                        data: { 
+                            'areaTypeText': 'in this dungeon',
+                            'areaCompleted': DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, false),
+                            'areaCompletedShiny': DungeonRunner.dungeonCompleted(DungeonRunner.dungeon, true)
+                        }
+                    }">Pokeball icon</knockout>
                   <!--Pokérus image-->
-                  <knockout data-bind="if: RouteHelper.minPokerusCheck(DungeonRunner.dungeon.allAvailablePokemon())">
-                      <img data-bind="attr:{ src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[RouteHelper.minPokerus(DungeonRunner.dungeon.allAvailablePokemon())] + '.png'}"
-                    src=""/>
-                  </knockout>
+                  <knockout data-bind="template: { name: 'pokerusStatusAreaTemplate', data: { 'pokemonList': DungeonRunner.dungeon.allAvailablePokemon() } }">Pokerus icon</knockout>
                 </td>
                 <td width="50%">
-                  <knockout data-bind="using: App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(DungeonRunner.dungeon.name)]()"</knockout>
-                  <knockout data-bind="text: $data.toLocaleString('en-US')">0</knockout>
-                  &nbsp;Clears
+                    <knockout data-bind="template: { name: 'areaStatisticTemplate', data: { 
+                        'statistic': App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(DungeonRunner.dungeon.name)](), 
+                        'statisticText': ' clears' } 
+                    }">Statistic name</knockout> 
                 </td>
               </tr>
               <tr>
@@ -146,9 +128,7 @@
                     <knockout data-bind="template: { name: 'pokemonAttackTemplate', data: { 'pokemon': Battle.enemyPokemon() } }"></knockout>
                 </td>
                 <td width="50%" data-bind="css: { 'text-muted': App.game.challenges.list.disableClickAttack.active() }">
-                    <span style="display: inline;">Click Attack:
-                        <span data-bind="text: App.game.party.calculateClickAttack().toLocaleString('en-US')"></span>
-                    </span>
+                    <knockout data-bind="template: { name: 'clickAttackTemplate' }">Click attack</knockout>
                 </td>
               </tr>
           </table>

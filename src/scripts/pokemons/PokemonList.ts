@@ -1626,7 +1626,7 @@ const pokemonList = createPokemonArray(
             'speed': 41,
         },
         'gender': {
-            'type': GameConstants.FEMALE_ONLY,
+            'femaleRatio': 1,
         },
     },
     {

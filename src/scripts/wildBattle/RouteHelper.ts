@@ -101,6 +101,7 @@ class RouteHelper {
         });
     }
 
+    // TODO: Move all this to a proper template
     public static getAvailablePokemonListForTooltip(route: number, region: GameConstants.Region) {
         const possiblePokemon = this.getAvailablePokemonList(route, region);
         const possiblePokemonSanitized = [...new Set(possiblePokemon)]; // Remove duplicates AKA Wingull
@@ -129,6 +130,10 @@ class RouteHelper {
             }
             pokemonListString += `<td class="text-left">${pokemonName}</td>`;
             pokemonListString += `<td class="text-right"><img class="pokeball-smallest" src="assets/images/pokeball/${pokeballFilename}.svg" /></td>`;
+            if (App.game.party.getPokemonByName(pokemon)?.pokerus > GameConstants.Pokerus.Uninfected) {
+                const pokerusFilename = GameConstants.Pokerus[App.game.party.getPokemonByName(pokemon)?.pokerus];
+                pokemonListString += '<td><img src="assets/images/breeding/pokerus/' + pokerusFilename + '.png"/></td>';
+            }
             pokemonListString += '</tr>';
         }
         pokemonListString += '</table>';

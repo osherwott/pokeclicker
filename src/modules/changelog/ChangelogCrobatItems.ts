@@ -14,8 +14,11 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     // v0.3.5
-    new ChangelogUpdate('v0.3.5', new Date(2022, 10 - 1, 10)),
+    new ChangelogUpdate('v0.3.5', new Date(2022, 10 - 1, 22)),
+    new Changelog(changelogType.CHANGE, 'Moved list of available Pokémon in routes'),
+    new Changelog(changelogType.CHANGE, 'Added Pokérus status to the list of Pokémon in routes'),
     new Changelog(changelogType.FIXED, 'Background not being clickable when draggable gem modal is open'),
+    new Changelog(changelogType.FIXED, 'Missing berries previously removed in older Official updates'),
     // v0.3.4
     new ChangelogUpdate('v0.3.4', new Date(2022, 10 - 1, 10)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.9.17 and v0.9.18)'),

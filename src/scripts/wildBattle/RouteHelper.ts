@@ -135,7 +135,7 @@ class RouteHelper {
             pokemonListString += `<td class="text-right"><img class="pokeball-smallest ${invertClass}" src="assets/images/pokeball/${pokeballFilename}.svg" /></td>`;
             if (App.game.party.getPokemonByName(pokemon)?.pokerus > GameConstants.Pokerus.Uninfected) {
                 const pokerusFilename = GameConstants.Pokerus[App.game.party.getPokemonByName(pokemon)?.pokerus];
-                pokemonListString += '<td><img src="assets/images/breeding/pokerus/' + pokerusFilename + '.png"/></td>';
+                pokemonListString += `<td><img src="assets/images/breeding/pokerus/${pokerusFilename}.png"/></td>`;
             }
             pokemonListString += '</tr>';
         }

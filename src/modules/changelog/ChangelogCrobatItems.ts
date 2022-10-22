@@ -18,6 +18,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.0 - Galar)'),
     new Changelog(changelogType.CHANGE, 'Route Pokémon list: Button moved to the right'),
     new Changelog(changelogType.CHANGE, 'Route Pokémon list: Added Pokérus status'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb cost reduced'),
     new Changelog(changelogType.FIXED, 'Background not being clickable when draggable gem modal is open'),
     new Changelog(changelogType.FIXED, 'Route Pokémon list: Poké Ball not showing correctly in light themes for uncaught Pokémon'),
     new Changelog(changelogType.FIXED, 'Missing berries previously removed in older Official updates'),

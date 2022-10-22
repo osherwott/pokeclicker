@@ -9226,7 +9226,31 @@ dungeonList['Magma Hideout'].lootTable.legendary.push(
         ]),
     }
 );
-dungeonList['Sky Pillar'].lootTable.common.push({loot: 'Durin', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')});
+dungeonList['Sky Pillar'].lootTable.common.push(
+    {loot: 'Durin', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')},
+);
+dungeonList['Sky Pillar'].lootTable.legendary.push(
+    {loot: 'Salac', weight: 0, 
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(1750, GameConstants.getDungeonIndex('Sky Pillar')),
+            new SettingRequirement('enableRemovedBerries'),
+        ]),
+    },
+);
+dungeonList['Cave of Origin'].lootTable.legendary.push(
+    {loot: 'Liechi', weight: 0, 
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Cave of Origin')),
+            new SettingRequirement('enableRemovedBerries'),
+        ]),
+    },
+    {loot: 'Ganlon', weight: 0, 
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Cave of Origin')),
+            new SettingRequirement('enableRemovedBerries'),
+        ]),
+    },
+);
 // Sinnoh
 dungeonList['Oreburgh Gate'].lootTable.epic.push(
     {loot: 'Watmel', weight: 2, requirement: new SettingRequirement('enableRemovedBerries')},
@@ -9234,7 +9258,8 @@ dungeonList['Oreburgh Gate'].lootTable.epic.push(
         requirement: new MultiRequirement([
             new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate')),
             new SettingRequirement('enableRemovedBerries'),
-        ])}
+        ]),
+    },
 );
 dungeonList['Oreburgh Gate'].lootTable.legendary.push({loot: 'Chople', weight: 0,
     requirement: new MultiRequirement([
@@ -9245,6 +9270,20 @@ dungeonList['Oreburgh Gate'].lootTable.legendary.push({loot: 'Chople', weight: 0
 dungeonList['Valley Windworks'].lootTable.common.push(
     {loot: 'Pamtre', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')},
     {loot: 'Belue', weight: 3.5, requirement: new SettingRequirement('enableRemovedBerries')}
+);
+dungeonList['Valley Windworks'].lootTable.epic.push(
+    {loot: 'Charti', weight: 0, 
+        requirement: new MultiRequirement([
+            new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Valley Windworks')),
+            new SettingRequirement('enableRemovedBerries'),
+        ]),
+    }
+);
+dungeonList['Old Chateau'].lootTable.epic.push({loot: 'Kasib', weight: 2,
+    requirement: new MultiRequirement([
+        new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Old Chateau')),
+        new SettingRequirement('enableRemovedBerries'),
+    ])}
 );
 dungeonList['Solaceon Ruins'].lootTable.epic.push({loot: 'Payapa', weight: 1,
     requirement: new MultiRequirement([

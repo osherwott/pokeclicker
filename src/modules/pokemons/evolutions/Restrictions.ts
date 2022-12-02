@@ -11,6 +11,7 @@ import TimeRequirement from '../../requirements/TimeRequirement';
 import WeatherRequirement from '../../requirements/WeatherRequirement';
 import WeatherType from '../../weather/WeatherType';
 import MegaEvolveRequirement from '../../requirements/MegaEvolveRequirement';
+import LanguageRequirement from '../../requirements/LanguageRequirement';
 import { EvoData, restrict } from './Base';
 
 export type EvoFn = (...args: unknown[]) => EvoData;
@@ -111,6 +112,13 @@ export const megaEvolveRestrict = <T extends EvoFn>(evo: T) => (
     const data = evo(...rest);
     return restrict(
         data,
-        new MegaEvolveRequirement(data.basePokemon),
+        new MegaEvolveRequirement(data.basePokemon),);
+
+export const languageRestrict = <T extends EvoFn>(evo: T) => (
+    language: Language[],
+    ...rest: Parameters<T>
+) => restrict(
+    evo(...rest),
+    new LanguageRequirement(language),
     );
 };

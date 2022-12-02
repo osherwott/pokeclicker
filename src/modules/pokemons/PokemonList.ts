@@ -15,6 +15,7 @@ import {
     DayTimedLevelEvolution,
     TimeRestrictedLevelEvolution,
     MegaEvolution,
+    LanguageRestrictedLevelEvolution,
 } from './evolutions/Methods';
 import BerryType from '../enums/BerryType';
 import ItemType from '../enums/ItemType';
@@ -18646,7 +18647,14 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 75,
         'catchRate': 120,
-        'evolutions': [LevelEvolution('Spewpa', 'Vivillon (Meadow)', 12)],
+        'evolutions': [
+            LanguageRestrictedEvolution([Language.fr], 'Spewpa', 'Vivillon (Meadow)', 12)
+            LanguageRestrictedEvolution([Language.en], 'Spewpa', 'Vivillon (Garden)', 12)
+            LanguageRestrictedEvolution([Language.ja], 'Spewpa', 'Vivillon (Elegant)', 12)
+            LanguageRestrictedEvolution([Language.de, Language.ko, Language.zh-Hans], 'Spewpa', 'Vivillon (Continental)', 12)
+            LanguageRestrictedEvolution([Language.es, Language.es], 'Spewpa', 'Vivillon (Marine)', 12)
+            LanguageRestrictedEvolution([Language.zh-Hant], 'Spewpa', 'Vivillon (Monsoon)', 12)
+        ],
         'base': {
             'hitpoints': 45,
             'attack': 22,

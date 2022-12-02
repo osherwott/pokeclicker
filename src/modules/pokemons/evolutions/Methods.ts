@@ -14,6 +14,7 @@ import {
     heldItemRestrict,
     weatherRestrict,
     megaEvolveRestrict,
+    languageRestrict,
 } from './Restrictions';
 
 // TimeRestrictedLevelEvolution(start: number, end: number, basePokemon: string, evolvedPokemon: string, level: number)
@@ -72,3 +73,5 @@ export const WeatherRestrictedLevelEvolution = weatherRestrict(LevelEvolution);
 const KeyStoneEvolution = (basePokemon: PokemonNameType, evolvedPokemon: PokemonNameType) => StoneEvolution(basePokemon, evolvedPokemon, StoneType.Key_stone);
 
 export const MegaEvolution = megaEvolveRestrict(KeyStoneEvolution);
+
+export const LanguageRestrictedLevelEvolution = languageRestrict(LevelEvolution);

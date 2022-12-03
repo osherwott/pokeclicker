@@ -5,13 +5,13 @@ import Requirement from './Requirement';
 export default class LanguageRequirement extends Requirement {
     constructor(
         private language: Language[],
-        option = AchievementOption.equal,
+        option = AchievementOption.more,
     ) {
         super(1, option);
     }
 
     public getProgress() {
-        return Number(App.translation.language === this.language);
+        return Number(Settings.getSetting('translation.language') === this.language);
     }
 
     public hint(): string {

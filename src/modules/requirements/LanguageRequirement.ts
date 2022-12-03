@@ -1,5 +1,5 @@
-import { Language } from '../translation/Language';
 import { AchievementOption } from '../GameConstants';
+import Language from '../translation/Language';
 import Requirement from './Requirement';
 
 export default class LanguageRequirement extends Requirement {
@@ -15,6 +15,6 @@ export default class LanguageRequirement extends Requirement {
     }
 
     public hint(): string {
-        return 'The language needs to be in ${(Language[language]).join(' or ')}';
+        return 'The language needs to be in ${(Language[language])}';
     }
 }

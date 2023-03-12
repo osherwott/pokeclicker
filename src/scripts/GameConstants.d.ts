@@ -254,6 +254,7 @@ namespace GameConstants {
         PowerPlant: EnvironmentData,
         Mansion: EnvironmentData,
         Graveyard: EnvironmentData,
+        Desert: EnvironmentData,
     };
     declare type Environment = keyof typeof Environments;
     declare const EnvironmentCssClass:Record<Environment, string>;

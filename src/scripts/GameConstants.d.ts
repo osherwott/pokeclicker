@@ -246,6 +246,7 @@ namespace GameConstants {
     declare type EnvironmentData = Partial<Record<number, Set<string | number>>>
     declare const Environments: {
         Water: EnvironmentData,
+        WaterOcean: EnvironmentData,
         Ice: EnvironmentData,
         Snow: EnvironmentData,
         Fire: EnvironmentData,

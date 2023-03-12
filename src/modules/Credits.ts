@@ -627,6 +627,7 @@ export const SpriteCredits: Credit[] = [
         resources: [
             'Desert battle background',
             'Snow battle background',
+            'Ocean battle background',
             'Shauna',
         ],
         // Notes: Permission given on image page if credited.

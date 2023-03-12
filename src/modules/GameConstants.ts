@@ -609,12 +609,23 @@ export const Environments: Record<string, EnvironmentData> = {
     Water: {
         [Region.kanto]: new Set([12, 13, 19, 20, 21, 24, 26, 31, 32, 33, 34, 35, 36, 'Cerulean City']),
         [Region.johto]: new Set([40, 41, 'Slowpoke Well']),
-        [Region.hoenn]: new Set([105, 106, 107, 108, 109, 118, 122, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]),
-        [Region.sinnoh]: new Set([218, 219, 220, 223, 230, 'Pastoria City', 'Lake Verity', 'Lake Valor', 'Sendoff Spring']),
-        [Region.unova]: new Set([17, 18, 21, 24, 'Undella Town', 'Humilau City']),
-        [Region.kalos]: new Set([8, 23, 'Coumarine City', 'Couriway Town', 'Sea Spirit\'s Den']),
-        [Region.alola]: new Set([15, 19, 20, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 'Hoppy Town', 'Friend League', 'Quick League', 'Heavy League', 'Great League', 'Fast League', 'Luxury League', 'Heal League', 'Ultra League', 'Elite Four League', 'Master League', 'Magikarp\'s Eye', 'Seafolk Village', 'Brooklet Hill', 'Mina\'s Houseboat', 'Lake of the Sunne and Moone']),
-        [Region.galar]: new Set(['Hulbury', 'Roaring-Sea Caves', 5, 6, 8, 9, 16, 21, 27, 29, 36, 37, 41, 42, 43, 44, 51, 53]),
+        [Region.hoenn]: new Set([122]),
+        [Region.sinnoh]: new Set([218, 219, 223, 'Pastoria City', 'Lake Verity', 'Lake Valor', 'Sendoff Spring']),
+        [Region.unova]: new Set([17, 18, 21]),
+        [Region.kalos]: new Set([8, 'Coumarine City', 'Couriway Town']),
+        [Region.alola]: new Set(['Brooklet Hill', 'Mina\'s Houseboat', 'Lake of the Sunne and Moone']),
+        [Region.galar]: new Set(['Hulbury', 5, 6, 8, 9, 16, 21, 27, 36, 53]),
+    },
+
+    WaterOcean: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(),
+        [Region.hoenn]: new Set([105, 106, 107, 108, 109, 118, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]),
+        [Region.sinnoh]: new Set([220, 223]),
+        [Region.unova]: new Set([24, 'Undella Town', 'Humilau City']),
+        [Region.kalos]: new Set([23, 'Sea Spirit\'s Den']),
+        [Region.alola]: new Set([15, 19, 20, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 'Hoppy Town', 'Friend League', 'Quick League', 'Heavy League', 'Great League', 'Fast League', 'Luxury League', 'Heal League', 'Ultra League', 'Elite Four League', 'Master League', 'Magikarp\'s Eye', 'Seafolk Village']),
+        [Region.galar]: new Set(['Roaring-Sea Caves', 29, 37, 41, 42, 43, 44, 51]),
     },
 
     Ice: {
@@ -732,6 +743,7 @@ export type Environment = keyof typeof Environments;
 
 export const EnvironmentCssClass: Record<Environment, string> = {
     Water: 'water',
+    WaterOcean: 'water-ocean',
     Ice: 'ice',
     Snow: 'snow',
     Fire: 'fire',

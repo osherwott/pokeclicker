@@ -708,7 +708,7 @@ export const Environments: Record<string, EnvironmentData> = {
     Desert: {
         [Region.kanto]: new Set(),
         [Region.johto]: new Set(),
-        [Region.hoenn]: new Set([111, 113]),
+        [Region.hoenn]: new Set([111]),
         [Region.sinnoh]: new Set([228]),
         [Region.unova]: new Set([4, 'Lentimas Town', 25]),
         [Region.kalos]: new Set([13]),

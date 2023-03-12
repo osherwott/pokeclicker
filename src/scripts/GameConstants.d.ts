@@ -247,6 +247,7 @@ namespace GameConstants {
     declare const Environments: {
         Water: EnvironmentData,
         Ice: EnvironmentData,
+        Snow: EnvironmentData,
         Fire: EnvironmentData,
         Forest: EnvironmentData,
         Cave: EnvironmentData,

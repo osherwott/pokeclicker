@@ -697,7 +697,7 @@ export const Environments: Record<string, EnvironmentData> = {
     PowerPlant: {
         [Region.kanto]: new Set(['Vermilion City', 'Rocket Game Corner', 'Power Plant']),
         [Region.johto]: new Set(['Tin Tower', 'Team Rocket\'s Hideout', 'Radio Tower']),
-        [Region.hoenn]: new Set(['Mauville City', 'New Mauville', 'Weather Institute', 'Aqua Hideout', 'Near Space']),
+        [Region.hoenn]: new Set(['Mauville City', 'New Mauville', 'Weather Institute', 'Aqua Hideout']),
         [Region.sinnoh]: new Set(['Sunyshore City', 'Valley Windworks', 'Team Galactic Eterna Building', 'Team Galactic HQ']),
         [Region.unova]: new Set(['Castelia Sewers', 'Virbank City', 'Nimbasa City', 'A Totally Unsuspicious Frigate', 'Plasma Frigate']),
         [Region.kalos]: new Set(['Lumiose City', 'Kalos Power Plant', 'Poké Ball Factory', 'Team Flare Secret HQ']),
@@ -737,6 +737,17 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.alola]: new Set([23]),
         [Region.galar]: new Set(['Dusty Bowl', 'Stow-on-Side', 23, 25, 39]),
     },
+
+    Space: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(),
+        [Region.hoenn]: new Set(['Near Space']),
+        [Region.sinnoh]: new Set(),
+        [Region.unova]: new Set(),
+        [Region.kalos]: new Set(),
+        [Region.alola]: new Set(),
+        [Region.galar]: new Set(),
+    },
 };
 
 export type Environment = keyof typeof Environments;
@@ -754,6 +765,7 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     Mansion: 'mansion',
     Graveyard: 'graveyard',
     Desert: 'desert',
+    Space: 'space',
 };
 
 // Starter Pokémon

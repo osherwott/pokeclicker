@@ -778,7 +778,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.sinnoh]: new Set(),
         [Region.unova]: new Set(),
         [Region.kalos]: new Set(),
-        [Region.alola]: new Set(['Altar of the Sunne and Moone']),
+        [Region.alola]: new Set(['Altar of the Sunne and Moone', 'Master League']),
         [Region.galar]: new Set(),
     },
 
@@ -789,7 +789,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.sinnoh]: new Set(['Fight Area', 'Survival Area', 'Pokémon League Sinnoh']),
         [Region.unova]: new Set(['Pokémon League Unova']),
         [Region.kalos]: new Set(['Pokémon League Kalos']),
-        [Region.alola]: new Set(['Pokémon League Alola', 'Elite Four League', 'Master League']),
+        [Region.alola]: new Set(['Pokémon League Alola', 'Elite Four League']),
         [Region.galar]: new Set(['Wyndon Stadium', 'Master Dojo Battle Court']),
     },
 };

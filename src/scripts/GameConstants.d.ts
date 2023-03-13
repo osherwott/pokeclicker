@@ -260,6 +260,7 @@ namespace GameConstants {
         Desert: EnvironmentData,
         Stage: EnvironmentData,
         Space: EnvironmentData,
+        Battlefield: EnvironmentData,
     };
     declare type Environment = keyof typeof Environments;
     declare const EnvironmentCssClass:Record<Environment, string>;

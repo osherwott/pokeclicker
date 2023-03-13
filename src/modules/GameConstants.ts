@@ -724,7 +724,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.unova]: new Set(['Castelia City', 'Mistralton City', 'Opelucid City', 'Dragonspiral Tower']),
         [Region.kalos]: new Set(['Parfum Palace']),
         [Region.alola]: new Set(['Trainers\' School', 'Ruins of Conflict', 'Ruins of Life', 'Ruins of Abundance', 'Ruins of Hope']),
-        [Region.galar]: new Set(['Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Wyndon Stadium', 'Master Dojo']),
+        [Region.galar]: new Set(['Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Master Dojo']),
     },
 
     Graveyard: {
@@ -770,6 +770,17 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.alola]: new Set(['Altar of the Sunne and Moone']),
         [Region.galar]: new Set(),
     },
+
+    Battlefield: {
+        [Region.kanto]: new Set(['Indigo Plateau Kanto']),
+        [Region.johto]: new Set(['Indigo Plateau Johto']),
+        [Region.hoenn]: new Set(['Pokémon League Hoenn']),
+        [Region.sinnoh]: new Set(['Pokémon League Sinnoh']),
+        [Region.unova]: new Set(['Pokémon League Unova']),
+        [Region.kalos]: new Set(['Pokémon League Kalos']),
+        [Region.alola]: new Set(['Pokémon League Alola']),
+        [Region.galar]: new Set(['Wyndon Stadium']),
+    },
 };
 
 export type Environment = keyof typeof Environments;
@@ -790,6 +801,7 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     Desert: 'desert',
     Stage: 'stage',
     Space: 'space',
+    Battlefield: 'battlefield',
 };
 
 // Starter Pokémon

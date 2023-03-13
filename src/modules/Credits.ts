@@ -626,6 +626,7 @@ export const SpriteCredits: Credit[] = [
         image: 'https://a.deviantart.net/avatars-big/p/h/phoenixoflight92.png',
         resources: [
             'Desert battle background',
+            'Indoors battle background',
             'Snow battle background',
             'Space battle background',
             'Stage battle background',

@@ -797,6 +797,7 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     PowerPlant: 'power-plant',
     Mansion: 'mansion',
     Indoors: 'indoors',
+    Park: 'park',
     Graveyard: 'graveyard',
     Desert: 'desert',
     Stage: 'stage',

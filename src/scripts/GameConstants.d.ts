@@ -256,6 +256,7 @@ namespace GameConstants {
         PowerPlant: EnvironmentData,
         Mansion: EnvironmentData,
         Indoors: EnvironmentData,
+        Park: EnvironmentData,
         Graveyard: EnvironmentData,
         Desert: EnvironmentData,
         Stage: EnvironmentData,

@@ -699,10 +699,10 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.johto]: new Set(['Tin Tower', 'Team Rocket\'s Hideout', 'Radio Tower']),
         [Region.hoenn]: new Set(['Mauville City', 'New Mauville', 'Weather Institute', 'Aqua Hideout']),
         [Region.sinnoh]: new Set(['Sunyshore City', 'Valley Windworks', 'Team Galactic Eterna Building', 'Team Galactic HQ']),
-        [Region.unova]: new Set(['Castelia Sewers', 'Virbank City', 'Nimbasa City', 'A Totally Unsuspicious Frigate', 'Plasma Frigate']),
+        [Region.unova]: new Set(['Castelia Sewers', 'Virbank City', 'A Totally Unsuspicious Frigate', 'Plasma Frigate']),
         [Region.kalos]: new Set(['Lumiose City', 'Kalos Power Plant', 'Poké Ball Factory', 'Team Flare Secret HQ']),
         [Region.alola]: new Set(['Aether Paradise', 'Hokulani Observatory', 'Aether Foundation']),
-        [Region.galar]: new Set(['Spikemuth', 'Energy Plant', 'Armor Station', 'Crown Tundra Station']),
+        [Region.galar]: new Set(['Energy Plant', 'Armor Station', 'Crown Tundra Station']),
     },
 
     Mansion: {
@@ -713,7 +713,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.unova]: new Set(['Castelia City', 'Mistralton City', 'Opelucid City', 'Liberty Garden', 'Dragonspiral Tower', 'Dreamyard']),
         [Region.kalos]: new Set(['Parfum Palace', 'Lost Hotel']),
         [Region.alola]: new Set(['Trainers\' School', 'Thrifty Megamart', 'Po Town', 'Ruins of Conflict', 'Ruins of Life', 'Ruins of Abundance', 'Ruins of Hope']),
-        [Region.galar]: new Set(['Rose Tower', 'Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Wyndon Stadium', 'Master Dojo', 11]),
+        [Region.galar]: new Set(['Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Wyndon Stadium', 'Master Dojo', 11]),
     },
 
     Graveyard: {
@@ -736,6 +736,17 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.kalos]: new Set([13]),
         [Region.alola]: new Set([23]),
         [Region.galar]: new Set(['Dusty Bowl', 'Stow-on-Side', 23, 25, 39]),
+    },
+
+    Stage: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(),
+        [Region.hoenn]: new Set(['Lilycove City']), // contest halls
+        [Region.sinnoh]: new Set(), // contest halls
+        [Region.unova]: new Set(['Nimbasa City']),
+        [Region.kalos]: new Set(),
+        [Region.alola]: new Set(['Royal Avenue']),
+        [Region.galar]: new Set(['Spikemuth', 'Rose Tower']),
     },
 
     Space: {

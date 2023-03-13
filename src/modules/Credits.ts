@@ -628,6 +628,7 @@ export const SpriteCredits: Credit[] = [
             'Desert battle background',
             'Snow battle background',
             'Space battle background',
+            'Stage battle background',
             'Ocean battle background',
             'Shauna',
         ],

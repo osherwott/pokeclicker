@@ -617,7 +617,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.galar]: new Set(['Hulbury', 5, 6, 8, 9, 16, 21, 27, 36, 53]),
     },
 
-    WaterOcean: {
+    Ocean: {
         [Region.kanto]: new Set(),
         [Region.johto]: new Set(),
         [Region.hoenn]: new Set([105, 106, 107, 108, 109, 118, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]),
@@ -633,7 +633,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.johto]: new Set(['Mahogany Town', 'Ice Path']),
         [Region.hoenn]: new Set(['Sootopolis City', 'Shoal Cave']),
         [Region.sinnoh]: new Set(['Mt. Coronet North', 'Snowpoint City', 'Snowpoint Temple']),
-        [Region.unova]: new Set(['Giant Chasm', 'Team Plasma Assault']),
+        [Region.unova]: new Set(['Icirrus City', 'Giant Chasm', 'Team Plasma Assault']),
         [Region.kalos]: new Set(['Frost Cavern', 'Snowbelle City']),
         [Region.alola]: new Set(['Mount Lanakila']),
         [Region.galar]: new Set(['Circhester', 28, 'Iceberg Ruins', 'Crown Shrine']),
@@ -690,7 +690,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.sinnoh]: new Set(['Spear Pillar', 'Hall of Origin']),
         [Region.unova]: new Set(['Chargestone Cave', 'Mistralton Cave', 'Cave of Being']),
         [Region.kalos]: new Set(['Glittering Cave', 'Reflection Cave']),
-        [Region.alola]: new Set(['Altar of the Sunne and Moone', 'Resolution Cave']),
+        [Region.alola]: new Set(['Resolution Cave']),
         [Region.galar]: new Set(['Galar Mine', 'Galar Mine No. 2', 'Iron Ruins']),
     },
 
@@ -713,7 +713,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.unova]: new Set(['Castelia City', 'Mistralton City', 'Opelucid City', 'Liberty Garden', 'Dragonspiral Tower', 'Dreamyard']),
         [Region.kalos]: new Set(['Parfum Palace', 'Lost Hotel']),
         [Region.alola]: new Set(['Trainers\' School', 'Thrifty Megamart', 'Po Town', 'Ruins of Conflict', 'Ruins of Life', 'Ruins of Abundance', 'Ruins of Hope']),
-        [Region.galar]: new Set(['Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Wyndon Stadium', 'Master Dojo', 11]),
+        [Region.galar]: new Set(['Stow-on-Side', 'Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Wyndon Stadium', 'Master Dojo', 11]),
     },
 
     Graveyard: {
@@ -735,7 +735,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.unova]: new Set([4, 'Lentimas Town', 25]),
         [Region.kalos]: new Set([13]),
         [Region.alola]: new Set([23]),
-        [Region.galar]: new Set(['Dusty Bowl', 'Stow-on-Side', 23, 25, 39]),
+        [Region.galar]: new Set(['Dusty Bowl', 23, 25, 39]),
     },
 
     Stage: {
@@ -756,7 +756,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.sinnoh]: new Set(),
         [Region.unova]: new Set(),
         [Region.kalos]: new Set(),
-        [Region.alola]: new Set(),
+        [Region.alola]: new Set(['Altar of the Sunne and Moone']),
         [Region.galar]: new Set(),
     },
 };
@@ -765,7 +765,7 @@ export type Environment = keyof typeof Environments;
 
 export const EnvironmentCssClass: Record<Environment, string> = {
     Water: 'water',
-    WaterOcean: 'water-ocean',
+    Ocean: 'ocean',
     Ice: 'ice',
     Snow: 'snow',
     Fire: 'fire',
@@ -776,6 +776,7 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     Mansion: 'mansion',
     Graveyard: 'graveyard',
     Desert: 'desert',
+    Stage: 'stage',
     Space: 'space',
 };
 

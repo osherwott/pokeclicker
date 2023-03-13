@@ -607,12 +607,12 @@ export const ACHIEVEMENT_DEFEAT_DUNGEON_VALUES = [
 export type EnvironmentData = Partial<Record<Region, Set<string | number>>>;
 export const Environments: Record<string, EnvironmentData> = {
     Water: {
-        [Region.kanto]: new Set([12, 13, 19, 20, 21, 24, 26, 31, 32, 33, 34, 35, 36, 'Cerulean City']),
+        [Region.kanto]: new Set([12, 13, 19, 20, 21, 24, 26, 31, 32, 33, 34, 35, 36, 'Cerulean City', 'Mikan Island']),
         [Region.johto]: new Set([40, 41, 'Slowpoke Well']),
         [Region.hoenn]: new Set([122]),
         [Region.sinnoh]: new Set([218, 219, 223, 'Pastoria City', 'Lake Verity', 'Lake Valor', 'Sendoff Spring']),
-        [Region.unova]: new Set([17, 18, 21]),
-        [Region.kalos]: new Set([8, 'Coumarine City', 'Couriway Town']),
+        [Region.unova]: new Set([17, 18, 21, 'Moor of Icirrus']),
+        [Region.kalos]: new Set([8, 'Ambrette Town']),
         [Region.alola]: new Set(['Brooklet Hill', 'Mina\'s Houseboat', 'Lake of the Sunne and Moone']),
         [Region.galar]: new Set(['Hulbury', 5, 6, 8, 9, 16, 21, 27, 36, 53]),
     },
@@ -620,11 +620,11 @@ export const Environments: Record<string, EnvironmentData> = {
     Ocean: {
         [Region.kanto]: new Set(),
         [Region.johto]: new Set(),
-        [Region.hoenn]: new Set([105, 106, 107, 108, 109, 118, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134]),
+        [Region.hoenn]: new Set([105, 106, 107, 108, 109, 118, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 'Aqua Hideout', 'Pacifidlog Town']),
         [Region.sinnoh]: new Set([220, 223]),
         [Region.unova]: new Set([24, 'Undella Town', 'Humilau City']),
         [Region.kalos]: new Set([23, 'Sea Spirit\'s Den']),
-        [Region.alola]: new Set([15, 19, 20, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 'Hoppy Town', 'Friend League', 'Quick League', 'Heavy League', 'Great League', 'Fast League', 'Luxury League', 'Heal League', 'Ultra League', 'Elite Four League', 'Master League', 'Magikarp\'s Eye', 'Seafolk Village']),
+        [Region.alola]: new Set([15, 19, 20, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 'Magikarp\'s Eye', 'Seafolk Village']),
         [Region.galar]: new Set(['Roaring-Sea Caves', 29, 37, 41, 42, 43, 44, 51]),
     },
 
@@ -647,7 +647,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.unova]: new Set(),
         [Region.kalos]: new Set([17, 'Dendemille Town']),
         [Region.alola]: new Set(),
-        [Region.galar]: new Set(['Freezington', 26, 31, 32, 46, 47, 54, 55]),
+        [Region.galar]: new Set(['Crown Tundra Station', 'Freezington', 26, 31, 32, 46, 47, 54, 55]),
     },
 
     Fire: {
@@ -662,23 +662,23 @@ export const Environments: Record<string, EnvironmentData> = {
     },
 
     Forest: {
-        [Region.kanto]: new Set([25, 30, 'Fuchsia City', 'Viridian Forest', 'Berry Forest', 'Pattern Bush', 'Valencia Island', 'Pinkan Forest']),
+        [Region.kanto]: new Set([25, 30, 'Viridian Forest', 'Berry Forest', 'Pattern Bush', 'Valencia Island', 'Pinkan Forest']),
         [Region.johto]: new Set([36, 38, 43, 'Azalea Town', 'Ilex Forest']),
-        [Region.hoenn]: new Set([119, 'Petalburg Woods']),
+        [Region.hoenn]: new Set([119, 'Petalburg Woods', 'Fortree City', 'Southern Island']),
         [Region.sinnoh]: new Set([201, 204, 'Eterna City', 'Eterna Forest', 'Fullmoon Island', 'Newmoon Island']),
-        [Region.unova]: new Set([6, 'Floccesy Town', 'Lostlorn Forest', 'Pinwheel Forest', 'Pledge Grove']),
-        [Region.kalos]: new Set([1, 14, 20, 'Laverre City', 'Santalune Forest', 'Pokémon Village']),
-        [Region.alola]: new Set([27, 'Melemele Woods', 'Lush Jungle', 'Malie Garden', 'Ula\'ula Meadow', 'Poni Meadow']),
+        [Region.unova]: new Set([6, 'Floccesy Town', 'Lostlorn Forest', 'Pinwheel Forest', 'Pledge Grove', 'Abundant Shrine']),
+        [Region.kalos]: new Set([1, 14, 20, 'Santalune City', 'Coumarine City', 'Santalune Forest', 'Pokémon Village']),
+        [Region.alola]: new Set([27, 'Melemele Woods', 'Lush Jungle', 'Ula\'ula Meadow', 'Poni Meadow']),
         [Region.galar]: new Set(['Slumbering Weald', 'Slumbering Weald Shrine', 'Glimwood Tangle', 'Ballonlea', 'Dyna Tree Hill', 2, 12, 13, 35]),
     },
 
     Cave: {
-        [Region.kanto]: new Set([37, 39, 'Pewter City', 'Diglett\'s Cave', 'Mt. Moon', 'Rock Tunnel', 'Victory Road', 'Lost Cave', 'Altering Cave', 'Tanoby Ruins']),
+        [Region.kanto]: new Set([37, 39, 'Pewter City', 'Diglett\'s Cave', 'Mt. Moon', 'Rock Tunnel', 'Victory Road', 'Lost Cave', 'Altering Cave', 'Tanoby Ruins', 'Dotted Hole', 'Navel Island', 'Trovita Island', 'Pinkan Mountain']),
         [Region.johto]: new Set(['Cianwood City', 'Ruins of Alph', 'Union Cave', 'Mt. Mortar', 'Dark Cave', 'Tohjo Falls', 'Victory Road Johto']),
-        [Region.hoenn]: new Set(['Rustboro City', 'Dewford Town', 'Rusturf Tunnel', 'Granite Cave', 'Meteor Falls', 'Jagged Pass', 'Seafloor Cavern', 'Victory Road Hoenn']),
+        [Region.hoenn]: new Set(['Rustboro City', 'Rusturf Tunnel', 'Granite Cave', 'Meteor Falls', 'Jagged Pass', 'Seafloor Cavern', 'Victory Road Hoenn']),
         [Region.sinnoh]: new Set(['Oreburgh City', 'Oreburgh Gate', 'Wayward Cave', 'Mt. Coronet', 'Mt. Coronet South', 'Iron Island', 'Victory Road Sinnoh']),
         [Region.unova]: new Set(['Relic Castle', 'Relic Passage', 'Seaside Cave', 'Victory Road Unova', 'Twist Mountain']),
-        [Region.kalos]: new Set([9, 'Connecting Cave', 'Kiloude City', 'Terminus Cave', 'Victory Road Kalos']),
+        [Region.kalos]: new Set([9, 'Connecting Cave', 'Cyllage City', 'Terminus Cave', 'Victory Road Kalos']),
         [Region.alola]: new Set([12, 13, 22, 29, 'Verdant Cavern', 'Seaward Cave', 'Ten Carat Hill', 'Diglett\'s Tunnel', 'Vast Poni Canyon']),
         [Region.galar]: new Set(['Warm-Up Tunnel', 'Courageous Cavern', 'Brawlers\' Cave', 'Rock Peak Ruins', 'Split-Decision Ruins', 'Lakeside Cave', 'Tunnel to the Top', 18, 40]),
     },
@@ -687,22 +687,22 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.kanto]: new Set(['Viridian City', 'Cerulean Cave', 'Sunburst Island']),
         [Region.johto]: new Set(['Blackthorn City', 'Mt. Silver', 'Whirl Islands']),
         [Region.hoenn]: new Set(['Cave of Origin', 'Sky Pillar', 'Sealed Chamber']),
-        [Region.sinnoh]: new Set(['Spear Pillar', 'Hall of Origin']),
-        [Region.unova]: new Set(['Chargestone Cave', 'Mistralton Cave', 'Cave of Being']),
+        [Region.sinnoh]: new Set(['Spear Pillar']),
+        [Region.unova]: new Set(['Driftveil City', 'Chargestone Cave', 'Mistralton Cave', 'Cave of Being']),
         [Region.kalos]: new Set(['Glittering Cave', 'Reflection Cave']),
         [Region.alola]: new Set(['Resolution Cave']),
         [Region.galar]: new Set(['Galar Mine', 'Galar Mine No. 2', 'Iron Ruins']),
     },
 
     PowerPlant: {
-        [Region.kanto]: new Set(['Vermilion City', 'Rocket Game Corner', 'Power Plant']),
-        [Region.johto]: new Set(['Tin Tower', 'Team Rocket\'s Hideout', 'Radio Tower']),
-        [Region.hoenn]: new Set(['Mauville City', 'New Mauville', 'Weather Institute', 'Aqua Hideout']),
-        [Region.sinnoh]: new Set(['Sunyshore City', 'Valley Windworks', 'Team Galactic Eterna Building', 'Team Galactic HQ']),
-        [Region.unova]: new Set(['Castelia Sewers', 'Virbank City', 'A Totally Unsuspicious Frigate', 'Plasma Frigate']),
+        [Region.kanto]: new Set(['Vermilion City', 'Power Plant',  'Rocket Warehouse',]),
+        [Region.johto]: new Set(['Team Rocket\'s Hideout']),
+        [Region.hoenn]: new Set(['Mauville City', 'New Mauville', 'Weather Institute', 'Sea Mauville', 'Mossdeep Space Center']),
+        [Region.sinnoh]: new Set(['Sunyshore City']),
+        [Region.unova]: new Set(['Castelia Sewers', 'Virbank City', 'Mistralton City', 'A Totally Unsuspicious Frigate', 'Plasma Frigate']),
         [Region.kalos]: new Set(['Lumiose City', 'Kalos Power Plant', 'Poké Ball Factory', 'Team Flare Secret HQ']),
-        [Region.alola]: new Set(['Aether Paradise', 'Hokulani Observatory', 'Aether Foundation']),
-        [Region.galar]: new Set(['Energy Plant', 'Armor Station', 'Crown Tundra Station']),
+        [Region.alola]: new Set(['Hokulani Observatory']),
+        [Region.galar]: new Set(['Energy Plant']),
     },
 
     Mansion: {
@@ -717,14 +717,25 @@ export const Environments: Record<string, EnvironmentData> = {
     },
 
     Indoors: {
-        [Region.kanto]: new Set(['Saffron City', 'Silph Co.']),
-        [Region.johto]: new Set(['Sprout Tower', 'Olivine City']),
-        [Region.hoenn]: new Set(['Petalburg City', 'Mossdeep City']),
-        [Region.sinnoh]: new Set(['Veilstone City', 'Canalave City']),
-        [Region.unova]: new Set(['Castelia City', 'Mistralton City', 'Opelucid City', 'Dragonspiral Tower']),
-        [Region.kalos]: new Set(['Parfum Palace']),
-        [Region.alola]: new Set(['Trainers\' School', 'Ruins of Conflict', 'Ruins of Life', 'Ruins of Abundance', 'Ruins of Hope']),
-        [Region.galar]: new Set(['Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Wyndon', 'Master Dojo']),
+        [Region.kanto]: new Set(['Saffron City', 'Silph Co.', 'Rocket Game Corner', 'Fuchsia City', 'Professor Ivy\'s Lab', 'Kumquat Island', 'Valencia Pokémon Center']),
+        [Region.johto]: new Set(['Sprout Tower', 'Violet City', 'Goldenrod City', 'Tin Tower', 'Olivine City', 'Radio Tower']),
+        [Region.hoenn]: new Set(['Dewford Town', 'Petalburg City', 'Mossdeep City']),
+        [Region.sinnoh]: new Set(['Valley Windworks', 'Team Galactic Eterna Building', 'Veilstone City', 'Canalave City', 'Team Galactic HQ', 'Hall of Origin']),
+        [Region.unova]: new Set(['Castelia City', 'Opelucid City', 'Shopping Mall Nine', 'Dragonspiral Tower', 'Nacrene City', 'P2 Laboratory']),
+        [Region.kalos]: new Set(['Parfum Palace', 'Shalour City', 'Laverre City', 'Anistar City']), // Tower of Mastery
+        [Region.alola]: new Set(['Professor Kukui\'s Lab', 'Trainers\' School',  'Roadside Motel', 'Aether Paradise', 'Aether Foundation', 'Ruins of Conflict', 'Ruins of Life', 'Ruins of Abundance', 'Ruins of Hope']),
+        [Region.galar]: new Set(['Hammerlocke', 'Tower of Darkness', 'Tower of Waters', 'Professor Magnolia\'s House', 'Armor Station']),
+    },
+
+    Park: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(['Cherrygrove City']), // National Park
+        [Region.hoenn]: new Set(['Slateport City', 'Lilycove City', 'Ever Grande City']),
+        [Region.sinnoh]: new Set(['Jubilife City', 'Resort Area']),
+        [Region.unova]: new Set(['Aspertia City', 'Shopping Mall Nine', 'Striaton City', 'Black and White Park', 'Accumula Town']),
+        [Region.kalos]: new Set([1, 'Vaniville Town', 'Aquacorde Town', 'Camphrier Town', 'Couriway Town', 'Kiloude City']),
+        [Region.alola]: new Set(['Hau\'oli City', 'Heahea City', 'Konikoni City', 'Malie City', 'Malie Garden', 'Hoppy Town', 'Friend League', 'Quick League', 'Heavy League', 'Great League', 'Fast League', 'Luxury League', 'Heal League', 'Ultra League', ]),
+        [Region.galar]: new Set(['Postwick', 'Wedgehurst', 'Wyndon']),
     },
 
     Graveyard: {
@@ -752,7 +763,7 @@ export const Environments: Record<string, EnvironmentData> = {
     Stage: {
         [Region.kanto]: new Set(),
         [Region.johto]: new Set(),
-        [Region.hoenn]: new Set(['Lilycove City']), // contest halls
+        [Region.hoenn]: new Set(), // contest halls
         [Region.sinnoh]: new Set(), // contest halls
         [Region.unova]: new Set(['Nimbasa City']),
         [Region.kalos]: new Set(),
@@ -772,14 +783,14 @@ export const Environments: Record<string, EnvironmentData> = {
     },
 
     Battlefield: {
-        [Region.kanto]: new Set(['Indigo Plateau Kanto']),
+        [Region.kanto]: new Set(['Indigo Plateau Kanto', 'Pummelo Island']),
         [Region.johto]: new Set(['Indigo Plateau Johto']),
         [Region.hoenn]: new Set(['Pokémon League Hoenn']),
-        [Region.sinnoh]: new Set(['Pokémon League Sinnoh']),
+        [Region.sinnoh]: new Set(['Fight Area', 'Survival Area', 'Pokémon League Sinnoh']),
         [Region.unova]: new Set(['Pokémon League Unova']),
         [Region.kalos]: new Set(['Pokémon League Kalos']),
-        [Region.alola]: new Set(['Pokémon League Alola']),
-        [Region.galar]: new Set(['Wyndon Stadium']),
+        [Region.alola]: new Set(['Pokémon League Alola', 'Elite Four League', 'Master League']),
+        [Region.galar]: new Set(['Wyndon Stadium', 'Master Dojo Battle Court']),
     },
 };
 

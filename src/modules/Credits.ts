@@ -627,12 +627,14 @@ export const SpriteCredits: Credit[] = [
         resources: [
             'Battlefield battle background',
             'Desert battle background',
+            'Fall battle background',
             'Indoors battle background',
             'Park battle background',
             'Snow battle background',
             'Space battle background',
             'Stage battle background',
             'Ocean battle background',
+            'Water Cave battle background',
             'Shauna',
         ],
         // Notes: Permission given on image page if credited.

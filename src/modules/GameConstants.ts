@@ -650,6 +650,17 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.galar]: new Set(['Crown Tundra Station', 'Freezington', 26, 31, 32, 46, 47, 54, 55]),
     },
 
+    Fall: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(),
+        [Region.hoenn]: new Set([113]),
+        [Region.sinnoh]: new Set(),
+        [Region.unova]: new Set(),
+        [Region.kalos]: new Set([14, 15, 16]),
+        [Region.alola]: new Set(['Paniola Town', 'Paniola Ranch']),
+        [Region.galar]: new Set([12, 13]),
+    },
+
     Fire: {
         [Region.kanto]: new Set(['Cinnabar Island', 'Mt. Ember', 'Mt. Ember Summit', 'Ruby Path']),
         [Region.johto]: new Set(),
@@ -692,6 +703,17 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.kalos]: new Set(['Glittering Cave', 'Reflection Cave']),
         [Region.alola]: new Set(['Resolution Cave', 'Great League', 39, 40]),
         [Region.galar]: new Set(['Galar Mine', 'Galar Mine No. 2', 'Iron Ruins']),
+    },
+
+    WaterCave: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(['Slowpoke Well']),
+        [Region.hoenn]: new Set(['Seafloor Cavern']),
+        [Region.sinnoh]: new Set(),
+        [Region.unova]: new Set(['Seaside Cave']),
+        [Region.kalos]: new Set(['Cyllage City', 'Sea Spirit\'s Den']),
+        [Region.alola]: new Set(['Seaward Cave']),
+        [Region.galar]: new Set(['Courageous Cavern', 'Brawlers\' Cave', 'Roaring-Sea Caves']),
     },
 
     PowerPlant: {
@@ -801,10 +823,12 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     Ocean: 'ocean',
     Ice: 'ice',
     Snow: 'snow',
+    Fall: 'fall',
     Fire: 'fire',
     Forest: 'forest',
     Cave: 'cave',
     GemCave: 'cave-gem',
+    WaterCave: 'cave-water',
     PowerPlant: 'power-plant',
     Mansion: 'mansion',
     Indoors: 'indoors',

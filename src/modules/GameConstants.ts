@@ -734,7 +734,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.sinnoh]: new Set(['Jubilife City', 'Resort Area']),
         [Region.unova]: new Set(['Aspertia City', 'Shopping Mall Nine', 'Striaton City', 'Black and White Park', 'Accumula Town']),
         [Region.kalos]: new Set([1, 'Vaniville Town', 'Aquacorde Town', 'Camphrier Town', 'Couriway Town', 'Kiloude City']),
-        [Region.alola]: new Set(['Hau\'oli City', 'Heahea City', 'Konikoni City', 'Malie City', 'Malie Garden', 'Hoppy Town', 'Ultra League']),
+        [Region.alola]: new Set(['Hau\'oli City', 'Heahea City', 'Konikoni City', 'Malie City', 'Malie Garden', 'Ultra League']),
         [Region.galar]: new Set(['Postwick', 'Wedgehurst', 'Wyndon']),
     },
 

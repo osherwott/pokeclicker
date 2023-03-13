@@ -607,25 +607,25 @@ export const ACHIEVEMENT_DEFEAT_DUNGEON_VALUES = [
 export type EnvironmentData = Partial<Record<Region, Set<string | number>>>;
 export const Environments: Record<string, EnvironmentData> = {
     Water: {
-        [Region.kanto]: new Set([12, 13, 19, 20, 21, 24, 26, 31, 32, 33, 34, 35, 36, 'Cerulean City', 'Mikan Island']),
-        [Region.johto]: new Set([40, 41, 'Slowpoke Well']),
-        [Region.hoenn]: new Set([122]),
-        [Region.sinnoh]: new Set([218, 219, 223, 'Pastoria City', 'Lake Verity', 'Lake Valor', 'Sendoff Spring']),
-        [Region.unova]: new Set([17, 18, 21, 'Moor of Icirrus']),
+        [Region.kanto]: new Set([12, 13, 19, 20, 21, 24, 26, 31, 33, 34, 35, 36, 'Cerulean City', 'Mikan Island']),
+        [Region.johto]: new Set([40]),
+        [Region.hoenn]: new Set([118, 122]),
+        [Region.sinnoh]: new Set([213, 218, 219, 'Pastoria City', 'Lake Verity', 'Lake Valor', 'Sendoff Spring']),
+        [Region.unova]: new Set([8, 'Moor of Icirrus']),
         [Region.kalos]: new Set([8, 'Ambrette Town']),
-        [Region.alola]: new Set([31, 32, 33, 34, 'Brooklet Hill', 'Mina\'s Houseboat', 'Lake of the Sunne and Moone', 'Quick League']),
+        [Region.alola]: new Set([9, 25, 31, 32, 33, 34, 'Brooklet Hill', 'Mina\'s Houseboat', 'Lake of the Sunne and Moone', 'Quick League']),
         [Region.galar]: new Set(['Hulbury', 5, 6, 8, 9, 16, 21, 27, 36, 53]),
     },
 
     Ocean: {
-        [Region.kanto]: new Set(),
-        [Region.johto]: new Set(),
-        [Region.hoenn]: new Set([105, 106, 107, 108, 109, 118, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 'Aqua Hideout', 'Pacifidlog Town']),
+        [Region.kanto]: new Set([32]),
+        [Region.johto]: new Set([41]),
+        [Region.hoenn]: new Set([105, 106, 107, 108, 109, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 'Aqua Hideout', 'Pacifidlog Town']),
         [Region.sinnoh]: new Set([220, 223]),
-        [Region.unova]: new Set([24, 'Undella Town', 'Humilau City']),
-        [Region.kalos]: new Set([23, 'Sea Spirit\'s Den']),
-        [Region.alola]: new Set([15, 19, 20, 35, 36, 37, 38, 'Magikarp\'s Eye', 'Seafolk Village', 'Heal League']),
-        [Region.galar]: new Set(['Roaring-Sea Caves', 29, 37, 41, 42, 43, 44, 51]),
+        [Region.unova]: new Set([17, 18, 21, 24, 'Undella Town', 'Humilau City']),
+        [Region.kalos]: new Set([23]),
+        [Region.alola]: new Set([7, 14, 15, 19, 20, 35, 36, 37, 38, 'Magikarp\'s Eye', 'Seafolk Village', 'Heal League']),
+        [Region.galar]: new Set([29, 37, 41, 42, 43, 44, 51]),
     },
 
     Ice: {
@@ -673,25 +673,25 @@ export const Environments: Record<string, EnvironmentData> = {
     },
 
     Forest: {
-        [Region.kanto]: new Set([25, 30, 'Viridian Forest', 'Berry Forest', 'Pattern Bush', 'Valencia Island', 'Pinkan Forest']),
-        [Region.johto]: new Set([36, 38, 43, 'Azalea Town', 'Ilex Forest']),
+        [Region.kanto]: new Set([25, 30, 40, 41, 'Viridian Forest', 'Berry Forest', 'Pattern Bush', 'Valencia Island', 'Pinkan Forest']),
+        [Region.johto]: new Set([36, 37, 43, 'Azalea Town', 'Ilex Forest']),
         [Region.hoenn]: new Set([119, 'Petalburg Woods', 'Fortree City', 'Southern Island']),
-        [Region.sinnoh]: new Set([201, 204, 'Eterna City', 'Eterna Forest', 'Fullmoon Island', 'Newmoon Island']),
+        [Region.sinnoh]: new Set([201, 204, 210, 213, 215, 229, 'Eterna City', 'Eterna Forest', 'Fullmoon Island', 'Newmoon Island']),
         [Region.unova]: new Set([6, 'Floccesy Town', 'Lostlorn Forest', 'Pinwheel Forest', 'Pledge Grove', 'Abundant Shrine']),
-        [Region.kalos]: new Set([1, 14, 20, 'Santalune City', 'Coumarine City', 'Santalune Forest', 'Pokémon Village']),
+        [Region.kalos]: new Set([20, 'Santalune City', 'Coumarine City', 'Santalune Forest', 'Pokémon Village']),
         [Region.alola]: new Set([27, 'Melemele Woods', 'Lush Jungle', 'Ula\'ula Meadow', 'Poni Meadow']),
-        [Region.galar]: new Set(['Slumbering Weald', 'Slumbering Weald Shrine', 'Glimwood Tangle', 'Ballonlea', 'Dyna Tree Hill', 2, 12, 13, 35]),
+        [Region.galar]: new Set(['Slumbering Weald', 'Slumbering Weald Shrine', 'Glimwood Tangle', 'Ballonlea', 'Dyna Tree Hill', 2, 4, 35]),
     },
 
     Cave: {
-        [Region.kanto]: new Set([37, 39, 'Pewter City', 'Diglett\'s Cave', 'Mt. Moon', 'Rock Tunnel', 'Victory Road', 'Lost Cave', 'Altering Cave', 'Tanoby Ruins', 'Dotted Hole', 'Navel Island', 'Trovita Island', 'Pinkan Mountain']),
-        [Region.johto]: new Set(['Cianwood City', 'Ruins of Alph', 'Union Cave', 'Mt. Mortar', 'Dark Cave', 'Tohjo Falls', 'Victory Road Johto']),
-        [Region.hoenn]: new Set(['Rustboro City', 'Rusturf Tunnel', 'Granite Cave', 'Meteor Falls', 'Jagged Pass', 'Seafloor Cavern', 'Victory Road Hoenn']),
-        [Region.sinnoh]: new Set(['Oreburgh City', 'Oreburgh Gate', 'Wayward Cave', 'Mt. Coronet', 'Mt. Coronet South', 'Iron Island', 'Victory Road Sinnoh']),
-        [Region.unova]: new Set(['Relic Castle', 'Relic Passage', 'Seaside Cave', 'Victory Road Unova', 'Twist Mountain']),
-        [Region.kalos]: new Set([9, 13, 'Connecting Cave', 'Cyllage City', 'Terminus Cave', 'Victory Road Kalos']),
-        [Region.alola]: new Set([12, 13, 22, 29, 'Verdant Cavern', 'Seaward Cave', 'Ten Carat Hill', 'Diglett\'s Tunnel', 'Vast Poni Canyon', 'Heavy League']),
-        [Region.galar]: new Set(['Warm-Up Tunnel', 'Courageous Cavern', 'Brawlers\' Cave', 'Rock Peak Ruins', 'Split-Decision Ruins', 'Lakeside Cave', 'Tunnel to the Top', 18, 40]),
+        [Region.kanto]: new Set([3, 9, 37, 39, 'Pewter City', 'Diglett\'s Cave', 'Mt. Moon', 'Rock Tunnel', 'Victory Road', 'Lost Cave', 'Altering Cave', 'Tanoby Ruins', 'Dotted Hole', 'Navel Island', 'Trovita Island', 'Pinkan Mountain']),
+        [Region.johto]: new Set([45, 47, 'Cianwood City', 'Ruins of Alph', 'Union Cave', 'Mt. Mortar', 'Dark Cave', 'Tohjo Falls', 'Victory Road Johto']),
+        [Region.hoenn]: new Set(['Rustboro City', 'Rusturf Tunnel', 'Granite Cave', 'Meteor Falls', 'Jagged Pass', 'Victory Road Hoenn']),
+        [Region.sinnoh]: new Set([207, 211, 227, 'Oreburgh City', 'Oreburgh Gate', 'Wayward Cave', 'Mt. Coronet', 'Mt. Coronet South', 'Iron Island', 'Victory Road Sinnoh']),
+        [Region.unova]: new Set([15, 'Relic Castle', 'Relic Passage', 'Victory Road Unova', 'Twist Mountain']),
+        [Region.kalos]: new Set([9, 13, 'Connecting Cave', 'Terminus Cave', 'Victory Road Kalos']),
+        [Region.alola]: new Set([3, 12, 13, 22, 29, 'Verdant Cavern', 'Ten Carat Hill', 'Diglett\'s Tunnel', 'Vast Poni Canyon', 'Heavy League']),
+        [Region.galar]: new Set(['Warm-Up Tunnel', 'Rock Peak Ruins', 'Split-Decision Ruins', 'Lakeside Cave', 'Tunnel to the Top', 18, 23, 40, 52]),
     },
 
     GemCave: {
@@ -756,7 +756,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.sinnoh]: new Set(['Jubilife City', 'Resort Area']),
         [Region.unova]: new Set(['Aspertia City', 'Shopping Mall Nine', 'Striaton City', 'Black and White Park', 'Accumula Town']),
         [Region.kalos]: new Set([1, 'Vaniville Town', 'Aquacorde Town', 'Camphrier Town', 'Couriway Town', 'Kiloude City']),
-        [Region.alola]: new Set(['Hau\'oli City', 'Heahea City', 'Konikoni City', 'Malie City', 'Malie Garden', 'Ultra League']),
+        [Region.alola]: new Set([18, 'Hau\'oli City', 'Heahea City', 'Konikoni City', 'Malie City', 'Malie Garden', 'Ultra League']),
         [Region.galar]: new Set(['Postwick', 'Wedgehurst', 'Wyndon']),
     },
 
@@ -779,7 +779,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.unova]: new Set([4, 'Lentimas Town', 25]),
         [Region.kalos]: new Set(),
         [Region.alola]: new Set([23, 'Fast League']),
-        [Region.galar]: new Set(['Dusty Bowl', 23, 25, 39]),
+        [Region.galar]: new Set(['Dusty Bowl', 25, 39]),
     },
 
     Stage: {

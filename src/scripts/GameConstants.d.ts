@@ -246,18 +246,24 @@ namespace GameConstants {
     declare type EnvironmentData = Partial<Record<number, Set<string | number>>>
     declare const Environments: {
         Water: EnvironmentData,
-        WaterOcean: EnvironmentData,
+        Ocean: EnvironmentData,
         Ice: EnvironmentData,
         Snow: EnvironmentData,
+        Fall: EnvironmentData,
         Fire: EnvironmentData,
         Forest: EnvironmentData,
         Cave: EnvironmentData,
         GemCave: EnvironmentData,
+        WaterCave: EnvironmentData,
         PowerPlant: EnvironmentData,
         Mansion: EnvironmentData,
+        Indoors: EnvironmentData,
+        Park: EnvironmentData,
         Graveyard: EnvironmentData,
         Desert: EnvironmentData,
+        Stage: EnvironmentData,
         Space: EnvironmentData,
+        Battlefield: EnvironmentData,
         Customizable: EnvironmentData,
     };
     declare type Environment = keyof typeof Environments;

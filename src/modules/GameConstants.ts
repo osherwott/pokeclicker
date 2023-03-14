@@ -748,17 +748,6 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.alola]: new Set(),
         [Region.galar]: new Set(),
     },
-
-    Customizable: {
-        [Region.kanto]: new Set(),
-        [Region.johto]: new Set(),
-        [Region.hoenn]: new Set(['Battle Frontier']),
-        [Region.sinnoh]: new Set(),
-        [Region.unova]: new Set(),
-        [Region.kalos]: new Set(),
-        [Region.alola]: new Set(),
-        [Region.galar]: new Set(),
-    },
 };
 
 export type Environment = keyof typeof Environments;
@@ -777,7 +766,6 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     Graveyard: 'graveyard',
     Desert: 'desert',
     Space: 'space',
-    Customizable: 'custom',
 };
 
 // Starter Pokémon

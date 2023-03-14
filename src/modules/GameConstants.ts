@@ -814,6 +814,17 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.alola]: new Set(['Pokémon League Alola', 'Elite Four League']),
         [Region.galar]: new Set(['Wyndon Stadium', 'Master Dojo Battle Court']),
     },
+
+    Customizable: {
+        [Region.kanto]: new Set(),
+        [Region.johto]: new Set(),
+        [Region.hoenn]: new Set(['Battle Frontier']),
+        [Region.sinnoh]: new Set(),
+        [Region.unova]: new Set(),
+        [Region.kalos]: new Set(),
+        [Region.alola]: new Set(),
+        [Region.galar]: new Set(),
+    },
 };
 
 export type Environment = keyof typeof Environments;
@@ -838,6 +849,7 @@ export const EnvironmentCssClass: Record<Environment, string> = {
     Stage: 'stage',
     Space: 'space',
     Battlefield: 'battlefield',
+    Customizable: 'custom',
 };
 
 // Starter Pokémon

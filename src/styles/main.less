@@ -485,16 +485,21 @@ img {
 
   &.stage {
       background-image: url(../assets/images/battleBackground/stage.png);
-      background-position: 0px -20px;
+      background-position: top;
   }
 
   &.space {
       background-image: url(../assets/images/battleBackground/space.png);
-      background-position: top;
+      background-position: 0px -5px;
   }
 
   &.battlefield {
       background-image: url(../assets/images/battleBackground/battlefield.png);
+      background-position: bottom;
+  }
+
+  &.custom {
+      background-image: var(--custom-battle-background);
       background-position: center;
   }
 

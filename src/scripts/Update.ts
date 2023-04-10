@@ -2014,12 +2014,8 @@ class Update implements Saveable {
             //Joey
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 31);
 
-            // Hau 1 (starts Melemele quest)
-            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 171);
             // Melemele Spearow
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 172);
-            // Hau 2 (just in case)
-            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 173);
             // Hau'oli Skull grunts
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 174);
             // Hau'oli Ilima
@@ -2028,6 +2024,11 @@ class Update implements Saveable {
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 176);
             // Recon Squad Seaward Cave
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 177);
+
+            // Start Melemele quest if player has beaten Hau 1 already
+            if (saveData.statistics.temporaryBattleDefeated[181]) {
+                Update.startQuestLine(saveData, 'Welcome to paradise, cousin!');
+            }
         },
     };
 

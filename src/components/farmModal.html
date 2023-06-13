@@ -205,6 +205,51 @@
                     </div>
                 </div>
 
+                <div id="berryDexViewCompact" class="tab-pane fade col-auto">
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead class="thead-dark tight sticky-top">
+                                <tr>
+                                    <th>ID: Berry</th>
+                                    <th>Current Amount</th>
+                                    <th>Color</th>
+                                    <th>Aura</th>
+                                    <th>Harvest Amount</th>
+                                    <th>EXP per Second</th>
+                                    <th>FP per Second</th>
+                                    <th>Replant Rate</th>
+                                    <th>Growth Time</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: FarmController.getUnlockedBerryList()">
+                                <!-- ko if: App.game.farming.unlockedBerries[$data]() -->
+                                <tr href="#berryDexModal" data-toggle="modal" style="cursor: pointer;"
+                                data-bind="click: ()=>{App.game.statistics.selectedBerryID($data)}">
+                                    <td class="align-middle">
+                                        <knockout data-bind="html: `#${(App.game.farming.berryData[$data].type + 1).toString().padStart(2, 0)}: ${BerryType[App.game.farming.berryData[$data].type]}<br/>`"></knockout>
+                                        <img height="30px" data-bind="attr: {src: FarmController.getBerryImage(App.game.farming.berryData[$data].type)}"/>
+                                    </td>
+                                    <td class="align-middle" data-bind="text: App.game.farming.berryList[$data]().toLocaleString('en-US')"></td>
+                                    <td  class="align-middle" data-bind="text: BerryColor[App.game.farming.berryData[$data].color]"></td>
+                                    <!-- ko if: App.game.farming.berryData[$data].aura -->
+                                    <td class="align-middle" data-bind="text: AuraType[App.game.farming.berryData[$data].aura.auraType]"></td>
+                                    <!-- /ko -->
+                                    <!-- ko if: !App.game.farming.berryData[$data].aura -->
+                                    <td class="align-middle">-</td>
+                                    <!-- /ko -->
+                                    <td class="align-middle" data-bind="text: App.game.farming.berryData[$data].harvestAmount"></td>
+                                    <td class="align-middle" data-bind="text: Math.round((App.game.farming.berryData[$data].exp / App.game.farming.berryData[$data].growthTime[3]) * 1000) / 1000"></td>
+                                    <td class="align-middle" data-bind="attr: { 'data-sort': App.game.farming.berryData[$data].farmValue }">
+                                        <ko data-bind="text: Math.round((App.game.farming.berryData[$data].farmValue / App.game.farming.berryData[$data].growthTime[3]) * 1000) / 1000"></ko>
+                                        <img src="assets/images/currency/farmPoint.svg" width="18px"/>
+                                    </td>
+                                    <td class="align-middle" data-bind="text: App.game.farming.berryData[$data].replantRate.toLocaleString('en-US', { style: 'percent' })"></td>
+                                    <td class="align-middle" data-bind="html: `${GameConstants.formatSecondsToTime(App.game.farming.berryData[$data].growthTime[3])} to Ripe<br/>${GameConstants.formatSecondsToTime(App.game.farming.berryData[$data].growthTime[4] - App.game.farming.berryData[$data].growthTime[3])} to Death`"></td>
+                                </tr>
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
+                </div>
+
                 <div id="helpView" class="tab-pane fade col-10 offset-1">
                     <h4><u>Farm</u></h4>
                     <p>In the farm you can plant and harvest Berries.</p>

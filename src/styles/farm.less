@@ -5,61 +5,71 @@
     max-height: calc(100vh - 205px);
   }
 
-  .berrydexEntry {
+  #berryDexList {
+    margin-left: -5px;
+  }
+  
+  .berryDexEntry {
     margin: 6px;
 
     img {
       max-width: 120%;
-      margin-top: 15px;
+      margin-top: 14px;
       margin-left: 5%;
+      scale:calc(80%);
      }
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .berryListHeight {
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 225px);
   }
 
-  .berrydexEntry {
+  .berryDexEntry {
     margin: 6px 6px 0;
   
     img {
-      max-width: 120%;
-      margin-top: 12px;
-      margin-left: 2px;
+      max-height: 90px;
+      margin-top: -1px;
+      margin-left: 22%;
+      scale:calc(60%);
      }
   }
 }
 
 @media (max-width: 767px) {
   .berryListHeight {
-    max-height: calc(50vh - 120px);
+    max-height: calc(50vh - 35px);
     margin: 1%;
   }
+  
+  #berryDexList {
+    max-height: calc(50vh - 205px);
+    min-height: 100px;
+  }
 
-  .berrydexEntry {
+  .berryDexEntry {
     margin: 10px 10px 0;
 
     img {
-      max-width: calc(100vh);
-      max-height: 65px;
-      margin-top: calc(1.2vh);
-      margin-left: 20%;
+      max-height: 70px !important;
+      margin-top: 9px !important;
+      margin-left: 23% !important;
+      scale: calc(80%) !important;
      }
   }
 }
 
 @padding: 3px;
 
-.berrydexEntry {
+.berryDexEntry {
   list-style-type: none;
   height: 90px;
 
   --berryBG: rgba(211, 211, 211, 50%); // whitesmoke, backup color (refer to themes.less)
 
   img {
-    position:relative;
     pointer-events: none;
     z-index: 1;
   }
@@ -75,6 +85,11 @@
   span.id::before {
     content: '#';
   }
+}
+
+#berryDexPreview {
+  min-width: 270px;
+  margin-right: -10px;
 }
 
 #farmModal {

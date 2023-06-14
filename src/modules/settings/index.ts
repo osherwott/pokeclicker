@@ -113,6 +113,8 @@ Settings.add(new Setting<string>('sizeUnits', 'Berry size units',
         new SettingOption('Centimeters', 'cm'),
     ],
     'cm'));
+Settings.add(new BooleanSetting('berryDexMode', 'Compact Berrydex (refresh Berrydex tab to take effect)', false));
+Settings.add(new BooleanSetting('berryDataRate', 'Show Farm Points and Farm EXP as per Growth Time', false));
 Settings.add(new BooleanSetting('currencyMainDisplayReduced', 'Shorten currency amount shown on main screen', false));
 Settings.add(new BooleanSetting('currencyMainDisplayExtended', 'Show Diamonds, Farm Points and Battle Points on main screen', false));
 Settings.add(new BooleanSetting('confirmLeaveDungeon', 'Confirm before leaving dungeons', false));

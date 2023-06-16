@@ -4,19 +4,13 @@
   .berryListHeight {
     max-height: calc(100vh - 205px);
   }
-
-  #berryDexList {
-    margin-left: -5px;
-  }
   
   .berryDexEntry {
     margin: 6px;
 
     img {
       max-width: 120%;
-      margin-top: 14px;
-      margin-left: 5%;
-      scale:calc(80%);
+      margin-left: -10%;
      }
   }
 }
@@ -27,13 +21,10 @@
   }
 
   .berryDexEntry {
-    margin: 6px 6px 0;
+    margin: 6px 0;
   
     img {
       max-height: 90px;
-      margin-top: -1px;
-      margin-left: 22%;
-      scale:calc(60%);
      }
   }
 }
@@ -50,40 +41,25 @@
   }
 
   .berryDexEntry {
-    margin: 10px 10px 0;
-
-    img {
-      max-height: 70px !important;
-      margin-top: 9px !important;
-      margin-left: 23% !important;
-      scale: calc(80%) !important;
-     }
+    margin: 10px 15px 0;
   }
 }
 
 @padding: 3px;
 
 .berryDexEntry {
-  list-style-type: none;
-  height: 90px;
-
-  --berryBG: rgba(211, 211, 211, 50%); // whitesmoke, backup color (refer to themes.less)
-
-  img {
-    pointer-events: none;
-    z-index: 1;
-  }
-
   span {
     position: absolute;
-    left: 20%;
+    left: 0;
     right: 0;
-    font-size: 15px;
-    font-weight: bold;
   }
 
   span.id::before {
     content: '#';
+  }
+
+  img {
+    transform: scale(70%);
   }
 }
 

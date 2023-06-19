@@ -207,20 +207,20 @@
                 </div>
 
                 <div id="berryDexViewCompact" class="tab-pane fade">
-                        <table class="table table-hover table-striped table-bordered" style="white-space: nowrap;">
+                        <table class="table table-hover table-striped table-bordered table-sm" style="white-space: nowrap;">
                             <thead class="thead-dark sticky-top">
                                 <tr>
                                     <th class="align-middle" rowspan="2" style="position: sticky; left:0;">ID: Berry</th>
                                     <th class="align-middle" rowspan="2">Current Amount</th>
                                     <th class="align-middle" rowspan="2">Aura</th>
                                     <th class="align-middle" rowspan="2">Growth Time</th>
-                                    <th class="align-middle" rowspan="2">EXP</th>
+                                    <!-- <th class="align-middle" rowspan="2">EXP</th> -->
                                     <th class="align-middle" rowspan="2">Farm Points</th>
                                     <th class="align-middle" rowspan="2">Harvest Amount</th>
                                     <th class="align-middle" rowspan="2">Replant Rate</th>
                                     <th class="align-middle" colspan="5">Flavor</th>
-                                    <th class="align-middle" rowspan="2">Size</th>
-                                    <th class="align-middle" rowspan="2">Firmness</th>
+                                    <!-- <th class="align-middle" rowspan="2">Size</th> -->
+                                    <!-- <th class="align-middle" rowspan="2">Firmness</th> -->
                                     <th class="align-middle" rowspan="2">Color</th>
                                     <th class="align-middle" rowspan="2">Color Wanderers</th>
                                     <th class="align-middle" rowspan="2">Specific Wanderers</th>
@@ -249,7 +249,7 @@
                                     <td class="align-middle"></td>
                                     <!-- /ko -->
                                     <td class="align-middle" data-bind="html: `${GameConstants.formatSecondsToTime(App.game.farming.berryData[$data].growthTime[3])}`">Growth Time</td>
-                                    <td class="align-middle" data-bind="visible: !Settings.getSetting('berryDataRate').observableValue(), text: App.game.farming.berryData[$data].exp">EXP</td>
+                                    <!-- <td class="align-middle" data-bind="visible: !Settings.getSetting('berryDataRate').observableValue(), text: App.game.farming.berryData[$data].exp">EXP</td> -->
                                     <td class="align-middle" data-bind="visible: Settings.getSetting('berryDataRate').observableValue(), text: Math.round((App.game.farming.berryData[$data].exp / App.game.farming.berryData[$data].growthTime[3]) * 1000) / 1000">EXP per Growth Time</td>
                                     <td class="align-middle" data-bind="attr: { 'data-sort': App.game.farming.berryData[$data].farmValue }">
                                         <ko data-bind="visible: !Settings.getSetting('berryDataRate').observableValue(), text: App.game.farming.berryData[$data].farmValue.toLocaleString('en-US')">Farm Points</ko>
@@ -263,8 +263,8 @@
                                     <td class="align-middle" data-bind="text: App.game.farming.berryData[$data].flavors[2].value">Sweet</td>
                                     <td class="align-middle" data-bind="text: App.game.farming.berryData[$data].flavors[3].value">Bitter</td>
                                     <td class="align-middle" data-bind="text: App.game.farming.berryData[$data].flavors[4].value">Sour</td>
-                                    <td class="align-middle" data-bind="text: Farming.sizeUnitConverter[SizeUnits[Settings.getSetting('sizeUnits').observableValue()]](App.game.farming.berryData[$data].size)">Size</td>
-                                    <td class="align-middle" data-bind="html: GameConstants.humanifyString(BerryFirmness[App.game.farming.berryData[$data].firmness])">Firmness</td>
+                                    <!-- <td class="align-middle" data-bind="text: Farming.sizeUnitConverter[SizeUnits[Settings.getSetting('sizeUnits').observableValue()]](App.game.farming.berryData[$data].size)">Size</td> -->
+                                    <!-- <td class="align-middle" data-bind="html: GameConstants.humanifyString(BerryFirmness[App.game.farming.berryData[$data].firmness])">Firmness</td> -->
                                     <td class="align-middle" data-bind="text: BerryColor[App.game.farming.berryData[$data].color]">Color</td>
                                     <td class="align-middle" data-bind="text: Berry.colorWander[App.game.farming.berryData[$data].color].filter(pokemon => PokemonHelper.calcNativeRegion(pokemon) <= player.highestRegion()).join(', ')">Color Wanders</td>
                                     <td class="align-middle" data-bind="text: App.game.farming.berryData[$data].wander.filter((w) => !Berry.baseWander.some((b) => w === b) && !Berry.colorWander[App.game.farming.berryData[$data].color].some((b) => w === b)).filter(pokemon => PokemonHelper.calcNativeRegion(pokemon) <= player.highestRegion()).join(', ')">Unique Wanders</td>

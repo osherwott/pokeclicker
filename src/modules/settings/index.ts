@@ -105,7 +105,7 @@ Settings.add(new Setting<string>('farmDisplay', 'Farm timer display',
         new SettingOption('Ripe/Death', 'ripeDeath'),
     ],
     'ripeDeath'));
-    Settings.add(new Setting<string>('berryDexMode', 'Berrydex Display',
+Settings.add(new Setting<string>('berryDexMode', 'Berrydex Display',
     [
         new SettingOption('Classic Mode', 'classic'),
         new SettingOption('Preview Mode', 'preview'),

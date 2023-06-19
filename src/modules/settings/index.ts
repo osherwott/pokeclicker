@@ -105,6 +105,13 @@ Settings.add(new Setting<string>('farmDisplay', 'Farm timer display',
         new SettingOption('Ripe/Death', 'ripeDeath'),
     ],
     'ripeDeath'));
+    Settings.add(new Setting<string>('berryDexMode', 'Berrydex Display',
+    [
+        new SettingOption('Classic Mode', 'classic'),
+        new SettingOption('Preview Mode', 'preview'),
+        new SettingOption('List Mode', 'list'),
+    ],
+    'classic'));
 Settings.add(new BooleanSetting('farmBoostDisplay', 'Include base farm timer during altered berry growth times', false));
 Settings.add(new Setting<string>('sizeUnits', 'Berry size units',
     [

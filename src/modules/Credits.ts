@@ -741,6 +741,7 @@ export const SpriteCredits: Credit[] = [
             'Prof. Birch',
             'Prof. Elm',
             'Prof. Rowan',
+            'Plumeria (league)',
             'Punk Girl',
             'Punk Guy',
             'Rail Staff',

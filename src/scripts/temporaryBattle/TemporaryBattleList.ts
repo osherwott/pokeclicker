@@ -3889,6 +3889,8 @@ TemporaryBattleList['Molayne'] = new TemporaryBattle(
         new GymPokemon('Metang', 170174638, 29),
         new GymPokemon('Alolan Dugtrio', 175257094, 30),
     ],
+    undefined,
+);
 );
 TemporaryBattleList['Skull 5'] = new TemporaryBattle(
     'Skull 5',

@@ -3922,6 +3922,16 @@
         %>
 
         <%- include('templates/mapOverlay',
+            { name: ""
+            , x: 65, y: 26
+            , width: 3, height: 3.5
+            , databind: "click: () => TemporaryBattleList['Psychium Z Trial'].protectedOnclick()"
+            , visible:  "TemporaryBattleList['Psychium Z Trial'] && TemporaryBattleList['Psychium Z Trial'].isVisible()"
+            , image: "assets/images/map/transparent.png"
+            })
+        %>
+
+        <%- include('templates/mapOverlay',
             { name: "Team Skull Admin Plumeria"
             , x: 46, y: 43
             , width: 4, height: 4
@@ -3948,6 +3958,16 @@
             , databind: "click: () => TemporaryBattleList['Gladion 3'].protectedOnclick()"
             , visible:  "TemporaryBattleList['Gladion 3'] && TemporaryBattleList['Gladion 3'].isVisible()"
             , image: "assets/images/map/gladion.png"
+            })
+        %>
+
+        <%- include('templates/mapOverlay',
+            { name: "Ula\'ula Guardian"
+            , x: 62.5, y: 26
+            , width: 3, height: 3.5
+            , databind: "click: () => TemporaryBattleList['Ulaula Guardian'].protectedOnclick()"
+            , visible:  "TemporaryBattleList['Ulaula Guardian'] && TemporaryBattleList['Ulaula Guardian'].isVisible()"
+            , image: "assets/images/map/transparent.png"
             })
         %>
     </g>

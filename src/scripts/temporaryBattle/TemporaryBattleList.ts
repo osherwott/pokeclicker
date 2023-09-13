@@ -3756,6 +3756,29 @@ TemporaryBattleList['Hau 5'] = new TemporaryBattle(
         imageName: 'Hau',
     }
 );
+TemporaryBattleList['Psychium Z Trial'] = new TemporaryBattle( // use transparent temp battle png on haina desert
+    'Psychium Z Trial',
+    [
+        new GymPokemon('Krokorok', 7829809, 32),
+        new GymPokemon('Gabite', 7940429, 32),
+        new GymPokemon('Trapinch', 7622397, 32),
+        new GymPokemon('Celesteela', 8341426, 32, new QuestLineStepCompletedRequirement('Ultra Beast Hunt', 11)),
+        new GymPokemon('Alolan Dugtrio', 7484122, 32),
+        new GymPokemon('Trapinch', 7622397, 32),
+    ],
+    undefined,
+    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart'))],
+    undefined,
+    {
+        firstTimeRewardFunction: () => { 
+            DungeonGainGymBadge(GymList['Haina Desert Z Crystal']); 
+        },
+        displayName: 'Haina Desert',
+        returnTown: 'Tapu Village',
+        isTrainerBattle: false,
+        imageName: 'Trial Site',
+    }
+);
 TemporaryBattleList['Plumeria 2'] = new TemporaryBattle(
     'Plumeria 2',
     [
@@ -3916,6 +3939,51 @@ TemporaryBattleList['Gladion 3'] = new TemporaryBattle(
         displayName: 'Pokémon Trainer Gladion',
         returnTown: 'Tapu Village',
         imageName: 'Gladion',
+    }
+);
+TemporaryBattleList['Melemele Guardian'] = new TemporaryBattle(
+    'Melemele Guardian',
+    [new GymPokemon('Tapu Koko', 91545555, 57)],
+    undefined,
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    undefined,
+    {
+        hideTrainer: true,
+        isTrainerBattle: false,
+    }
+);
+TemporaryBattleList['Akala Guardian'] = new TemporaryBattle(
+    'Akala Guardian',
+    [new GymPokemon('Tapu Lele', 91545555, 57)],
+    undefined,
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    undefined,
+    {
+        hideTrainer: true,
+        isTrainerBattle: false,
+    }
+);
+TemporaryBattleList['Ulaula Guardian'] = new TemporaryBattle(
+    'Ulaula Guardian',
+    [new GymPokemon('Tapu Bulu', 91545555, 57)],
+    undefined,
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    undefined,
+    {
+        hideTrainer: true,
+        isTrainerBattle: false,
+        returnTown: 'Tapu Village',
+    }
+);
+TemporaryBattleList['Poni Guardian'] = new TemporaryBattle(
+    'Poni Guardian',
+    [new GymPokemon('Tapu Fini', 91545555, 57)],
+    undefined,
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    undefined,
+    {
+        hideTrainer: true,
+        isTrainerBattle: false,
     }
 );
 TemporaryBattleList['Guzma Bug Memory'] = new TemporaryBattle(

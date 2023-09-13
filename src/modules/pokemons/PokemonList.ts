@@ -1213,6 +1213,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 80,
             'speed': 77,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Pecha },
     },
     {
         'id': 20.02,
@@ -1231,6 +1232,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 80,
             'speed': 77,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Chople },
     },
     {
         'id': 20.03,
@@ -21925,6 +21927,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 45,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Pecha },
     },
     {
         'id': 735.01,
@@ -21942,6 +21945,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 45,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Chople },
     },
     {
         'id': 736,
@@ -22019,6 +22023,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 85,
             'speed': 53,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Occa },
     },
     {
         'id': 739,
@@ -22186,6 +22191,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 90,
             'speed': 144,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Occa },
     },
     {
         'id': 744,
@@ -22312,6 +22318,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 135,
             'speed': 30,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Sitrus },
     },
     {
         'id': 747,
@@ -22434,6 +22441,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 132,
             'speed': 52,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Wacan },
     },
     {
         'id': 753,
@@ -22486,6 +22494,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 90,
             'speed': 65,
         },
+        'heldItem': { type: ItemType.item, id: 'Power_Herb' },
     },
     {
         'id': 755,
@@ -22579,6 +22588,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 117,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Petaya },
         'gender': {
             'femaleRatio': 1,
         },
@@ -23379,6 +23389,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 73,
             'speed': 96,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Sitrus },
     },
     {
         'id': 778,
@@ -23413,6 +23424,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 115,
             'speed': 106,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Lum },
     },
     {
         'id': 779,
@@ -23541,6 +23553,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 115,
             'speed': 95,
         },
+        'heldItem': { type: ItemType.berry, id: BerryType.Roseli }, // or Mental Herb
     },
     {
         'id': 785,

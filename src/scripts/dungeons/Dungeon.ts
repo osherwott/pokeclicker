@@ -10449,10 +10449,45 @@ dungeonList['Verdant Cavern'] = new Dungeon('Verdant Cavern',
     },
     11595673,
     [
-        new DungeonBossPokemon('Alolan Raticate', 57978365, 12),
-        new DungeonBossPokemon('Gumshoos', 57978365, 12),
-        new DungeonBossPokemon('Totem Raticate', 82543791, 70, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
-        new DungeonBossPokemon('Totem Gumshoos', 82543791, 70, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Alolan Raticate', 57978365, 12, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Verdant Cavern')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+           ])
+        }),
+        new DungeonBossPokemon('Gumshoos', 57978365, 12, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Verdant Cavern')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Raticate', 82543791, 70, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Gumshoos', 82543791, 70, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Yungoos', 11595673, 10, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Totem Gumshoos', 57978365, 12, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Alolan Rattata', 11595673, 10, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Totem Raticate', 57978365, 12, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Verdant Cavern'),
     ],
     805000, 2,
     () => DungeonGainGymBadge(GymList['Ilima\'s Trial']));
@@ -10548,8 +10583,8 @@ dungeonList['Ten Carat Hill'] = new Dungeon('Ten Carat Hill',
         new DungeonBossPokemon('Carbink', 59489105, 14),
         new DungeonBossPokemon('Rockruff', 59489105, 14),
     ],
-    835000, 3);
-
+    835000, 3,
+    () => DungeonGainGymBadge(GymList['Ten Carat Hill Z Crystal']));
 
 dungeonList['Pikachu Valley'] = new Dungeon('Pikachu Valley',
     ['Pikachu', 'Pichu', 'Plusle', 'Minun', 'Pachirisu', 'Emolga', 'Dedenne'],
@@ -10674,10 +10709,63 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
     },
     12138060,
     [
-        new DungeonBossPokemon('Wishiwashi (School)', 60690300, 20),
-        new DungeonBossPokemon('Araquanid', 60690300, 20),
-        new DungeonBossPokemon('Totem Wishiwashi', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
-        new DungeonBossPokemon('Totem Araquanid', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Wishiwashi (School)', 60690300, 20, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Brooklet Hill')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Araquanid', 60690300, 20, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Brooklet Hill')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Wishiwashi', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Araquanid', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Wishiwashi (Solo)', 3138060, 17, new OneFromManyRequirement([
+                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
+                ])),
+                new GymPokemon('Alomomola', 12138060, 18, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Masquerain', 12138060, 18, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Wishiwashi (Solo)', 3138060, 18, new OneFromManyRequirement([
+                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
+                ])),
+                new GymPokemon('Dewpider', 12138060, 18, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Wishiwashi (Solo)', 12138060, 18, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
+                ])),
+                new GymPokemon('Totem Araquanid', 60690300, 20, new MultiRequirement([
+                    new OneFromManyRequirement([
+                        new DayCyclePartRequirement([1]),
+                        new DayCyclePartRequirement([2]),
+                    ]),
+                    new WeatherRequirement([WeatherType.Clear, WeatherType.Overcast, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sunny, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy]),
+                ])),
+                new GymPokemon('Totem Wishiwashi', 60690300, 20, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
+                ])),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Brooklet Hill'),
     ],
     875000, 5,
     () => DungeonGainGymBadge(GymList['Lana\'s Trial']));
@@ -10721,10 +10809,45 @@ dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
     },
     12896392,
     [
-        new DungeonBossPokemon('Alolan Marowak', 64481960, 22),
-        new DungeonBossPokemon('Salazzle', 64481960, 22),
-        new DungeonBossPokemon('Totem Marowak', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
-        new DungeonBossPokemon('Totem Salazzle', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Alolan Marowak', 64481960, 22, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Wela Volcano Park')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Salazzle', 64481960, 22, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Wela Volcano Park')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Marowak', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Salazzle', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Salandit', 12896392, 20, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                    new MultiRequirement([new ObtainedPokemonRequirement('Salazzle'), new DayCyclePartRequirement([3])]),
+                ])),
+                new GymPokemon('Totem Salazzle', 64481960, 22, new OneFromManyRequirement([
+                        new DayCyclePartRequirement([1]),
+                        new DayCyclePartRequirement([2]),
+                    ])),
+                new GymPokemon('Salazzle', 12896392, 20, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Totem Marowak', 64481960, 22, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Wela Volcano'),
     ],
     900000, 7,
     () => DungeonGainGymBadge(GymList['Kiawe\'s Trial']));
@@ -10766,8 +10889,24 @@ dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
     },
     13090332,
     [
-        new DungeonBossPokemon('Lurantis', 65451660, 24),
-        new DungeonBossPokemon('Totem Lurantis', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Lurantis', 65451660, 24, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Lush Jungle')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Lurantis', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Castform (Sunny)', 13090332, 22, new WeatherRequirement([WeatherType.Sunny])),
+                new GymPokemon('Trumbeak', 13090332, 22),
+                new GymPokemon('Comfey', 13090332, 22),
+                new GymPokemon('Kecleon', 13090332, 22),
+                new GymPokemon('Totem Lurantis', 65451660, 24),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Lush Jungle'),
     ],
     925000, 8,
     () => DungeonGainGymBadge(GymList['Mallow\'s Trial']));
@@ -10942,10 +11081,53 @@ dungeonList['Hokulani Observatory'] = new Dungeon('Hokulani Observatory',
     },
     13883676,
     [
-        new DungeonBossPokemon('Vikavolt', 69418380, 29),
-        new DungeonBossPokemon('Togedemaru', 69418380, 33),
-        new DungeonBossPokemon('Totem Vikavolt', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
-        new DungeonBossPokemon('Totem Togedemaru', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Vikavolt', 69418380, 29, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Hokulani Observatory')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Togedemaru', 69418380, 33, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Hokulani Observatory')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Vikavolt', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Togedemaru', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Charjabug', 13883676, 28, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                    new ObtainedPokemonRequirement('Vikavolt'),
+                ])),
+                new GymPokemon('Charjabug', 13883676, 28, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Totem Vikavolt', 69418380, 29, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Dedenne', 13883676, 31, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Skarmory', 13883676, 32, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Totem Togedemaru', 69418380, 33, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Hokulani Observatory'),
     ],
     1000000, 22,
     () => DungeonGainGymBadge(GymList['Sophocles\' Trial']));
@@ -10966,8 +11148,39 @@ dungeonList['Thrifty Megamart'] = new Dungeon('Thrifty Megamart',
     },
     14705422,
     [
-        new DungeonBossPokemon('Mimikyu', 73527110, 35),
-        new DungeonBossPokemon('Totem Mimikyu', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Mimikyu', 73527110, 35, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Thrifty Megamart')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Mimikyu', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Gengar', 14705422, 27, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Haunter', 14705422, 27, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
+                new GymPokemon('Jellicent', 14705422, 33, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                    // full moon requirement
+                ])),
+                new GymPokemon('Banette', 14705422, 32, new OneFromManyRequirement([
+                    new DayCyclePartRequirement([0]),
+                    new DayCyclePartRequirement([3]),
+                ])),
+                new GymPokemon('Totem Mimikyu', 73527110, 35),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Thrifty Megamart'),
         new DungeonBossPokemon('Vivillon (Poké Ball)',  96662023, 60, {
             hide: true,
             requirement: new MultiRequirement([
@@ -11113,7 +11326,8 @@ dungeonList['Po Town'] = new Dungeon('Po Town',
                 new GymPokemon('Metang', 38351440, 40),
             ], { weight: 1, hide: true, requirement: new TemporaryBattleRequirement('Gladion 2')}, 'Royce', '(male)'),
     ],
-    1075000, 17);
+    1075000, 17,
+    () => DungeonGainGymBadge(GymList['Po Town Z Crystal']));
 
 dungeonList['Aether Foundation'] = new Dungeon('Aether Foundation',
     [
@@ -11391,8 +11605,23 @@ dungeonList['Vast Poni Canyon'] = new Dungeon('Vast Poni Canyon',
 
     15992044,
     [
-        new DungeonBossPokemon('Kommo-o', 79960220, 49),
-        new DungeonBossPokemon('Totem Kommo-o', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Kommo-o', 79960220, 49, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Vast Poni Canyon')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Kommo-o', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Hakamo-o', 15992044, 32),
+                new GymPokemon('Scizor', 15992044, 46),
+                new GymPokemon('Noivern', 15992044, 48),
+                new GymPokemon('Totem Kommo-o', 79960220, 49),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Poni Canyon'),
     ],
     1125000, 25,
     () => DungeonGainGymBadge(GymList['Vast Poni Canyon Trial']));
@@ -11414,8 +11643,22 @@ dungeonList['Mina\'s Houseboat'] = new Dungeon('Mina\'s Houseboat',
     },
     16217412,
     [
-        new DungeonBossPokemon('Ribombee', 81087060, 55),
-        new DungeonBossPokemon('Totem Ribombee', 82543791, 60, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Ribombee', 81087060, 55, {
+            requirement: new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Mina\'s Houseboat')),
+                ]),
+                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
+            ])}),
+        new DungeonBossPokemon('Totem Ribombee', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonTrainer('Trial Site',
+            [
+                new GymPokemon('Blissey', 16217412, 53),
+                new GymPokemon('Pelipper', 16217412, 52),
+                new GymPokemon('Totem Ribombee', 81087060, 55),
+            ],
+            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Seafolk Village'),
     ],
     1150000, 25,
     () => DungeonGainGymBadge(GymList['Mina\'s Trial']));
@@ -11525,7 +11768,8 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
             new StatisticRequirement(['pokemonEncountered', PokemonHelper.getPokemonByName('Necrozma').id], 1, 'Encounter at least 1 Necrozma.'),
         ])}),
     ],
-    1175000, 26);
+    1175000, 26,
+    () => DungeonGainGymBadge(GymList['Mount Lanakila Z Crystal']));
 
 dungeonList['Lake of the Sunne and Moone'] = new Dungeon('Lake of the Sunne and Moone',
     ['Clefairy', 'Sunkern', 'Skitty', 'Lunatone', 'Solrock', 'Helioptile'],

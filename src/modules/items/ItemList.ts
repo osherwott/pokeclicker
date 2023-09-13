@@ -173,6 +173,7 @@ ItemList.Crystalline_Cocoon_Jirachi = new QuestItem('Crystalline_Cocoon_Jirachi'
 ItemList.Meteorite_Shard_Delta = new QuestItem('Meteorite_Shard_Delta', 'Meteorite Shard', 'A Shard of a Meteorite', 'The Delta Episode');
 ItemList.Mysterious_Vial_Detective_Pikachu = new QuestItem('Mysterious_Vial_Detective_Pikachu', 'Mysterious Vial', 'An Aipom dropped this while running away, I wonder what it is?', 'Detective Pikachu');
 ItemList.Heart_Diamond_Diancie = new QuestItem('Heart_Diamond_Diancie', 'Heart Diamond', 'The energy core of the Diamond domain', 'Princess Diancie');
+ItemList.Island_Challenge_Amulet = new QuestItem('Island_Challenge_Amulet', 'Island Challenge Amulet', 'A symbol that denotes your pilgramige on the Island Challenge of Alola. Stronger trials await you with this in your inventory!', 'Island Challenge');
 ItemList.Red_Petal_Mina = new QuestItem('Red_Petal_Mina', 'Red Petal', 'One of the Petals you need for Mina\'s trial given by Captain Kiawe', 'Mina\'s Trial');
 ItemList.Orange_Petal_Mina = new QuestItem('Orange_Petal_Mina', 'Orange Petal', 'One of the Petals you need for Mina\'s trial given by Captain Ilima', 'Mina\'s Trial');
 ItemList.Yellow_Petal_Mina = new QuestItem('Yellow_Petal_Mina', 'Yellow Petal', 'One of the Petals you need for Mina\'s trial given by Captain Sophocles', 'Mina\'s Trial');

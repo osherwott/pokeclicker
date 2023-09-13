@@ -131,6 +131,7 @@ export type ItemNameType
 | 'Meteorite_Shard_Delta'
 | 'Mysterious_Vial_Detective_Pikachu'
 | 'Heart_Diamond_Diancie'
+| 'Island_Challenge_Amulet'
 | 'Red_Petal_Mina'
 | 'Orange_Petal_Mina'
 | 'Yellow_Petal_Mina'

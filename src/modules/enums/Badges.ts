@@ -101,24 +101,29 @@ enum BadgeEnums {
     'Elite_Drasna',
     'Elite_KalosChampion',
     // Alola
-    // TODO: these are unordered and some may be missing
     'NormaliumZ',
-    'FightiniumZ',
+    'FightiniumZ', // stamp
     'WateriumZ',
     'FiriumZ',
     'GrassiumZ',
-    'RockiumZ',
+    'RockiumZ', // stamp
     'ElectriumZ',
     'GhostiumZ',
-    'DarkiniumZ',
+    'DarkiniumZ', // stamp
     'DragoniumZ',
     'FairiumZ',
-    'GroundiumZ',
+    'GroundiumZ', // stamp
+    'IciumZ',
+    'PoisoniumZ',
+    'FlyiniumZ',
+    'PsychiumZ',
+    'BuginiumZ',
+    'SteeliumZ',
     'Elite_Olivia',
     'Elite_Acerola',
     'Elite_Molayne',
     'Elite_Kahili',
-    'Elite_AlolaChampion',
+    'Elite_AlolaChampion', // stamp
     // Magikarp Jump
     'Friend_League',
     'Quick_League',

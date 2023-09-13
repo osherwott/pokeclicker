@@ -3589,13 +3589,27 @@ TemporaryBattleList['Hau 1'] = new TemporaryBattle(
         new GymPokemon('Rowlet', 71131094, 5, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
         new GymPokemon('Litten', 71131094, 5, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
-    'Whoa! That was awesome! You and your Pokémon were both so cool!',
+    'Whoa! That was awesome! You and your Pokémon were both so cool!<br>Oh yeah! I\'m Hau! You should totally check out Iki Town! We\'re holding a festival soon!',
     [new RouteKillRequirement(10, GameConstants.Region.alola, 1)],
     undefined,
     {
+        firstTimeRewardFunction: () => {
+            App.game.quests.getQuestLine('Welcome to paradise, cousin!').beginQuest(0, undefined, true);
+        },
         displayName: 'Pokémon Trainer Hau',
         returnTown: 'Iki Town Outskirts',
-        imageName: 'Hau',
+        imageName: 'Rival Hau',
+    }
+);
+TemporaryBattleList['Melemele Spearow'] = new TemporaryBattle(
+    'Melemele Spearow',
+    [new GymPokemon('Spearow', 117328860, 4)],
+    undefined,
+    [new QuestLineStartedRequirement('Welcome to paradise, cousin!')],
+    undefined,
+    {
+        displayName: 'Agitated Spearow',
+        imageName: '../pokemon/789',
     }
 );
 TemporaryBattleList['Hau 2'] = new TemporaryBattle(
@@ -3607,30 +3621,79 @@ TemporaryBattleList['Hau 2'] = new TemporaryBattle(
         new GymPokemon('Litten', 81763320, 7, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
     'Phew... That was awesome! That was a really great battle! I had a blast fighting you!',
-    [new TemporaryBattleRequirement('Hau 1')],
+    [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 1)],
     undefined,
     {
         displayName: 'Pokémon Trainer Hau',
         returnTown: 'Iki Town',
-        imageName: 'Hau',
+        imageName: 'Rival Hau',
+    }
+);
+TemporaryBattleList['Skull 1'] = new TemporaryBattle(
+    'Skull 1',
+    [new GymPokemon('Zubat', 193227888, 9)],
+    undefined, // custom quest message
+    [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 3)],
+    undefined,
+    {
+        displayName: 'Team Skull Grunts',
+        returnTown: 'Hau\'oli City',
+        imageName: 'Team Skull Grunts (male)',
+    }
+);
+TemporaryBattleList['Ilima'] = new TemporaryBattle(
+    'Ilima',
+    [
+        new GymPokemon('Yungoos', 99760695, 10),
+        new GymPokemon('Smeargle', 184903445, 11),
+    ],
+    'You- or should I say you and your Pokémon- make quite the interesting team! I do hope you\'ll come to Verdant Cavern and attempt my trial! You can get there from Route 2.',
+    [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 4)],
+    undefined,
+    {
+        displayName: 'Captain Ilima',
+        returnTown: 'Hau\'oli City',
+    }
+);
+TemporaryBattleList['Skull 2'] = new TemporaryBattle(
+    'Skull 2',
+    [new GymPokemon('Drowzee', 325654668, 10)],
+    'Seriously, home slice?! You\'re too strong for a kid, yo! I\'ve gotta go make someone else miserable to feel better! We\'re gonna go mess with Verdant Cavern!',
+    [new TemporaryBattleRequirement('Ilima')],
+    undefined,
+    {
+        displayName: 'Team Skull Grunts',
+        returnTown: 'Hau\'oli City',
+        imageName: 'Team Skull Grunts (male)',
+    }
+);
+TemporaryBattleList['Recon Squad 1'] = new TemporaryBattle(
+    'Recon Squad 1',
+    [new GymPokemon('Furfrou', 334332002, 13)],
+    undefined, // custom quest message
+    [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 8)],
+    undefined,
+    {
+        displayName: 'Ultra Recon Squad',
+        imageName: 'specialNPCs/Ultra Recon Squad (ultra moon)',
     }
 );
 TemporaryBattleList['Hau 3'] = new TemporaryBattle(
     'Hau 3',
     [
-        new GymPokemon('Popplio', 98160909, 13, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Rowlet', 98160909, 13, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Litten', 98160909, 13, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
-        new GymPokemon('Noibat', 92470422, 11),
-        new GymPokemon('Pikachu', 93893044, 12),
+        new GymPokemon('Popplio', 111444000, 13, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Rowlet', 111444000, 13, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Litten', 111444000, 13, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Noibat', 104983480, 11),
+        new GymPokemon('Pikachu', 104983480, 12),
     ],
     'Aww, man! I wanted to show off my Pokémon\'s best side more!',
-    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Melemele Meadow'))],
+    [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 10)],
     undefined,
     {
         displayName: 'Pokémon Trainer Hau',
-        returnTown: 'Melemele Woods',
-        imageName: 'Hau',
+        returnTown: 'Melemele Meadow',
+        imageName: 'Rival Hau',
     }
 );
 TemporaryBattleList.Dexio = new TemporaryBattle(
@@ -3643,6 +3706,12 @@ TemporaryBattleList.Dexio = new TemporaryBattle(
     [new GymBadgeRequirement(BadgeEnums.FightiniumZ)],
     undefined,
     {
+        // Starts Akala story quest if both Sina and Dexio are defeated.
+        firstTimeRewardFunction: () => {
+            if (App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Sina')]() >= 1) {
+                App.game.quests.getQuestLine('Trials Galore!').beginQuest(0, undefined, true);
+            }
+        },
         displayName: 'Pokémon Trainer Dexio',
     }
 );
@@ -3656,6 +3725,12 @@ TemporaryBattleList.Sina = new TemporaryBattle(
     [new GymBadgeRequirement(BadgeEnums.FightiniumZ)],
     undefined,
     {
+        // Starts Akala story quest if both Sina and Dexio are defeated.
+        firstTimeRewardFunction: () => {
+            if (App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Dexio')]() >= 1) {
+                App.game.quests.getQuestLine('Trials Galore!').beginQuest(0, undefined, true);
+            }
+        },
         displayName: 'Pokémon Trainer Sina',
     }
 );
@@ -3675,7 +3750,7 @@ TemporaryBattleList['Hau 4'] = new TemporaryBattle(
     {
         displayName: 'Pokémon Trainer Hau',
         returnTown: 'Paniola Town',
-        imageName: 'Hau',
+        imageName: 'Rival Hau',
     }
 );
 TemporaryBattleList['Gladion 1'] = new TemporaryBattle(
@@ -3694,14 +3769,42 @@ TemporaryBattleList['Gladion 1'] = new TemporaryBattle(
         imageName: 'Gladion',
     }
 );
+TemporaryBattleList['Recon Squad 2'] = new TemporaryBattle(
+    'Recon Squad 2',
+    [new GymPokemon('Poipole', 412520122, 20)],
+    undefined, // custom quest message
+    [new QuestLineStepCompletedRequirement('Trials Galore!', 0)],
+    undefined,
+    {
+        displayName: 'Ultra Recon Squad',
+        returnTown: 'Paniola Town',
+        imageName: 'specialNPCs/Ultra Recon Squad (ultra sun)',
+        visibleRequirement: new TemporaryBattleRequirement('Gladion 1'),
+    }
+);
+TemporaryBattleList['Skull 3'] = new TemporaryBattle(
+    'Skull 3',
+    [new GymPokemon('Drowzee', 421944535, 17)],
+    undefined, // custom quest message
+    [
+        new RouteKillRequirement(10, GameConstants.Region.alola, 6),
+        new QuestLineStepCompletedRequirement('Trials Galore!', 1),
+    ],
+    undefined,
+    {
+        displayName: 'Team Skull Grunts',
+        returnTown: 'Heahea City',
+        imageName: 'Team Skull Grunts (male)',
+    }
+);
 TemporaryBattleList['Battle Royal'] = new TemporaryBattle(
     'Battle Royal',
     [
-        new GymPokemon('Type: Null', 132593929, 20),
-        new GymPokemon('Rockruff', 132593929, 20),
-        new GymPokemon('Brionne', 132593929, 20, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Dartrix', 132593929, 20, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Torracat', 132593929, 20, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Type: Null', 143802105, 20),
+        new GymPokemon('Rockruff', 143802105, 20),
+        new GymPokemon('Brionne', 143802105, 20, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Dartrix', 143802105, 20, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Torracat', 143802105, 20, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
     'The battle is over!',
     [new RouteKillRequirement(10, GameConstants.Region.alola, 6)],
@@ -3711,8 +3814,8 @@ TemporaryBattleList['Battle Royal'] = new TemporaryBattle(
 TemporaryBattleList['Plumeria 1'] = new TemporaryBattle(
     'Plumeria 1',
     [
-        new GymPokemon('Golbat', 190972759, 26),
-        new GymPokemon('Salandit', 202785507, 27),
+        new GymPokemon('Golbat', 213829395, 26),
+        new GymPokemon('Salandit', 227055956, 27),
     ],
     'Hmmph! You\'re pretty strong. I\'ll give you that. But mess with anyone in Team Skull again, and I\'ll show you how serious I can get.',
     [new RouteKillRequirement(10, GameConstants.Region.alola, 21)],
@@ -3725,9 +3828,9 @@ TemporaryBattleList['Plumeria 1'] = new TemporaryBattle(
 );
 TemporaryBattleList['Ultra Wormhole'] = new TemporaryBattle(
     'Ultra Wormhole',
-    [new GymPokemon('???', 345252381, 27)],
+    [new GymPokemon('???', 508485861, 27)],
     '<i>The creature escaped back into the ultra wormhole.</i>',
-    [new GymBadgeRequirement(BadgeEnums.RockiumZ)],
+    [new QuestLineStepCompletedRequirement('Trials Galore!', 7)],
     undefined,
     {
         hideTrainer: true,
@@ -3737,30 +3840,75 @@ TemporaryBattleList['Ultra Wormhole'] = new TemporaryBattle(
 TemporaryBattleList['Hau 5'] = new TemporaryBattle(
     'Hau 5',
     [
-        new GymPokemon('Brionne', 88240962, 30, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Dartrix', 88240962, 30, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Torracat', 88240962, 30, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
-        new GymPokemon('Flareon', 80032500, 28, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Vaporeon', 80032500, 28, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Leafeon', 80032500, 28, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
-        new GymPokemon('Noibat', 77980385, 28),
-        new GymPokemon('Tauros', 77980385, 28),
-        new GymPokemon('Alolan Raichu', 83521097, 29),
+        new GymPokemon('Brionne', 101997102, 30, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Dartrix', 101997102, 30, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Torracat', 101997102, 30, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Flareon', 92508999, 28, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Vaporeon', 92508999, 28, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Leafeon', 92508999, 28, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Noibat', 90136973, 28),
+        new GymPokemon('Tauros', 90136973, 28),
+        new GymPokemon('Alolan Raichu', 96541443, 29),
     ],
     'Bwah!! I had my breath held that whole battle!',
     [new TemporaryBattleRequirement('Ultra Wormhole')],
     undefined,
     {
+        firstTimeRewardFunction: () => {
+            App.game.quests.getQuestLine('Child of the Stars').beginQuest(0, undefined, true);
+            
+        },
         displayName: 'Pokémon Trainer Hau',
         returnTown: 'Malie City',
-        imageName: 'Hau',
+        imageName: 'Rival Hau',
+    }
+);
+TemporaryBattleList['Skull 4'] = new TemporaryBattle(
+    'Skull 4',
+    [
+        new GymPokemon('Houndour', 161175513, 28),
+        new GymPokemon('Golbat', 161175513, 28),
+        new GymPokemon('Alolan Raticate', 172626132, 29),
+    ],
+    'Yo, think about the bus drivers! If we take this bus stop, they can all chill!',
+    [
+        new RouteKillRequirement(10, GameConstants.Region.alola, 10),
+        new QuestLineStepCompletedRequirement('Child of the Stars', 0),
+    ],
+    undefined,
+    {
+        displayName: 'Skull Grunts',
+        returnTown: 'Malie City',
+        imageName: 'Team Skull Grunts (male)',
+    }
+);
+TemporaryBattleList['Molayne'] = new TemporaryBattle(
+    'Molayne',
+    [
+        new GymPokemon('Skarmory', 170174638, 29),
+        new GymPokemon('Metang', 170174638, 29),
+        new GymPokemon('Alolan Dugtrio', 175257094, 30),
+    ],
+);
+TemporaryBattleList['Skull 5'] = new TemporaryBattle(
+    'Skull 5',
+    [
+        new GymPokemon('Drowzee', 533664170, 33),
+    ],
+    undefined, // custom quest message
+    [new QuestLineStepCompletedRequirement('Child of the Stars', 3)],
+    undefined,
+    {
+        displayName: 'Team Skull Grunt',
+        returnTown: 'Aether House',
+        imageName: 'Team Skull Grunt (male)',
     }
 );
 TemporaryBattleList['Plumeria 2'] = new TemporaryBattle(
     'Plumeria 2',
     [
-        new GymPokemon('Golbat', 200727520, 37),
-        new GymPokemon('Salazzle', 213143655, 38),
+        new GymPokemon('Golbat', 255005022, 37),
+        new GymPokemon('Salazzle', 270778528, 38),
     ],
     'Hmmph. Guess you are pretty tough. Now I understand why my Grunts waste so much time battling kids. But if you want us to return the Pokémon, then you\'ll have to come to us. Alone. The boss is dying to meet you, hmmph! See you at our base in Po Town!',
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart'))],
@@ -3774,34 +3922,123 @@ TemporaryBattleList['Plumeria 2'] = new TemporaryBattle(
 TemporaryBattleList['Gladion 2'] = new TemporaryBattle(
     'Gladion 2',
     [
-        new GymPokemon('Golbat', 138153002, 42),
-        new GymPokemon('Zoroark', 138153002, 42),
-        new GymPokemon('Type: Null', 146525911, 43),
+        new GymPokemon('Golbat', 179161733, 42),
+        new GymPokemon('Zoroark', 179161733, 42),
+        new GymPokemon('Type: Null', 190020020, 43),
     ],
-    'That was wrong of me... I shouldn\'t have dragged you into a meaningless battle like that...',
-    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Po Town'))],
+    'That was wrong of me... I shouldn\'t have dragged you into a meaningless battle like that...</br>But that Cosmog will bring disaster to all of Alola! I have to get it back from them! You\'re coming with me whether you like it or not. Get on the boat.',
+    [new QuestLineStepCompletedRequirement('Child of the Stars', 6)],
     undefined,
     {
         displayName: 'Team Skull Gladion',
-        returnTown: 'Tapu Village',
-        imageName: 'Gladion',
+        returnTown: 'Aether House',
+        imageName: 'Gladion (stance)',
+    }
+);
+TemporaryBattleList['Exeggutor Tree'] = new TemporaryBattle(
+    'Exeggutor Tree',
+    [new GymPokemon('Alolan Exeggutor', 1100000, 40)],
+    undefined,
+    undefined,
+    undefined,
+    {
+        displayName: 'A Tree?',
+        isTrainerBattle: false,
+        hideTrainer: true,
+    }
+);
+TemporaryBattleList['Skull 6'] = new TemporaryBattle(
+    'Skull 6',
+    [
+        new GymPokemon('Ekans', 104373405, 45),
+        new GymPokemon('Fomantis', 104373405, 45),
+        new GymPokemon('Alolan Raticate', 104373405, 45),
+        new GymPokemon('Mareanie', 104373405, 45),
+        new GymPokemon('Golbat', 104373405, 45),
+        new GymPokemon('Houndour', 104373405, 45),
+    ],
+    undefined,
+    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Exeggutor Island Hill'))],
+    undefined,
+    {
+        displayName: 'Team Skull Grunts',
+        returnTown: 'Seafolk Village',
+        imageName: 'specialNPCs/Team Skull Grunts (group)',
+    },
+);
+TemporaryBattleList['Recon Squad 3'] = new TemporaryBattle(
+    'Recon Squad 3',
+    [new GymPokemon('Poipole', 629719547, 49)],
+    'Perhaps it is time that we stop taking matters into our own hands and instead start relying on others. Must we start by putting our faith in you?',
+    [new QuestLineStepCompletedRequirement('Emissary of Light', 2)],
+    undefined,
+    {
+        displayName: 'Ultra Recon Squad',
+        returnTown: 'Vast Poni Canyon Entrance',
+        imageName: 'specialNPCs/Ultra Recon Squad (all)',
+    },
+);
+TemporaryBattleList['Lusamine 1'] = new TemporaryBattle(
+    'Lusamine 1',
+    [
+        new GymPokemon('Clefable', 109925182, 47),
+        new GymPokemon('Lilligant', 109925182, 47),
+        new GymPokemon('Mismagius', 109925182, 47),
+        new GymPokemon('Milotic', 109925182, 47),
+        new GymPokemon('Bewear', 109925182, 47),
+        new GymPokemon('Help us Solgaleo!', 183208637, 47, new ObtainedPokemonRequirement('Solgaleo')),
+        new GymPokemon('Help us Lunala!', 183208637, 47, new ObtainedPokemonRequirement('Lunala')),
+    ],
+    undefined,
+    [new QuestLineStepCompletedRequirement('Emissary of Light', 5),
+    new OneFromManyRequirement([
+        new ObtainedPokemonRequirement('Solgaleo'),
+        new ObtainedPokemonRequirement('Lunala'),
+    ])],
+    undefined,
+    {
+        imageName: '../pokemon/-793.01',
+        displayName: 'Lusamine',
+    }
+);
+TemporaryBattleList['Lusamine 2'] = new TemporaryBattle(
+    'Lusamine 2',
+    [
+        new GymPokemon('Clefable', 109925182, 47),
+        new GymPokemon('Lilligant', 109925182, 47),
+        new GymPokemon('Mismagius', 109925182, 47),
+        new GymPokemon('Milotic', 109925182, 47),
+        new GymPokemon('Bewear', 109925182, 47),
+        new GymPokemon('You hateful little Trainer!', 183208637, 47),
+    ],
+    undefined,
+    [
+        new QuestLineStepCompletedRequirement('Emissary of Light', 5),
+        new ObtainedPokemonRequirement('Solgaleo', true),
+        new ObtainedPokemonRequirement('Lunala', true),
+    ],
+    undefined,
+    {
+        hideTrainer: true,
+        imageName: '../pokemon/-793.01',
+        displayName: 'Lusamine',
     }
 );
 TemporaryBattleList.Necrozma = new TemporaryBattle(
     'Necrozma',
     [
-        new GymPokemon('Necrozma (Dusk Mane)', 267954010, 50),
-        new GymPokemon('Necrozma (Dawn Wings)', 267954010, 50),
+        new GymPokemon('Necrozma (Dusk Mane)', 304088130, 50),
+        new GymPokemon('Necrozma (Dawn Wings)', 364088130, 50),
     ],
     'Necrozma retreated into the Ultra Wormhole',
-    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Vast Poni Canyon'))],
+    [new QuestLineCompletedRequirement('Emissary of Light')],
     undefined,
     {imageName: 'specialNPCs/Wormhole'}
 );
 TemporaryBattleList['Ultra Megalopolis'] = new TemporaryBattle(
     'Ultra Megalopolis',
-    [new GymPokemon('Ultra Necrozma', 536098161, 60)],
-    '<i>Necrozma fled.</i>',
+    [new GymPokemon('Ultra Necrozma', 800540100, 60)],
+    undefined, // custom quest message
     [new TemporaryBattleRequirement('Necrozma')],
     undefined,
     {
@@ -3815,9 +4052,9 @@ TemporaryBattleList['Ultra Megalopolis'] = new TemporaryBattle(
 TemporaryBattleList['Captain Mina'] = new TemporaryBattle(
     'Captain Mina',
     [
-        new GymPokemon('Mawile', 189973142, 51),
-        new GymPokemon('Granbull', 189973142, 51),
-        new GymPokemon('Ribombee', 198608284, 51),
+        new GymPokemon('Mawile', 262098263, 51),
+        new GymPokemon('Granbull', 262098263, 51),
+        new GymPokemon('Ribombee', 274011820, 51),
     ],
     'Woah! I\'m shocked at your strength! But you\'ve only just begun my real trial. Now you have to go around to all the captains in Alola!',
     [new TemporaryBattleRequirement('Ultra Megalopolis')],
@@ -3827,9 +4064,9 @@ TemporaryBattleList['Captain Mina'] = new TemporaryBattle(
 TemporaryBattleList['Captain Ilima'] = new TemporaryBattle(
     'Captain Ilima',
     [
-        new GymPokemon('Gumshoos', 189973142, 51),
-        new GymPokemon('Smeargle', 189973142, 51),
-        new GymPokemon('Komala', 198608284, 51),
+        new GymPokemon('Gumshoos', 262098263, 51),
+        new GymPokemon('Smeargle', 262098263, 51),
+        new GymPokemon('Komala', 274011820, 51),
     ],
     'Yes! You have emerged victorious! You and your Pokémon have become quite a delightful team! Off to Lush Jungle? It\'s been a while since I last visited Akala.',
     [
@@ -3842,9 +4079,9 @@ TemporaryBattleList['Captain Ilima'] = new TemporaryBattle(
 TemporaryBattleList['Captain Mallow'] = new TemporaryBattle(
     'Captain Mallow',
     [
-        new GymPokemon('Trevenant', 189973142, 51),
-        new GymPokemon('Shiinotic', 189973142, 51),
-        new GymPokemon('Tsareena', 198608284, 51),
+        new GymPokemon('Trevenant', 262098263, 51),
+        new GymPokemon('Shiinotic', 262098263, 51),
+        new GymPokemon('Tsareena', 274011820, 51),
     ],
     'Sure enough, when it comes to you and Pokémon, the quality of the ingredients shines forth! Once you defeat Lana do you want to go to Wela Volcano Park with two pretty pals like us?',
     [new TemporaryBattleRequirement('Captain Ilima')],
@@ -3854,9 +4091,9 @@ TemporaryBattleList['Captain Mallow'] = new TemporaryBattle(
 TemporaryBattleList['Captain Lana'] = new TemporaryBattle(
     'Captain Lana',
     [
-        new GymPokemon('Lanturn', 189973142, 51),
-        new GymPokemon('Cloyster', 189973142, 51),
-        new GymPokemon('Araquanid', 198608284, 51),
+        new GymPokemon('Lanturn', 262098263, 51),
+        new GymPokemon('Cloyster', 262098263, 51),
+        new GymPokemon('Araquanid', 274011820, 51),
     ],
     'Well! Once again, you certainly reeled me in. Please have a good time with Kiawe.',
     [new TemporaryBattleRequirement('Captain Mallow')],
@@ -3866,9 +4103,9 @@ TemporaryBattleList['Captain Lana'] = new TemporaryBattle(
 TemporaryBattleList['Captain Kiawe'] = new TemporaryBattle(
     'Captain Kiawe',
     [
-        new GymPokemon('Arcanine', 189973142, 51),
-        new GymPokemon('Talonflame', 189973142, 51),
-        new GymPokemon('Alolan Marowak', 198608284, 51),
+        new GymPokemon('Arcanine', 262098263, 51),
+        new GymPokemon('Talonflame', 262098263, 51),
+        new GymPokemon('Alolan Marowak', 274011820, 51),
     ],
     'Not enough dancing! If you\'re hoping to complete Mina\'s trial, you should make for Hokulani Observatory next. Ula\'Ula is only a stone\'s throw away when Charizard is one of your Ride Pokémon!',
     [new TemporaryBattleRequirement('Captain Lana')],
@@ -3878,11 +4115,11 @@ TemporaryBattleList['Captain Kiawe'] = new TemporaryBattle(
 TemporaryBattleList['Captain Sophocles'] = new TemporaryBattle(
     'Captain Sophocles',
     [
-        new GymPokemon('Togedemaru', 189973142, 51),
-        new GymPokemon('Magnezone', 189973142, 51),
-        new GymPokemon('Alolan Golem', 198608284, 51),
+        new GymPokemon('Togedemaru', 262098263, 51),
+        new GymPokemon('Magnezone', 262098263, 51),
+        new GymPokemon('Alolan Golem', 274011820, 51),
     ],
-    'I couldn\'t get it done. Don\'t worry about it, my precious Pokémon... You\'ve gotta finish Mina\'s trial, right? Are you going to Tapu Village?',
+    'I couldn\'t get it done. Don\'t worry about it, my precious Pokémon... You\'ve gotta finish Mina\'s trial, right? Are you going to Aether House?',
     [new TemporaryBattleRequirement('Captain Kiawe')],
     undefined,
     {imageName: 'Sophocles'}
@@ -3890,9 +4127,9 @@ TemporaryBattleList['Captain Sophocles'] = new TemporaryBattle(
 TemporaryBattleList['Kahuna Nanu'] = new TemporaryBattle(
     'Kahuna Nanu',
     [
-        new GymPokemon('Sableye', 189973142, 51),
-        new GymPokemon('Absol', 189973142, 51),
-        new GymPokemon('Alolan Persian', 198608284, 51),
+        new GymPokemon('Sableye', 262098263, 51),
+        new GymPokemon('Absol', 262098263, 51),
+        new GymPokemon('Alolan Persian', 274011820, 51),
     ],
     'Heh... You got me good, kid. Hope I don\'t get in trouble with the girl for this. You should go tell that young filly Mina that you\'re done with what she asked you to do.',
     [new TemporaryBattleRequirement('Captain Sophocles')],
@@ -3902,15 +4139,15 @@ TemporaryBattleList['Kahuna Nanu'] = new TemporaryBattle(
 TemporaryBattleList['Gladion 3'] = new TemporaryBattle(
     'Gladion 3',
     [
-        new GymPokemon('Crobat', 190138197, 53),
-        new GymPokemon('Zoroark', 190138197, 53),
-        new GymPokemon('Lucario', 190138197, 53),
-        new GymPokemon('Silvally (Fire)', 209152017, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Silvally (Water)', 209152017, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Silvally (Grass)', 209152017, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Crobat', 194154232, 53),
+        new GymPokemon('Zoroark', 194154232, 53),
+        new GymPokemon('Lucario', 194154232, 53),
+        new GymPokemon('Silvally (Fire)', 213569655, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Silvally (Water)', 213569655, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Silvally (Grass)', 213569655, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
     'You\'ve got good Pokémon. I know what kind of Trainer you are now. And what kind of journey you\'ve been through.',
-    [new GymBadgeRequirement(BadgeEnums.GroundiumZ)],
+    [new QuestLineCompletedRequirement('Mina\'s Trial')],
     undefined,
     {
         displayName: 'Pokémon Trainer Gladion',

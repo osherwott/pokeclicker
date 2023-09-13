@@ -1,4 +1,15 @@
 const TemporaryBattleList: { [battleName: string]: TemporaryBattle } = {};
+const TemporaryBattleGainGymBadge = (gym: Gym) => {
+    // Check that the player hasn't already obtained the badge
+    if (!App.game.badgeCase.hasBadge(gym.badgeReward)) {
+        // Set the set to our expected gym
+        // This updates our modal values
+        GymRunner.gymObservable(gym);
+        GymBattle.gym = gym;
+        // Give the player the badge
+        gym.firstWinReward();
+    }
+};
 
 //Kanto Temporary Battles
 TemporaryBattleList['Blue 1'] = new TemporaryBattle(

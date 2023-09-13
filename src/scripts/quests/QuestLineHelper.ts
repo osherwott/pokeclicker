@@ -2893,6 +2893,55 @@ class QuestLineHelper {
         App.game.quests.questLines().push(minasTrialAlolaQuestLine);
     }
 
+    // Z Crystal Quest
+    public static createZCrystalQuestLine() {
+        const zCrystalQuestLine = new QuestLine('Island Challenge', 'Track down all the Z Crystals and be graced by Tapus\' presence!', new TemporaryBattleRequirement('Hau 2'), GameConstants.BulletinBoards.Alola, true);
+
+        const talkToKukuiZ = new TalkToNPCQuest(KukuiZ, 'Start your Island Challenge at Professor Kukui\'s Lab.', () => ItemList.Island_Challenge_Amulet.gain(1));
+        zCrystalQuestLine.addQuest(talkToKukuiZ);
+
+        const findAllZCrystals = new CustomQuest(18, 0, 'Find all the Z crystals around Alola. Rotom can help you scan for them on each island!', () =>
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.NormaliumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.FiriumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.WateriumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.ElectriumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.GrassiumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.IciumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.FightiniumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.PoisoniumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.GroundiumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.FlyiniumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.PsychiumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.BuginiumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.RockiumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.GhostiumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.DragoniumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.DarkiniumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.SteeliumZ) +
+            +!!App.game.badgeCase.hasBadge(BadgeEnums.FairiumZ)
+            , 0
+        );
+        zCrystalQuestLine.addQuest(findAllZCrystals);
+
+        const championKokoBattle = new DefeatTemporaryBattleQuest('Melemele Guardian', 'Defeat Tapu Koko on Mahalo Trail of Melemele Island.');
+        const championLeleBattle = new DefeatTemporaryBattleQuest('Akala Guardian', 'Defeat Tapu Lele at Ruins of Life Entrance of Akala Island.');
+        const championBuluBattle = new DefeatTemporaryBattleQuest('Ulaula Guardian', 'Defeat Tapu Bulu on Haina Desert\'s overworld of Ula\'ula Island.');
+        const championFiniBattle = new DefeatTemporaryBattleQuest('Poni Guardian', 'Defeat Tapu Fini at Ruins of Hope Altar of Poni Island.');
+        
+        zCrystalQuestLine.addQuest(new MultipleQuestsQuest([
+            championKokoBattle,
+            championLeleBattle,
+            championBuluBattle,
+            championFiniBattle,
+        ], 'Challenge the island guardians after becoming Alola\'s Champion.'
+        ));
+
+        const talkToKukuiTest = new TalkToNPCQuest(KukuiTester, 'Thanks, tester! Now see if the trial bosses are worth keeping alongside the totem mons! To remove them from the boss list, talk to Kukui.', () => player.loseItem('Island_Challenge_Amulet', 1));
+        zCrystalQuestLine.addQuest(talkToKukuiTest);
+
+        App.game.quests.questLines().push(zCrystalQuestLine);
+    }
+
     // Silvally Typings Questline - Available post-E4
     public static createSilvallyTypesQuestLine() {
         const SilvallyTypesQuestLine = new QuestLine('Typing some Memories', 'Help Gladion restore his Silvally\'s memories.', new MultiRequirement([new ObtainedPokemonRequirement('Silvally (Normal)'), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)]) , GameConstants.BulletinBoards.Alola);
@@ -4259,6 +4308,7 @@ class QuestLineHelper {
         this.createPoniAlolaQuestLine();
         this.createSkullAetherAlolaQuestLine();
         this.createMinasTrialAlolaQuestLine();
+        this.createZCrystalQuestLine();
         this.createSilvallyTypesQuestLine();
         this.createUltraBeastQuestLine();
         this.createMagikarpJumpQuestLine();

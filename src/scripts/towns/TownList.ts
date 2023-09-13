@@ -6959,6 +6959,61 @@ const RotomDexChamp = new NPC('Rotom Dex', [
     image: 'assets/images/npcs/specialNPCs/Rotom-Dex.png',
     requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion),
 });
+
+// Island Challenge Quest NPCs
+const KukuiZ = new NPC('Start your Island Challenge!', [
+    'Alola $playername$! You ready to take on the island challenge? This amulet here is proof that you\'re up to the task, yeah! With this in hand you\'ll get to experience some ultra changes in Alola\'s trials, too! Woo!',
+    '<img src="assets/images/items/quest/Island_Challenge_Amulet.png">',
+], {
+    image: 'assets/images/npcs/Professor Kukui.png',
+    requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineStepCompletedRequirement('Island Challenge', 0, GameConstants.AchievementOption.less)]),
+});
+const RotomDexZMelemele = new NPC('Scan for Z Crystals', [
+    '<b><i>Scanning.... Scanning.... Bzzt-zzt!</i></b>',
+    'There are 3 Zzzeee crystalzzz on Melemele Island!',
+    'Dungeonzzz: Verdant Cavern and Ten Carat Hill!',
+    'Grand Trial: Iki Town!',
+], {
+    image: 'assets/images/npcs/specialNPCs/Rotom-Dex.png',
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 0), new QuestLineStepCompletedRequirement('Island Challenge', 1, GameConstants.AchievementOption.less)]),
+});
+const RotomDexZAkala = new NPC('Scan for Z Crystals', [
+    '<b><i>Scanning.... Scanning.... Bzzt-zzt!</i></b>',
+    'Looks like there are only 4 crystalzzz on Akala Island!',
+    'Dungeonzzz: Brooklet Hill, Wela Volcano Park, and Lush Jungle!',
+    'Grand Trial: Konikoni City!',
+], {
+    image: 'assets/images/npcs/specialNPCs/Rotom-Dex.png',
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 0), new QuestLineStepCompletedRequirement('Island Challenge', 1, GameConstants.AchievementOption.less)]),
+});
+const RotomDexZUlaula = new NPC('Scan for Z Crystals', [
+    '<b><i>Scanning.... Scanning.... Bzzt-zzt!</i></b>',
+    'Zzzzzzt! Amazzzing! Ula\'ula Island is home to a whopping 7 Zzzeee crystalzzz!',
+    'Dungeonzzz: Hokulani Obervatory, Thrifty Megamart, Po Town, and Mount Lanakila!',
+    'Trainer Battle: Hokulani Obervatory!',
+    'Map Encounter: Haina Desert, somewhere near the Ruinzzz of Abundance!',
+    'Grand Trial: Malie City!',
+], {
+    image: 'assets/images/npcs/specialNPCs/Rotom-Dex.png',
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 0), new QuestLineStepCompletedRequirement('Island Challenge', 1, GameConstants.AchievementOption.less)]),
+});
+const RotomDexZPoni = new NPC('Scan for Z Crystals', [
+    '<b><i>Scanning.... Scanning.... Bzzt-zzt!</i></b>',
+    'Poni Island has 4 crystalzzz to be found!',
+    'Dungeonzzz: Vast Poni Canyon and Mina\'s Houseboat!',
+    'Map Encounter: Ancient Poni Path! It must have something to do with those Team Skull Gruntzzz!',
+    'Grand Trial: Exeguttor Island!',
+], {
+    image: 'assets/images/npcs/specialNPCs/Rotom-Dex.png',
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 0), new QuestLineStepCompletedRequirement('Island Challenge', 1, GameConstants.AchievementOption.less)]),
+});
+const KukuiTester = new NPC('End testing session', [
+    'Alola $playername$! Had fun? Thanks for testing! Have fun, yeah!',
+], {
+    image: 'assets/images/npcs/Professor Kukui.png',
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 2), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]),
+});
+
 //Silvally Types NPC
 const SilvallyGladion1 = new NPC('Gladion', [
     'Oh, it\'s you. I thought the professor would help when I put my request up at the Bulletin Board, but the Champion\'s even better.',
@@ -7361,7 +7416,7 @@ TownList['Mahalo Trail'] = new Town(
     'Mahalo Trail',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.MelemeleIsland,
-    [new MoveToTown('Ruins of Conflict', undefined, false), TemporaryBattleList['Melemele Spearow']],
+    [new MoveToTown('Ruins of Conflict', undefined, false), TemporaryBattleList['Melemele Spearow'], TemporaryBattleList['Melemele Guardian']],
     {
         requirements: [new QuestLineStartedRequirement('Welcome to paradise, cousin!')],
         npcs: [Lillie1, LillieMahaloTrail1, LillieMahaloTrail2, LagunaKahuna],
@@ -7374,7 +7429,7 @@ TownList['Professor Kukui\'s Lab'] = new Town(
     [new BulletinBoard(GameConstants.BulletinBoards.Alola)],
     {
         requirements: [new RouteKillRequirement(10, GameConstants.Region.alola, 18)],
-        npcs: [ProfKukui, RotomDexKukui, RotomDexSun, RotomDexMoon, RotomDexPreChamp, RotomDexChamp],
+        npcs: [ProfKukui, RotomDexKukui, RotomDexSun, RotomDexMoon, RotomDexPreChamp, RotomDexChamp, KukuiZ, KukuiTester],
     }
 );
 TownList['Hau\'oli City'] = new Town(
@@ -7384,7 +7439,7 @@ TownList['Hau\'oli City'] = new Town(
     [HauoliCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Hau\'oli City']), TemporaryBattleList['Ilima']],
     {
         requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Trainers\' School'))],
-        npcs: [NecrozmaLooker],
+        npcs: [NecrozmaLooker, RotomDexZMelemele],
     }
 );
 TownList['Melemele Woods'] = new Town(
@@ -7413,7 +7468,7 @@ TownList['Heahea City'] = new Town(
     [TemporaryBattleList.Dexio, TemporaryBattleList.Sina, HeaheaCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Heahea City']), new DockTownContent()],
     {
         requirements: [new GymBadgeRequirement(BadgeEnums.FightiniumZ)],
-        npcs: [HeaheaCafeOwner, ProfBurnetAlola],
+        npcs: [HeaheaCafeOwner, ProfBurnetAlola, RotomDexZAkala],
     }
 );
 TownList['Paniola Town'] = new Town(
@@ -7450,7 +7505,7 @@ TownList['Ruins of Life Entrance'] = new Town(
     'Ruins of Life Entrance',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.AkalaIsland,
-    [new MoveToTown('Ruins of Life', undefined, false), GymList['Konikoni City']],
+    [new MoveToTown('Ruins of Life', undefined, false), GymList['Konikoni City'], TemporaryBattleList['Akala Guardian']],
     { 
         requirements: [new TemporaryBattleRequirement('Plumeria 1')],
         npcs: [Lillie4, LillieRuinsOfLife],
@@ -7479,7 +7534,7 @@ TownList['Malie City'] = new Town(
     [MalieCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Malie City']), new MoveToDungeon(dungeonList['Malie Garden']), new DockTownContent()],
     {
         requirements: [new TemporaryBattleRequirement('Ultra Wormhole')],
-        npcs: [MalieKahuna, SilvallyNanu, Lillie5, LillieMalie, HapuMalie],
+        npcs: [MalieKahuna, SilvallyNanu, Lillie5, LillieMalie, HapuMalie, RotomDexZUlaula],
     }
 );
 TownList['Tapu Village'] = new Town(
@@ -7509,14 +7564,14 @@ TownList['Seafolk Village'] = new Town(
     [SeafolkVillageShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Seafolk Village']), new MoveToDungeon(dungeonList['Mina\'s Houseboat']), new DockTownContent(), TemporaryBattleList['Captain Mina']],
     {
         requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Aether Foundation'))],
-        npcs: [SeafolkCaptain, SeafolkCaptainMina, SilvallyMina],
+        npcs: [SeafolkCaptain, SeafolkCaptainMina, SilvallyMina, RotomDexZPoni],
     }
 );
 TownList['Ruins of Hope Altar'] = new Town(
     'Ruins of Hope Altar',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.PoniIsland,
-    [new MoveToTown('Ruins of Hope', undefined, false)],
+    [new MoveToTown('Ruins of Hope', undefined, false), TemporaryBattleList['Poni Guardian']],
     {
         requirements: [new RouteKillRequirement(10, GameConstants.Region.alola, 26)],
         npcs: [HapuHope],

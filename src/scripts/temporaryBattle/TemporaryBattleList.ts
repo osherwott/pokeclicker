@@ -4273,7 +4273,7 @@ TemporaryBattleList['Plumeria Poison Memory'] = new TemporaryBattle(
     undefined,
     {
         displayName: 'Plumeria',
-        imageName: 'Plumeria',
+        imageName: 'Plumeria (league)',
     }
 );
 TemporaryBattleList['Acerola Ghost Memory'] = new TemporaryBattle(

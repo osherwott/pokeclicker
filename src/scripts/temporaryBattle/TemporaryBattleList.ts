@@ -3902,7 +3902,6 @@ TemporaryBattleList['Molayne'] = new TemporaryBattle(
     ],
     undefined,
 );
-);
 TemporaryBattleList['Skull 5'] = new TemporaryBattle(
     'Skull 5',
     [

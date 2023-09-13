@@ -1683,6 +1683,126 @@ GymList['Mina\'s Trial'] = new Gym(
         achievement: false,
     }
 );
+GymList['Ten Carat Hill Z Crystal'] = new Gym(
+    'Kahili',
+    'Ten Carat Hill',
+    [
+        new GymPokemon('Rockruff', 2458300, 30),
+        new GymPokemon('Hakamo-o', 2462000, 36), // totem
+    ],
+    BadgeEnums.FlyiniumZ,
+    128000,
+    'I couldn\'t help but notice you stumble upon the old trial site. The glistening Flyinium Z... It\'s yours now. Use it well.',
+    undefined,
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Flying], 1);
+    },
+    {
+        quest: false,
+        achievement: false,
+    },
+);
+GymList['Molayne Z Crystal'] = new Gym(
+    'Molayne',
+    'Hokulani Observatory',
+    [
+        new GymPokemon('Skarmory', 2458300, 29),
+        new GymPokemon('Metang', 2462000, 29),
+        new GymPokemon('Alolan Dugtrio', 2462000, 30),
+    ],
+    BadgeEnums.SteeliumZ,
+    128000,
+    'Here\'s a little something to remember our meeting by! I gathered these Z-Crystals when I was on my own island challenge back in my own day, adventuring with Kukui and my Pokémon in search of strength. Take it, and use it well.',
+    undefined,
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Steel], 1);
+    },
+    {
+        quest: false,
+        achievement: false,
+    },
+);
+GymList['Haina Desert Z Crystal'] = new Gym(
+    'Trial Site',
+    'Tapu Village',
+    [
+        new GymPokemon('Alolan Dugtrio', 2458300, 34),
+        new GymPokemon('Trapinch', 2462000, 32),
+        new GymPokemon('Krokorok', 2462000, 35),
+    ],
+    BadgeEnums.PsychiumZ,
+    128000,
+    '<i>Lucky you! There was a Z-Crystal hidden here all along! You obtained a Psychium Z!<i>',
+    undefined,
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Psychic], 1);
+    },
+    {
+        quest: false,
+        achievement: false,
+    },
+);
+GymList['Po Town Z Crystal'] = new Gym(
+    'Guzma',
+    'Po Town',
+    [
+        new GymPokemon('Golisopod', 2458300, 41),
+        new GymPokemon('Masquerain', 2462000, 41),
+        new GymPokemon('Pinsir', 2462000, 41),
+    ],
+    BadgeEnums.BuginiumZ,
+    128000,
+    '<i>There is a chest full of Bug type Z-Crystals. You obtained a Buginium Z!<i>',
+    undefined,
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Bug], 1);
+    },
+    {
+        quest: false,
+        achievement: false,
+    },
+    { imageName: '../dungeons/chest.png' }
+);
+GymList['Plumeria Z Crystal'] = new Gym(
+    'Plumeria',
+    'Vast Poni Canyon',
+    [
+        new GymPokemon('Golbat', 2458300, 37),
+        new GymPokemon('Salazzle', 2462000, 38),
+    ],
+    BadgeEnums.PoisoniumZ,
+    128000,
+    'That\'s enough, grunts. No one wants to see a sore loser.</br></br>You. To be honest, I\'ve treated you really badly. Even if I apologize, I know it\'s probably too late for you to forgive me. This is my way of saying sorry, OK? Take it. It\'s Poisonium Z.',
+    undefined,
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Poison], 1);
+    },
+    {
+        quest: false,
+        achievement: false,
+    },
+    { imageName: 'Plumeria (league)' }
+);
+GymList['Mount Lanakila Z Crystal'] = new Gym(
+    'Trial Site',
+    'Mount Lanakila',
+    [
+        new GymPokemon('Sneasel', 2458300, 47),
+        new GymPokemon('Absol', 2462000, 48),
+        new GymPokemon('Alolan Sandslash', 2462000, 50), // totem
+    ],
+    BadgeEnums.IciumZ,
+    128000,
+    '<i>You found an old trial site pedestal to the side! You obtained an Icium Z!<i>',
+    undefined,
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ice], 1);
+    },
+    {
+        quest: false,
+        achievement: false,
+    },
+);
 
 
 //Alola Elite 4

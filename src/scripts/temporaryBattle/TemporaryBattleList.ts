@@ -3606,7 +3606,7 @@ TemporaryBattleList['Hau 2'] = new TemporaryBattle(
         new GymPokemon('Rowlet', 81763320, 7, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
         new GymPokemon('Litten', 81763320, 7, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
-    'Phew... That was awesome! That was a really great battle! I had a blast fighting you!',
+    undefined, // leave blank because the z ring key item modal pops up
     [new TemporaryBattleRequirement('Hau 1')],
     undefined,
     {

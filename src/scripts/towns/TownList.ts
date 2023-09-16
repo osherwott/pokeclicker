@@ -6752,7 +6752,7 @@ const Lillie5 = new NPC('Ask Lillie to tag along', [
     'Here! Some Dream Orbs! See, Professor Burnet has been studying dimensions for a very long time. I still have some things I want to talk to her about. Bye!',
 ], {
     image: 'assets/images/npcs/Lillie.png',
-    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Symbiotic Relations', 4), new QuestLineStepCompletedRequirement('Symbiotic Relations', 5, GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Symbiotic Relations', 5), new QuestLineStepCompletedRequirement('Symbiotic Relations', 6, GameConstants.AchievementOption.less)]),
 });
 const Lillie6 = new NPC('Talk to Lillie', [
     'There\'s an old book with myths about Alola\'s Legendary Pokémon here. It seems to suggest they came from another world and brought life to an heir that was to be protected by the island guardians.',
@@ -6866,14 +6866,14 @@ const LillieHeahea = new NPC('Lillie', [
     'And Nebby! I\'ll have you stay in your bag, mister!'
 ], {
     image: 'assets/images/npcs/specialNPCs/Lillie (nebby).png',
-    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Symbiotic Relations', 0), new QuestLineStepCompletedRequirement('Symbiotic Relations', 3, GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Symbiotic Relations', 0), new QuestLineStepCompletedRequirement('Symbiotic Relations', 4, GameConstants.AchievementOption.less)]),
 });
 const LillieRuinsOfLife = new NPC('Lillie', [
     'Nebby! I know you tried to drag me along to the Ruins of Conflict on Melemele Island, too... Why are these ruins important to you? What do the guardians mean to you?',
     '$playername$ if it\'s all right with you, I think Nebby and I would like to watch your Grand Trial.',
 ], {
     image: 'assets/images/npcs/specialNPCs/Lillie (nebby).png',
-    requirement: new  QuestLineStepCompletedRequirement('Symbiotic Relations', 4, GameConstants.AchievementOption.less),
+    requirement: new  QuestLineStepCompletedRequirement('Symbiotic Relations', 5, GameConstants.AchievementOption.less),
 });
 const LillieMalie = new NPC('Lillie', [
     'I ended up getting lost, and then I saw this outfit, and it was the last one they had in stock, so I bought it... Hah...',
@@ -7025,7 +7025,7 @@ const KukuiTester = new NPC('End testing session', [
     'Alola $playername$! Had fun? Thanks for testing! Have fun, yeah!',
 ], {
     image: 'assets/images/npcs/Professor Kukui.png',
-    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 2), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Island Challenge', 19), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]),
 });
 
 //Silvally Types NPC
@@ -7482,7 +7482,7 @@ TownList['Heahea City'] = new Town(
     [new DreamOrbTownContent(), TemporaryBattleList.Dexio, TemporaryBattleList.Sina, HeaheaCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Heahea City']), new DockTownContent()],
     {
         requirements: [new GymBadgeRequirement(BadgeEnums.Melemele_Stamp)],
-        npcs: [HeaheaCafeOwner, ProfBurnetAlola, Lillie4, LillieHeahea],
+        npcs: [HeaheaCafeOwner, Lillie4, LillieHeahea, ProfBurnetAlola],
     }
 );
 TownList['Paniola Town'] = new Town(
@@ -7537,7 +7537,7 @@ TownList['Aether Paradise'] = new Town(
         TemporaryBattleList['Faba Psychic Memory'],
     ],
     {
-        requirements: [new QuestLineStepCompletedRequirement('Symbiotic Relations', 5)],
+        requirements: [new QuestLineStepCompletedRequirement('Symbiotic Relations', 6)],
         npcs: [AetherParadiseAlolaRoamerNPC, FabaSilvally, Lillie7, Gladion1],
     }
 );

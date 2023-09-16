@@ -3788,7 +3788,7 @@ TemporaryBattleList['Skull 3'] = new TemporaryBattle(
     undefined, // custom quest message
     [
         new RouteKillRequirement(10, GameConstants.Region.alola, 6),
-        new QuestLineStepCompletedRequirement('Symbiotic Relations', 1),
+        new QuestLineStepCompletedRequirement('Symbiotic Relations', 2),
     ],
     undefined,
     {
@@ -3830,7 +3830,7 @@ TemporaryBattleList['Ultra Wormhole'] = new TemporaryBattle(
     'Ultra Wormhole',
     [new GymPokemon('???', 508485861, 27)],
     '<i>The creature escaped back into the ultra wormhole.</i>',
-    [new QuestLineStepCompletedRequirement('Symbiotic Relations', 5)],
+    [new QuestLineStepCompletedRequirement('Symbiotic Relations', 6)],
     undefined,
     {
         hideTrainer: true,
@@ -3952,11 +3952,11 @@ TemporaryBattleList['Plumeria 2'] = new TemporaryBattle(
         new GymPokemon('Salazzle', 270778528, 38),
     ],
     'Hmmph. Guess you are pretty tough. Now I understand why my Grunts waste so much time battling kids. But if you want us to return the Pokémon, then you\'ll have to come to us. Alone. The boss is dying to meet you, hmmph! See you at our base in Po Town!',
-    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart')), new TemporaryBattleRequirement('Skull 5'),],
+    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart'))],
     undefined,
     {
         displayName: 'Team Skull Admin Plumeria',
-        returnTown: 'Tapu Village',
+        returnTown: 'Aether House',
         imageName: 'Plumeria',
     }
 );
@@ -4024,8 +4024,8 @@ TemporaryBattleList['Plumeria 3'] = new TemporaryBattle(
     'You... really lost that Z Crystal? And after my heartfelt apology, too? Guess it can\'t be helped. Here\'s another one. Don\'t go losing it this time, you lil\' dummy.</br></br><img src="assets/images/items/zCrystal/Poisonium Z.png">',
     [
         new MultiRequirement([
-            new QuestLineStepCompletedRequirement('Island Challenge', 11),
-            new QuestLineStepCompletedRequirement('Island Challenge', 12, GameConstants.AchievementOption.less),
+            new QuestLineStepCompletedRequirement('Island Challenge', 10),
+            new QuestLineStepCompletedRequirement('Island Challenge', 11, GameConstants.AchievementOption.less),
             new TemporaryBattleRequirement('Skull 6'),
         ]),
     ],
@@ -4118,7 +4118,7 @@ TemporaryBattleList['Ultra Megalopolis'] = new TemporaryBattle(
     'Ultra Megalopolis',
     [new GymPokemon('Ultra Necrozma', 800540100, 60)],
     undefined, // custom quest message
-    [new TemporaryBattleRequirement('Necrozma')],
+    [new TemporaryBattleRequirement('Necrozma'), new QuestLineCompletedRequirement('Emissary of Light')],
     undefined,
     {
         firstTimeRewardFunction: () => {

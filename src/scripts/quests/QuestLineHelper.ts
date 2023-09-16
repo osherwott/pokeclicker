@@ -2501,7 +2501,7 @@ class QuestLineHelper {
         melemeleAlolaQuestLine.addQuest(clearTrainersSchool);
 
         // 4 - Temp Battle: Skull 1
-        const battleSkullGrunts1 = new CustomQuest (1, 0,  'Beat up Team Skull in Hau\'oli City.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Skull 1')](), undefined, undefined,
+        const battleSkullGrunts1 = new CustomQuest (1, 0,  'Beat up Team Skull at Hau\'oli City\'s Dock.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Skull 1')](), undefined, undefined,
             {
                 clearedMessage: 'My thanks to you and your Pokémon. These grunts are always bothering me and my trial site. You... you\'re the trainer who cleared the Trainers\' School so effortlessly! Allow me to see if you\'re ready for my trial!',
                 npcDisplayName: 'Ilima',
@@ -2580,7 +2580,11 @@ class QuestLineHelper {
         const talkToLillie4 = new TalkToNPCQuest(Lillie4, 'Meet up with Lillie at Heahea City.');
         akalaAlolaQuestLine.addQuest(talkToLillie4);
 
-        // 1 - Temp battle: Recon Squad 2
+        // 1 - Talk to NPC: ProfBurnetAlola
+        const talkToBurnet1 = new TalkToNPCQuest(ProfBurnetAlola, 'Talk to Professor Burnet.');
+        akalaAlolaQuestLine.addQuest(talkToBurnet1);
+
+        // 2 - Temp battle: Recon Squad 2
         const battleReconSquad2 = new CustomQuest(1, 0, 'The Ultra Recon Squad is investigating a tree that reminds you of a region west of Kanto. Go check it out on Route 5.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Recon Squad 2')](), undefined, undefined,
             {
                 clearedMessage: 'Our research is insufficient to define what it means to be a Pokémon Trainer... We\'ll never be able to stop the Blinding One like this...',
@@ -2589,7 +2593,7 @@ class QuestLineHelper {
             });
         akalaAlolaQuestLine.addQuest(battleReconSquad2);
 
-        // 2 - Temp battle: Skull 3
+        // 3 - Temp battle: Skull 3
         const clearSkull3 = new CustomQuest(1, 0, 'Team Skull is causing trouble on Route 6!', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Skull 3')](), undefined, undefined,
             {
                 clearedMessage: 'Give me your name, Trainer. $playername$, eh? That\'s a fine name. I like the way you handled yourself in battle. Perhaps we\'ll meet again someday.',
@@ -2598,7 +2602,7 @@ class QuestLineHelper {
             });
         akalaAlolaQuestLine.addQuest(clearSkull3);
 
-        // 3 - Clear dungeon: Diglett's tunnel
+        // 4 - Clear dungeon: Diglett's tunnel
         const clearDiglettsTunnel = new CustomQuest (1, 0,  'You hear the echoes of bad rap and low self-esteem in the distance. Clear Diglett\'s Tunnel.', () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Diglett\'s Tunnel')](), undefined, undefined,
         {
             clearedMessage: 'Just when things were startin\' to heat up, yo, I got surrounded by Diglett and beat up, yo!',
@@ -2607,11 +2611,11 @@ class QuestLineHelper {
         });
         akalaAlolaQuestLine.addQuest(clearDiglettsTunnel);
 
-        // 4 - Gym battle: Olivia
+        // 5 - Gym battle: Olivia
         const battleKahunaOlivia = new CustomQuest (1, 0,  'Reach Kahuna Olivia and Lillie outside the Ruins of Life and complete Akala\'s Grand Trial!', () => App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Konikoni City')]());
         akalaAlolaQuestLine.addQuest(battleKahunaOlivia);
 
-        // 5 - Talk to NPC: Lillie5
+        // 6 - Talk to NPC: Lillie5
         const AkalaDreamOrbReward = () => {
             const orbsEarned = 10;
             const orbsUnlocked = App.game.dreamOrbController.orbs.filter((o) => !o.requirement || o.requirement.isCompleted());
@@ -2923,13 +2927,13 @@ class QuestLineHelper {
             const clearDungeon = new CustomQuest(
                 1,
                 zCrystalGet(crystalType),
-                `Clear the ${adjective}${captain} at ${dungeon}.`,
+                `Clear the ${adjective} ${captain} at ${dungeon}.`,
                 () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(dungeon)](),
                 undefined,
                 undefined,
                 {
                     clearedMessage: `${successMessage}</br></br><img width="100" src="assets/images/items/zCrystal/${GameConstants.zCrystalItemType[crystalType]}.svg"/>`,
-                    npcDisplayName: `${adjective}${captain}`,
+                    npcDisplayName: `${adjective} ${captain}`,
                     npcImageName: `${captain}`,
                 });
             if (trial === false) {
@@ -2942,12 +2946,12 @@ class QuestLineHelper {
         
         // Can pass steps if already have crystals
         // Mandatory Gyms
-        const battleKahunaHala = new CustomQuest(1, 0, 'Clear Kahuna Hala\'s Grand Trial at Iki Town.', () => +!!App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Iki Town')](), 0);
+        const battleKahunaHala = new CustomQuest(1, 0, 'Clear Kahuna Hala\'s Grand Trial at Iki Town.', () => +!!player.itemList['Fightinium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Iki Town')](), 0);
         const battleKahunaOlivia = new CustomQuest (1, 0,  'Clear Kahuna Olivia\'s Grand Trial at the Ruins of Life Entrance.', () => +!!player.itemList['Rockium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Konikoni City')](), 0);
         const battleKahunaNanu = new CustomQuest (1, 0,  'Clear Kahuna Nanu\'s Grand Trial at Malie City.', () => +!!player.itemList['Darkinium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Malie City')](), 0);
         const battleKahunaHapu = new CustomQuest(1, 0, 'Clear Kahuna Hapu\'s Grand Trial at Vast Poni Canyon Entrance.', () => +!!player.itemList['Groundium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Exeggutor Island')](), 0);
         // First reward dungeons (no captains for modals)
-        const clearMountLanakila = new CustomQuest(1, 0, 'Clear Mount Lanakila to find its Z Crystal.', () => +!!player.itemList['Icium Z']() + App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Ten Carat Hill')](), 0); // do i need the +?
+        const clearMountLanakila = new CustomQuest(1, 0, 'Clear Mount Lanakila to find its Z Crystal.', () => +!!player.itemList['Icium Z']() + App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Ten Carat Hill')](), 0);
         const clearTenCaratHill = new CustomQuest(1, 0, 'Clear Ten Carat Hill to find its Z Crystal.', () => +!!player.itemList['Flyinium Z']() + App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Mount Lanakila')](), 0);
         // Temp battles
         const battleSkullGang = new CustomQuest (1, 0,  'Battle Team Skull on Poni Island.', () => +!!player.itemList['Poisonium Z']() + App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Plumeria 3')](), 0);
@@ -2962,11 +2966,11 @@ class QuestLineHelper {
         zCrystalQuestLine.addQuest(battleKahunaOlivia);
         createZCrystalTrial(PokemonType.Electric, 'Hokulani Observatory', 'Sophocles', 'That Pokémon was really something else! Here, I\'ll give you this Electrium Z to reward you for beating it.');
         createZCrystalTrial(PokemonType.Ghost, 'Thrifty Megamart', 'Acerola', 'Welcome back! Now let\'s see how you did... Yup! You passed my trial! Here you go!');
-        createZCrystalTrial(PokemonType.Bug, 'Po Town', 'Guzma', '<i>There is a chest full of Bug-type Z-Crystals next to Guzma. You obtained a Buginium Z!<i>', false, 'Team Skull Boss ');
+        createZCrystalTrial(PokemonType.Bug, 'Po Town', 'Guzma', '<i>There is a chest full of Bug-type Z-Crystals next to Guzma. You obtained a Buginium Z!<i>', false, 'Team Skull Boss');
         zCrystalQuestLine.addQuest(battleKahunaNanu);
         zCrystalQuestLine.addQuest(battleSkullGang);
         zCrystalQuestLine.addQuest(battleKahunaHapu);
-        createZCrystalTrial(PokemonType.Dragon, 'Vast Poni Canyon', 'Trial Site', '<i>You obtained a Dragon-Type Z-Crystal. The Dragonium Z is yours!<i>', false, 'Ancient ');
+        createZCrystalTrial(PokemonType.Dragon, 'Vast Poni Canyon', 'Trial Site', '<i>You obtained a Dragon-Type Z-Crystal. The Dragonium Z is yours!<i>', false, 'Ancient');
         createZCrystalTrial(PokemonType.Fairy, 'Mina\'s Houseboat', 'Mina', 'That\'s a pretty great picture. You and your Pokémon! You\'re a great Pokémon Trainer! So here you go! A piece of Fairium Z for you!');
         zCrystalQuestLine.addQuest(clearMountLanakila);
         zCrystalQuestLine.addQuest(clearTenCaratHill);

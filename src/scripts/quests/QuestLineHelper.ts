@@ -2815,7 +2815,13 @@ class QuestLineHelper {
 
         // 7 - Talk to NPC: Lillie8
         const EaterOfLightReward= () => {
-            App.game.quests.getQuestLine('Eater of Light').beginQuest(0, undefined, true);
+            App.game.quests.getQuestLine('Eater of Light').beginQuest(0, undefined);
+            Notifier.notify({
+                title: '<del>Emissary</del> Eater of Light',
+                message: `A dangerous Pokémon from another world threatens the Alola region.`,
+                type: NotificationConstants.NotificationOption.dark, // dramatic dark color for plot stuff
+                timeout: 5 * GameConstants.MINUTE,
+            });
         };
 
         const talkToLillie8 = new TalkToNPCQuest(Lillie8, 'Talk to Lillie.', EaterOfLightReward);

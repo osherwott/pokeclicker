@@ -2887,33 +2887,91 @@ class QuestLineHelper {
 
     // Z Crystal Quest
     public static createZCrystalQuestLine() {
-        const zCrystalQuestLine = new QuestLine('Island Challenge', 'Track down all the Z Crystals and be graced by Tapus\' presence!', new TemporaryBattleRequirement('Hau 2'), GameConstants.BulletinBoards.Alola, true);
+        const zCrystalQuestLine = new QuestLine('Island Challenge', 'Track down all the Z Crystals and be graced by Tapus\' presence!', new TemporaryBattleRequirement('Hau 2'), GameConstants.BulletinBoards.Alola);
 
-        const talkToKukuiZ = new TalkToNPCQuest(KukuiZ, 'Start your Island Challenge at Professor Kukui\'s Lab.', () => ItemList.Island_Challenge_Amulet.gain(1));
-        zCrystalQuestLine.addQuest(talkToKukuiZ);
+        const autoModalStep = new CustomQuest(1, () => ItemList.Island_Challenge_Amulet.gain(1), 'Start your Island Challenge at Professor Kukui\'s Lab.', () => +!!App.game.statistics.routeKills[GameConstants.Region.alola]['1'](), 0, undefined,
+                {
+                clearedMessage: 'Alola $playername$! You ready to take on the island challenge? This amulet here is proof that you\'re up to the task, yeah! With this in hand you\'ll get to experience some ultra changes in Alola\'s trials, too! Woo!</br></br><img src="assets/images/items/quest/Island_Challenge_Amulet.png">',
+                npcDisplayName: 'Kukui',
+                npcImageName: 'Professor Kukui',
+            });
+        zCrystalQuestLine.addQuest(autoModalStep);
 
-        const findAllZCrystals = new CustomQuest(18, 0, 'Find all the Z crystals around Alola. Rotom can help you scan for them on each island!', () =>
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.NormaliumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.FiriumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.WateriumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.ElectriumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.GrassiumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.IciumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.FightiniumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.PoisoniumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.GroundiumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.FlyiniumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.PsychiumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.BuginiumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.RockiumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.GhostiumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.DragoniumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.DarkiniumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.SteeliumZ) +
-            +!!App.game.badgeCase.hasBadge(BadgeEnums.FairiumZ)
-            , 0
-        );
-        zCrystalQuestLine.addQuest(findAllZCrystals);
+        // Trial rewards and modal
+        const zCrystalGet = (crystalType: PokemonType) => () => {
+            player.gainItem(GameConstants.zCrystalItemType[crystalType], 1);
+            Notifier.notify({
+                title: zCrystalQuestLine.name,
+                message: `<img width="60" src="assets/images/items/zCrystal/${GameConstants.zCrystalItemType[crystalType]}.svg"/> You got the ${GameConstants.zCrystalItemType[crystalType]}!`,
+                timeout: 3e4,
+            });
+        };
+
+        const createZCrystalTrial = (crystalType: PokemonType, dungeon: string, captain: string, successMessage: string, trial?: boolean, adjective?: string) => {
+            const clearTrial = new CustomQuest(
+                1,
+                zCrystalGet(crystalType),
+                `Clear ${captain}\'s Trial at ${dungeon}.`,
+                () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(dungeon)](),
+                undefined,
+                undefined,
+                {
+                    clearedMessage: `${successMessage}</br></br><img width="100" src="assets/images/items/zCrystal/${GameConstants.zCrystalItemType[crystalType]}.svg"/>`,
+                    npcDisplayName: `Captain ${captain}`,
+                    npcImageName: `${captain}`,
+                });
+            const clearDungeon = new CustomQuest(
+                1,
+                zCrystalGet(crystalType),
+                `Clear the ${adjective}${captain} at ${dungeon}.`,
+                () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(dungeon)](),
+                undefined,
+                undefined,
+                {
+                    clearedMessage: `${successMessage}</br></br><img width="100" src="assets/images/items/zCrystal/${GameConstants.zCrystalItemType[crystalType]}.svg"/>`,
+                    npcDisplayName: `${adjective}${captain}`,
+                    npcImageName: `${captain}`,
+                });
+            if (trial === false) {
+                return zCrystalQuestLine.addQuest(clearDungeon);
+            }
+            else {
+                return zCrystalQuestLine.addQuest(clearTrial);
+            }
+        };
+        
+        // Can pass steps if already have crystals
+        // Mandatory Gyms
+        const battleKahunaHala = new CustomQuest(1, 0, 'Clear Kahuna Hala\'s Grand Trial at Iki Town.', () => +!!App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Iki Town')](), 0);
+        const battleKahunaOlivia = new CustomQuest (1, 0,  'Clear Kahuna Olivia\'s Grand Trial at the Ruins of Life Entrance.', () => +!!player.itemList['Rockium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Konikoni City')](), 0);
+        const battleKahunaNanu = new CustomQuest (1, 0,  'Clear Kahuna Nanu\'s Grand Trial at Malie City.', () => +!!player.itemList['Darkinium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Malie City')](), 0);
+        const battleKahunaHapu = new CustomQuest(1, 0, 'Clear Kahuna Hapu\'s Grand Trial at Vast Poni Canyon Entrance.', () => +!!player.itemList['Groundium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Exeggutor Island')](), 0);
+        // First reward dungeons (no captains for modals)
+        const clearMountLanakila = new CustomQuest(1, 0, 'Clear Mount Lanakila to find its Z Crystal.', () => +!!player.itemList['Icium Z']() + App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Ten Carat Hill')](), 0); // do i need the +?
+        const clearTenCaratHill = new CustomQuest(1, 0, 'Clear Ten Carat Hill to find its Z Crystal.', () => +!!player.itemList['Flyinium Z']() + App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Mount Lanakila')](), 0);
+        // Temp battles
+        const battleSkullGang = new CustomQuest (1, 0,  'Battle Team Skull on Poni Island.', () => +!!player.itemList['Poisonium Z']() + App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Plumeria 3')](), 0);
+        const battleMolayne = new CustomQuest (1, 0,  'Battle Molayne in Hokulani Observatory.', () => +!!player.itemList['Steelium Z'](), 0);
+        const battleHaina = new CustomQuest (1, 0,  'Click on the hidden trial site in Haina Desert.', () => +!!player.itemList['Psychium Z'](), 0);
+
+        createZCrystalTrial(PokemonType.Normal, 'Verdant Cavern', 'Ilima', 'What an incredible Trainer you are! The Z-Crystal from the pedestal is yours now! It is known as Normalium Z!');
+        zCrystalQuestLine.addQuest(battleKahunaHala);
+        createZCrystalTrial(PokemonType.Water, 'Brooklet Hill', 'Lana', 'Very well done! You do know what this is, don\'t you? Please take this Waterium Z.');
+        createZCrystalTrial(PokemonType.Fire, 'Wela Volcano Park', 'Kiawe', 'Whoa! S-spectacular! That Pokémon was protecting this Firium Z. Now it is yours.');
+        createZCrystalTrial(PokemonType.Grass, 'Lush Jungle', 'Mallow', 'Wow, you\'re even stronger than I thought! Looks like you\'ve cleared all three of Akala\'s trials! Here! A gift for such an inspiring young Trainer!');
+        zCrystalQuestLine.addQuest(battleKahunaOlivia);
+        createZCrystalTrial(PokemonType.Electric, 'Hokulani Observatory', 'Sophocles', 'That Pokémon was really something else! Here, I\'ll give you this Electrium Z to reward you for beating it.');
+        createZCrystalTrial(PokemonType.Ghost, 'Thrifty Megamart', 'Acerola', 'Welcome back! Now let\'s see how you did... Yup! You passed my trial! Here you go!');
+        createZCrystalTrial(PokemonType.Bug, 'Po Town', 'Guzma', '<i>There is a chest full of Bug-type Z-Crystals next to Guzma. You obtained a Buginium Z!<i>', false, 'Team Skull Boss ');
+        zCrystalQuestLine.addQuest(battleKahunaNanu);
+        zCrystalQuestLine.addQuest(battleSkullGang);
+        zCrystalQuestLine.addQuest(battleKahunaHapu);
+        createZCrystalTrial(PokemonType.Dragon, 'Vast Poni Canyon', 'Trial Site', '<i>You obtained a Dragon-Type Z-Crystal. The Dragonium Z is yours!<i>', false, 'Ancient ');
+        createZCrystalTrial(PokemonType.Fairy, 'Mina\'s Houseboat', 'Mina', 'That\'s a pretty great picture. You and your Pokémon! You\'re a great Pokémon Trainer! So here you go! A piece of Fairium Z for you!');
+        zCrystalQuestLine.addQuest(clearMountLanakila);
+        zCrystalQuestLine.addQuest(clearTenCaratHill);
+        zCrystalQuestLine.addQuest(battleMolayne);
+        zCrystalQuestLine.addQuest(battleHaina);
 
         const championKokoBattle = new DefeatTemporaryBattleQuest('Melemele Guardian', 'Defeat Tapu Koko on Mahalo Trail of Melemele Island.');
         const championLeleBattle = new DefeatTemporaryBattleQuest('Akala Guardian', 'Defeat Tapu Lele at Ruins of Life Entrance of Akala Island.');

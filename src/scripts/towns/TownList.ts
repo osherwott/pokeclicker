@@ -6975,12 +6975,12 @@ const RotomDexChamp = new NPC('Rotom Dex', [
 });
 
 // Island Challenge Quest NPCs
-const KukuiZ = new NPC('Start your Island Challenge!', [
-    'Alola $playername$! You ready to take on the island challenge? This amulet here is proof that you\'re up to the task, yeah! With this in hand you\'ll get to experience some ultra changes in Alola\'s trials, too! Woo!',
-    '<img src="assets/images/items/quest/Island_Challenge_Amulet.png">',
+const KukuiZ = new NPC('Ask about the Island Challenge', [
+    'Alola $playername$! How\'s your island challenge coming along? Having fun battlin\' those super strong totem Pokémon in the dungeons? Just thinking about them gets my blood pumping! Woo!',
+    'You might have noticed different totem bosses depending on the time of day, but there are also other factors that come into play, yeah! You can prepare and strategize with Rotom outside each trial dungeon if you\'re feelin\' cautious!',
 ], {
     image: 'assets/images/npcs/Professor Kukui.png',
-    requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineStepCompletedRequirement('Island Challenge', 0, GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]),
 });
 const RotomDexZMelemele = new NPC('Scan for Z Crystals', [
     '<b><i>Scanning.... Scanning.... Bzzt-zzt!</i></b>',
@@ -7453,7 +7453,7 @@ TownList['Hau\'oli City'] = new Town(
     [HauoliCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Hau\'oli City']), TemporaryBattleList['Ilima']],
     {
         requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Trainers\' School'))],
-        npcs: [NecrozmaLooker, RotomDexZMelemele],
+        npcs: [NecrozmaLooker],
     }
 );
 TownList['Melemele Woods'] = new Town(
@@ -7578,7 +7578,7 @@ TownList['Seafolk Village'] = new Town(
     [SeafolkVillageShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Seafolk Village']), new MoveToDungeon(dungeonList['Mina\'s Houseboat']), new DockTownContent(), TemporaryBattleList['Captain Mina']],
     {
         requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Aether Foundation'))],
-        npcs: [SeafolkCaptain, SeafolkCaptainMina, SilvallyMina, RotomDexZPoni],
+        npcs: [SeafolkCaptain, SeafolkCaptainMina, SilvallyMina],
     }
 );
 TownList['Ruins of Hope Altar'] = new Town(

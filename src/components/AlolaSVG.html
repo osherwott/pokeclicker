@@ -5298,6 +5298,16 @@
             , image: "assets/images/map/skullgrunts.png"
             })
         %>
+
+        <%- include('templates/mapOverlay',
+            { name: "Plumeria"
+            , x: 50, y: 33
+            , width: 4, height: 4
+            , databind: "click: () => TemporaryBattleList['Plumeria 3'].protectedOnclick()"
+            , visible:  "TemporaryBattleList['Plumeria 3'] && TemporaryBattleList['Plumeria 3'].isVisible()"
+            , image: "assets/images/map/plumeria.png"
+            })
+        %>
     </g>
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Magikarp Jump').id">

@@ -10449,25 +10449,10 @@ dungeonList['Verdant Cavern'] = new Dungeon('Verdant Cavern',
     },
     11595673,
     [
-        new DungeonBossPokemon('Alolan Raticate', 57978365, 12, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Verdant Cavern')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-           ])
-        }),
-        new DungeonBossPokemon('Gumshoos', 57978365, 12, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Verdant Cavern')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Raticate', 82543791, 70, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
-        new DungeonBossPokemon('Totem Gumshoos', 82543791, 70, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Alolan Raticate', 57978365, 12),
+        new DungeonBossPokemon('Gumshoos', 57978365, 12),
+        new DungeonBossPokemon('Totem Raticate', 82543791, 70, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Gumshoos', 82543791, 70, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Yungoos', 11595673, 10, new OneFromManyRequirement([
@@ -10487,7 +10472,7 @@ dungeonList['Verdant Cavern'] = new Dungeon('Verdant Cavern',
                     new DayCyclePartRequirement([3]),
                 ])),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Verdant Cavern'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)])]) }, 'of Verdant Cavern'),
     ],
     805000, 2);
 
@@ -10715,24 +10700,10 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
     },
     12138060,
     [
-        new DungeonBossPokemon('Wishiwashi (School)', 60690300, 20, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Brooklet Hill')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Araquanid', 60690300, 20, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Brooklet Hill')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Wishiwashi', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
-        new DungeonBossPokemon('Totem Araquanid', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Wishiwashi (School)', 60690300, 20),
+        new DungeonBossPokemon('Araquanid', 60690300, 20),
+        new DungeonBossPokemon('Totem Wishiwashi', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Araquanid', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Wishiwashi (Solo)', 3138060, 17, new OneFromManyRequirement([
@@ -10771,7 +10742,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
                     new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
                 ])),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Brooklet Hill'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Brooklet Hill'),
     ],
     875000, 5);
 
@@ -10814,24 +10785,10 @@ dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
     },
     12896392,
     [
-        new DungeonBossPokemon('Alolan Marowak', 64481960, 22, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Wela Volcano Park')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Salazzle', 64481960, 22, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Wela Volcano Park')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Marowak', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
-        new DungeonBossPokemon('Totem Salazzle', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Alolan Marowak', 64481960, 22),
+        new DungeonBossPokemon('Salazzle', 64481960, 22),
+        new DungeonBossPokemon('Totem Marowak', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Salazzle', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Salandit', 12896392, 20, new OneFromManyRequirement([
@@ -10852,7 +10809,7 @@ dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
                     new DayCyclePartRequirement([3]),
                 ])),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Wela Volcano'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Wela Volcano'),
     ],
     900000, 7);
 
@@ -10893,15 +10850,8 @@ dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
     },
     13090332,
     [
-        new DungeonBossPokemon('Lurantis', 65451660, 24, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Lush Jungle')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Lurantis', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Lurantis', 65451660, 24),
+        new DungeonBossPokemon('Totem Lurantis', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Castform (Sunny)', 13090332, 22, new WeatherRequirement([WeatherType.Sunny])),
@@ -10910,7 +10860,7 @@ dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
                 new GymPokemon('Kecleon', 13090332, 22),
                 new GymPokemon('Totem Lurantis', 65451660, 24),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Lush Jungle'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Lush Jungle'),
     ],
     925000, 8);
 
@@ -11084,24 +11034,10 @@ dungeonList['Hokulani Observatory'] = new Dungeon('Hokulani Observatory',
     },
     13883676,
     [
-        new DungeonBossPokemon('Vikavolt', 69418380, 29, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Hokulani Observatory')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Togedemaru', 69418380, 33, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Hokulani Observatory')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Vikavolt', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
-        new DungeonBossPokemon('Totem Togedemaru', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Vikavolt', 69418380, 29),
+        new DungeonBossPokemon('Togedemaru', 69418380, 33),
+        new DungeonBossPokemon('Totem Vikavolt', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Totem Togedemaru', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Charjabug', 13883676, 28, new OneFromManyRequirement([
@@ -11130,7 +11066,7 @@ dungeonList['Hokulani Observatory'] = new Dungeon('Hokulani Observatory',
                     new DayCyclePartRequirement([3]),
                 ])),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Hokulani Observatory'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Hokulani Observatory'),
     ],
     1000000, 22);
 
@@ -11150,15 +11086,8 @@ dungeonList['Thrifty Megamart'] = new Dungeon('Thrifty Megamart',
     },
     14705422,
     [
-        new DungeonBossPokemon('Mimikyu', 73527110, 35, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Thrifty Megamart')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Mimikyu', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Mimikyu', 73527110, 35),
+        new DungeonBossPokemon('Totem Mimikyu', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Gengar', 14705422, 27, new OneFromManyRequirement([
@@ -11182,7 +11111,7 @@ dungeonList['Thrifty Megamart'] = new Dungeon('Thrifty Megamart',
                 ])),
                 new GymPokemon('Totem Mimikyu', 73527110, 35),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Thrifty Megamart'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Thrifty Megamart'),
         new DungeonBossPokemon('Vivillon (Poké Ball)',  96662023, 60, {
             hide: true,
             requirement: new MultiRequirement([
@@ -11605,15 +11534,8 @@ dungeonList['Vast Poni Canyon'] = new Dungeon('Vast Poni Canyon',
 
     15992044,
     [
-        new DungeonBossPokemon('Kommo-o', 79960220, 49, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Vast Poni Canyon')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Kommo-o', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Kommo-o', 79960220, 49),
+        new DungeonBossPokemon('Totem Kommo-o', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Hakamo-o', 15992044, 32),
@@ -11621,7 +11543,7 @@ dungeonList['Vast Poni Canyon'] = new Dungeon('Vast Poni Canyon',
                 new GymPokemon('Noivern', 15992044, 48),
                 new GymPokemon('Totem Kommo-o', 79960220, 49),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Poni Canyon'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Poni Canyon'),
     ],
     1125000, 25);
 
@@ -11642,22 +11564,15 @@ dungeonList['Mina\'s Houseboat'] = new Dungeon('Mina\'s Houseboat',
     },
     16217412,
     [
-        new DungeonBossPokemon('Ribombee', 81087060, 55, {
-            requirement: new OneFromManyRequirement([
-                new MultiRequirement([
-                    new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-                    new ClearDungeonRequirement(10, GameConstants.getDungeonIndex('Mina\'s Houseboat')),
-                ]),
-                new ItemRequirement(0, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal),
-            ])}),
-        new DungeonBossPokemon('Totem Ribombee', 82543791, 60, {requirement: new QuestLineCompletedRequirement('Island Challenge')}),
+        new DungeonBossPokemon('Ribombee', 81087060, 55),
+        new DungeonBossPokemon('Totem Ribombee', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Blissey', 16217412, 53),
                 new GymPokemon('Pelipper', 16217412, 52),
                 new GymPokemon('Totem Ribombee', 81087060, 55),
             ],
-            { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Seafolk Village'),
+            { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Seafolk Village'),
     ],
     1150000, 25);
 

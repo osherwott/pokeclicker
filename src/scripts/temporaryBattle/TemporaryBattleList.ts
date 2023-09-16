@@ -3889,7 +3889,19 @@ TemporaryBattleList['Molayne'] = new TemporaryBattle(
         new GymPokemon('Metang', 170174638, 29),
         new GymPokemon('Alolan Dugtrio', 175257094, 30),
     ],
+    'Here\'s a little something to remember our meeting by! I gathered these Z-Crystals when I was on my own island challenge back in my own day, adventuring with Kukui and my Pokémon in search of strength. Take it, and use it well.</br></br><img src="assets/images/items/zCrystal/Steelium Z.png">',
+    [new QuestLineStartedRequirement('Island Challenge')],
     undefined,
+    {
+        firstTimeRewardFunction: () => { 
+            player.gainItem(GameConstants.zCrystalItemType[PokemonType.Steel], 1);
+            Notifier.notify({
+                title: 'Island Challenge',
+                message: `<img width="60" src="assets/images/items/zCrystal/Steelium Z.svg"/> You got the Steelium Z!`,
+                timeout: 3e4,
+            });
+        },
+    }
 );
 TemporaryBattleList['Skull 5'] = new TemporaryBattle(
     'Skull 5',
@@ -3915,12 +3927,17 @@ TemporaryBattleList['Psychium Z Trial'] = new TemporaryBattle( // use transparen
         new GymPokemon('Alolan Dugtrio', 7484122, 32),
         new GymPokemon('Trapinch', 7622397, 32),
     ],
-    undefined,
-    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart'))],
+    '<i>Lucky you! There was a Z-Crystal hidden here all along! You obtained a Psychium Z!<i>',
+    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart')), new QuestLineStartedRequirement('Island Challenge')],
     undefined,
     {
         firstTimeRewardFunction: () => { 
-            DungeonGainGymBadge(GymList['Haina Desert Z Crystal']); 
+            player.gainItem(GameConstants.zCrystalItemType[PokemonType.Psychic], 1);
+            Notifier.notify({
+                title: 'Island Challenge',
+                message: `<img width="60" src="assets/images/items/zCrystal/Psychium Z.svg"/> You got the Psychium Z!`,
+                timeout: 3e4,
+            });
         },
         displayName: 'Haina Desert',
         returnTown: 'Tapu Village',
@@ -3985,10 +4002,48 @@ TemporaryBattleList['Skull 6'] = new TemporaryBattle(
     [new QuestLineStepCompletedRequirement('Emissary of Light', 2)],
     undefined,
     {
+        firstTimeRewardFunction: () => { 
+            player.gainItem(GameConstants.zCrystalItemType[PokemonType.Poison], 1);
+            Notifier.notify({
+                title: 'Island Challenge',
+                message: `<img width="60" src="assets/images/items/zCrystal/Poisonium Z.svg"/> You got the Poisonium Z!`,
+                timeout: 3e4,
+            });
+        },
         displayName: 'Team Skull Grunts',
         returnTown: 'Seafolk Village',
         imageName: 'specialNPCs/Team Skull Grunts (group)',
     },
+);
+TemporaryBattleList['Plumeria 3'] = new TemporaryBattle(
+    'Plumeria 3',
+    [
+        new GymPokemon('Crobat', 1381530, 67),
+        new GymPokemon('Salazzle', 1381530, 67),
+    ],
+    'You... really lost that Z Crystal? And after my heartfelt apology, too? Guess it can\'t be helped. Here\'s another one. Don\'t go losing it this time, you lil\' dummy.</br></br><img src="assets/images/items/zCrystal/Poisonium Z.png">',
+    [
+        new MultiRequirement([
+            new QuestLineStepCompletedRequirement('Island Challenge', 11),
+            new QuestLineStepCompletedRequirement('Island Challenge', 12, GameConstants.AchievementOption.less),
+            new TemporaryBattleRequirement('Skull 6'),
+        ]),
+    ],
+    undefined,
+    {
+        firstTimeRewardFunction: () => { 
+            Notifier.notify({
+                title: 'Island Challenge?',
+                message: `Oops... Probably shouldn\'t have paused the quest at that step... <img width="30" src="assets/images/badges/Cascade.svg"/>`,
+                type: NotificationConstants.NotificationOption.warning,
+                sound: NotificationConstants.NotificationSound.General.battle_item_timer,
+                timeout: 3e4,
+            });
+        },
+        displayName: 'Plumeria',
+        returnTown: 'Vast Poni Canyon',
+        imageName: 'Plumeria (league)',
+    }
 );
 TemporaryBattleList['Recon Squad 3'] = new TemporaryBattle(
     'Recon Squad 3',

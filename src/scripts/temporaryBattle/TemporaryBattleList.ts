@@ -3952,7 +3952,7 @@ TemporaryBattleList['Plumeria 2'] = new TemporaryBattle(
         new GymPokemon('Salazzle', 270778528, 38),
     ],
     'Hmmph. Guess you are pretty tough. Now I understand why my Grunts waste so much time battling kids. But if you want us to return the Pokémon, then you\'ll have to come to us. Alone. The boss is dying to meet you, hmmph! See you at our base in Po Town!',
-    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart'))],
+    [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart')), new TemporaryBattleRequirement('Skull 5'),],
     undefined,
     {
         displayName: 'Team Skull Admin Plumeria',

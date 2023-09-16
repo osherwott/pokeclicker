@@ -2843,7 +2843,7 @@ class QuestLineHelper {
             npcImageName: 'specialNPCs/Ultra Recon Squad (all)',
         });
         */
-        const clearUltraMegalopolis = new CustomQuest (1, 0,  'Stop the Eater of Light from absorbing all light in Alola. Clear Ultra Megalopolis at the Altar of the Sunne and Moone.', () => +!!App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Ultra Megalopolis')](), undefined, undefined,
+        const clearUltraMegalopolis = new CustomQuest (1, 0,  'Stop the Eater of Light from absorbing all light in Alola. Clear Ultra Megalopolis at the Altar of the Sunne and Moone.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Ultra Megalopolis')](), undefined, undefined,
         {
             clearedMessage: 'Necrozma shone with such blinding light, as it used to, only to lose that light all over again... It seems to have fled somewhere now. We are grateful to you, human of Alola. May we all eventually be awash in light again.',
             npcDisplayName: 'Ultra Recon Squad',

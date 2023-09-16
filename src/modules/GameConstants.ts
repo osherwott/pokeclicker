@@ -1937,6 +1937,7 @@ export const TemporaryBattles = [
     'Captain Sophocles',
     'Kahuna Nanu',
     'Gladion 3',
+    'Champion Kukui', //
     'Melemele Guardian',
     'Akala Guardian',
     'Ulaula Guardian',

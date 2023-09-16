@@ -103,6 +103,7 @@ export const SpriteCredits: Credit[] = [
             'Plumeria',
             'Professor Burnet (gen7)',
             'Professor Kukui',
+            'Professor Kukui (champion)',
             'Rising Star (male)',
             'Rival Hau',
             'Ryuki',
@@ -609,6 +610,7 @@ export const SpriteCredits: Credit[] = [
         resources: [
             'Clemont',
             'Drasna',
+            'Guzma',
             'Korrina',
             'Malva',
             'Onympia',

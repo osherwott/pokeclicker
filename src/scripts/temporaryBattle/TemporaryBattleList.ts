@@ -4234,6 +4234,27 @@ TemporaryBattleList['Gladion 3'] = new TemporaryBattle(
         imageName: 'Gladion',
     }
 );
+TemporaryBattleList['Champion Kukui'] = new TemporaryBattle(
+    'Champion Kukui',
+    [
+        new GymPokemon('Lycanroc (Midday)', 91545555, 57),
+        new GymPokemon('Alolan Ninetales', 89636471, 56),
+        new GymPokemon('Braviary', 89636471, 56),
+        new GymPokemon('Magnezone', 89636471, 56),
+        new GymPokemon('Snorlax', 89636471, 56),
+        new GymPokemon('Primarina', 98634473, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Decidueye', 98634473, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Incineroar', 98634473, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+    ],
+    'lmao',
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1)],
+    undefined,
+    {
+        displayName: 'Pokémon Professor Kukui',
+        returnTown: 'Pokémon League Alola',
+        imageName: 'Professor Kukui (champion)',
+    }
+);
 TemporaryBattleList['Melemele Guardian'] = new TemporaryBattle(
     'Melemele Guardian',
     [new GymPokemon('Tapu Koko', 91545555, 57)],
@@ -4293,7 +4314,7 @@ TemporaryBattleList['Guzma Bug Memory'] = new TemporaryBattle(
     undefined,
     {
         displayName: 'Guzma',
-        imageName: 'Team Skull Boss (guzma)',
+        imageName: 'Guzma',
     }
 );
 TemporaryBattleList['Kahili Flying Memory'] = new TemporaryBattle(

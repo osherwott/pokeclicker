@@ -126,9 +126,14 @@ class DreamOrbController implements Saveable {
 class DreamOrbTownContent extends TownContent {
     constructor() {
         super([
-            new ObtainedPokemonRequirement('Tornadus'),
-            new ObtainedPokemonRequirement('Thundurus'),
-            new ObtainedPokemonRequirement('Landorus'),
+            new OneFromManyRequirement([
+                new MultiRequirement([
+                    new ObtainedPokemonRequirement('Tornadus'),
+                    new ObtainedPokemonRequirement('Thundurus'),
+                    new ObtainedPokemonRequirement('Landorus'),
+                ]),
+                new MaxRegionRequirement(GameConstants.Region.alola),
+            ])
         ]);
     }
     public cssClass(): string {

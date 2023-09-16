@@ -10489,8 +10489,7 @@ dungeonList['Verdant Cavern'] = new Dungeon('Verdant Cavern',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Verdant Cavern'),
     ],
-    805000, 2,
-    () => DungeonGainGymBadge(GymList['Ilima\'s Trial']));
+    805000, 2);
 
 dungeonList['Melemele Meadow'] = new Dungeon('Melemele Meadow',
     [
@@ -10584,7 +10583,14 @@ dungeonList['Ten Carat Hill'] = new Dungeon('Ten Carat Hill',
         new DungeonBossPokemon('Rockruff', 59489105, 14),
     ],
     835000, 3,
-    () => DungeonGainGymBadge(GymList['Ten Carat Hill Z Crystal']));
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Flying], 1);
+        Notifier.notify({
+            title: 'Island Challenge',
+            message: `<img width="60" src="assets/images/items/zCrystal/Flyinium Z.svg"/> You got the Flyinium Z!`,
+            timeout: 3e4,
+        });
+    });
 
 dungeonList['Pikachu Valley'] = new Dungeon('Pikachu Valley',
     ['Pikachu', 'Pichu', 'Plusle', 'Minun', 'Pachirisu', 'Emolga', 'Dedenne'],
@@ -10607,7 +10613,7 @@ dungeonList['Pikachu Valley'] = new Dungeon('Pikachu Valley',
         new DungeonBossPokemon('Pikachu (Sinnoh Cap)', 59764020, 15),
         new DungeonBossPokemon('Pikachu (Unova Cap)', 59764020, 15),
         new DungeonBossPokemon('Pikachu (Kalos Cap)', 59764020, 15),
-        new DungeonBossPokemon('Pikachu (Alola Cap)', 59764020, 15, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
+        new DungeonBossPokemon('Pikachu (Alola Cap)', 59764020, 15, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Champion_Stamp)}),
         new DungeonBossPokemon('Pikachu (World Cap)', 59764020, 15, {hide: true, requirement: new GymBadgeRequirement(BadgeEnums.Elite_GalarChampion)}),
     ],
     850000, 4);
@@ -10767,8 +10773,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Brooklet Hill'),
     ],
-    875000, 5,
-    () => DungeonGainGymBadge(GymList['Lana\'s Trial']));
+    875000, 5);
 
 dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
     [
@@ -10849,8 +10854,7 @@ dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Wela Volcano'),
     ],
-    900000, 7,
-    () => DungeonGainGymBadge(GymList['Kiawe\'s Trial']));
+    900000, 7);
 
 dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
     [
@@ -10908,8 +10912,7 @@ dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Lush Jungle'),
     ],
-    925000, 8,
-    () => DungeonGainGymBadge(GymList['Mallow\'s Trial']));
+    925000, 8);
 
 dungeonList['Diglett\'s Tunnel'] = new Dungeon('Diglett\'s Tunnel',
     [
@@ -11129,8 +11132,7 @@ dungeonList['Hokulani Observatory'] = new Dungeon('Hokulani Observatory',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Hokulani Observatory'),
     ],
-    1000000, 22,
-    () => DungeonGainGymBadge(GymList['Sophocles\' Trial']));
+    1000000, 22);
 
 dungeonList['Thrifty Megamart'] = new Dungeon('Thrifty Megamart',
     ['Golbat', 'Gastly', 'Haunter', 'Gengar', 'Shuppet', 'Banette', 'Jellicent', 'Klefki'],
@@ -11188,8 +11190,7 @@ dungeonList['Thrifty Megamart'] = new Dungeon('Thrifty Megamart',
                 new SpecialEventRequirement('Lunar New Year'),
             ])}),
     ],
-    1025000, 14,
-    () => DungeonGainGymBadge(GymList['Acerola\'s Trial']));
+    1025000, 14);
 
 dungeonList['Ula\'ula Meadow'] = new Dungeon('Ula\'ula Meadow',
     [
@@ -11326,8 +11327,7 @@ dungeonList['Po Town'] = new Dungeon('Po Town',
                 new GymPokemon('Metang', 38351440, 40),
             ], { weight: 1, hide: true, requirement: new TemporaryBattleRequirement('Gladion 2')}, 'Royce', '(male)'),
     ],
-    1075000, 17,
-    () => DungeonGainGymBadge(GymList['Po Town Z Crystal']));
+    1075000, 17);
 
 dungeonList['Aether Foundation'] = new Dungeon('Aether Foundation',
     [
@@ -11623,8 +11623,7 @@ dungeonList['Vast Poni Canyon'] = new Dungeon('Vast Poni Canyon',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Poni Canyon'),
     ],
-    1125000, 25,
-    () => DungeonGainGymBadge(GymList['Vast Poni Canyon Trial']));
+    1125000, 25);
 
 dungeonList['Mina\'s Houseboat'] = new Dungeon('Mina\'s Houseboat',
     ['Chansey', 'Wingull', 'Pelipper', 'Spritzee', 'Swirlix', 'Cutiefly', 'Comfey', 'Dhelmise'],
@@ -11660,8 +11659,7 @@ dungeonList['Mina\'s Houseboat'] = new Dungeon('Mina\'s Houseboat',
             ],
             { hide: true, weight: 1, requirement: new ItemRequirement(1, 'Island_Challenge_Amulet', GameConstants.AchievementOption.equal) }, 'of Seafolk Village'),
     ],
-    1150000, 25,
-    () => DungeonGainGymBadge(GymList['Mina\'s Trial']));
+    1150000, 25);
 
 dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
     [
@@ -11769,7 +11767,14 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
         ])}),
     ],
     1175000, 26,
-    () => DungeonGainGymBadge(GymList['Mount Lanakila Z Crystal']));
+    () => {
+        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ice], 1);
+        Notifier.notify({
+            title: 'Island Challenge',
+            message: `<img width="60" src="assets/images/items/zCrystal/Icium Z.svg"/> You got the Icium Z!`,
+            timeout: 3e4,
+        });
+    });
 
 dungeonList['Lake of the Sunne and Moone'] = new Dungeon('Lake of the Sunne and Moone',
     ['Clefairy', 'Sunkern', 'Skitty', 'Lunatone', 'Solrock', 'Helioptile'],

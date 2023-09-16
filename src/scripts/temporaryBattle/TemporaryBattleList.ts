@@ -1,15 +1,4 @@
 const TemporaryBattleList: { [battleName: string]: TemporaryBattle } = {};
-const TemporaryBattleGainGymBadge = (gym: Gym) => {
-    // Check that the player hasn't already obtained the badge
-    if (!App.game.badgeCase.hasBadge(gym.badgeReward)) {
-        // Set the set to our expected gym
-        // This updates our modal values
-        GymRunner.gymObservable(gym);
-        GymBattle.gym = gym;
-        // Give the player the badge
-        gym.firstWinReward();
-    }
-};
 
 //Kanto Temporary Battles
 TemporaryBattleList['Blue 1'] = new TemporaryBattle(
@@ -3714,7 +3703,7 @@ TemporaryBattleList.Dexio = new TemporaryBattle(
         new GymPokemon('Espeon', 195395639, 15),
     ],
     'That\'s what I would expect from a Trainer doing the island challenge. I felt the bond between you and your Pokémon!',
-    [new GymBadgeRequirement(BadgeEnums.FightiniumZ)],
+    [new GymBadgeRequirement(BadgeEnums.Melemele_Stamp)],
     undefined,
     {
         // Starts Akala story quest if both Sina and Dexio are defeated.
@@ -3733,7 +3722,7 @@ TemporaryBattleList.Sina = new TemporaryBattle(
         new GymPokemon('Glaceon', 195395639, 15),
     ],
     'I get it... Facing trials helps you grow close to your team. I think that\'s absolutely wonderful!',
-    [new GymBadgeRequirement(BadgeEnums.FightiniumZ)],
+    [new GymBadgeRequirement(BadgeEnums.Melemele_Stamp)],
     undefined,
     {
         // Starts Akala story quest if both Sina and Dexio are defeated.
@@ -4194,7 +4183,7 @@ TemporaryBattleList['Melemele Guardian'] = new TemporaryBattle(
     'Melemele Guardian',
     [new GymPokemon('Tapu Koko', 91545555, 57)],
     undefined,
-    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Champion_Stamp)],
     undefined,
     {
         hideTrainer: true,
@@ -4205,7 +4194,7 @@ TemporaryBattleList['Akala Guardian'] = new TemporaryBattle(
     'Akala Guardian',
     [new GymPokemon('Tapu Lele', 91545555, 57)],
     undefined,
-    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Champion_Stamp)],
     undefined,
     {
         hideTrainer: true,
@@ -4216,7 +4205,7 @@ TemporaryBattleList['Ulaula Guardian'] = new TemporaryBattle(
     'Ulaula Guardian',
     [new GymPokemon('Tapu Bulu', 91545555, 57)],
     undefined,
-    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Champion_Stamp)],
     undefined,
     {
         hideTrainer: true,
@@ -4228,7 +4217,7 @@ TemporaryBattleList['Poni Guardian'] = new TemporaryBattle(
     'Poni Guardian',
     [new GymPokemon('Tapu Fini', 91545555, 57)],
     undefined,
-    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    [new QuestLineStepCompletedRequirement('Island Challenge', 1), new GymBadgeRequirement(BadgeEnums.Champion_Stamp)],
     undefined,
     {
         hideTrainer: true,
@@ -4918,7 +4907,7 @@ TemporaryBattleList['Hop 1'] = new TemporaryBattle(
         new GymPokemon('Scorbunny', 142807378, 5, new StarterRequirement(GameConstants.Region.galar, GameConstants.Starter.Water)),
     ],
     'Well, that was a shock! Guess I know now why Lee thought he should give you a Pokémon, too...',
-    [new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)],
+    [new GymBadgeRequirement(BadgeEnums.Champion_Stamp)],
     undefined,
     {
         displayName: 'Pokémon Trainer Hop',

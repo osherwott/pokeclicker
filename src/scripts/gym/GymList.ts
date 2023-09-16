@@ -1461,7 +1461,7 @@ GymList['Iki Town'] = new Gym(
         new GymPokemon('Makuhita', 62058739, 15),
         new GymPokemon('Crabrawler', 63069612, 16),
     ],
-    BadgeEnums.FightiniumZ,
+    BadgeEnums.Melemele_Stamp,
     128000,
     'The results come as no surprise to me. What a fine Trainer...and what fine Pokémon, too! Accept this Z-Crystal! It allows Trainers to share their power with their partner Pokémon!',
     [new MultiRequirement([new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 11), new TemporaryBattleRequirement('Hau 3')])],
@@ -1478,7 +1478,7 @@ GymList['Konikoni City'] = new Gym(
         new GymPokemon('Lileep', 81530244, 27),
         new GymPokemon('Lycanroc (Midnight)', 83170680, 28),
     ],
-    BadgeEnums.RockiumZ,
+    BadgeEnums.Akala_Stamp,
     128000,
     'How lovely. Diamonds only sparkle after coal is pushed to its absolute limit. Here. The Rock-type Z-Crystal... The Rockium Z is all yours! I think your journey will hold many surprises. And I hope it holds many joys.',
     [new TemporaryBattleRequirement('Plumeria 1')],
@@ -1495,7 +1495,7 @@ GymList['Malie City'] = new Gym(
         new GymPokemon('Krokorok', 101710296, 43),
         new GymPokemon('Alolan Persian', 103271750, 44),
     ],
-    BadgeEnums.DarkiniumZ,
+    BadgeEnums.Ula_Ula_Stamp,
     128000,
     'Hmph... heh. Let me fix your team up for you. Here. This is yours.</br>There. Congratulations or whatever. You\'ve officially finished your Ula\'ula trials. You\'ve got somewhere else to be, don\'t you? Try not to destroy the whole place.',
     [new TemporaryBattleRequirement('Gladion 2')],
@@ -1516,7 +1516,7 @@ GymList['Exeggutor Island'] = new Gym(
         new GymPokemon('Flygon', 91233435, 53, new QuestLineStepCompletedRequirement('Emissary of Light', 3)),
         new GymPokemon('Mudsdale', 92529615, 54, new QuestLineStepCompletedRequirement('Emissary of Light', 3)),
     ],
-    BadgeEnums.GroundiumZ,
+    BadgeEnums.Poni_Stamp,
     128000,
     'You have succeeded in your final grand trial! That was enjoyable. Looks like I cannot beat you even when I am not holding back... Take your Ground-type Z-Crystal then... This Groundium Z is yours!',
     [new TemporaryBattleRequirement('Recon Squad 3')],
@@ -1524,288 +1524,6 @@ GymList['Exeggutor Island'] = new Gym(
         player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ground], 1);
     }, undefined, { displayName: 'Hapu\'s Grand Trial' }
 );
-//trials
-GymList['Ilima\'s Trial'] = new Gym(
-    'Ilima',
-    'Verdant Cavern',
-    [
-        new GymPokemon('Gumshoos', 2458300, 51),
-        new GymPokemon('Smeargle', 2462000, 51),
-        new GymPokemon('Komala', 2462000, 51),
-    ],
-    BadgeEnums.NormaliumZ,
-    128000,
-    'What an incredible Trainer you are! The Z-Crystal from the pedestal is yours now! It is known as Normalium Z!',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Normal], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Lana\'s Trial'] = new Gym(
-    'Lana',
-    'Brooklet Hill',
-    [
-        new GymPokemon('Lanturn', 2458300, 51),
-        new GymPokemon('Cloyster', 2462000, 51),
-        new GymPokemon('Araquanid', 2462000, 51),
-    ],
-    BadgeEnums.WateriumZ,
-    128000,
-    'Very well done! You do know what this is, don\'t you? Please take this Waterium Z.',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Water], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Kiawe\'s Trial'] = new Gym(
-    'Kiawe',
-    'Wela Volcano Park',
-    [
-        new GymPokemon('Arcanine', 2458300, 51),
-        new GymPokemon('Talonflame', 2462000, 51),
-        new GymPokemon('Alolan Marowak', 2462000, 51),
-    ],
-    BadgeEnums.FiriumZ,
-    128000,
-    'Whoa! S-spectacular! That Pokémon was protecting this Firium Z. Now it is yours.',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Fire], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Mallow\'s Trial'] = new Gym(
-    'Mallow',
-    'Lush Jungle',
-    [
-        new GymPokemon('Trevenant', 2458300, 51),
-        new GymPokemon('Shiinotic', 2462000, 51),
-        new GymPokemon('Tsareena', 2462000, 51),
-    ],
-    BadgeEnums.GrassiumZ,
-    128000,
-    'Wow, you\'re even stronger than I thought! Looks like you\'ve cleared all three of Akala\'s trials! Here! A gift for such an inspiring young Trainer!',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Grass], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Sophocles\' Trial'] = new Gym(
-    'Sophocles',
-    'Hokulani Observatory',
-    [
-        new GymPokemon('Togedemaru', 2458300, 51),
-        new GymPokemon('Magnezone', 2462000, 51),
-        new GymPokemon('Alolan Golem', 2462000, 51),
-    ],
-    BadgeEnums.ElectriumZ,
-    128000,
-    'That Pokémon was really something else! Here, I\'ll give you this Electrium Z to reward you for beating it.',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Electric], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Acerola\'s Trial'] = new Gym(
-    'Acerola',
-    'Thrifty Megamart',
-    [
-        new GymPokemon('Haunter', 2458300, 51),
-        new GymPokemon('Gengar', 2462000, 51),
-        new GymPokemon('Mimikyu', 2462000, 51),
-    ],
-    BadgeEnums.GhostiumZ,
-    128000,
-    'Welcome back! Now let\'s see how you did... Yup! You passed my trial! Here you go!',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ghost], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Vast Poni Canyon Trial'] = new Gym(
-    'Trial Site',
-    'Vast Poni Canyon',
-    [
-        new GymPokemon('Jangmo-o', 2458300, 51),
-        new GymPokemon('Hakamo-o', 2462000, 51),
-        new GymPokemon('Kommo-o', 2462000, 51),
-    ],
-    BadgeEnums.DragoniumZ,
-    128000,
-    '<i>You obtained a Dragon-Type Z-Crystal. The Dragonium Z is yours!<i>',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Dragon], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-);
-GymList['Mina\'s Trial'] = new Gym(
-    'Mina',
-    'Mina\'s Houseboat',
-    [
-        new GymPokemon('Pelipper', 2458300, 51),
-        new GymPokemon('Chansey', 2462000, 51),
-        new GymPokemon('Ribombee', 2462000, 51),
-    ],
-    BadgeEnums.FairiumZ,
-    128000,
-    'That\'s a pretty great picture. You and your Pokémon! You\'re a great Pokémon Trainer! So here you go! A piece of Fairium Z for you!',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Fairy], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    }
-);
-GymList['Ten Carat Hill Z Crystal'] = new Gym(
-    'Kahili',
-    'Ten Carat Hill',
-    [
-        new GymPokemon('Rockruff', 2458300, 30),
-        new GymPokemon('Hakamo-o', 2462000, 36), // totem
-    ],
-    BadgeEnums.FlyiniumZ,
-    128000,
-    'I couldn\'t help but notice you stumble upon the old trial site. The glistening Flyinium Z... It\'s yours now. Use it well.',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Flying], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-);
-GymList['Molayne Z Crystal'] = new Gym(
-    'Molayne',
-    'Hokulani Observatory',
-    [
-        new GymPokemon('Skarmory', 2458300, 29),
-        new GymPokemon('Metang', 2462000, 29),
-        new GymPokemon('Alolan Dugtrio', 2462000, 30),
-    ],
-    BadgeEnums.SteeliumZ,
-    128000,
-    'Here\'s a little something to remember our meeting by! I gathered these Z-Crystals when I was on my own island challenge back in my own day, adventuring with Kukui and my Pokémon in search of strength. Take it, and use it well.',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Steel], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-);
-GymList['Haina Desert Z Crystal'] = new Gym(
-    'Trial Site',
-    'Tapu Village',
-    [
-        new GymPokemon('Alolan Dugtrio', 2458300, 34),
-        new GymPokemon('Trapinch', 2462000, 32),
-        new GymPokemon('Krokorok', 2462000, 35),
-    ],
-    BadgeEnums.PsychiumZ,
-    128000,
-    '<i>Lucky you! There was a Z-Crystal hidden here all along! You obtained a Psychium Z!<i>',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Psychic], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-);
-GymList['Po Town Z Crystal'] = new Gym(
-    'Guzma',
-    'Po Town',
-    [
-        new GymPokemon('Golisopod', 2458300, 41),
-        new GymPokemon('Masquerain', 2462000, 41),
-        new GymPokemon('Pinsir', 2462000, 41),
-    ],
-    BadgeEnums.BuginiumZ,
-    128000,
-    '<i>There is a chest full of Bug type Z-Crystals. You obtained a Buginium Z!<i>',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Bug], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-    { imageName: '../dungeons/chest.png' }
-);
-GymList['Plumeria Z Crystal'] = new Gym(
-    'Plumeria',
-    'Vast Poni Canyon',
-    [
-        new GymPokemon('Golbat', 2458300, 37),
-        new GymPokemon('Salazzle', 2462000, 38),
-    ],
-    BadgeEnums.PoisoniumZ,
-    128000,
-    'That\'s enough, grunts. No one wants to see a sore loser.</br></br>You. To be honest, I\'ve treated you really badly. Even if I apologize, I know it\'s probably too late for you to forgive me. This is my way of saying sorry, OK? Take it. It\'s Poisonium Z.',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Poison], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-    { imageName: 'Plumeria (league)' }
-);
-GymList['Mount Lanakila Z Crystal'] = new Gym(
-    'Trial Site',
-    'Mount Lanakila',
-    [
-        new GymPokemon('Sneasel', 2458300, 47),
-        new GymPokemon('Absol', 2462000, 48),
-        new GymPokemon('Alolan Sandslash', 2462000, 50), // totem
-    ],
-    BadgeEnums.IciumZ,
-    128000,
-    '<i>You found an old trial site pedestal to the side! You obtained an Icium Z!<i>',
-    undefined,
-    () => {
-        player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ice], 1);
-    },
-    {
-        quest: false,
-        achievement: false,
-    },
-);
-
 
 //Alola Elite 4
 //TODO: Balancing of elite Pokemon HP & rewards.
@@ -1822,7 +1540,7 @@ GymList['Elite Molayne'] = new Gym(
     BadgeEnums.Elite_Molayne,
     64000,
     'That Kukui... He certainly found an interesting Trainer for me to face!',
-    [new GymBadgeRequirement(BadgeEnums.GroundiumZ)]
+    [new GymBadgeRequirement(BadgeEnums.Poni_Stamp)]
 );
 GymList['Elite Olivia'] = new Gym(
     'Olivia',
@@ -1837,7 +1555,7 @@ GymList['Elite Olivia'] = new Gym(
     BadgeEnums.Elite_Olivia,
     64000,
     'I don\'t see the same look in your eyes that I saw when we first met on Akala Island. Have you had some experiences that you\'ll carry with you in your heart forever? Well, it\'s time for you to move on.',
-    [new GymBadgeRequirement(BadgeEnums.GroundiumZ)]
+    [new GymBadgeRequirement(BadgeEnums.Poni_Stamp)]
 );
 GymList['Elite Acerola'] = new Gym(
     'Acerola',
@@ -1852,7 +1570,7 @@ GymList['Elite Acerola'] = new Gym(
     BadgeEnums.Elite_Acerola,
     64000,
     'I\'m...I\'m speechless! You\'ve done me in!',
-    [new GymBadgeRequirement(BadgeEnums.GroundiumZ)]
+    [new GymBadgeRequirement(BadgeEnums.Poni_Stamp)]
 );
 GymList['Elite Kahili'] = new Gym(
     'Kahili',
@@ -1867,7 +1585,7 @@ GymList['Elite Kahili'] = new Gym(
     BadgeEnums.Elite_Kahili,
     64000,
     'It\'s frustrating to me as a member of the Elite Four, but it seems your strength is the real deal.',
-    [new GymBadgeRequirement(BadgeEnums.GroundiumZ)]
+    [new GymBadgeRequirement(BadgeEnums.Poni_Stamp)]
 );
 
 // Alola Champion
@@ -1887,7 +1605,7 @@ GymList['Champion Hau'] = new Gym(
         new GymPokemon('Leafeon', 89636471, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
         new GymPokemon('Incineroar', 96725389, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
-    BadgeEnums.Elite_AlolaChampion,
+    BadgeEnums.Champion_Stamp,
     100000,
     'We\'re gonna keep moving forward, by staying at full power all the time!',
     [

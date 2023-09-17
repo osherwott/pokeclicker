@@ -133,7 +133,7 @@ class DreamOrbTownContent extends TownContent {
                     new ObtainedPokemonRequirement('Landorus'),
                 ]),
                 new MaxRegionRequirement(GameConstants.Region.alola),
-            ])
+            ]),
         ]);
     }
     public cssClass(): string {

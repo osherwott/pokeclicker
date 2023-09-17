@@ -2604,11 +2604,11 @@ class QuestLineHelper {
 
         // 4 - Clear dungeon: Diglett's tunnel
         const clearDiglettsTunnel = new CustomQuest (1, 0,  'You hear the echoes of bad rap and low self-esteem in the distance. Clear Diglett\'s Tunnel.', () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Diglett\'s Tunnel')](), undefined, undefined,
-        {
-            clearedMessage: 'Just when things were startin\' to heat up, yo, I got surrounded by Diglett and beat up, yo!',
-            npcDisplayName: 'Team Skull',
-            npcImageName: 'Team Skull Grunts (both)',
-        });
+            {
+                clearedMessage: 'Just when things were startin\' to heat up, yo, I got surrounded by Diglett and beat up, yo!',
+                npcDisplayName: 'Team Skull',
+                npcImageName: 'Team Skull Grunts (both)',
+            });
         akalaAlolaQuestLine.addQuest(clearDiglettsTunnel);
 
         // 5 - Gym battle: Olivia
@@ -2642,7 +2642,7 @@ class QuestLineHelper {
     }
 
     // Ula'ula Island guide - Started upon defeating Hau in Malie
-    public static createUlaulaAlolaQuestLine(){
+    public static createUlaulaAlolaQuestLine() {
         const ulaulaAlolaQuestLine = new QuestLine('Child of the Stars', 'Help Lillie learn more about Nebby\'s origins on Ula\'Ula Island.');
         // 0 - Talk to NPC: Lillie
         const talkeToLillie6 = new TalkToNPCQuest(Lillie6, 'Learn about the legends of Alola from Lillie in Malie City.');
@@ -2655,18 +2655,18 @@ class QuestLineHelper {
         // 2 - Clear dungeon: Hokulani Observatory, Sophocles' Trial
         const clearHokulaniObservatory = new CustomQuest(1, 0, 'Clear Hokulani Observatory.', () => +!!App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Hokulani Observatory')](), 0);
         ulaulaAlolaQuestLine.addQuest(clearHokulaniObservatory);
-        
+
         // 3 - Defeat dungeon boss: Guzma, Malie Garden
         const defeatGuzmaMalieGarden = new DefeatDungeonBossQuest('Malie Garden', 'Team Skull Boss Guzma', 0, 'Team Skull are being annoying. Get rid of them. Beat their boss Guzma in the Malie Garden dungeon.');
         ulaulaAlolaQuestLine.addQuest(defeatGuzmaMalieGarden);
 
         // 4 - Temp battle: Skull 5
         const battleSkull5 = new CustomQuest (1, 0,  'Lillie has run into Team Skull! Protect her at Aether House!', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Skull 5')](), undefined, undefined,
-        {
-            clearedMessage: 'I just wanted to go for a stroll on my own, to see what it must feel like to be a Trainer... So Hapu and I went our separate ways... but then Nebby tried to get out of my bag...',
-            npcDisplayName: 'Lillie',
-            npcImageName: 'Lillie',
-        });
+            {
+                clearedMessage: 'I just wanted to go for a stroll on my own, to see what it must feel like to be a Trainer... So Hapu and I went our separate ways... but then Nebby tried to get out of my bag...',
+                npcDisplayName: 'Lillie',
+                npcImageName: 'Lillie',
+            });
         ulaulaAlolaQuestLine.addQuest(battleSkull5);
 
         // 5 - Clear dungeon: Thrifty Megamart, Acerola's Trial
@@ -2691,17 +2691,17 @@ class QuestLineHelper {
 
         // 9 - Clear dungeon: Aether Foundation
         const clearAetherFoundation1 = new CustomQuest(1, 0, 'Aether president Lusamine has recruited Team Skull and is using Nebby to open an Ultra Wormhole. Stop her. Clear the Aether Foundation dungeon.', () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Aether Foundation')](), undefined, undefined,
-                {
+            {
                 clearedMessage: 'That Lusamine! We will need you to leave us in peace so that we may do our job. Please don\'t get in our way. Leave Cosmog to us.',
                 npcDisplayName: 'Ultra Recon Squad',
                 npcImageName: 'specialNPCs/Ultra Recon Squad (all)',
             });
         ulaulaAlolaQuestLine.addQuest(clearAetherFoundation1);
-        
+
         // 10 - Clear dungeon boss: Aether Branch Chief Faba
         const clearAetherFoundation2 = new CustomQuest(1, 0, 'Get past Faba.', () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Aether Foundation')](), undefined, undefined,
         // TODO: const defeatFabaAether = new DefeatDungeonBossQuest('Aether Foundation', 'Aether Branch Chief Faba', 0).withDescription('defeat faba').withOptionalArgs(
-                {
+            {
                 clearedMessage: 'H-h-how can this be?! How could this child... If you\'re looking for Cosmog, I suppose it might be downstairs.',
                 npcDisplayName: 'Faba',
                 npcImageName: 'Aether Branch Chief (faba)',
@@ -2711,7 +2711,7 @@ class QuestLineHelper {
         // 11 - Clear dungeon boss: Team Skull Boss Guzma
         const clearAetherFoundation3 = new CustomQuest(1, 0, 'Get past ya boy Guzma.', () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Aether Foundation')](), undefined, undefined,
         // TODO: const defeatGuzmaAether = new DefeatDungeonBossQuest('Aether Foundation', 'Team Skull Boss Guzma', 0).withDescription('Get past ya boy.').withOptionalArgs(
-                {
+            {
                 clearedMessage: 'The daughter who stole my Cosmog from me and the son who took my Type: Null! All I ever did was give you two all the love I had, and all you did was betray me! You have no right to ask for my attention now!</br>But it doesn\'t matter now. None of that matters now! Watch... I will open the Ultra Wormhole for you... Come to me, my sweet beast!',
                 npcDisplayName: 'Lusamine',
                 npcImageName: 'Aether President (lusamine)',
@@ -2721,7 +2721,7 @@ class QuestLineHelper {
         // 12 - Clear dungeon boss: Aether President Lusamine
         const clearAetherFoundation4 = new CustomQuest(1, 0, 'Stop Lusamine!', () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Aether Foundation')](), undefined, undefined,
         // TODO: const defeatLusamineAether = new DefeatDungeonBossQuest('Aether Foundation', 'Aether President Lusamine', 0).withDescription('No! Nebby!').withOptionalArgs(
-                {
+            {
                 clearedMessage: 'All that I want is my precious beast! I don\'t care about any of the rest of you! I don\'t care if you are my child or not! If you\'re not beautiful enough to be worthy of my love, then I don\'t NEED you!</br></br><i>Lusamine left into the Ultra Wormhole.</i>',
                 npcDisplayName: 'Wormhole',
                 npcImageName: 'specialNPCs/Wormhole',
@@ -2742,7 +2742,7 @@ class QuestLineHelper {
 
         const talkToLillie7 = new TalkToNPCQuest(Lillie7, 'Talk to Lillie.');
         const talktoGladion1 = new TalkToNPCQuest(Gladion1, 'Talk to Gladion.');
-        
+
         ulaulaAlolaQuestLine.addQuest(new MultipleQuestsQuest([
             talkToLillie7,
             talktoGladion1,
@@ -2756,7 +2756,7 @@ class QuestLineHelper {
         const poniAlolaQuestLine = new QuestLine('Emissary of Light', 'Seek out the Pokémon of Alola\'s legends on Poni Island.');
         // 0 - Route Kill: Clear Alola 25, Ancient Poni Path
         const alolaRoute25 = new CustomQuest(10, 0, 'Explore Poni Island for signs of its kahuna. Clear Ancient Poni Path.', () => App.game.statistics.routeKills[GameConstants.Region.alola]['25'](), undefined, undefined,
-                {
+            {
                 clearedMessage: 'Oh! Been a while, friends. The kahuna? Hrmm. Well, I suppose the time might be right now... All right. Let us all proceed to the ruins. You stick with me, you two.',
                 npcDisplayName: 'Hapu',
                 npcImageName: 'Hapu',
@@ -2804,7 +2804,7 @@ class QuestLineHelper {
 
         // 6 - Temp battle: Clear Lusamine1 or Lusamine2
         const clearBeastLusamine = new CustomQuest(1, 0, 'Help Lillie get through to her mother with the help of the legendary Pokémon! Clear Lusamine at the Altar of the Sunne and Moone.', () =>
-        App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Lusamine 1')]() +
+            App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Lusamine 1')]() +
         App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Lusamine 2')](), undefined, undefined,
         {
             clearedMessage: 'Lillie...</br>...</br>Heh...</br>When did you... start becoming so beautiful?',
@@ -2814,11 +2814,11 @@ class QuestLineHelper {
         poniAlolaQuestLine.addQuest(clearBeastLusamine);
 
         // 7 - Talk to NPC: Lillie8
-        const EaterOfLightReward= () => {
+        const EaterOfLightReward = () => {
             App.game.quests.getQuestLine('Eater of Light').beginQuest(0, undefined);
             Notifier.notify({
                 title: '<del>Emissary</del> Eater of Light',
-                message: `A dangerous Pokémon from another world threatens the Alola region.`,
+                message: 'A dangerous Pokémon from another world threatens the Alola region.',
                 type: NotificationConstants.NotificationOption.dark, // dramatic dark color for plot stuff
                 timeout: 5 * GameConstants.MINUTE,
             });
@@ -2854,11 +2854,11 @@ class QuestLineHelper {
         });
         */
         const clearUltraMegalopolis = new CustomQuest (1, 0,  'Stop the Eater of Light from absorbing all light in Alola. Clear Ultra Megalopolis at the Altar of the Sunne and Moone.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Ultra Megalopolis')](), undefined, undefined,
-        {
-            clearedMessage: 'Necrozma shone with such blinding light, as it used to, only to lose that light all over again... It seems to have fled somewhere now. We are grateful to you, human of Alola. May we all eventually be awash in light again.',
-            npcDisplayName: 'Ultra Recon Squad',
-            npcImageName: 'specialNPCs/Ultra Recon Squad (all)',
-        });
+            {
+                clearedMessage: 'Necrozma shone with such blinding light, as it used to, only to lose that light all over again... It seems to have fled somewhere now. We are grateful to you, human of Alola. May we all eventually be awash in light again.',
+                npcDisplayName: 'Ultra Recon Squad',
+                npcImageName: 'specialNPCs/Ultra Recon Squad (all)',
+            });
         skullAetherAlolaQuestLine.addQuest(clearUltraMegalopolis);
 
         App.game.quests.questLines().push(skullAetherAlolaQuestLine);
@@ -2900,7 +2900,7 @@ class QuestLineHelper {
         const zCrystalQuestLine = new QuestLine('Island Challenge', 'Track down all the Z Crystals and be graced by Tapus\' presence!', new TemporaryBattleRequirement('Hau 2'), GameConstants.BulletinBoards.Alola);
 
         const autoModalStep = new CustomQuest(1, () => ItemList.Island_Challenge_Amulet.gain(1), 'Start your Island Challenge at Professor Kukui\'s Lab.', () => +!!App.game.statistics.routeKills[GameConstants.Region.alola]['1'](), 0, undefined,
-                {
+            {
                 clearedMessage: 'Alola $playername$! You ready to take on the island challenge? This amulet here is proof that you\'re up to the task, yeah! With this in hand you\'ll get to experience some ultra changes in Alola\'s trials, too! Woo!</br></br><img src="assets/images/items/quest/Island_Challenge_Amulet.png">',
                 npcDisplayName: 'Kukui',
                 npcImageName: 'Professor Kukui',
@@ -2944,12 +2944,11 @@ class QuestLineHelper {
                 });
             if (trial === false) {
                 return zCrystalQuestLine.addQuest(clearDungeon);
-            }
-            else {
+            } else {
                 return zCrystalQuestLine.addQuest(clearTrial);
             }
         };
-        
+
         // Can pass steps if already have crystals
         // Mandatory Gyms
         const battleKahunaHala = new CustomQuest(1, 0, 'Clear Kahuna Hala\'s Grand Trial at Iki Town.', () => +!!player.itemList['Fightinium Z']() + App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Iki Town')](), 0);
@@ -2987,7 +2986,7 @@ class QuestLineHelper {
         const championLeleBattle = new DefeatTemporaryBattleQuest('Akala Guardian', 'Defeat Tapu Lele at Ruins of Life Entrance of Akala Island.');
         const championBuluBattle = new DefeatTemporaryBattleQuest('Ulaula Guardian', 'Defeat Tapu Bulu on Haina Desert\'s overworld of Ula\'ula Island.');
         const championFiniBattle = new DefeatTemporaryBattleQuest('Poni Guardian', 'Defeat Tapu Fini at Ruins of Hope Altar of Poni Island.');
-        
+
         zCrystalQuestLine.addQuest(new MultipleQuestsQuest([
             championKokoBattle,
             championLeleBattle,

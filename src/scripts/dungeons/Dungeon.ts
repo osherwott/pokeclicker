@@ -10572,7 +10572,7 @@ dungeonList['Ten Carat Hill'] = new Dungeon('Ten Carat Hill',
         player.gainItem(GameConstants.zCrystalItemType[PokemonType.Flying], 1);
         Notifier.notify({
             title: 'Island Challenge',
-            message: `<img width="60" src="assets/images/items/zCrystal/Flyinium Z.svg"/> You got the Flyinium Z!`,
+            message: '<img width="60" src="assets/images/items/zCrystal/Flyinium Z.svg"/> You got the Flyinium Z!',
             timeout: 3e4,
         });
     });
@@ -10706,9 +10706,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
         new DungeonBossPokemon('Totem Araquanid', 82543791, 60, {hide: true, requirement: new QuestLineCompletedRequirement('Island Challenge')}),
         new DungeonTrainer('Trial Site',
             [
-                new GymPokemon('Wishiwashi (Solo)', 3138060, 17, new OneFromManyRequirement([
-                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
-                ])),
+                new GymPokemon('Wishiwashi (Solo)', 3138060, 17, new OneFromManyRequirement([new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])])),
                 new GymPokemon('Alomomola', 12138060, 18, new OneFromManyRequirement([
                     new DayCyclePartRequirement([0]),
                     new DayCyclePartRequirement([3]),
@@ -10717,9 +10715,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
                     new DayCyclePartRequirement([1]),
                     new DayCyclePartRequirement([2]),
                 ])),
-                new GymPokemon('Wishiwashi (Solo)', 3138060, 18, new OneFromManyRequirement([
-                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
-                ])),
+                new GymPokemon('Wishiwashi (Solo)', 3138060, 18, new OneFromManyRequirement([new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])])),
                 new GymPokemon('Dewpider', 12138060, 18, new OneFromManyRequirement([
                     new DayCyclePartRequirement([1]),
                     new DayCyclePartRequirement([2]),
@@ -10727,7 +10723,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
                 new GymPokemon('Wishiwashi (Solo)', 12138060, 18, new OneFromManyRequirement([
                     new DayCyclePartRequirement([0]),
                     new DayCyclePartRequirement([3]),
-                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
+                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm]),
                 ])),
                 new GymPokemon('Totem Araquanid', 60690300, 20, new MultiRequirement([
                     new OneFromManyRequirement([
@@ -10739,7 +10735,7 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
                 new GymPokemon('Totem Wishiwashi', 60690300, 20, new OneFromManyRequirement([
                     new DayCyclePartRequirement([0]),
                     new DayCyclePartRequirement([3]),
-                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm])
+                    new WeatherRequirement([WeatherType.Rain, WeatherType.Thunderstorm]),
                 ])),
             ],
             { hide: true, weight: 1, requirement: new MultiRequirement([new QuestLineStartedRequirement('Island Challenge'), new QuestLineCompletedRequirement('Island Challenge', GameConstants.AchievementOption.less)]) }, 'of Brooklet Hill'),
@@ -10797,9 +10793,9 @@ dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
                     new MultiRequirement([new ObtainedPokemonRequirement('Salazzle'), new DayCyclePartRequirement([3])]),
                 ])),
                 new GymPokemon('Totem Salazzle', 64481960, 22, new OneFromManyRequirement([
-                        new DayCyclePartRequirement([1]),
-                        new DayCyclePartRequirement([2]),
-                    ])),
+                    new DayCyclePartRequirement([1]),
+                    new DayCyclePartRequirement([2]),
+                ])),
                 new GymPokemon('Salazzle', 12896392, 20, new OneFromManyRequirement([
                     new DayCyclePartRequirement([0]),
                     new DayCyclePartRequirement([3]),
@@ -11347,14 +11343,10 @@ dungeonList['Aether Foundation'] = new Dungeon('Aether Foundation',
     15619682,
     [
         new DungeonTrainer('Dulse',
-            [
-                new GymPokemon('Poipole', 78098410, 47),
-            ],
+            [new GymPokemon('Poipole', 78098410, 47)],
             { weight: 1, hide: true, requirement: new QuestLineStepCompletedRequirement('Child of the Stars', 9, GameConstants.AchievementOption.less) }),
         new DungeonTrainer('Soliera',
-            [
-                new GymPokemon('Poipole', 78098410, 47),
-            ],
+            [new GymPokemon('Poipole', 78098410, 47)],
             { weight: 1, hide: true, requirement: new QuestLineStepCompletedRequirement('Child of the Stars', 9, GameConstants.AchievementOption.less) }),
         new DungeonTrainer('Aether Branch Chief',
             [
@@ -11686,7 +11678,7 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
         player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ice], 1);
         Notifier.notify({
             title: 'Island Challenge',
-            message: `<img width="60" src="assets/images/items/zCrystal/Icium Z.svg"/> You got the Icium Z!`,
+            message: '<img width="60" src="assets/images/items/zCrystal/Icium Z.svg"/> You got the Icium Z!',
             timeout: 3e4,
         });
     });

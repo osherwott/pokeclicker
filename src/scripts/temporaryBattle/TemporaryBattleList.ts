@@ -3641,7 +3641,7 @@ TemporaryBattleList['Skull 1'] = new TemporaryBattle(
         imageName: 'Team Skull Grunts (male)',
     }
 );
-TemporaryBattleList['Ilima'] = new TemporaryBattle(
+TemporaryBattleList.Ilima = new TemporaryBattle(
     'Ilima',
     [
         new GymPokemon('Yungoos', 99760695, 10),
@@ -3856,7 +3856,7 @@ TemporaryBattleList['Hau 5'] = new TemporaryBattle(
     {
         firstTimeRewardFunction: () => {
             App.game.quests.getQuestLine('Child of the Stars').beginQuest(0, undefined, true);
-            
+
         },
         displayName: 'Pokémon Trainer Hau',
         returnTown: 'Malie City',
@@ -3882,7 +3882,7 @@ TemporaryBattleList['Skull 4'] = new TemporaryBattle(
         imageName: 'Team Skull Grunts (male)',
     }
 );
-TemporaryBattleList['Molayne'] = new TemporaryBattle(
+TemporaryBattleList.Molayne = new TemporaryBattle(
     'Molayne',
     [
         new GymPokemon('Skarmory', 170174638, 29),
@@ -3893,11 +3893,11 @@ TemporaryBattleList['Molayne'] = new TemporaryBattle(
     [new QuestLineStartedRequirement('Island Challenge')],
     undefined,
     {
-        firstTimeRewardFunction: () => { 
+        firstTimeRewardFunction: () => {
             player.gainItem(GameConstants.zCrystalItemType[PokemonType.Steel], 1);
             Notifier.notify({
                 title: 'Island Challenge',
-                message: `<img width="60" src="assets/images/items/zCrystal/Steelium Z.svg"/> You got the Steelium Z!`,
+                message: '<img width="60" src="assets/images/items/zCrystal/Steelium Z.svg"/> You got the Steelium Z!',
                 timeout: 3e4,
             });
         },
@@ -3905,9 +3905,7 @@ TemporaryBattleList['Molayne'] = new TemporaryBattle(
 );
 TemporaryBattleList['Skull 5'] = new TemporaryBattle(
     'Skull 5',
-    [
-        new GymPokemon('Drowzee', 533664170, 33),
-    ],
+    [new GymPokemon('Drowzee', 533664170, 33)],
     undefined, // custom quest message
     [new QuestLineStepCompletedRequirement('Child of the Stars', 3)],
     undefined,
@@ -3931,11 +3929,11 @@ TemporaryBattleList['Psychium Z Trial'] = new TemporaryBattle( // use transparen
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Thrifty Megamart')), new QuestLineStartedRequirement('Island Challenge')],
     undefined,
     {
-        firstTimeRewardFunction: () => { 
+        firstTimeRewardFunction: () => {
             player.gainItem(GameConstants.zCrystalItemType[PokemonType.Psychic], 1);
             Notifier.notify({
                 title: 'Island Challenge',
-                message: `<img width="60" src="assets/images/items/zCrystal/Psychium Z.svg"/> You got the Psychium Z!`,
+                message: '<img width="60" src="assets/images/items/zCrystal/Psychium Z.svg"/> You got the Psychium Z!',
                 timeout: 3e4,
             });
         },
@@ -4002,18 +4000,18 @@ TemporaryBattleList['Skull 6'] = new TemporaryBattle(
     [new QuestLineStepCompletedRequirement('Emissary of Light', 2)],
     undefined,
     {
-        firstTimeRewardFunction: () => { 
+        firstTimeRewardFunction: () => {
             player.gainItem(GameConstants.zCrystalItemType[PokemonType.Poison], 1);
             Notifier.notify({
                 title: 'Island Challenge',
-                message: `<img width="60" src="assets/images/items/zCrystal/Poisonium Z.svg"/> You got the Poisonium Z!`,
+                message: '<img width="60" src="assets/images/items/zCrystal/Poisonium Z.svg"/> You got the Poisonium Z!',
                 timeout: 3e4,
             });
         },
         displayName: 'Team Skull Grunts',
         returnTown: 'Seafolk Village',
         imageName: 'specialNPCs/Team Skull Grunts (group)',
-    },
+    }
 );
 TemporaryBattleList['Plumeria 3'] = new TemporaryBattle(
     'Plumeria 3',
@@ -4031,10 +4029,10 @@ TemporaryBattleList['Plumeria 3'] = new TemporaryBattle(
     ],
     undefined,
     {
-        firstTimeRewardFunction: () => { 
+        firstTimeRewardFunction: () => {
             Notifier.notify({
                 title: 'Island Challenge?',
-                message: `Oops... Probably shouldn\'t have paused the quest at that step... <img width="30" src="assets/images/badges/Cascade.svg"/>`,
+                message: 'Oops... Probably shouldn\'t have paused the quest at that step... <img width="30" src="assets/images/badges/Cascade.svg"/>',
                 type: NotificationConstants.NotificationOption.warning,
                 sound: NotificationConstants.NotificationSound.General.battle_item_timer,
                 timeout: 3e4,
@@ -4055,7 +4053,7 @@ TemporaryBattleList['Recon Squad 3'] = new TemporaryBattle(
         displayName: 'Ultra Recon Squad',
         returnTown: 'Vast Poni Canyon Entrance',
         imageName: 'specialNPCs/Ultra Recon Squad (all)',
-    },
+    }
 );
 TemporaryBattleList['Lusamine 1'] = new TemporaryBattle(
     'Lusamine 1',
@@ -4069,11 +4067,13 @@ TemporaryBattleList['Lusamine 1'] = new TemporaryBattle(
         new GymPokemon('Help us Lunala!', 183208637, 47, new OneFromManyRequirement([new ObtainedPokemonRequirement('Solgaleo', true), new MultiRequirement([new ObtainedPokemonRequirement('Lunala'), new OneFromManyRequirement([new DayCyclePartRequirement([0]), new DayCyclePartRequirement([3])])])])),
     ],
     undefined,
-    [new QuestLineStepCompletedRequirement('Emissary of Light', 5),
-    new OneFromManyRequirement([
-        new ObtainedPokemonRequirement('Solgaleo'),
-        new ObtainedPokemonRequirement('Lunala'),
-    ])],
+    [
+        new QuestLineStepCompletedRequirement('Emissary of Light', 5),
+        new OneFromManyRequirement([
+            new ObtainedPokemonRequirement('Solgaleo'),
+            new ObtainedPokemonRequirement('Lunala'),
+        ]),
+    ],
     undefined,
     {
         imageName: '../pokemon/-793.01',

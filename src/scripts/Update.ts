@@ -2545,10 +2545,10 @@ class Update implements Saveable {
             // Give players the crystal if dungeon is already completed
             if (saveData.statistics.dungeonsCleared[142]) {
                 playerData._itemList['Flyinium Z'] = 1;
-            };
+            }
             if (saveData.statistics.dungeonsCleared[159]) {
                 playerData._itemList['Icium Z'] = 1;
-            };
+            }
         },
     };
 

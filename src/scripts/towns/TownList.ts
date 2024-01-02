@@ -6679,6 +6679,12 @@ const IkiKahuna = new NPC('Kahuna Hala', [
     image: 'assets/images/npcs/Hala.png',
     requirement: new OneFromManyRequirement([new QuestLineStepCompletedRequirement('Typing some Memories', 1, GameConstants.AchievementOption.less), new QuestLineStepCompletedRequirement('Typing some Memories', 3, GameConstants.AchievementOption.more)]),
 });
+const VerdantCavernIlima = new NPC('Captain Ilima', [
+    'Greetings. Captain Ilima here. In every locale where a captain holds his or her trials, you will encounter a particularly strong boss, known as a Totem Pokémon. To clear a Trial, all you have to do is defeat these Pokémon!',
+    'Some Trial Sites are protected by different Pokémon depending on the time of day. The difficulty of each Trial isn\'t affected by these changes, but it makes for quite the interesting observance!',
+], {
+    image: 'assets/images/npcs/Ilima.png',
+})
 const LagunaKahuna = new NPC('Kahuna Hala', [
     'Dooot doo doo, just a kahuna on a stroll to the laguna. ♪',
 ], {
@@ -6816,7 +6822,8 @@ const ProfKukui = new ProfNPC('Prof. Kukui',
 const Lillie1 = new NPC('Mysterious Girl', [
     'Oh... Oh, thank goodness! So...you\'re also one of the professor\'s acquaintances? It\'s nice to meet you...',
     'I am so grateful to you for helping us out of that dangerous spot. Come on. Into the bag, Nebby.',
-    'Oh...um...yes! You can call me Lillie. I know it\'s too much for me to ask it, but... Do you think you could see us back to town?',
+    'Oh...um...yes! You can call me Lillie. I know it\'s too much for me to ask it, but... Do you think you could see us back to town',
+    'So you will be taking part in the festival battle? I\'ll be sure to watch you and Hau.',
 ], {
     image: 'assets/images/npcs/specialNPCs/Lillie (nebby).png',
     requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 0), new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 1, GameConstants.AchievementOption.less)]),
@@ -6894,7 +6901,7 @@ const MoonFlute = new NPC('Play the Moon Flute', [
     requirement: new MultiRequirement ([new QuestLineStepCompletedRequirement('Emissary of Light', 5), new QuestLineStepCompletedRequirement('Emissary of Light', 6, GameConstants.AchievementOption.less), new DayCyclePartRequirement([3])]),
 });
 const DuskFlute = new NPC('Ask Lillie what to do', [
-    'Let\'s wait until Day or Night comes.',
+    'Let\'s wait and play the flutes when it\'s not Dusk or Dawn.',
 ], {
     image: 'assets/images/npcs/Lillie (z powered).png',
     requirement: new MultiRequirement ([new QuestLineStepCompletedRequirement('Emissary of Light', 5), new QuestLineStepCompletedRequirement('Emissary of Light', 6, GameConstants.AchievementOption.less), new OneFromManyRequirement([new DayCyclePartRequirement([0]), new DayCyclePartRequirement([2])])]),
@@ -7575,7 +7582,7 @@ TownList['Ruins of Life Entrance'] = new Town(
     'Ruins of Life Entrance',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.AkalaIsland,
-    [new MoveToTown('Ruins of Life', undefined, false), GymList['Konikoni City']],
+    [GymList['Konikoni City'], new MoveToTown('Ruins of Life', undefined, false)],
     {
         requirements: [new TemporaryBattleRequirement('Plumeria 1')],
         npcs: [LillieRuinsOfLife],
@@ -7847,7 +7854,9 @@ TownList['Verdant Cavern'] = new DungeonTown(
     'Verdant Cavern',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.MelemeleIsland,
-    [new MultiRequirement([new RouteKillRequirement(10, GameConstants.Region.alola, 2), new TemporaryBattleRequirement('Skull 2')])]
+    [new MultiRequirement([new RouteKillRequirement(10, GameConstants.Region.alola, 2), new TemporaryBattleRequirement('Skull 2')])],
+    undefined,
+    { npcs: [VerdantCavernIlima] }
 );
 TownList['Melemele Meadow'] = new DungeonTown(
     'Melemele Meadow',
@@ -7948,7 +7957,7 @@ TownList['Thrifty Megamart'] = new DungeonTown(
     'Thrifty Megamart',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.UlaulaIsland,
-    [new TemporaryBattleRequirement('Skull 5')],
+    [new MultiRequirement([new TemporaryBattleRequirement('Skull 5'), new RouteKillRequirement(10, GameConstants.Region.alola, 14)])],
     [TemporaryBattleList['Acerola Ghost Memory']],
     {npcs: [AcerolaSilvally]}
 );

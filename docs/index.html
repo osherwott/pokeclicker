@@ -2037,7 +2037,7 @@ selectAllClick - (Optional) Function called when the Select All button is clicke
 
     </div>
     <div style="flex-grow: 1;"></div>
-    <knockout data-bind="if: (player.town().dungeon && player.town() instanceof DungeonTown)">
+    <knockout data-bind="if: (player.town().dungeon && player.town() instanceof DungeonTown && player.town().dungeon.isUnlocked())">
       <div id="dungeonPokemonList" class="card pt-2 pb-3 px-1">
         <!--Display all available Pokémon in this dungeon-->
         <ul class="list-inline mb-0">
@@ -26056,7 +26056,7 @@ selectAllClick - (Optional) Function called when the Select All button is clicke
     x="584"
     y="208"
     class="iconLocation hide"
-    data-bind="visible: MapHelper.isTownCurrentLocation('Melemele Woods') && App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex(&#39;Skull 2&#39;)]() &gt;= 1,
+    data-bind="visible: MapHelper.isTownCurrentLocation('') && App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex(&#39;Skull 2&#39;)]() &gt;= 1,
         attr: {href:`assets/images/profile/trainer-${App.game.profile.trainer() || 0}.png`},
         playerSpriteMove">
 </image>

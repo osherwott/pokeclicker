@@ -43,7 +43,7 @@ class QuestLineHelper {
                     exitOnEsc: false,
                     showButtons: false,
                 });
-                const caughtSelector: HTMLElement = document.querySelector('.pokeball-small.clickable.pokeball-selected');
+                const caughtSelector: HTMLElement = document.querySelector('tr[data-name="Caught"] img.pokeball-small.clickable.pokeball-selected');
                 caughtSelector.addEventListener('click', () => {
                     Information.hide();
                     $('#pokeballSelectorModal').one('shown.bs.modal', null, () => {
@@ -316,14 +316,10 @@ class QuestLineHelper {
         const buyExplorerKit = new CustomQuest(1, 0, 'Buy the Explorer Kit from Cinnabar Island Shop.', () => +App.game.keyItems.hasKeyItem(KeyItemType.Explorer_kit)).withInitialValue(0);
         undergroundQuestLine.addQuest(buyExplorerKit);
 
-        // Mine 5 layers in the Unerground
+        // Mine 5 layers in the Underground
         const oldAmberReward = () => {
             // Gain an Old Amber
-            const oldAmber = UndergroundItems.list.find(item => item.name == 'Old Amber');
-            if (!oldAmber) {
-                return console.error('Unable to find item Old Amber');
-            }
-            Underground.gainMineItem(oldAmber.id);
+            ItemList.Old_amber.gain(1);
             Notifier.notify({
                 title: undergroundQuestLine.name,
                 message: 'You have gained an Old Amber fossil!\n<i>You can breed this in the hatchery.</i>',
@@ -393,6 +389,34 @@ class QuestLineHelper {
     }
 
     /* Johto QuestLines */
+
+    // Started upon defeating Ecruteak City's gym
+    public static createSickAmpharosQuestLine() {
+        const sickAmpharosQuestLine = new QuestLine('The Sick Ampharos', 'Jasmines Ampharos seems to be sick!');
+
+        const clearOlivineLighthouse = new DefeatDungeonQuest(1, 0, 'Olivine Lighthouse').withDescription('Clear the Olivine Lighthouse dungeon in Olivine City');
+        sickAmpharosQuestLine.addQuest(clearOlivineLighthouse);
+
+        const talkToJasmine1 = new TalkToNPCQuest(OlivineLighthouseJasmine1, 'Talk to Jasmine in the Olivine Lighthouse.');
+        sickAmpharosQuestLine.addQuest(talkToJasmine1);
+
+        const talkToHerbalist1 = new TalkToNPCQuest(CianwoodCityPharmacist1, 'Talk to the Pharmacist in Cianwood City.');
+        sickAmpharosQuestLine.addQuest(talkToHerbalist1);
+
+        const clearCianwoodCityGym = new DefeatGymQuest(1, 0, 'Cianwood City').withDescription('The Pharmacist said he needs some time to finish Amphys medicine. Clear the Cianwood City Gym in the meantime.');
+        sickAmpharosQuestLine.addQuest(clearCianwoodCityGym);
+
+        const talkToHerbalist2 = new TalkToNPCQuest(CianwoodCityPharmacist2, 'Talk to the Pharmacist in Cianwood City.');
+        sickAmpharosQuestLine.addQuest(talkToHerbalist2);
+
+        const giveMedicineToAmphy = new TalkToNPCQuest(OlivineLighthouseMedicineAmphy, 'Give Amphy their medicine in the Olivine Lighthouse.');
+        sickAmpharosQuestLine.addQuest(giveMedicineToAmphy);
+
+        const talkToJasmine2 = new TalkToNPCQuest(OlivineLighthouseJasmine2, 'Talk to Jasmine in the Olivine Lighthouse.');
+        sickAmpharosQuestLine.addQuest(talkToJasmine2);
+
+        App.game.quests.questLines().push(sickAmpharosQuestLine);
+    }
 
     // Started upon defeating Ecruteak City's gym.
     public static createRocketJohtoQuestLine() {
@@ -585,17 +609,7 @@ class QuestLineHelper {
         const talktoIlexForestShrine1 = new TalkToNPCQuest(IlexForestShrine1, 'Investigate the shrine in Ilex Forest.');
         celebiJohtoQuestLine.addQuest(talktoIlexForestShrine1);
 
-        const SpikyEaredPichuReward = () => {
-            App.game.party.gainPokemonByName('Spiky-eared Pichu');
-            Notifier.notify({
-                title: celebiJohtoQuestLine.name,
-                message: 'You captured the Spiky-eared Pichu!',
-                type: NotificationConstants.NotificationOption.success,
-                timeout: 3e4,
-            });
-        };
-
-        const clearSpikyEaredPichu = new DefeatTemporaryBattleQuest('Spiky-eared Pichu', 'Defeat the strange Pichu.').withCustomReward(SpikyEaredPichuReward);
+        const clearSpikyEaredPichu = new DefeatTemporaryBattleQuest('Spiky-eared Pichu', 'Defeat the strange Pichu.');
         celebiJohtoQuestLine.addQuest(clearSpikyEaredPichu);
 
         const talktoProfOak4 = new TalkToNPCQuest(AzaleaCelebiOak2, 'Talk to Professor Oak in Azalea Town.');
@@ -720,14 +734,10 @@ class QuestLineHelper {
 
         // Capture 200 Psychic type Pokemon
         const mindPlateReward = () => {
-            const mindPlate = UndergroundItems.list.find(item => item.name == 'Mind Plate');
-            if (!mindPlate) {
-                return console.error('Unable to find item Mind Plate');
-            }
-            Underground.gainMineItem(mindPlate.id, 20);
+            ItemList.Mind_plate.gain(20);
             Notifier.notify({
                 title: deoxysQuestLine.name,
-                message: `You have gained 20 ${mindPlate.name}s!`,
+                message: 'You have gained 20 Mind Plates!',
                 type: NotificationConstants.NotificationOption.success,
             });
         };
@@ -853,7 +863,7 @@ class QuestLineHelper {
         const collectPinkanMaterials = new MultipleQuestsQuest(
             [
                 new GainGemsQuest(1000, 0, PokemonType.Fairy),
-                new CustomQuest(10, 0, 'Gain 10 Pixie Plates', () => player.mineInventory().find(item => item.name == 'Pixie Plate')?.amount() ?? 0),
+                new CustomQuest(10, 0, 'Gain 10 Pixie Plates', () => player.itemList.Pixie_plate()),
             ], 'Collect Fairy Gems and Pixie Plates');
         pinkanThemeparkQuestLine.addQuest(collectPinkanMaterials);
 
@@ -1280,19 +1290,19 @@ class QuestLineHelper {
         const talktoMesprit = new TalkToNPCQuest(VerityMesprit, 'Ask Mesprit about the Distortion World in Lake Verity.');
         giratinaQuestLine.addQuest(talktoMesprit);
 
-        const obtain10PurpleShards = new CustomQuest(10, 0, 'Obtain 10 Purple Shards.', () => player.mineInventory().find(item => item.name == 'Purple Shard')?.amount() ?? 0);
+        const obtain10PurpleShards = new CustomQuest(10, 0, 'Obtain 10 Purple Shards.', () => player.itemList.Purple_shard());
         giratinaQuestLine.addQuest(obtain10PurpleShards);
 
         const talktoAzelf = new TalkToNPCQuest(ValorAzelf, 'Ask Azelf about the Distortion World in Lake Valor.');
         giratinaQuestLine.addQuest(talktoAzelf);
 
-        const obtain10OchreShards = new CustomQuest(10, 0, 'Obtain 10 Ochre Shards.', () => player.mineInventory().find(item => item.name == 'Ochre Shard')?.amount() ?? 0);
+        const obtain10OchreShards = new CustomQuest(10, 0, 'Obtain 10 Ochre Shards.', () => player.itemList.Ochre_shard());
         giratinaQuestLine.addQuest(obtain10OchreShards);
 
         const talktoUxie = new TalkToNPCQuest(AcuityUxie, 'Ask Uxie about the Distortion World in Lake Acuity.');
         giratinaQuestLine.addQuest(talktoUxie);
 
-        const obtain10CrimsonShards = new CustomQuest(10, 0, 'Obtain 10 Crimson Shards.', () => player.mineInventory().find(item => item.name == 'Crimson Shard')?.amount() ?? 0);
+        const obtain10CrimsonShards = new CustomQuest(10, 0, 'Obtain 10 Crimson Shards.', () => player.itemList.Crimson_shard());
         giratinaQuestLine.addQuest(obtain10CrimsonShards);
 
         const clearSendoffSpring = new DefeatDungeonQuest(1, 0, 'Sendoff Spring').withDescription('Clear Sendoff Spring to meet the Lake Trio.');
@@ -1304,7 +1314,7 @@ class QuestLineHelper {
         const chargeDistortionKey = new MultipleQuestsQuest(
             [
                 new GainGemsQuest(500, 0, PokemonType.Ghost),
-                new CustomQuest(1, 0, 'Gain 1 Spooky Plate.', () => player.mineInventory().find(item => item.name == 'Spooky Plate')?.amount() ?? 0),
+                new CustomQuest(1, 0, 'Gain 1 Spooky Plate.', () => player.itemList.Spooky_plate()),
             ], 'Charge the key to the Distortion World.');
         giratinaQuestLine.addQuest(chargeDistortionKey);
 
@@ -1656,9 +1666,9 @@ class QuestLineHelper {
 
         // Talk to Fossil Scientist after beating Team Flare Grunt
         const KalosFossilReward = () => {
-            const item = Rand.boolean() ? 'Sail Fossil' : 'Jaw Fossil';
+            const item = Rand.boolean() ? 'Sail_fossil' : 'Jaw_fossil';
 
-            Underground.gainMineItem(UndergroundItems.getByName(item).id, 1);
+            ItemList[item].gain(1);
             Notifier.notify({
                 title: flareKalosQuestLine.name,
                 message: `Fossil Scientist has given you a ${GameConstants.humanifyString(item)}!`,
@@ -1873,7 +1883,7 @@ class QuestLineHelper {
 
         const clearGranite = new DefeatDungeonQuest(10, 0, 'Granite Cave').withDescription('Clear Granite Cave 10 times.');
 
-        const findStars = new CustomQuest(1, 0, 'Find a Star Piece.', () => player.mineInventory().find(item => item.name == 'Star Piece')?.amount() ?? 0);
+        const findStars = new CustomQuest(1, 0, 'Find a Star Piece.', () => player.itemList.Star_piece());
 
         deltaEpisodeQuestLine.addQuest(new MultipleQuestsQuest(
             [
@@ -2020,7 +2030,7 @@ class QuestLineHelper {
 
         const findMysticWater = new CustomQuest(1, 0, 'Find one Mystic Water.', () => player.itemList.Mystic_Water());
 
-        const findHeatRocks = new CustomQuest(3, 0, 'Find 3 Heat Rocks.', () => player.mineInventory().find(item => item.name == 'Heat Rock')?.amount() ?? 0);
+        const findHeatRocks = new CustomQuest(3, 0, 'Find 3 Heat Rocks.', () => player.itemList.Heat_rock());
 
         primalReversionQuestLine.addQuest(new MultipleQuestsQuest(
             [
@@ -2063,7 +2073,7 @@ class QuestLineHelper {
                 talkToPrimalMaxie,
             ], 'Find out what the Team Leaders are up to at Mt. Pyre.'));
 
-        const fightPrimalGroudon = new DefeatTemporaryBattleQuest('Primal Groudon', 'Defeat Primal Groudon in Sunny Weather.');
+        const fightPrimalGroudon = new DefeatTemporaryBattleQuest('Primal Groudon', 'Defeat Primal Groudon in Harsh Sunlight Weather.');
         const fightPrimalKyogre = new DefeatTemporaryBattleQuest('Primal Kyogre', 'Defeat Primal Kyogre in Raining Weather.');
 
         primalReversionQuestLine.addQuest(new MultipleQuestsQuest(
@@ -2451,7 +2461,7 @@ class QuestLineHelper {
     public static createMelemeleAlolaQuestLine() {
         const melemeleAlolaQuestLine = new QuestLine('Welcome to paradise, cousin!', 'Time to kick off your Alolan vacation! See the sights around Melemele Island.');
         // 0 - Temp Battle: Melemele Spearow
-        const battleMelemeleSpearow = new DefeatTemporaryBattleQuest('Melemele Spearow', 'Protect the mysterious girl\'s Pokémon! Battle the Spearow on Mahalo Trail.')
+        const battleMelemeleSpearow = new DefeatTemporaryBattleQuest('Melemele Spearow', 'Protect the mysterious girl\'s Pokémon! Battle the Spearow near the Ruins of Conflict.')
             .withOptionalArgs({
                 clearedMessage: '<i>The bridge collapses and you and the floating Pokémon start falling to your doom... But you are saved by a mysterious Pokémon!</i>',
                 npcDisplayName: 'Melemele Guardian',
@@ -2543,8 +2553,8 @@ class QuestLineHelper {
 
         // 11 - Gym Battle: Hala
         // reward defined at the end of this file
-        const clearHala = new DefeatGymQuest(1, 0, 'Iki Town').withDescription('Defeat Hala in Iki Town complete Melemele\'s Grand Trial!').withCustomReward(zCrystalGet(PokemonType.Fighting));
-        melemeleAlolaQuestLine.addQuest(clearHala);
+        const battleKahunaHala = new DefeatGymQuest(1, 0, 'Iki Town').withDescription('Defeat Hala in Iki Town complete Melemele\'s Grand Trial!').withCustomReward(zCrystalGet(PokemonType.Fighting));
+        melemeleAlolaQuestLine.addQuest(battleKahunaHala);
 
         // end - Extra Z Crystal "Trial"
         // const defined at the end of this file
@@ -2620,7 +2630,7 @@ class QuestLineHelper {
 
         // 8 - Gym battle: Olivia
         // reward defined at the end of this file
-        const battleKahunaOlivia = new DefeatGymQuest(1, 0, 'Konikoni City').withDescription('Reach Kahuna Olivia and Lillie outside the Ruins of Life and complete Akala\'s Grand Trial!').withCustomReward(zCrystalGet(PokemonType.Rock));
+        const battleKahunaOlivia = new DefeatGymQuest(1, 0, 'Konikoni City').withDescription('Reach Kahuna Olivia and Lillie at the Ruins of Life and complete Akala\'s Grand Trial!').withCustomReward(zCrystalGet(PokemonType.Rock));
         akalaAlolaQuestLine.addQuest(battleKahunaOlivia);
 
         // end - Temp battle: Ultra Wormhole
@@ -2757,7 +2767,7 @@ class QuestLineHelper {
         poniAlolaQuestLine.addQuest(alolaRoute25);
 
         // 1 - Talk to NPC: HapuHope
-        const talkeToHapuHope = new TalkToNPCQuest(HapuHope, 'Talk to Hapu at the Ruins of Hope Altar.');
+        const talkeToHapuHope = new TalkToNPCQuest(HapuHope, 'Talk to Hapu at the Ruins of Hope.');
         poniAlolaQuestLine.addQuest(talkeToHapuHope);
 
         // 2 - Clear dungeon: Exeggutor Island Hill
@@ -2780,16 +2790,7 @@ class QuestLineHelper {
         poniAlolaQuestLine.addQuest(battleSkullGrunts6);
 
         // 4 - Gym battle: Hapu
-        const groundiumZGet = () => {
-            player.gainItem(GameConstants.zCrystalItemType[PokemonType.Ground], 1);
-            Notifier.notify({
-                title: 'Z Crystal',
-                message: `<img width="60" src="assets/images/items/zCrystal/${GameConstants.zCrystalItemType[PokemonType.Ground]}.svg"/> You got the ${GameConstants.zCrystalItemType[PokemonType.Ground]}!`,
-                timeout: 30,
-            });
-            MapHelper.moveToTown('Vast Poni Canyon Entrance');
-        };
-        const battleKahunaHapu = new DefeatGymQuest(1, 0, 'Exeggutor Island').withDescription('Go to Vast Poni Canyon\'s Entrance and prove your skills in a Grand Trial against Poni\'s new kahuna, Hapu!').withCustomReward(groundiumZGet);
+        const battleKahunaHapu = new DefeatGymQuest(1, 0, 'Exeggutor Island').withDescription('Enter Vast Poni Canyon and prove your skills in a Grand Trial against Poni\'s new kahuna, Hapu!').withCustomReward(zCrystalGet(PokemonType.Ground));
         poniAlolaQuestLine.addQuest(battleKahunaHapu);
 
         // 5 - Clear dungeon: Vast Poni Canyon, Dragonium Z Trial
@@ -2892,10 +2893,10 @@ class QuestLineHelper {
         App.game.quests.questLines().push(minasTrialAlolaQuestLine);
     }
 
-    // Z Crystal Quest
+    // "Z Crystal" Quest
     // will unlock Tapus and Totem mons
-    public static createZCrystalQuestLine() {
-        const zCrystalQuestLine = new QuestLine('Island Challenge', 'Track down all the Z Crystals and be graced by Tapus\' presence!', new DevelopmentRequirement(new TemporaryBattleRequirement('Hau 2')), GameConstants.BulletinBoards.Alola);
+    public static createIslandChallengeQuestLine() {
+        const islandChallengeQuestLine = new QuestLine('Island Challenge', 'Embark on the Island Challenge and be graced by the Tapus\' presence!', new DevelopmentRequirement(new TemporaryBattleRequirement('Hau 2')), GameConstants.BulletinBoards.Alola);
 
         const autoModalStep = new CustomQuest(1, 0, 'Start your Island Challenge at Professor Kukui\'s Lab.', () => +!!App.game.statistics.routeKills[GameConstants.Region.alola]['1']()).withInitialValue(0)
             .withCustomReward(() => ItemList.Island_Challenge_Amulet.gain(1))
@@ -2904,9 +2905,9 @@ class QuestLineHelper {
                 npcDisplayName: 'Kukui',
                 npcImageName: 'Professor Kukui',
             });
-        zCrystalQuestLine.addQuest(autoModalStep);
+        islandChallengeQuestLine.addQuest(autoModalStep);
 
-        App.game.quests.questLines().push(zCrystalQuestLine);
+        App.game.quests.questLines().push(islandChallengeQuestLine);
     }
 
     // Silvally Typings Questline - Available post-E4
@@ -4207,7 +4208,7 @@ class QuestLineHelper {
         App.game.quests.questLines().push(easterQuestLine);
     }
 
-    public static isQuestLineCompleted(name: string) {
+    public static isQuestLineCompleted(name: QuestLineNameType) {
         return App.game.quests.getQuestLine(name)?.state() == QuestLineState.ended;
     }
 
@@ -4218,6 +4219,7 @@ class QuestLineHelper {
         this.createUndergroundQuestLine();
         this.createBillSeviiQuestLine();
         this.createPersonsofInterestQuestLine();
+        this.createSickAmpharosQuestLine();
         this.createRocketJohtoQuestLine();
         this.createJohtoBeastsQuestLine();
         this.createJohtoSuicuneQuestLine();
@@ -4255,7 +4257,7 @@ class QuestLineHelper {
         this.createPoniAlolaQuestLine();
         this.createUltraNecrozmaAlolaQuestLine();
         this.createMinasTrialAlolaQuestLine();
-        this.createZCrystalQuestLine();
+        this.createIslandChallengeQuestLine();
         this.createSilvallyTypesQuestLine();
         this.createUltraBeastQuestLine();
         this.createMagikarpJumpQuestLine();
@@ -4289,7 +4291,7 @@ const zCrystalGet = (crystalType: PokemonType) => () => {
     Notifier.notify({
         title: 'Z Crystal',
         message: `<img width="60" src="assets/images/items/zCrystal/${GameConstants.zCrystalItemType[crystalType]}.svg"/> You got the ${GameConstants.zCrystalItemType[crystalType]}!`,
-        timeout: 30,
+        timeout: 1e4,
     });
 };
 const createZCrystalTrial = (crystalType: PokemonType, dungeon: string, captain: string, successMessage: string, questName: QuestLine, nonTrial?: boolean, nonTrialDescription?: string, nonTrialBoss?: string) => {

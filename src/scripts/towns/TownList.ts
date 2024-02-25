@@ -969,7 +969,7 @@ TownList['Lavender Town'] = new Town(
     GameConstants.KantoSubRegions.Kanto,
     [LavenderTownShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Lavender Town']), new MoveToDungeon(dungeonList['Pokémon Tower'])],
     {
-        requirements: [new RouteKillRequirement(10, GameConstants.Region.kanto, 10)],
+        requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Rock Tunnel'))],
         npcs: [LavenderMrFuji, LavenderChanneler, LavenderShopper],
     }
 );
@@ -1261,7 +1261,7 @@ TownList['Rock Tunnel'] = new DungeonTown(
     GameConstants.Region.kanto,
     GameConstants.KantoSubRegions.Kanto,
     [
-        new RouteKillRequirement(10, GameConstants.Region.kanto, 9),
+        new RouteKillRequirement(10, GameConstants.Region.kanto, 10),
         new GymBadgeRequirement(BadgeEnums.Cascade),
     ]
 );
@@ -1614,7 +1614,7 @@ const AzaleaCelebiOak1 = new NPC('Prof. Oak', [
 
 const AzaleaCelebiOak2 = new NPC('Prof. Oak', [
     'Celebi wasn\'t there? Strange, usually it loves to play with young people at the shrine.',
-    'Wait. That Pichu! It used to play with us at that shrine way back when! It looks like it hasn\'t aged a day!',
+    'Wait. You saw a Pichu with a spiked ear?! We used to play with it at that shrine way back when! Looks like it hasn\'t aged a day!',
     'It sounds like you encountered a Time Distortion. Celebi is sensitive to time, it must be distressed. I have heard rumors of something similar going on at Tohjo Falls. Maybe if you clear up that Time Distortion, Celebi will want to come out to play?',
 ], {
     image: 'assets/images/npcs/Professor Oak.png',
@@ -1663,11 +1663,67 @@ const IlexForestShrine2 = new NPC('Investigate the Shrine', [
     requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Unfinished Business', 11), new QuestLineStepCompletedRequirement('Unfinished Business', 13, GameConstants.AchievementOption.less)]),
 });
 
+const IlexForestPichuFan = new NPC('Pichu-Fan', [
+    'I\'m looking for a strange Pichu, have you seen it? According to rumors, its favorite hiding spots are chests...',
+], {
+    image: 'assets/images/npcs/Poké Kid.png',
+    requirement: new QuestLineStepCompletedRequirement('Unfinished Business', 7),
+});
+
 const EcruteakBill = new NPC('Bill', [
     'I traveled here all the way from Goldenrod to buy a Soothe Bell for my Eevee.',
     'When I use a Soothe Bell on Eevee it can evolve into Espeon or Umbreon. It depends on the time. Espeon during the day, Umbreon at night.',
     'I only brought enough QP for one Soothe Bell. It\'s so hard to choose...',
 ], {image: 'assets/images/npcs/Bill.png'});
+
+
+const OlivineLighthouseJasmine1 = new NPC('Jasmine', [
+    '...This Pokémon always kept the sea lit at night... But it suddenly got sick... It’s gasping for air...',
+    '...I understand that there is a wonderful Pharmacy in Cianwood... But that’s across the sea... And I can’t leave Amphy unattended...',
+    'May I ask you to get some medicine for me? Please?',
+], {
+    image: 'assets/images/npcs/Jasmine.png',
+    requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Sick Ampharos', 0), new QuestLineStepCompletedRequirement('The Sick Ampharos', 4, GameConstants.AchievementOption.less)]),
+});
+
+const CianwoodCityPharmacist1 = new NPC('Pharmacist', [
+    'Huh? You need medicine? Your Pokémon appear to be fine. Is something worrying you?',
+    'The Lighthouse Pokémon is in trouble? I\'ll prepare some medicine right now but it will take some time!',
+], {
+    image: 'assets/images/npcs/Scientist (male).png',
+    requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Sick Ampharos', 1), new QuestLineStepCompletedRequirement('The Sick Ampharos', 3, GameConstants.AchievementOption.less)]),
+});
+
+const CianwoodCityPharmacist2 = new NPC('Pharmacist', [
+    'I got it! This ought to do the trick.',
+    '<i>You got a \'Secret Potion\'</i>',
+], {
+    image: 'assets/images/npcs/Scientist (male).png',
+    requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Sick Ampharos', 3), new QuestLineStepCompletedRequirement('The Sick Ampharos', 4, GameConstants.AchievementOption.less)]),
+});
+
+const OlivineLighthouseMedicineAmphy = new NPC('Give medicine to Amphy', [
+    'Palu! Palulu!',
+    '<i>Ampharos seems to feel better.</i>',
+], {
+    image: 'assets/images/pokemon/181.png',
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('The Sick Ampharos', 4), new QuestLineStepCompletedRequirement('The Sick Ampharos', 5, GameConstants.AchievementOption.less)]),
+});
+
+const OlivineLighthouseJasmine2 = new NPC('Jasmine', [
+    ' ...Oh, I’m so relieved... This is just so wonderful... Thank you so very, very much.',
+    '...I will return to the Gym...',
+], {
+    image: 'assets/images/npcs/Jasmine.png',
+    requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Sick Ampharos', 5), new QuestLineStepCompletedRequirement('The Sick Ampharos', 6, GameConstants.AchievementOption.less)]),
+});
+
+const OlivineLighthouseAmphy = new NPC('Amphy', [
+    'Palu! Palulu!',
+], {
+    image: 'assets/images/pokemon/181.png',
+    requirement: new QuestLineCompletedRequirement('The Sick Ampharos'),
+});
 
 const EcruteakEusine = new NPC('Eusine', [
     'Legends say that when the Brass Tower burned down and became the Burned Tower, three unnamed Pokémon perished in the flames...',
@@ -1837,7 +1893,7 @@ const HowardClifford3 = new NPC('Howard Clifford', [
 const ParkAttendant = new NPC('Park Attendant', [
     'Welcome to the National Park!',
     'Lots of people come through here to take a stroll, and some come from far away to participate in our Bug Catching Contest!',
-    'All kinds of Bug Pokémon can be found in the park, with different ones showing up every day! Each one can be caught for Contest Tokens, and more powerful Pokémon are worth more Tokens!',
+    'All kinds of Bug Pokémon can be found in the park! Each one can be caught for Contest Tokens, and more powerful Pokémon are worth more Tokens!',
 ], { image: 'assets/images/npcs/Pokémon Ranger (male).png' });
 const ParkResearcher = new NPC('Researcher', [
     'Welcome to the National Park!',
@@ -1910,7 +1966,7 @@ TownList['Olivine City'] = new Town(
     'Olivine City',
     GameConstants.Region.johto,
     GameConstants.JohtoSubRegions.Johto,
-    [OlivineCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Olivine City'])],
+    [OlivineCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Olivine City']), new MoveToDungeon(dungeonList['Olivine Lighthouse'])],
     {
         requirements: [new RouteKillRequirement(10, GameConstants.Region.johto, 39)],
         npcs: [OlivineSSAquaCaptain],
@@ -1923,7 +1979,7 @@ TownList['Cianwood City'] = new Town(
     [CianwoodCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Cianwood City'])],
     {
         requirements: [new RouteKillRequirement(10, GameConstants.Region.johto, 41)],
-        npcs: [CianwoodPhotographyAide, CianwoodEusine],
+        npcs: [CianwoodPhotographyAide, CianwoodEusine, CianwoodCityPharmacist1, CianwoodCityPharmacist2],
     }
 );
 TownList['Mahogany Town'] = new Town(
@@ -2007,7 +2063,7 @@ TownList['Ilex Forest'] = new DungeonTown(
     ],
     [TemporaryBattleList['Spiky-eared Pichu']],
     {
-        npcs: [IlexForestShrine1, IlexForestShrine2, Naoko],
+        npcs: [IlexForestShrine1, IlexForestShrine2, IlexForestPichuFan, Naoko],
     }
 );
 TownList['Burned Tower'] = new DungeonTown(
@@ -2016,6 +2072,16 @@ TownList['Burned Tower'] = new DungeonTown(
     GameConstants.JohtoSubRegions.Johto,
     [new QuestLineStepCompletedRequirement('The Legendary Beasts', 0)],
     [TemporaryBattleList['Silver 3']]
+);
+TownList['Olivine Lighthouse'] = new DungeonTown(
+    'Olivine Lighthouse',
+    GameConstants.Region.johto,
+    GameConstants.JohtoSubRegions.Johto,
+    [new RouteKillRequirement(10, GameConstants.Region.johto, 39)],
+    [],
+    {
+        npcs: [OlivineLighthouseJasmine1, OlivineLighthouseJasmine2, OlivineLighthouseMedicineAmphy, OlivineLighthouseAmphy],
+    }
 );
 TownList['Tin Tower'] = new DungeonTown(
     'Tin Tower',
@@ -2935,7 +3001,7 @@ const PrimalMaxie = new NPC('Maxie', [
 });
 const MrStone2 = new NPC('Mr. Stone', [
     'Thank you, $playername$! Your heroics have saved Hoenn once again!',
-    'My researchers tell me that since their defeat, Groudon and Kyogre have been reverting to their primal forms in the Cave of Origin during Sunny and Rainy weather.',
+    'My researchers tell me that since their defeat, Groudon and Kyogre have been reverting to their primal forms in the Cave of Origin during Harsh Sunlight and Rainy weather.',
     'They are certainly very dangerous, but it doesn\'t seem like they are a threat to the region anymore.',
 ], {image: 'assets/images/npcs/Mr Stone.png',
     requirement: new QuestLineStepCompletedRequirement('Primal Reversion', 15),
@@ -2944,7 +3010,7 @@ const MrStone2 = new NPC('Mr. Stone', [
 const ZinniaOrigin = new NPC('Zinnia', [
     'Wow, $playername$! You\'ve been busy!',
     'Now that things are calmer in Hoenn, I\'ve decided to keep an eye on Kyogre and Groudon and make sure they don\'t cause any more trouble.',
-    'Groudon reverts to its Primal form when it\'s sunny, and Kyogre reverts to its Primal form in the rain.',
+    'Groudon reverts to its Primal form when the sun is harsh, and Kyogre reverts to its Primal form in the rain.',
     'Archie and Maxie are still lurking somewhere in Hoenn, but without the Orbs I think they\'re mostly harmless. If you need some help smacking em down again, come get me!',
 ], {image: 'assets/images/npcs/Zinnia.png',
     requirement: new MultiRequirement([new QuestLineCompletedRequirement('The Delta Episode'), new QuestLineCompletedRequirement('Primal Reversion')]),
@@ -4731,8 +4797,8 @@ TownList['Distortion World'] = new DungeonTown(
     [
         new OneFromManyRequirement([
             new MultiRequirement([
-                new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Spear Pillar')),
-                new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Distortion World'), GameConstants.AchievementOption.less),
+                new QuestLineStepCompletedRequirement('A New World', 9),
+                new QuestLineStepCompletedRequirement('A New World', 10, GameConstants.AchievementOption.less),
             ]),
             new TemporaryBattleRequirement('Zero'),
         ]),
@@ -5911,7 +5977,7 @@ const DendemilleDogLover = new NPC('Dubious Dog-loving Duke', [
     'Dog Pokémon are the best of all! I\'m particularly fond of Houndour - I\'ve caught about five hundred of them.',
     'There\'s no such thing as a cold night in my house, no sir! The most fierce chill of winter is completely defeated by their warm, cozy presence.',
     'But recently, now that I\'ve got so many Houndour, they have been acting rather curiously.',
-    'When the weather turns sunny, they\'ll all run barking out onto Route 16. Honestly, it\'s quite a racket, and has gotten me into no small amount of trouble.',
+    'When the weather turns really sunny, they\'ll all run barking out onto Route 16. Honestly, it\'s quite a racket, and has gotten me into no small amount of trouble.',
     'They come wandering back when the weather changes, though. I wonder if a strong Pokémon is calling them?',
     'You could build your own Houndour pack and find out, but if it\'s strong enough to call five hundred Pokémon, it probably wouldn\'t give anyone weaker than Diantha the time of day.',
 ], {image: 'assets/images/npcs/Gentleman.png',
@@ -6177,7 +6243,7 @@ const AnomalyMewtwo3 = new NPC('Anomaly Mewtwo', [
 
 const AnomalyMewtwo4 = new NPC('Anomaly Mewtwo', [
     '<i>Hah! Your strength is truly unyielding!</i>',
-    '<i>I would like to apolagise for accusing you of merely possessing the Mewtwo in your care. It is clear that you greatly care for it, as well as all your other Pokémon. Take this.</i>',
+    '<i>I would like to apologise for accusing you of merely possessing the Mewtwo in your care. It is clear that you greatly care for it, as well as all your other Pokémon. Take this.</i>',
     '</i></br><img src="assets/images/megaStone/Mewtwonite_Y.png"/></br><i>You obtained the Mewtwonite Y!</i>',
     '<i>You are truly deserving of this Mega Stone. Use it to give your Mewtwo a truly unrivaled power.</i>',
 ], {
@@ -6869,7 +6935,7 @@ const Lillie6 = new NPC('Lillie', [
     'I feel like there\'s so much I have to do now... to save Nebby... to save my mother... That\'s why I\'m going to try my hardest! This is my Z-Powered form! Come on! Let\'s show the world what we can really do!',
 ], {
     image: 'assets/images/npcs/Lillie (z powered).png',
-    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Child of the Stars', 12), new  QuestLineCompletedRequirement('Child of the Stars', GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Child of the Stars', 12), new  QuestLineStepCompletedRequirement('Child of the Stars', 13, GameConstants.AchievementOption.less)]),
 });
 const Gladion1 = new NPC('Gladion', [
     'The Sun Flute and the Moon Flute. When sounded together, it\'s said that they can call the Legendary Pokémon... That is, if you believe in old myths, anyway. I found one of them downstairs and gave it to Lillie.',
@@ -6877,7 +6943,7 @@ const Gladion1 = new NPC('Gladion', [
     'Even if she is...like that, Lusamine is still our mother. We can\'t just leave her in the beast\'s world.',
 ], {
     image: 'assets/images/npcs/Gladion.png',
-    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Child of the Stars', 12), new  QuestLineCompletedRequirement('Child of the Stars', GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Child of the Stars', 12), new  QuestLineStepCompletedRequirement('Child of the Stars', 13, GameConstants.AchievementOption.less)]),
 });
 const HapuHope = new NPC('Hapu', [
     'My grandfather died suddenly some years back, and we were left without a kahuna on Poni. So I set out on my own sort of island challenge, traveling Alola and trying to grow stronger. Lillie. The kahuna you wished to meet is now here.',
@@ -7005,9 +7071,9 @@ const LillieExeggutorIsland = new NPC('Lillie', [
     'I don\'t know if it will really summon the Legendary Pokémon, but we can at least try! Thank you for coming this far with me, $playername$!',
 ], {
     image: 'assets/images/npcs/Lillie (z powered).png',
-    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Emissary of Light', 1), new QuestLineStepCompletedRequirement('Emissary of Light', 6, GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Emissary of Light', 1), new QuestLineStepCompletedRequirement('Emissary of Light', 5, GameConstants.AchievementOption.less)]),
 });
-const LillieAltar = new NPC('Lillie', [
+const LillieAltar1 = new NPC('Lillie', [
     'My mother is— She\'s selfish. She lavishes her love only on those she deems worthy, not caring whether it is wanted or not.',
     'But I will save her. I still have something I need to tell her. I am alive. Cosmog is alive.',
     'Nebby. Please. I need to see my mother!',
@@ -7015,6 +7081,14 @@ const LillieAltar = new NPC('Lillie', [
 ], {
     image: 'assets/images/npcs/Lillie (z powered).png',
     requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Emissary of Light', 5), new QuestLineStepCompletedRequirement('Emissary of Light', 7, GameConstants.AchievementOption.less)]),
+});
+const LillieAltar2 = new NPC('Lillie', [
+    'Necrozma... It seemed like it was also suffering somehow... It seemed to hurt it, to be without its light...',
+    '$playername$... if you can... try to help Necrozma, like you did mother.',
+    '<i>Lillie is clutching the flutes tightly. It would be awkward to ask for them now...<i>',
+], {
+    image: 'assets/images/npcs/Lillie (z powered).png',
+    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineCompletedRequirement('Eater of Light', GameConstants.AchievementOption.less)]),
 });
 // Other story characters
 const HauAether = new NPC('Hau', [
@@ -7499,16 +7573,6 @@ TownList['Iki Town'] = new Town(
         npcs: [IkiKahuna, SilvallyHala, Lillie3],
     }
 );
-TownList['Mahalo Trail'] = new Town(
-    'Mahalo Trail',
-    GameConstants.Region.alola,
-    GameConstants.AlolaSubRegions.MelemeleIsland,
-    [new MoveToTown('Ruins of Conflict', undefined, false), TemporaryBattleList['Melemele Spearow']],
-    {
-        requirements: [new QuestLineStartedRequirement('Welcome to paradise, cousin!')],
-        npcs: [Lillie1, LillieMahaloTrail1, LillieMahaloTrail2, LagunaKahuna],
-    }
-);
 TownList['Professor Kukui\'s Lab'] = new Town(
     'Professor Kukui\'s Lab',
     GameConstants.Region.alola,
@@ -7533,9 +7597,10 @@ TownList['Melemele Woods'] = new Town(
     'Melemele Woods',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.MelemeleIsland,
-    [new MoveToTown('Mahalo Trail', new GymBadgeRequirement(BadgeEnums.Champion_Stamp, GameConstants.AchievementOption.less)), new MoveToDungeon(dungeonList['Ruins of Conflict'], new GymBadgeRequirement(BadgeEnums.Champion_Stamp)), new MoveToDungeon(dungeonList['Verdant Cavern']), new MoveToDungeon(dungeonList['Melemele Meadow'])],
+    [new MoveToDungeon(dungeonList['Ruins of Conflict']), new MoveToDungeon(dungeonList['Verdant Cavern']), new MoveToDungeon(dungeonList['Melemele Meadow'])],
     {
         requirements: [new MultiRequirement([new RouteKillRequirement(10, GameConstants.Region.alola, 2), new TemporaryBattleRequirement('Skull 2')])],
+        npcs: [LagunaKahuna],
     }
 );
 TownList['Roadside Motel'] = new Town(
@@ -7576,16 +7641,6 @@ TownList['Royal Avenue'] = new Town(
     {
         requirements: [new TemporaryBattleRequirement('Skull 3')],
         npcs: [RoyalAvenueSpectator, MolayneSilvally],
-    }
-);
-TownList['Ruins of Life Entrance'] = new Town(
-    'Ruins of Life Entrance',
-    GameConstants.Region.alola,
-    GameConstants.AlolaSubRegions.AkalaIsland,
-    [GymList['Konikoni City'], new MoveToTown('Ruins of Life', undefined, false)],
-    {
-        requirements: [new TemporaryBattleRequirement('Plumeria 1')],
-        npcs: [LillieRuinsOfLife],
     }
 );
 TownList['Konikoni City'] = new Town(
@@ -7654,30 +7709,6 @@ TownList['Seafolk Village'] = new Town(
         npcs: [SeafolkCaptain, SeafolkCaptainMina, SilvallyMina, LillieSeafolkVillage],
     }
 );
-TownList['Ruins of Hope Altar'] = new Town(
-    'Ruins of Hope Altar',
-    GameConstants.Region.alola,
-    GameConstants.AlolaSubRegions.PoniIsland,
-    [new MoveToTown('Ruins of Hope', undefined, false)],
-    {
-        requirements: [new RouteKillRequirement(10, GameConstants.Region.alola, 26)],
-        npcs: [HapuHope],
-    }
-);
-TownList['Vast Poni Canyon Entrance'] = new Town(
-    'Vast Poni Canyon Entrance',
-    GameConstants.Region.alola,
-    GameConstants.AlolaSubRegions.PoniIsland,
-    [
-        GymList['Exeggutor Island'],
-        TemporaryBattleList['Recon Squad 3'],
-        new MoveToTown('Vast Poni Canyon', new GymBadgeRequirement(BadgeEnums.Poni_Stamp), false),
-    ],
-    {
-        requirements: [new TemporaryBattleRequirement('Skull 6')],
-        npcs: [HapuCanyon],
-    }
-);
 TownList['Exeggutor Island'] = new Town(
     'Exeggutor Island',
     GameConstants.Region.alola,
@@ -7694,7 +7725,7 @@ TownList['Altar of the Sunne and Moone'] = new Town(
     [TemporaryBattleList['Lusamine 1'], TemporaryBattleList['Lusamine 2'], TemporaryBattleList.Necrozma, TemporaryBattleList['Ultra Megalopolis'], AltaroftheSunneandMooneShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Altar of the Sunne and Moone'])],
     {
         requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Vast Poni Canyon'))],
-        npcs: [SunFlute, MoonFlute, DuskFlute, SolgaleoGift, LunalaGift, LillieAltar, Lillie7, HapuAltar, PhycoAltar, ReconSquadAltar, PoipoleGift],
+        npcs: [SunFlute, MoonFlute, DuskFlute, SolgaleoGift, LunalaGift, LillieAltar1, Lillie7, HapuAltar, PhycoAltar, LillieAltar2, ReconSquadAltar, PoipoleGift],
     }
 );
 TownList['Pokémon League Alola'] = new Town(
@@ -8006,8 +8037,12 @@ TownList['Vast Poni Canyon'] = new DungeonTown(
     'Vast Poni Canyon',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.PoniIsland,
-    [new QuestLineStepCompletedRequirement('Emissary of Light', 4)],
-    [new MoveToTown('Vast Poni Canyon Entrance', undefined, false), TemporaryBattleList['Plumeria Poison Memory']],
+    [new QuestLineStepCompletedRequirement('Emissary of Light', 3)],
+    [
+        new AccessGym(GymList['Exeggutor Island'], new QuestLineStepCompletedRequirement('Emissary of Light', 4, GameConstants.AchievementOption.less)),
+        TemporaryBattleList['Recon Squad 3'],
+        TemporaryBattleList['Plumeria Poison Memory'],
+    ],
     {npcs: [HapuCanyon, PlumeriaSilvally]}
 );
 TownList['Mina\'s Houseboat'] = new DungeonTown(
@@ -8036,37 +8071,37 @@ TownList['Ruins of Conflict'] = new DungeonTown(
     'Ruins of Conflict',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.MelemeleIsland,
-    [new GymBadgeRequirement(BadgeEnums.Champion_Stamp)],
-    [new MoveToTown('Mahalo Trail', undefined, false)]
+    [new QuestLineStartedRequirement('Welcome to paradise, cousin!')],
+    [TemporaryBattleList['Melemele Spearow']],
+    {
+        npcs: [Lillie1, LillieMahaloTrail1, LillieMahaloTrail2],
+    }
 );
 TownList['Ruins of Life'] = new DungeonTown(
     'Ruins of Life',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.AkalaIsland,
-    [
-        new RouteKillRequirement(10, GameConstants.Region.alola, 21),
-        new GymBadgeRequirement(BadgeEnums.Champion_Stamp),
-    ],
-    [new MoveToTown('Ruins of Life Entrance', undefined, false)]
+    [new TemporaryBattleRequirement('Plumeria 1')],
+    [new AccessGym(GymList['Konikoni City'], new QuestLineStepCompletedRequirement('Symbiotic Relations', 8, GameConstants.AchievementOption.less))],
+    {
+        npcs: [LillieRuinsOfLife],
+    }
 );
 TownList['Ruins of Abundance'] = new DungeonTown(
     'Ruins of Abundance',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.UlaulaIsland,
-    [
-        new RouteKillRequirement(10, GameConstants.Region.alola, 23),
-        new GymBadgeRequirement(BadgeEnums.Champion_Stamp),
-    ]
+    [new RouteKillRequirement(10, GameConstants.Region.alola, 23)]
 );
 TownList['Ruins of Hope'] = new DungeonTown(
     'Ruins of Hope',
     GameConstants.Region.alola,
     GameConstants.AlolaSubRegions.PoniIsland,
-    [
-        new RouteKillRequirement(10, GameConstants.Region.alola, 26),
-        new GymBadgeRequirement(BadgeEnums.Champion_Stamp),
-    ],
-    [new MoveToTown('Ruins of Hope Altar', undefined, false)]
+    [new RouteKillRequirement(10, GameConstants.Region.alola, 26)],
+    undefined,
+    {
+        npcs: [HapuHope],
+    }
 );
 TownList['Poni Meadow'] = new DungeonTown(
     'Poni Meadow',
@@ -8820,8 +8855,8 @@ const Peonia3 = new NPC ('Peonia', [
     requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Lair of Giants', 32), new QuestLineStepCompletedRequirement('The Lair of Giants', 34, GameConstants.AchievementOption.less )]),
 });
 const GigantamaxLeon1 = new NPC ('Leon', [
-    'Champion?! What are you.... Doesn\'t matter, I\'m glad you\'re here!',
-    'Eternamax Eternatus has showed up again! No time to talk, let\'s fight it together!',
+    'Champion?! What are you.... no matter, I\'m glad you\'re here!',
+    'Eternamax Eternatus has appeared again! There is no time to talk! Let\'s fight it together!',
 ], {
     image: 'assets/images/npcs/Leon.png',
     requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Lair of Giants', 33), new QuestLineStepCompletedRequirement('The Lair of Giants', 35, GameConstants.AchievementOption.less )]),
@@ -8836,9 +8871,9 @@ const GigantamaxLeon2 = new NPC ('Leon', [
     requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Lair of Giants', 35), new QuestLineStepCompletedRequirement('The Lair of Giants', 37, GameConstants.AchievementOption.less )]),
 });
 const Peonia4 = new NPC ('Peonia', [
-    'It really was Eternatus again? Given the purple glow has vanished, I guess already you took care of it. Congrats!',
+    'Was it really was Eternatus again? Given that the purple glow has vanished, I guess you\'ve already taken care of it. Congrats!',
     'Actually, I just saw some purple and red Pokémon fly into the caves. Maybe that was Eternatus? I think this place might let it return to it\'s Eternamax form. Maybe you can catch it!',
-    'At any rate, I\'m real thankful for all your help. There\'s so many more people coming here now there\'s more Gigantamax Pokémon to find, it\'s been a lot of fun!',
+    'At any rate, I\'m real thankful for all your help. There\'s so many more people coming here now there\'s more Gigantamax Pokémon to find.  It\'s been a lot of fun!',
 ], {
     image: 'assets/images/npcs/Peonia.png',
     requirement:  new MultiRequirement([new QuestLineStepCompletedRequirement('The Lair of Giants', 36), new QuestLineCompletedRequirement('The Lair of Giants', GameConstants.AchievementOption.less )]),
@@ -9249,7 +9284,6 @@ const JubilifeVillageShop = new Shop([
     ItemList.Greatball,
     ItemList.Ultraball,
     ItemList.Black_augurite,
-    ItemList.Peat_block,
 ]);
 
 // Hisui NPCs

@@ -652,7 +652,7 @@ TemporaryBattleList['Kimono Girls'] = new TemporaryBattle(
 TemporaryBattleList['Spiky-eared Pichu'] = new TemporaryBattle(
     'Spiky-eared Pichu',
     [new GymPokemon('Spiky-eared Pichu', 3178500, 20)],
-    '<b><i>You caught the Spiky-eared Pichu!</i></b>',
+    '<b><i>The Spiky-eared Pichu ran into the forest!</i></b>',
     [new QuestLineStepCompletedRequirement('Unfinished Business', 6)],
     undefined,
     {
@@ -2885,7 +2885,7 @@ TemporaryBattleList['Primal Groudon'] = new TemporaryBattle(
     'Primal Groudon',
     [new GymPokemon('Primal Groudon', 293674710, 100)],
     '<i>Primal Groudon lets out a terrifying roar, then drops the Red Orb and returns to its normal form.</i></br><img src="assets/images/megaStone/Red_Orb.png"/>',
-    [new MultiRequirement([new QuestLineStepCompletedRequirement('Primal Reversion', 14), new WeatherRequirement([WeatherType.Sunny])])],
+    [new MultiRequirement([new QuestLineStepCompletedRequirement('Primal Reversion', 14), new WeatherRequirement([WeatherType.Harsh_Sunlight])])],
     undefined,
     {
         hideTrainer: true,
@@ -3623,7 +3623,7 @@ TemporaryBattleList['Wild Houndour Horde'] = new TemporaryBattle(
     '<i>With the leader of the pack defeated, the Houndour horde scatters, their fiery fury reduced to ashes. In the gleaming sunlight, you catch sight of a small gem left behind by their leader...</i></br><img src="assets/images/megaStone/Houndoominite.png"/></br><i>You obtained the Houndoominite!</i>',
     [
         new ObtainedPokemonRequirement('Houndoom'),
-        new WeatherRequirement([WeatherType.Sunny]),
+        new WeatherRequirement([WeatherType.Harsh_Sunlight]),
         new StatisticRequirement(['pokemonCaptured', PokemonHelper.getPokemonByName('Houndour').id], 500, 'Capture a total of 500 or more Houndour.'),
         new GymBadgeRequirement(BadgeEnums.Elite_KalosChampion),
     ],
@@ -3817,13 +3817,16 @@ TemporaryBattleList['Hau 2'] = new TemporaryBattle(
         new GymPokemon('Rowlet', 81763320, 7, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
         new GymPokemon('Litten', 81763320, 7, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
-    undefined, // key item modal
+    'Phew... That was awesome! That was a really great battle! I had a blast fighting you!',
     [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 1)],
     undefined,
     {
         displayName: 'Pokémon Trainer Hau',
         returnTown: 'Iki Town',
         imageName: 'Rival Hau',
+        firstTimeRewardFunction: () => {
+            App.game.keyItems.gainKeyItem(KeyItemType['Z-Power_Ring'], true);
+        },
     }
 );
 TemporaryBattleList['Skull 1'] = new TemporaryBattle(
@@ -3907,6 +3910,7 @@ TemporaryBattleList.Dexio = new TemporaryBattle(
         firstTimeRewardFunction: () => {
             if (App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Sina')]() >= 1) {
                 App.game.quests.getQuestLine('Symbiotic Relations').beginQuest(0, undefined, true);
+                // TODO: zygarde quest thing
             }
         },
         displayName: 'Pokémon Trainer Dexio',
@@ -3926,6 +3930,7 @@ TemporaryBattleList.Sina = new TemporaryBattle(
         firstTimeRewardFunction: () => {
             if (App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Dexio')]() >= 1) {
                 App.game.quests.getQuestLine('Symbiotic Relations').beginQuest(0, undefined, true);
+                // TODO: zygarde quest thing
             }
         },
         displayName: 'Pokémon Trainer Sina',
@@ -4196,7 +4201,6 @@ TemporaryBattleList['Recon Squad 3'] = new TemporaryBattle(
     undefined,
     {
         displayName: 'Ultra Recon Squad',
-        returnTown: 'Vast Poni Canyon Entrance',
         imageName: 'specialNPCs/Ultra Recon Squad (all)',
     }
 );
@@ -4294,10 +4298,7 @@ TemporaryBattleList['Captain Ilima'] = new TemporaryBattle(
         new GymPokemon('Komala', 274011820, 51),
     ],
     'Yes! You have emerged victorious! You and your Pokémon have become quite a delightful team! Off to Lush Jungle? It\'s been a while since I last visited Akala.',
-    [
-        new TemporaryBattleRequirement('Captain Mina'),
-        new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Hau\'oli Cemetery')),
-    ],
+    [new TemporaryBattleRequirement('Captain Mina')],
     undefined,
     {imageName: 'Ilima'}
 );
@@ -6198,7 +6199,7 @@ TemporaryBattleList['Max Raid Cinderace'] = new TemporaryBattle(
     {
         hideTrainer: true,
         displayName: 'Max Raid',
-        returnTown: 'Brawler\'s Cave',
+        returnTown: 'Brawlers\' Cave',
         rewardFunction: () => ItemList.Wishing_Piece.gain(1),
         resetDaily: true,
     }
@@ -6421,7 +6422,7 @@ TemporaryBattleList['Eternamax Eternatus'] = new TemporaryBattle(
     undefined,
     {
         hideTrainer: true,
-        imageName: '../pokemon/890',
+        imageName: '../pokemon/890.01',
     }
 );
 

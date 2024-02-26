@@ -3836,7 +3836,7 @@ TemporaryBattleList['Skull 1'] = new TemporaryBattle(
     [new QuestLineStepCompletedRequirement('Welcome to paradise, cousin!', 2)],
     undefined,
     {
-        displayName: 'Team Skull Grunts',
+        displayName: 'Team Skull Grunts A and B',
         returnTown: 'Hau\'oli City',
         imageName: 'Team Skull Grunts (male)',
     }
@@ -3862,7 +3862,7 @@ TemporaryBattleList['Skull 2'] = new TemporaryBattle(
     [new MultiRequirement([new TemporaryBattleRequirement('Ilima'), new RouteKillRequirement(10, GameConstants.Region.alola, 2)])],
     undefined,
     {
-        displayName: 'Team Skull Grunts',
+        displayName: 'Team Skull Grunts A and B',
         returnTown: 'Hau\'oli City',
         imageName: 'Team Skull Grunts (male)',
     }
@@ -4032,7 +4032,7 @@ TemporaryBattleList['Plumeria 1'] = new TemporaryBattle(
 TemporaryBattleList['Ultra Wormhole'] = new TemporaryBattle(
     'Ultra Wormhole',
     [new GymPokemon('???', 508485861, 27)],
-    '<i>The creature escaped back into the ultra wormhole.</i>',
+    undefined, // custom quest message
     [new GymBadgeRequirement(BadgeEnums.Akala_Stamp)],
     undefined,
     {
@@ -4079,7 +4079,7 @@ TemporaryBattleList['Skull 4'] = new TemporaryBattle(
     ],
     undefined,
     {
-        displayName: 'Skull Grunts',
+        displayName: 'Team Skull Grunts',
         returnTown: 'Malie City',
         imageName: 'Team Skull Grunts (male)',
     }
@@ -4218,6 +4218,7 @@ TemporaryBattleList['Lusamine 1'] = new TemporaryBattle(
     undefined,
     [
         new QuestLineStepCompletedRequirement('Emissary of Light', 6),
+        new QuestLineStepCompletedRequirement('Emissary of Light', 7, GameConstants.AchievementOption.less),
         new OneFromManyRequirement([
             new ObtainedPokemonRequirement('Solgaleo'),
             new ObtainedPokemonRequirement('Lunala'),
@@ -4242,6 +4243,7 @@ TemporaryBattleList['Lusamine 2'] = new TemporaryBattle(
     undefined,
     [
         new QuestLineStepCompletedRequirement('Emissary of Light', 6),
+        new QuestLineStepCompletedRequirement('Emissary of Light', 7, GameConstants.AchievementOption.less),
         new ObtainedPokemonRequirement('Solgaleo', true),
         new ObtainedPokemonRequirement('Lunala', true),
     ],
@@ -4255,8 +4257,8 @@ TemporaryBattleList['Lusamine 2'] = new TemporaryBattle(
 TemporaryBattleList.Necrozma = new TemporaryBattle(
     'Necrozma',
     [
-        new GymPokemon('Necrozma (Dusk Mane)', 304088130, 50),
-        new GymPokemon('Necrozma (Dawn Wings)', 364088130, 50),
+        new GymPokemon('Necrozma (Dusk Mane)', 316028496, 50),
+        new GymPokemon('Necrozma (Dawn Wings)', 318577113, 50),
     ],
     'Necrozma retreated into the Ultra Wormhole',
     [new QuestLineCompletedRequirement('Emissary of Light')],
@@ -4270,9 +4272,6 @@ TemporaryBattleList['Ultra Megalopolis'] = new TemporaryBattle(
     [new TemporaryBattleRequirement('Necrozma'), new QuestLineCompletedRequirement('Emissary of Light')],
     undefined,
     {
-        firstTimeRewardFunction: () => {
-            App.game.quests.getQuestLine('Mina\'s Trial').beginQuest(0, undefined, true);
-        },
         hideTrainer: true,
         imageName: 'specialNPCs/Wormhole',
         displayName: 'Ultra Necrozma',
@@ -4372,8 +4371,8 @@ TemporaryBattleList['Gladion 3'] = new TemporaryBattle(
         new GymPokemon('Silvally (Water)', 213569655, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
         new GymPokemon('Silvally (Grass)', 213569655, 55, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
-    'You\'ve got good Pokémon. I know what kind of Trainer you are now. And what kind of journey you\'ve been through.',
-    [new QuestLineStepCompletedRequirement('Mina\'s Trial', 7)],
+    'You\'ve got good Pokémon. I know what kind of Trainer you are now. And what kind of journey you\'ve been through.</br>Lillie\'s looking after our mother at the foundation. Hau\'s working hard to get stronger, too...</br>I know we aren\'t friends. But we aren\'t enemies anymore either. Keep winning. Maybe I\'ll see you again if you do.',
+    [new QuestLineStepCompletedRequirement('Eater of Light', 1)],
     undefined,
     {
         displayName: 'Pokémon Trainer Gladion',

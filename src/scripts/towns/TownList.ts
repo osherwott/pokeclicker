@@ -2368,7 +2368,7 @@ const OldaleTrackingScientist = new NPC('Tracking Scientist', [
 
 const HoennFossilNpc = new NPC('Laid-Back Angler', [
     'Every so often, I\'ll snag an old fossil from the seafloor. It weirds me out to think of all the Pokémon that used to crawl around the ocean so many years ago, but it also reminds me that life is fleeting and precious.',
-    'So far I\'ve found two that I relate to, a kind of flower-looking thing and a one that looks like a bug pincer.',
+    'So far I\'ve found two that I relate to, a kind of flower-looking thing and one that looks like a bug pincer.',
     'I wonder what you\'ll feel the next time you find one.',
 ], {image: 'assets/images/npcs/Fisherman.png'});
 
@@ -6844,14 +6844,14 @@ const SeafolkCaptain = new NPC('Mina', [
     'Old man Nanu has been looking after our grand trials up until now. I\'m the captain and all, so I\'ve gotta come up with a trial.',
 ], {
     image: 'assets/images/npcs/Mina.png',
-    requirement: new QuestLineCompletedRequirement('Eater of Light', GameConstants.AchievementOption.less),
+    requirement: new QuestLineStepCompletedRequirement('Eater of Light', 0, GameConstants.AchievementOption.less),
 });
 const SeafolkCaptainMina = new NPC('Captain Mina', [
     'My trial is in this town. Right there, inside my very own houseboat. Normally you\'d have to clear my trial to find our Kahuna on Exeggutor Island, but I guess you took care of some things, huh?',
     'Well, in that case, I\'d better add a little something more. This is the final trial of your island challenge, after all. I hope you\'re ready for your toughest opponents yet!',
 ], {
     image: 'assets/images/npcs/Mina.png',
-    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Eater of Light'), new OneFromManyRequirement([new QuestLineStepCompletedRequirement('Typing some Memories', 1, GameConstants.AchievementOption.less), new QuestLineStepCompletedRequirement('Typing some Memories', 3, GameConstants.AchievementOption.more)])]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Eater of Light', 0), new OneFromManyRequirement([new QuestLineStepCompletedRequirement('Typing some Memories', 1, GameConstants.AchievementOption.less), new QuestLineStepCompletedRequirement('Typing some Memories', 3, GameConstants.AchievementOption.more)])]),
 });
 const LanakilaColress = new NPC('Colress', [
     'It\'s been a while. You must be a formidable Trainer indeed if you are able to get Necrozma as one of your allies.',
@@ -6871,7 +6871,7 @@ const ReconSquadAltar = new NPC('Ultra Recon Squad', [
     'Care for a Poipole? It only costs a few thousand Quest Points!',
 ], {
     image: 'assets/images/npcs/specialNPCS/Ultra Recon Squad (all).png',
-    requirement: new QuestLineCompletedRequirement('Eater of Light'),
+    requirement: new QuestLineStepCompletedRequirement('Eater of Light', 0),
 });
 
 const AetherParadiseAlolaRoamerNPC = new RoamerNPC('Assistant Branch Chief Wicke', [
@@ -6975,9 +6975,7 @@ const DuskFlute = new NPC('Ask Lillie what to do', [
 const Lillie7 = new NPC('Lillie', [
     'Nebby... all I ever wanted to do was to help you get back to your own home... But instead you helped me, over and over... I got the chance to finally talk with my mother. Thank you... Thank you so much!',
     'And thank you too, $playername$! You\'ve helped gain so much confidence in myself. I am very grateful for that. I was able to achieve things I had never dreamed I could... Getting to meet you, traveling together with you... I\'m so glad I got to part of your journey!',
-    '',
-    'Here, take these flutes and- Wait- what is this darkness in the sky? Oh my goodness! $playername$! In the sky! Another Ultra Wormhole!',
-    'It seems there are still other matters to resolve, but don\'t worry! Whatever it is, Nebby and I will be by your side, no matter what!',
+    'Wait- what is this darkness in the sky? Oh my goodness! $playername$! In the sky! Another Ultra Wormhole!',
 ], {
     image: 'assets/images/npcs/Lillie (z powered).png',
     requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Emissary of Light', 7), new  QuestLineCompletedRequirement('Emissary of Light', GameConstants.AchievementOption.less)]),
@@ -7073,7 +7071,7 @@ const LillieExeggutorIsland = new NPC('Lillie', [
     image: 'assets/images/npcs/Lillie (z powered).png',
     requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Emissary of Light', 1), new QuestLineStepCompletedRequirement('Emissary of Light', 5, GameConstants.AchievementOption.less)]),
 });
-const LillieAltar1 = new NPC('Lillie', [
+const LillieAltar1 = new NPC('Prepare with Lillie', [
     'My mother is— She\'s selfish. She lavishes her love only on those she deems worthy, not caring whether it is wanted or not.',
     'But I will save her. I still have something I need to tell her. I am alive. Cosmog is alive.',
     'Nebby. Please. I need to see my mother!',
@@ -7083,12 +7081,12 @@ const LillieAltar1 = new NPC('Lillie', [
     requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Emissary of Light', 5), new QuestLineStepCompletedRequirement('Emissary of Light', 7, GameConstants.AchievementOption.less)]),
 });
 const LillieAltar2 = new NPC('Lillie', [
+    'I...will go to my mother. I need to see for myself that she\'ll be all right.',
     'Necrozma... It seemed like it was also suffering somehow... It seemed to hurt it, to be without its light...',
     '$playername$... if you can... try to help Necrozma, like you did mother.',
-    '<i>Lillie is clutching the flutes tightly. It would be awkward to ask for them now...<i>',
 ], {
     image: 'assets/images/npcs/Lillie (z powered).png',
-    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineCompletedRequirement('Eater of Light', GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineStepCompletedRequirement('Eater of Light', 0, GameConstants.AchievementOption.less)]),
 });
 // Other story characters
 const HauAether = new NPC('Hau', [
@@ -7131,7 +7129,7 @@ const HapuAltar = new NPC('Hapu', [
     'I\'ll await your arrival on Exeggutor Island, if training is something you desire before challenging this beast.',
 ], {
     image: 'assets/images/npcs/Hapu.png',
-    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineCompletedRequirement('Eater of Light', GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineStepCompletedRequirement('Eater of Light', 0, GameConstants.AchievementOption.less)]),
 });
 const PhycoAltar = new NPC('Captain Phyco', [
     'Necrozma...and us ourselves... we have both suffered so many long years in this darkness, living a life we did not wish for...',
@@ -7139,7 +7137,7 @@ const PhycoAltar = new NPC('Captain Phyco', [
     'Our ancestors were greedy, though. They sought to control all of Necrozma\'s light... They hurt Necrozma... They left it incomplete, and in such a state, it went mad with fury... And so our light was stolen by Necrozma. Now, the one that wields light to its will... It would steal all of Alola\'s light!',
 ], {
     image: 'assets/images/npcs/Phyco.png',
-    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineCompletedRequirement('Eater of Light', GameConstants.AchievementOption.less)]),
+    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Emissary of Light'), new  QuestLineStepCompletedRequirement('Eater of Light', 0, GameConstants.AchievementOption.less)]),
 });
 const PoipoleGift = new GiftNPC('Accept Poipole', [
     'You chose to confront Lusamine and Necrozma without the aid of the legendary Pokémon. It seems Poipole has become inspired by your actions. Do you wish to take it with you? ',
@@ -7148,7 +7146,7 @@ const PoipoleGift = new GiftNPC('Accept Poipole', [
 }, 'assets/images/pokemon/803.png', {
     saveKey: 'poipolegift',
     image: 'assets/images/npcs/specialNPCs/Ultra Recon Squad (all).png',
-    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Eater of Light'), new TemporaryBattleRequirement('Lusamine 2')]),
+    requirement: new MultiRequirement([new QuestLineStepCompletedRequirement('Eater of Light', 0), new TemporaryBattleRequirement('Lusamine 2')]),
 });
 // Rotom-Dex
 const RotomDexSun = new NPC('Rotom Dex', [
@@ -7458,7 +7456,7 @@ const NecrozmaLooker = new NPC('Looker', [
     'There haven\'t been any new reports of Ultra Beasts in Alola, but I did see something strange over in Ten Carat Hill. It was black, yet shining. It seemed to be fleeing, no doubt about that. Must have been in a weakened state. Was it involved in some kind of battle? If you find it, I doubt it will have much energy left.',
 ], {
     image: 'assets/images/npcs/Looker.png',
-    requirement: new MultiRequirement([new QuestLineCompletedRequirement('Ultra Beast Hunt'), new StatisticRequirement(['pokemonEncountered', PokemonHelper.getPokemonByName('Necrozma').id], 1, 'Must have never encountered Necrozma before.', GameConstants.AchievementOption.less)]),
+    requirement: new QuestLineCompletedRequirement('Ultra Beast Hunt'),
 });
 const BattleTreeRed = new NPC('Red', [
     '...',

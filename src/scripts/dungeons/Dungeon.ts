@@ -10830,7 +10830,9 @@ dungeonList['Verdant Cavern'] = new Dungeon('Verdant Cavern',
         {pokemon: 'Yungoos', options: { weight: 0.75 }},
         {pokemon: 'Pheromosa', options: { weight: 0.75, hide: true, requirement: new QuestLineStepCompletedRequirement('Ultra Beast Hunt', 5)}}, // hide UBs because they show up in too many dungeons and will distract the players
         new DungeonTrainer('Team Skull Grunt',
-            [new GymPokemon('Drowzee', 11595673, 11)], { weight: 1 }, undefined, '(male)'),
+            [new GymPokemon('Drowzee', 11595673, 11)], { weight: 0.5 }, 'A', '(male)'),
+        new DungeonTrainer('Team Skull Grunt',
+            [new GymPokemon('Drowzee', 11595673, 11)], { weight: 0.5 }, 'B', '(male)'),
     ],
     {
         common: [
@@ -10942,9 +10944,9 @@ dungeonList['Ten Carat Hill'] = new Dungeon('Ten Carat Hill',
         {pokemon: 'Psyduck', options: { weight: 1 }},
         {pokemon: 'Mawile', options: { weight: 1 }},
         {pokemon: 'Roggenrola', options: { weight: 1 }},
-        {pokemon: 'Necrozma', options: { weight: 1, hide: true, requirement: new MultiRequirement([
+        {pokemon: 'Necrozma', options: { weight: 0.25, hide: true, requirement: new MultiRequirement([
             new QuestLineCompletedRequirement('Ultra Beast Hunt'),
-            new StatisticRequirement(['pokemonEncountered', PokemonHelper.getPokemonByName('Necrozma').id], 1, 'Must have never encountered Necrozma before.', GameConstants.AchievementOption.less),
+            new StatisticRequirement(['pokemonEncountered', PokemonHelper.getPokemonByName('Necrozma').id], 1, 'Must have encountered Necrozma before.'),
         ])}},
     ],
     {
@@ -11933,14 +11935,14 @@ dungeonList['Mina\'s Houseboat'] = new Dungeon('Mina\'s Houseboat',
     16217412,
     [
         new DungeonBossPokemon('Ribombee', 81087060, 55),
-        new DungeonBossPokemon('Totem Ribombee', 82543791, 60, {hide: true, requirement: new MultiRequirement([new GymBadgeRequirement(BadgeEnums.Champion_Stamp), new QuestLineCompletedRequirement('Mina\'s Trial')])}), //new QuestLineCompletedRequirement('Island Challenge')
+        new DungeonBossPokemon('Totem Ribombee', 82543791, 60, {hide: true, requirement: new MultiRequirement([new GymBadgeRequirement(BadgeEnums.Champion_Stamp), new QuestLineCompletedRequirement('Eater of Light')])}), //new QuestLineCompletedRequirement('Island Challenge')
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Blissey', 24326118, 53),
                 new GymPokemon('Pelipper', 24326118, 52),
                 new GymPokemon('Totem Ribombee', 32434824, 55),
             ],
-            { hide: true, weight: 5, requirement: new QuestLineStepCompletedRequirement('Mina\'s Trial', 7, GameConstants.AchievementOption.less) }, 'of Mina\'s Houseboat'),
+            { hide: true, weight: 5, requirement: new QuestLineStepCompletedRequirement('Eater of Light', 1, GameConstants.AchievementOption.less) }, 'of Mina\'s Houseboat'),
     ],
     1150000, 25);
 
@@ -12044,10 +12046,7 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
         new DungeonBossPokemon('Absol', 81064250, 50),
         new DungeonBossPokemon('Glalie', 81064250, 50),
         new DungeonBossPokemon('Vanilluxe', 81064250, 50),
-        new DungeonBossPokemon('Necrozma', 83527125, 65, { requirement: new MultiRequirement([
-            new QuestLineCompletedRequirement('Ultra Beast Hunt'), // because we don't want to unhide all the other ultra beasts and it's a reference to SM
-            new StatisticRequirement(['pokemonEncountered', PokemonHelper.getPokemonByName('Necrozma').id], 1, 'Encounter at least 1 Necrozma.'),
-        ])}),
+        new DungeonBossPokemon('Necrozma', 83527125, 65, { requirement: new QuestLineCompletedRequirement('Eater of Light') }),
         new DungeonTrainer('Trial Site',
             [
                 new GymPokemon('Sneasel', 20266062, 47),
@@ -12068,7 +12067,10 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
                     new DayCyclePartRequirement([3]),
                 ])),
             ],
-            { hide: true, weight: 5, requirement: new QuestLineCompletedRequirement('Mina\'s Trial', GameConstants.AchievementOption.less) }, 'of Mount Lanakila'),
+            { hide: true, weight: 5, requirement: new MultiRequirement([
+                new QuestLineStepCompletedRequirement('Eater of Light', 3),
+                new QuestLineCompletedRequirement('Eater of Light', GameConstants.AchievementOption.less),
+            ]) }, 'of Mount Lanakila'),
     ],
     1175000, 26);
 

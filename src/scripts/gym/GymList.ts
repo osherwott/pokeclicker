@@ -1526,18 +1526,18 @@ GymList['Exeggutor Island'] = new Gym(
 );
 
 //Alola Elite 4
-// modified from base HP:
-// regular mons: 91879987
-// ace pokemon: 92856372
+// modified from base HP, keep them the same difficulty
+// regular mons base HP: 91879987
+// ace pokemon base HP: 92856372
 GymList['Elite Molayne'] = new Gym(
     'Molayne',
     'Elite Molayne',
     [
-        new GymPokemon('Klefki', 68450590, 56),
-        new GymPokemon('Bisharp', 83151388, 56),
+        new GymPokemon('Klefki', 67050590, 56),
+        new GymPokemon('Bisharp', 80151388, 56),
         new GymPokemon('Magnezone', 78833028, 56),
         new GymPokemon('Metagross', 76260389, 56),
-        new GymPokemon('Alolan Dugtrio', 89420686, 57),
+        new GymPokemon('Alolan Dugtrio', 91420686, 57),
     ],
     BadgeEnums.Elite_Molayne,
     64000,
@@ -1548,11 +1548,11 @@ GymList['Elite Olivia'] = new Gym(
     'Olivia',
     'Elite Olivia',
     [
-        new GymPokemon('Armaldo', 99230385, 56),
-        new GymPokemon('Cradily', 93258186, 56),
-        new GymPokemon('Gigalith', 157849817, 56),
-        new GymPokemon('Probopass', 97209026, 56),
-        new GymPokemon('Lycanroc (Midnight)', 159527247, 57),
+        new GymPokemon('Armaldo', 97230385, 56),
+        new GymPokemon('Cradily', 89258186, 56),
+        new GymPokemon('Gigalith', 168849817, 56),
+        new GymPokemon('Probopass', 102209026, 56),
+        new GymPokemon('Lycanroc (Midnight)', 180527247, 57),
     ],
     BadgeEnums.Elite_Olivia,
     64000,
@@ -1563,11 +1563,11 @@ GymList['Elite Acerola'] = new Gym(
     'Acerola',
     'Elite Acerola',
     [
-        new GymPokemon('Banette', 81589428, 56),
-        new GymPokemon('Drifblim', 77179189, 56),
-        new GymPokemon('Dhelmise', 77179189, 56),
-        new GymPokemon('Froslass', 82691988, 56),
-        new GymPokemon('Palossand', 91277813, 57),
+        new GymPokemon('Banette', 99589428, 56),
+        new GymPokemon('Drifblim', 89179189, 56),
+        new GymPokemon('Dhelmise', 92179189, 56),
+        new GymPokemon('Froslass', 92691988, 56),
+        new GymPokemon('Palossand', 104277813, 57),
     ],
     BadgeEnums.Elite_Acerola,
     64000,
@@ -1578,11 +1578,11 @@ GymList['Elite Kahili'] = new Gym(
     'Kahili',
     'Elite Kahili',
     [
-        new GymPokemon('Braviary', 91420587, 56),
-        new GymPokemon('Hawlucha', 102446185, 56),
-        new GymPokemon('Oricorio (Baile)', 98127826, 56),
-        new GymPokemon('Mandibuzz', 89123587, 56),
-        new GymPokemon('Toucannon', 92392090, 57),
+        new GymPokemon('Braviary', 86420587, 56),
+        new GymPokemon('Hawlucha', 109446185, 56),
+        new GymPokemon('Oricorio (Baile)', 103127826, 56),
+        new GymPokemon('Mandibuzz', 88123587, 56),
+        new GymPokemon('Toucannon', 90392090, 57),
     ],
     BadgeEnums.Elite_Kahili,
     64000,
@@ -1591,24 +1591,20 @@ GymList['Elite Kahili'] = new Gym(
 );
 
 // Alola Champion
-// modified from base HP:
-// regular mons: 89636471
-// Raichu and Crabominable: 91545555
-// starter pokemon: 96725389
 GymList['Champion Hau'] = new Gym(
     'Hau',
     'Champion Hau',
     [
-        new GymPokemon('Alolan Raichu', 100700110, 59),
-        new GymPokemon('Tauros', 100392847, 58),
-        new GymPokemon('Noivern', 83630827, 58),
-        new GymPokemon('Crabominable', 114431943, 59),
-        new GymPokemon('Flareon', 123698330, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Primarina', 92856373, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
-        new GymPokemon('Vaporeon', 112314498, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Decidueye', 81249326, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
-        new GymPokemon('Leafeon', 129076518, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
-        new GymPokemon('Incineroar', 100110777, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Alolan Raichu', 91545555, 59),
+        new GymPokemon('Tauros', 89636471, 58),
+        new GymPokemon('Noivern', 89636471, 58),
+        new GymPokemon('Crabominable', 91545555, 59),
+        new GymPokemon('Flareon', 89636471, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Primarina', 96725389, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Grass)),
+        new GymPokemon('Vaporeon', 89636471, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Decidueye', 96725389, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Fire)),
+        new GymPokemon('Leafeon', 89636471, 58, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
+        new GymPokemon('Incineroar', 96725389, 60, new StarterRequirement(GameConstants.Region.alola, GameConstants.Starter.Water)),
     ],
     BadgeEnums.Champion_Stamp,
     100000,

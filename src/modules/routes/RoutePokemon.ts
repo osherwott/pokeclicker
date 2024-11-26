@@ -7,6 +7,32 @@
 import { PokemonNameType } from '../pokemons/PokemonNameType';
 import SpecialRoutePokemon from './SpecialRoutePokemon';
 
+type routeBiomes = {
+    bambooForest?: PokemonNameType[];
+    beach?: PokemonNameType[];
+    cave?: PokemonNameType[];
+    caveWater?: PokemonNameType[];
+    chargestone?: PokemonNameType[];
+    desert?: PokemonNameType[];
+    flower?: PokemonNameType[];
+    forest?: PokemonNameType[];
+    lake?: PokemonNameType[];
+    mine?: PokemonNameType[];
+    mountain?: PokemonNameType[];
+    ocean?: PokemonNameType[];
+    olive?: PokemonNameType[];
+    prairie?: PokemonNameType[];
+    riverside?: PokemonNameType[];
+    rockyArea?: PokemonNameType[];
+    ruins?: PokemonNameType[];
+    snowfield?: PokemonNameType[];
+    swamp?: PokemonNameType[];
+    town?: PokemonNameType[];
+    underground?: PokemonNameType[];
+    volcano?: PokemonNameType[];
+    wasteland?: PokemonNameType[];
+}
+
 export default class RoutePokemon {
     public land: PokemonNameType[];
     public water: PokemonNameType[];
@@ -23,7 +49,11 @@ export default class RoutePokemon {
         water?: PokemonNameType[],
         headbutt?: PokemonNameType[],
         special?: SpecialRoutePokemon[],
-    }) {
+    },
+
+    public biomes: routeBiomes = {}
+
+    ) {
         this.land = land;
         this.water = water;
         this.headbutt = headbutt;

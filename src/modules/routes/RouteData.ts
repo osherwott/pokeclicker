@@ -4200,23 +4200,49 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'South Province (Area One)', Region.paldea, 2,
     new RoutePokemon({
-        land: ['Hoppip', 'Paldean Wooper', 'Wingull', 'Ralts', 'Combee', 'Sunkern', 'Buizel', 'Pawmi', 'Gastly', 'Fletchling', 'Scatterbug', 'Spewpa', 'Oricorio (Pom-Pom)', 'Lechonk', 'Tarountula', 'Fidough', 'Happiny', 'Pichu', 'Bonsly', 'Skwovet', 'Shroodle', 'Bounsweet', 'Igglybuff', 'Drowzee', /*Fixed encounter only:*/'Wiglett', 'Pachirisu', 'Flamigo', 'Gimmighoul (Chest)'],
-        water: ['Magikarp', 'Arrokuda', 'Azurill', 'Chewtle', 'Psyduck', 'Surskit'],
+        // special: [new SpecialRoutePokemon(['Zapdos'], new GymBadgeRequirement(BadgeEnums.Elite_BlueberryChampion)),]
+    },
+    {
+        prairie: ['Hoppip', 'Happiny', 'Fletchling', 'Scatterbug', 'Lechonk', 'Tarountula', 'Pawmi', 'Pachirisu'],
+        forest: ['Pichu', 'Bonsly', 'Bounsweet', 'Skwovet', 'Lechonk', 'Tarountula', 'Shroodle'],
+        town: ['Igglybuff', 'Ralts', 'Fidough'],
+        lake: ['Psyduck', 'Magikarp', 'Paldean Wooper', 'Surskit', 'Azurill', 'Chewtle'],
+        riverside: ['Psyduck', 'Magikarp', 'Surskit', 'Azurill', 'Buizel', 'Arrokuda'],
+        ocean: ['Magikarp', 'Wingull', 'Buizel', 'Arrokuda'],
+        beach: ['Wingull', 'Buizel'],
+        flower: ['Sunkern', 'Combee', 'Happiny', 'Spewpa', 'Oricorio (Pom-Pom)'],
+        ruins: ['Gastly', 'Drowzee'],
     }),
     [new GymBadgeRequirement(BadgeEnums.Elite_GalarChampion)],
 ));
 Routes.add(new RegionRoute(
     'South Province (Area Two)', Region.paldea, 3,
     new RoutePokemon({
-        land: ['Pikachu', 'Jigglypuff', 'Eevee', 'Mareep', 'Hoppip', 'Starly', 'Fletchling', 'Smoliv', 'Fidough', 'Maschiff', 'Happiny', 'Pichu', 'Bonsly', 'Bounsweet', 'Skwovet', 'Shroodle', 'Applin', 'Igglybuff', 'Rockruff', 'Misdreavus', 'Makuhita', 'Skiddo', 'Yungoos', 'Nacli', 'Sunkern', 'Combee', 'Flabébé (Red)', 'Flabébé (Yellow)', 'Flabébé (Orange)', 'Flabébé (Blue)', 'Flabébé (White)', 'Kricketot', 'Diglett', 'Gastly', 'Drowzee', 'Bronzor', 'Tinkatink', 'Squawkabilly (Green)', 'Squawkabilly (Blue)', 'Squawkabilly (Yellow)', 'Squawkabilly (White)', /*Fixed encounter only:*/'Staravia', 'Vespiquen', 'Gimmighoul (Chest)'],
-        water: ['Psyduck', 'Magikarp', 'Azurill', 'Buizel', 'Chewtle', 'Arrokuda', 'Tadbulb'],
+        land: ['Diglett', 'Meowth', 'Fletchling'], // fixed encounters
+    },
+    {
+        prairie: ['Mareep', 'Hoppip', 'Starly', 'Happiny', 'Fletchling', 'Maschiff'],
+        forest: ['Pikachu', 'Pichu', 'Bonsly', 'Bounsweet', 'Skwovet', 'Applin', 'Shroodle'],
+        town: ['Jigglypuff', 'Igglybuff', 'Fidough'],
+        mountain: ['Gastly', 'Misdreavus', 'Rockruff'],
+        riverside: ['Psyduck', 'Magikarp', 'Azurill', 'Buizel', 'Chewtle', 'Arrokuda', 'Tadbulb'],
+        rockyArea: ['Makuhita', 'Yungoos', 'Nacli'],
+        flower: ['Sunkern', 'Combee', 'Happiny', 'Flabébé (Red)', 'Flabébé (Yellow)', 'Flabébé (Orange)', 'Flabébé (Blue)', 'Flabébé (Yellow)'],
+        olive: ['Diglett', 'Eevee', 'Mareep', 'Starly', 'Kricketot', 'Combee', 'Skwovet', 'Smoliv'],
+        ruins: ['Gastly', 'Drowzee', 'Bronzor', 'Maschiff', 'Tinkatink'],
     }),
     [new GymBadgeRequirement(BadgeEnums.Elite_GalarChampion)],
 ));
 Routes.add(new RegionRoute(
     'South Province (Area Three)', Region.paldea, 4,
     new RoutePokemon({
-        land: ['Growlithe', 'Gulpin', 'Spoink', 'Shuppet', 'Shinx', 'Oricorio (Baile)', 'Rookidee', 'Nymble', 'Pawmi', 'Klawf', 'Murkrow', 'Dunsparce', 'Happiny', 'Tandemaus', 'Squawkabilly (Green)', 'Squawkabilly (Blue)', 'Squawkabilly (Yellow)', 'Squawkabilly (White)', 'Drifloon', 'Makuhita', 'Yungoos', 'Skiddo', 'Nacli', 'Gastly', 'Drowzee', 'Bronzor', 'Tinkatink', /*Fixed encounter only:*/'Talonflame', 'Staraptor', 'Gimmighoul (Chest)'],
+        special: [new SpecialRoutePokemon(['Klawf'], new GymBadgeRequirement(BadgeEnums.Rock_Titan))],
+    },
+    {
+        prairie: ['Murkrow', 'Dunsparce', 'Gulpin', 'Happiny', 'Rookidee', 'Nymble', 'Pawmi'],
+        town: ['Murkrow', 'Gulpin', 'Shuppet', 'Drifloon', 'Oricorio (Baile)', 'Rookidee', 'Tandemaus', 'Squawkabilly (Green)', 'Squawkabilly (Blue)', 'Squawkabilly (Yellow)', 'Squawkabilly (White)'],
+        rockyArea: ['Growlithe', 'Makuhita', 'Spoink', 'Shinx', 'Skiddo', 'Yungoos', 'Rookidee', 'Pawmi', 'Nacli', 'Charcadet', 'Klawf'],
+        ruins: ['Gastly', 'Drowzee', 'Bronzor', 'Tinkatink'],
     }),
     [new GymBadgeRequirement(BadgeEnums.Elite_GalarChampion)],
 ));

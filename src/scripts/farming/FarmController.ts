@@ -323,11 +323,17 @@ class FarmController {
         if (pokemonMap[p].nativeRegion > player.highestRegion()) {
             return `Reach ${GameConstants.camelCaseToString(GameConstants.Region[pokemonMap[p].nativeRegion])} to attract this Pokémon!`;
         }
+        // if (berry.specialWander.find(pk => pk.pokemon.includes(p)).pokemon) {
+        //     return berry.specialWander.find(pk => pk.pokemon.includes(p)).req.hint();
+        // }
         return '';
     }
 
-    public static isAvailableWanderer(p: any): boolean {
+    public static isAvailableWanderer(p: any, berry?: any): boolean { // `berry` is used for PokemonFactory, but the method is used in html too. this is a bit messy, i don't like it
         let availability = pokemonMap[p].nativeRegion <= player.highestRegion();
+        if (availability === true && berry && berry.specialWander?.find(pk => pk.pokemon.includes(p)).pokemon) {
+            availability = berry.specialWander.find(pk => pk.pokemon.includes(p)).isAvailable();
+        }
         return availability;
     }
 

@@ -376,7 +376,7 @@ class PokemonFactory {
         const availablePokemon = [];
         const weights = [];
         berry.wander.forEach((p, i) => {
-            if (FarmController.isAvailableWanderer(p)) {
+            if (FarmController.isAvailableWanderer(p, berry)) {
                 availablePokemon.push(p);
                 weights.push(mulch === MulchType.Gooey_Mulch && i >= Berry.baseWander.length ? 2 : 1);
             }

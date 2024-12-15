@@ -773,7 +773,8 @@ class Farming implements Feature {
                 'Due to its poisonous nature, it increases the chances of mutations near it.',
             ],
             new Aura(AuraType.Mutation, [1.2, 1.4, 1.6]),
-            ['Grimer', 'Spinarak', 'Gulpin', 'Skorupi', 'Salandit', 'Toxel']
+            ['Grimer', 'Spinarak', 'Gulpin', 'Skorupi', 'Salandit', 'Toxel'],
+            [new SpecialWandererPokemon(['Winter Toxel'], new SpecialEventRequirement('Merry Christmas!'))]
         );
 
         this.berryData[BerryType.Shuca] = new Berry(

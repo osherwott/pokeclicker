@@ -31,7 +31,7 @@ class Berry {
         [BerryColor.Red]: ['Ledyba', 'Flabébé (Red)', 'Oricorio (Baile)'],
         [BerryColor.Purple]: ['Illumise', 'Oricorio (Sensu)'],
         [BerryColor.Pink]: ['Spewpa', 'Oricorio (Pa\'u)'],
-        [BerryColor.Green]: ['Burmy (Plant)'],
+        [BerryColor.Green]: ['Burmy (Plant)'], // used to have (sand) and (trash) here. would eventually like for burmy forms to have reqs too
         [BerryColor.Yellow]: ['Combee', 'Flabébé (Yellow)', 'Oricorio (Pom-Pom)'],
         [BerryColor.Blue]: ['Volbeat', 'Flabébé (Blue)'],
         [BerryColor.Silver]: ['Flabébé (White)'],
@@ -52,13 +52,19 @@ class Berry {
         public firmness: BerryFirmness,
         public description: string[],
         public aura?: Aura,
-        wander?: PokemonNameType[]
+        wander?: PokemonNameType[],
+        public specialWander?: SpecialWandererPokemon[]
     ) {
         this.flavors = [];
         for (let i = 0; i < 5; i++) {
             this.flavors.push({type: i, value: flavors[i]});
         }
-        this.wander = Berry.baseWander.concat(Berry.colorWander[this.color], wander ?? []);
+
+        this.wander = Berry.baseWander.concat(
+            Berry.colorWander[this.color],
+            wander ?? [],
+            ...specialWander?.map(p => p.pokemon) ?? [] // problem with this is that the pokemon aren't sorted in dex number order
+        );
     }
 
     get descriptionHTML(): string {

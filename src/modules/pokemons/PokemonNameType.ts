@@ -1338,6 +1338,7 @@ export type PokemonNameType
     | 'Arrokuda'
     | 'Barraskewda'
     | 'Toxel'
+    | 'Winter Toxel'
     | 'Toxtricity (Amped)'
     | 'Toxtricity (Low Key)'
     | 'Gigantamax Toxtricity'

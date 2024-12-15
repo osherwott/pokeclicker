@@ -25685,6 +25685,26 @@ export const pokemonList = createPokemonArray(
         ],
     },
     {
+        'id': 848,
+        'name': 'Winter Toxel',
+        'type': [
+            PokemonType.Ice,
+            PokemonType.Poison,
+        ],
+        'base': {
+            'hitpoints': 40,
+            'attack': 38,
+            'specialAttack': 54,
+            'defense': 35,
+            'specialDefense': 35,
+            'speed': 40,
+        },
+        'eggCycles': 25,
+        'levelType': LevelType.mediumslow,
+        'exp': 48,
+        'catchRate': 75,
+    },
+    {
         'id': 849,
         'name': 'Toxtricity (Amped)',
         'type': [

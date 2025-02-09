@@ -14,6 +14,7 @@ import BerryFirmness from './enums/BerryFirmness';
 import BerryType from './enums/BerryType';
 import SizeUnits from './enums/SizeUnits';
 import PokemonType from './enums/PokemonType';
+import ContestType from './enums/ContestType';
 import CaughtStatus from './enums/CaughtStatus';
 import EvolutionType from './enums/EvolutionType';
 import FarmNotificationType from './enums/FarmNotificationType';
@@ -230,6 +231,7 @@ Object.assign(<any>window, {
     BerryType,
     SizeUnits,
     PokemonType,
+    ContestType,
     CaughtStatus,
     EvolutionType,
     FarmNotificationType,

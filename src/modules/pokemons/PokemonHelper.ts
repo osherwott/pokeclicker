@@ -165,6 +165,10 @@ export const getAllShadowPokemon = ko.pureComputed((): Set<PokemonNameType> => {
     return new Set(Object.values(dungeonList).flatMap(d => d.allShadowPokemon()));
 });
 
+export function getPokemonContestTypes(pokemonId: number) {
+    return App.game.party.getPokemon(pokemonId) ? App.game.party.getPokemon(pokemonId).currentContestTypes : P.pokemonMap[pokemonId].contestTypes;
+}
+
 // To have encounter/caught/defeat/hatch statistics in a single place
 export function incrementPokemonStatistics(pokemonId: number, statistic: PokemonStatisticsType, shiny: boolean, gender: BattlePokemonGender, shadow: ShadowStatus) {
     const pokemonStatistics = {

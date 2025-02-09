@@ -39,6 +39,7 @@ import { PokemonNameType } from './PokemonNameType';
 import { setPokemonMap } from './mapProvider';
 import DayCyclePart from '../dayCycle/DayCyclePart';
 import MaxRegionRequirement from '../requirements/MaxRegionRequirement';
+import ContestType from '../enums/ContestType';
 
 export const pokemonBabyPrevolutionMap: { [name: string]: PokemonNameType } = {};
 
@@ -106,6 +107,7 @@ export type PokemonListData = {
         femaleRatio?: number;
         visualDifference?: boolean;
     }
+    contestTypes?: ContestType[];
 };
 
 function createPokemonArray<T extends readonly PokemonListData[] & Array<{ name: V }>, V extends string>(...args: T) {
@@ -1718,6 +1720,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'femaleRatio': 1,
         },
+        'contestTypes': [ContestType.Cool, ContestType.Balanced],
     },
     {
         'id': 25.18,
@@ -1738,6 +1741,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'femaleRatio': 1,
         },
+        'contestTypes': [ContestType.Beautiful, ContestType.Balanced],
     },
     {
         'id': 25.19,
@@ -1758,6 +1762,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'femaleRatio': 1,
         },
+        'contestTypes': [ContestType.Cute, ContestType.Balanced],
     },
     {
         'id': 25.20,
@@ -1778,6 +1783,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'femaleRatio': 1,
         },
+        'contestTypes': [ContestType.Smart, ContestType.Balanced],
     },
     {
         'id': 25.21,
@@ -1798,6 +1804,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'femaleRatio': 1,
         },
+        'contestTypes': [ContestType.Tough, ContestType.Balanced],
     },
     {
         'id': 25.22,
@@ -2713,6 +2720,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 120,
         },
+        'contestTypes': [ContestType.Cool, ContestType.Smart],
     },
     {
         'id': 52,
@@ -3387,6 +3395,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 45,
             'speed': 55,
         },
+        'contestTypes': [ContestType.Beautiful, ContestType.Smart],
     },
     {
         'id': 71,
@@ -4139,6 +4148,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 75,
             'speed': 110,
         },
+        'contestTypes': [ContestType.Cool, ContestType.Smart],
     },
     {
         'id': 95,
@@ -4195,6 +4205,7 @@ export const pokemonList = createPokemonArray(
             'speed': 70,
         },
         'heldItem': { type: ItemType.underground, id: 'Hard Stone' },
+        'contestTypes': [ContestType.Cute, ContestType.Tough],
     },
     {
         'id': 96,
@@ -4856,6 +4867,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 40,
             'speed': 60,
         },
+        'contestTypes': [ContestType.Cool, ContestType.Cute],
     },
     {
         'id': 115,
@@ -4995,6 +5007,7 @@ export const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 63,
         },
+        'contestTypes': [ContestType.Beautiful, ContestType.Tough],
     },
     {
         'id': 119,
@@ -12738,6 +12751,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'type': Genders.Genderless,
         },
+        'contestTypes': [ContestType.Beautiful, ContestType.Balanced],
     },
     {
         'id': 383,
@@ -12779,6 +12793,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'type': Genders.Genderless,
         },
+        'contestTypes': [ContestType.Cool, ContestType.Balanced],
     },
     {
         'id': 383.02,
@@ -31682,6 +31697,31 @@ pokemonList.forEach((p) => {
     (p as PokemonListData).gender.femaleRatio = (p as PokemonListData).gender.femaleRatio === undefined ? 0.5 : (p as PokemonListData).gender.femaleRatio;
     // Add false as default gender visual difference
     (p as PokemonListData).gender.visualDifference = (p as PokemonListData).gender.visualDifference === undefined ? false : (p as PokemonListData).gender.visualDifference;
+
+    // Calculate Contest Types
+    // Determine based off highest stats
+    const contestStats = ['attack', 'specialAttack', 'speed', 'specialDefense', 'defense']; // order is important
+    const maxStat = Math.max(p.base.attack, p.base.specialAttack, p.base.speed, p.base.specialDefense, p.base.defense);
+    let con = [] as ContestType[];
+    contestStats.forEach((stat) => {
+        if (p.base[stat] === maxStat) {
+            con.push(contestStats.indexOf(stat));
+        }
+    });
+    // Add/Determine based off form
+    if ((p as PokemonListData).name.includes('Pinkan')) {
+        con.push(ContestType.Cute);
+    }
+    if ((p as PokemonListData).name.includes('Valencian')) {
+        con.push(ContestType.Cool);
+    }
+    if ((p as PokemonListData).name.includes('Mega ') || (p as PokemonListData).name.includes('Gigantamax')) {
+        con.push(ContestType.Balanced);
+    }
+    // Remove duplicate contest types and put them in order
+    con = [...new Set(con)].sort();
+    // Fill pokemons contestTypes with calculated Contest Types if nothing was given
+    (p as PokemonListData).contestTypes = (p as PokemonListData).contestTypes === undefined ? con : (p as PokemonListData).contestTypes;
 });
 
 export type PokemonMapProxy

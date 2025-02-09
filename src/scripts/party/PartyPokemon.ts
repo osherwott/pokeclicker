@@ -17,6 +17,8 @@ enum PartyPokemonSaveKeys {
     nickname,
     shadow,
     showShadowImage,
+    contestAppealBonusAmount,
+    currentContestTypes,
 }
 
 class PartyPokemon implements Saveable {
@@ -24,6 +26,7 @@ class PartyPokemon implements Saveable {
     public exp = 0;
     public evs: KnockoutComputed<number>;
     _attack: KnockoutComputed<number>;
+    _contestAppeal: KnockoutComputed<number>;
     private _canUseHeldItem: KnockoutComputed<boolean>;
 
     defaults = {
@@ -42,6 +45,8 @@ class PartyPokemon implements Saveable {
         nickname: '',
         shadow: GameConstants.ShadowStatus.None,
         showShadowImage: false,
+        contestAppealBonusAmount: 0,
+        currentContestTypes: pokemonMap[this.name].contestTypes,
     };
 
     // Saveable observables
@@ -63,6 +68,8 @@ class PartyPokemon implements Saveable {
     hideShinyImage: KnockoutObservable<boolean>;
     _shadow: KnockoutObservable<GameConstants.ShadowStatus>;
     _showShadowImage: KnockoutObservable<boolean>;
+    _contestAppealBonusAmount: KnockoutObservable<number>;
+    _currentContestTypes: KnockoutObservableArray<ContestType>;
 
     constructor(
         public id: number,
@@ -130,6 +137,9 @@ class PartyPokemon implements Saveable {
                 this.removeCategory(0); // remove None category
             }
         });
+        this._contestAppealBonusAmount = ko.observable(0).extend({ numeric: 0 });
+        this._contestAppeal = ko.computed(() => this.calculateContestAppeal());
+        this._currentContestTypes = ko.observableArray(pokemonMap[this.name].contestTypes);
     }
 
     public calculateAttack(ignoreLevel = false): number {
@@ -147,6 +157,10 @@ class PartyPokemon implements Saveable {
         const heldItemMultiplier = this.heldItem() instanceof HybridAttackBonusHeldItem ? (this.heldItem() as HybridAttackBonusHeldItem).clickAttackBonus : 1;
         return bonus * heldItemMultiplier;
     });
+
+    public calculateContestAppeal(): number {
+        return Math.max(0, Math.floor(this.contestAppealBonusAmount));
+    }
 
     public canCatchPokerus(): boolean {
         return App.game.keyItems.hasKeyItem(KeyItemType.Pokerus_virus);
@@ -643,6 +657,8 @@ class PartyPokemon implements Saveable {
         this._nickname(json[PartyPokemonSaveKeys.nickname] || this.defaults.nickname);
         this.shadow = json[PartyPokemonSaveKeys.shadow] ?? this.defaults.shadow;
         this._showShadowImage(json[PartyPokemonSaveKeys.showShadowImage] ?? this.defaults.showShadowImage);
+        this.contestAppealBonusAmount = json[PartyPokemonSaveKeys.contestAppealBonusAmount] ?? this.defaults.contestAppealBonusAmount;
+        this.currentContestTypes = json[PartyPokemonSaveKeys.currentContestTypes] ?? this.defaults.currentContestTypes;
     }
 
     public toJSON() {
@@ -663,6 +679,8 @@ class PartyPokemon implements Saveable {
             [PartyPokemonSaveKeys.nickname]: this.nickname || undefined,
             [PartyPokemonSaveKeys.shadow]: this.shadow,
             [PartyPokemonSaveKeys.showShadowImage]: this._showShadowImage(),
+            [PartyPokemonSaveKeys.contestAppealBonusAmount]: this.contestAppealBonusAmount,
+            [PartyPokemonSaveKeys.currentContestTypes]: this.currentContestTypes,
         };
 
         // Don't save anything that is the default option
@@ -732,6 +750,26 @@ class PartyPokemon implements Saveable {
 
     set effortPoints(amount: number) {
         this._effortPoints(amount);
+    }
+
+    get contestAppeal(): number {
+        return this._contestAppeal();
+    }
+
+    get contestAppealBonusAmount(): number {
+        return this._contestAppealBonusAmount();
+    }
+
+    set contestAppealBonusAmount(contestAppealBonusAmount: number) {
+        this._contestAppealBonusAmount(contestAppealBonusAmount);
+    }
+
+    get currentContestTypes(): ContestType[] {
+        return this._currentContestTypes();
+    }
+
+    set currentContestTypes(currentContestTypes: ContestType[]) {
+        this._currentContestTypes(currentContestTypes);
     }
 
     get shiny(): boolean {

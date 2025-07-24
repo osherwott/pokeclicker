@@ -24,8 +24,7 @@ export default class BattlePokemon implements EnemyPokemonInterface {
      * In case you want to manually create a Pokémon instead of generating it from the route number
      * @param name Pokémon name
      * @param id Pokémon
-     * @param type1 First type of the Pokémon
-     * @param type2 Second type of the Pokémon
+     * @param type The Pokémon's types
      * @param maxHealth max health that the Pokémon can have
      * @param level level is 2 times the current route
      * @param catchRate base chance of catching this Pokémon
@@ -41,8 +40,7 @@ export default class BattlePokemon implements EnemyPokemonInterface {
     constructor(
         public name: PokemonNameType,
         public id: number,
-        public type1: PokemonType = PokemonType.None,
-        public type2: PokemonType = PokemonType.None,
+        public type: PokemonType[] = [PokemonType.None],
         maxHealth: number,
         public level: number,
         public catchRate: number,
@@ -98,8 +96,7 @@ export default class BattlePokemon implements EnemyPokemonInterface {
             );
         }
         App.game.party.gainExp(this.exp, this.level, trainer);
-        App.game.gems.gainGems(this.gemReward * (this.type2 == PokemonType.None ? 2 : 1), this.type1);
-        App.game.gems.gainGems(this.gemReward, this.type2);
+        this.type.length > 1 ? App.game.gems.gainGems(this.gemReward * 2, this.type[0]) : this.type.forEach(type => App.game.gems.gainGems(this.gemReward, type));
     }
 
     get displayName(): string {

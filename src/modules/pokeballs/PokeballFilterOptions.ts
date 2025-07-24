@@ -111,7 +111,7 @@ export const pokeballFilterOptions = {
         ),
     ),
 
-    pokemonType: new PokeballFilterOption<PokemonType, [PokemonType, PokemonType]>(
+    pokemonType: new PokeballFilterOption<PokemonType, PokemonType[]>(
         (type = PokemonType.Normal, name = 'pokeballFilterPokemonType', defaultName = 'Pokémon Type') => new Setting(
             name,
             defaultName,
@@ -122,7 +122,7 @@ export const pokeballFilterOptions = {
         undefined,
         (
             optionValue: PokemonType,
-            testValues: [PokemonType, PokemonType],
+            testValues: PokemonType[],
         ) => testValues.includes(optionValue),
     ),
 

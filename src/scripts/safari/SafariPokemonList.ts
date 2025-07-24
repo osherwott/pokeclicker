@@ -239,14 +239,13 @@ class SafariPokemonList {
         const pokemon = PokemonHelper.getPokemonByName(p);
         const safariEnvironments = [];
         // If Pokemon is water-type, add the water environment
-        if (pokemon.type1 === PokemonType.Water || pokemon.type2 === PokemonType.Water) {
+        if (pokemon.type.includes(PokemonType.Water)) {
             safariEnvironments.push(SafariEnvironments.Water);
         }
-        const pureWater = pokemon.type1 === PokemonType.Water && pokemon.type2 === PokemonType.None;
-        const waterIce = pokemon.type1 === PokemonType.Water && pokemon.type2 === PokemonType.Ice;
-        const iceWater = pokemon.type1 === PokemonType.Ice && pokemon.type2 === PokemonType.Water;
+        const pureWater = pokemon.type[0] === PokemonType.Water && pokemon.type.length <= 1;
+        const waterIce = pokemon.type.includes(PokemonType.Water) && pokemon.type.includes(PokemonType.Ice);
         // If Pokemon is not pure water, water/ice or ice/water, add the grass environment
-        if (!(pureWater || waterIce || iceWater)) {
+        if (!(pureWater || waterIce)) {
             safariEnvironments.push(SafariEnvironments.Grass);
         }
         return safariEnvironments;

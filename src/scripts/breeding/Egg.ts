@@ -45,8 +45,8 @@ class Egg implements Saveable {
 
         if (this.pokemon) {
             const dataPokemon: DataPokemon = PokemonHelper.getPokemonById(this.pokemon);
-            this.pokemonType1 = dataPokemon.type1;
-            this.pokemonType2 = dataPokemon.type2 === PokemonType.None ? dataPokemon.type1 : dataPokemon.type2;
+            this.pokemonType1 = dataPokemon.type[0];
+            this.pokemonType2 = dataPokemon.type[1] === PokemonType.None ? dataPokemon.type[0] : dataPokemon.type[1];
         } else {
             this.pokemonType1 = PokemonType.Normal;
             this.pokemonType2 = PokemonType.Normal;

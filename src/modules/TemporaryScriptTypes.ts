@@ -312,8 +312,7 @@ export type TmpPartyType = {
     gainPokemonById: (id: number, shiny?: boolean, suppressNewCatchNotification?: boolean, gender?: GameConstants.BattlePokemonGender, shadow?: GameConstants.ShadowStatus) => void;
     gainExp: (exp: number, level?: number, trainer?: boolean) => void;
     calculatePokemonAttack: (
-        type1: PokemonType,
-        type2: PokemonType,
+        type: PokemonType[],
         ignoreRegionMultiplier?: boolean,
         region?: GameConstants.Region,
         includeBreeding?: boolean,
@@ -325,8 +324,7 @@ export type TmpPartyType = {
     ) => number;
     calculateOnePokemonAttack: (
         pokemon: TmpPartyPokemonType,
-        type1: PokemonType,
-        type2: PokemonType,
+        type: PokemonType[],
         region?: GameConstants.Region,
         ignoreRegionMultiplier?: boolean,
         includeBreeding?: boolean,

@@ -22,10 +22,10 @@ class PokedexHelper {
         if (!this.pokemonSeen(pokemon.id)()) {
             return 'grey';
         }
-        if (pokemon.type2 == PokemonType.None) {
-            return GameConstants.TypeColor[pokemon.type1];
+        if (pokemon.type.length < 2) {
+            return GameConstants.TypeColor[pokemon.type[0]];
         }
-        return `linear-gradient(90deg,${GameConstants.TypeColor[pokemon.type1]} 50%, ${GameConstants.TypeColor[pokemon.type2]} 50%)`;
+        return `linear-gradient(90deg,${GameConstants.TypeColor[pokemon.type[0]]} 50%, ${GameConstants.TypeColor[pokemon.type[1]]} 50%)`;
     }
 
     /**

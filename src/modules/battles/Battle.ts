@@ -42,7 +42,7 @@ export default class Battle {
         if (!this.enemyPokemon()?.isAlive()) {
             return;
         }
-        this.enemyPokemon().damage(App.game.party.calculatePokemonAttack(this.enemyPokemon().type1, this.enemyPokemon().type2));
+        this.enemyPokemon().damage(App.game.party.calculatePokemonAttack(this.enemyPokemon().type));
         if (!this.enemyPokemon().isAlive()) {
             this.defeatPokemon();
         }
@@ -229,7 +229,7 @@ export default class Battle {
     // eslint-disable-next-line @typescript-eslint/member-ordering
     public static pokemonAttackTooltip: PureComputed<string> = ko.pureComputed(() => {
         if (Battle.enemyPokemon()) {
-            const pokemonAttack = App.game.party.calculatePokemonAttack(Battle.enemyPokemon().type1, Battle.enemyPokemon().type2);
+            const pokemonAttack = App.game.party.calculatePokemonAttack(Battle.enemyPokemon().type);
             return `${pokemonAttack.toLocaleString('en-US')} against ${pokemonMap[Battle.enemyPokemon().name].type.map(t => PokemonType[t]).join('&nbsp;/&nbsp;')}`;
         } else {
             return '';

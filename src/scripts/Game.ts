@@ -136,7 +136,7 @@ class Game implements TmpGameType {
         if (player.regionStarters[GameConstants.Region.kanto]() != GameConstants.Starter.None) {
             Battle.generateNewEnemy();
         } else {
-            const battlePokemon = new BattlePokemon('MissingNo.', 0, PokemonType.None, PokemonType.None, 0, 0, 0, 0, new Amount(0, GameConstants.Currency.money), false, 0, GameConstants.BattlePokemonGender.NoGender, GameConstants.ShadowStatus.None, EncounterType.route);
+            const battlePokemon = new BattlePokemon('MissingNo.', 0, [PokemonType.None], 0, 0, 0, 0, new Amount(0, GameConstants.Currency.money), false, 0, GameConstants.BattlePokemonGender.NoGender, GameConstants.ShadowStatus.None, EncounterType.route);
             Battle.enemyPokemon(battlePokemon);
         }
         //Safari.load();
@@ -188,9 +188,8 @@ class Game implements TmpGameType {
             const maxHealth: number = PokemonFactory.routeHealth(route, region);
             let hitsToKill = 0;
             for (const pokemon of availablePokemonMap) {
-                const type1: PokemonType = pokemon.type[0];
-                const type2: PokemonType = pokemon.type.length > 1 ? pokemon.type[1] : PokemonType.None;
-                const attackAgainstPokemon = App.game.party.calculatePokemonAttack(type1, type2);
+                const type: PokemonType[] = pokemon.type;
+                const attackAgainstPokemon = App.game.party.calculatePokemonAttack(type);
                 const currentHitsToKill: number = Math.ceil(maxHealth / attackAgainstPokemon);
                 hitsToKill += currentHitsToKill;
             }

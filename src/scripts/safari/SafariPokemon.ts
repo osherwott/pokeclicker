@@ -1,8 +1,7 @@
 class SafariPokemon implements PokemonInterface {
     name: PokemonNameType;
     id: number;
-    type1: PokemonType;
-    type2: PokemonType;
+    type: PokemonType[];
     shiny: boolean;
     baseCatchFactor: number;
     baseEscapeFactor: number;
@@ -27,8 +26,7 @@ class SafariPokemon implements PokemonInterface {
 
         this.name = data.name;
         this.id = data.id;
-        this.type1 = data.type1;
-        this.type2 = data.type2;
+        this.type = data.type;
         this.shiny = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_SAFARI);
         this._displayName = PokemonHelper.displayName(name);
         this.gender = PokemonFactory.generateGender(data.gender.femaleRatio, data.gender.type);

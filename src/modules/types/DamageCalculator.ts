@@ -6,15 +6,14 @@ import GameHelper from '../GameHelper';
 import type { TmpPartyPokemonType } from '../TemporaryScriptTypes';
 
 export default class DamageCalculator {
-    public static type1 = ko.observable(PokemonType.None).extend({ numeric: 0 });
-    public static type2 = ko.observable(PokemonType.None).extend({ numeric: 0 });
+    public static type = ko.observableArray([PokemonType.None]);
     public static region = ko.observable(Region.none);
     public static subregion = ko.observable(-1);
     public static weather = ko.observable(WeatherType.Clear);
     public static includeBreeding = ko.observable(false);
     public static baseAttackOnly = ko.observable(false);
     public static ignoreLevel = ko.observable(false);
-    public static detailType = ko.observable(PokemonType.None).extend({ numeric: 0 });
+    public static detailType = ko.observableArray([PokemonType.None]);
 
     public static observableTypeDamageArray = ko.pureComputed(DamageCalculator.getDamageByTypes);
     public static observableTypeDetails = ko.pureComputed(DamageCalculator.getTypeDetail);
@@ -31,8 +30,7 @@ export default class DamageCalculator {
         const ignoreRegionMultiplier = DamageCalculator.region() == Region.none;
 
         return App.game.party.calculatePokemonAttack(
-            DamageCalculator.type1(),
-            DamageCalculator.type2(),
+            DamageCalculator.type(),
             ignoreRegionMultiplier,
             DamageCalculator.region(),
             DamageCalculator.includeBreeding(),
@@ -51,15 +49,15 @@ export default class DamageCalculator {
 
         for (const pokemon of activePokemon) {
             const dataPokemon = getPokemonByName(pokemon.name);
-            if (dataPokemon.type1 === PokemonType.None) {
+            if (dataPokemon.type[0] === PokemonType.None) {
                 continue;
             }
 
-            const attack = App.game.party.calculateOnePokemonAttack(pokemon, DamageCalculator.type1(), DamageCalculator.type2(), DamageCalculator.region(), ignoreRegionMultiplier,
+            const attack = App.game.party.calculateOnePokemonAttack(pokemon, DamageCalculator.type(), DamageCalculator.region(), ignoreRegionMultiplier,
                 DamageCalculator.includeBreeding(), DamageCalculator.baseAttackOnly(), DamageCalculator.weather(), DamageCalculator.ignoreLevel());
 
-            typedamage[dataPokemon.type1] += attack / 2;
-            const otherType = dataPokemon.type2 !== PokemonType.None ? dataPokemon.type2 : dataPokemon.type1;
+            typedamage[dataPokemon.type[0]] += attack / 2;
+            const otherType = dataPokemon.type[1] !== PokemonType.None ? dataPokemon.type[1] : dataPokemon.type[0];
             typedamage[otherType] += attack / 2;
         }
 
@@ -73,12 +71,10 @@ export default class DamageCalculator {
         return {
             id: dataPokemon.id,
             name: dataPokemon.name,
-            type1: dataPokemon.type1,
-            type2: dataPokemon.type2,
+            type: dataPokemon.type,
             damage: App.game.party.calculateOnePokemonAttack(
                 pokemon,
-                DamageCalculator.type1(),
-                DamageCalculator.type2(),
+                DamageCalculator.type(),
                 DamageCalculator.region(),
                 ignoreRegionMultiplier,
                 DamageCalculator.includeBreeding(),
@@ -94,7 +90,7 @@ export default class DamageCalculator {
     public static getTypeDetail(): TypeDetail[] {
         return App.game.party.partyPokemonActiveInSubRegion(DamageCalculator.region(), DamageCalculator.subregion()).filter(pokemon => {
             const dataPokemon = getPokemonByName(pokemon.name);
-            return dataPokemon.type1 == DamageCalculator.detailType() || dataPokemon.type2 == DamageCalculator.detailType();
+            return dataPokemon.type[0] == DamageCalculator.detailType()[0] || dataPokemon.type[1] == DamageCalculator.detailType()[1];
         }).reduce((details, pokemon) => {
             details.push(DamageCalculator.getOneTypeDetail(pokemon));
             return details;
@@ -105,8 +101,7 @@ export default class DamageCalculator {
 export type TypeDetail = {
     id: number,
     name: string,
-    type1: PokemonType,
-    type2: PokemonType,
+    type: PokemonType[],
     damage: number,
     displayName: string,
 };

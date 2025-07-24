@@ -24,7 +24,7 @@ class BattleFrontierBattle extends Battle {
         if (!this.enemyPokemon()?.isAlive()) {
             return;
         }
-        this.enemyPokemon().damage(App.game.party.calculatePokemonAttack(this.enemyPokemon().type1, this.enemyPokemon().type2, true, GameConstants.Region.none, false, false, WeatherType.Clear));
+        this.enemyPokemon().damage(App.game.party.calculatePokemonAttack(this.enemyPokemon().type, true, GameConstants.Region.none, false, false, WeatherType.Clear));
         if (!this.enemyPokemon().isAlive()) {
             this.defeatPokemon();
         }
@@ -71,7 +71,7 @@ class BattleFrontierBattle extends Battle {
             GameHelper.incrementObservable(App.game.statistics.totalShinyTrainerPokemonSeen);
         }
 
-        const enemyPokemon = new BattlePokemon(enemy.name, enemy.id, enemy.type[0], enemy.type[1], health, level, 0, enemy.exp, new Amount(money, GameConstants.Currency.money), shiny, gems, gender, GameConstants.ShadowStatus.None, EncounterType.trainer);
+        const enemyPokemon = new BattlePokemon(enemy.name, enemy.id, enemy.type, health, level, 0, enemy.exp, new Amount(money, GameConstants.Currency.money), shiny, gems, gender, GameConstants.ShadowStatus.None, EncounterType.trainer);
         this.enemyPokemon(enemyPokemon);
     }
 }

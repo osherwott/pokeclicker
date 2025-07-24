@@ -152,14 +152,12 @@ class Party implements Feature, TmpPartyType {
 
     /**
      * Calculate the attack of all your Pokémon
-     * @param type1
-     * @param type2 types of the enemy we're calculating damage against.
+     * @param type types of the enemy we're calculating damage against.
      * @returns {number} damage to be done.
      */
 
     public calculatePokemonAttack(
-        type1: PokemonType = PokemonType.None,
-        type2: PokemonType = PokemonType.None,
+        type: PokemonType[] = [PokemonType.None],
         ignoreRegionMultiplier = false,
         region: GameConstants.Region = player.region,
         includeBreeding = false,
@@ -174,7 +172,7 @@ class Party implements Feature, TmpPartyType {
         const ignoreRegionMultiplierOrMKJ = ignoreRegionMultiplier || region == GameConstants.Region.alola && subregion == GameConstants.AlolaSubRegions.MagikarpJump;
 
         for (const p of pokemon) {
-            attack += this.calculateOnePokemonAttack(p, type1, type2, region, ignoreRegionMultiplierOrMKJ, includeBreeding, useBaseAttack, overrideWeather, ignoreLevel, includeTempBonuses);
+            attack += this.calculateOnePokemonAttack(p, type, region, ignoreRegionMultiplierOrMKJ, includeBreeding, useBaseAttack, overrideWeather, ignoreLevel, includeTempBonuses);
         }
 
         const bonus = this.multiplier.getBonus('pokemonAttack');
@@ -183,8 +181,7 @@ class Party implements Feature, TmpPartyType {
 
     public calculateOnePokemonAttack(
         pokemon: PartyPokemon,
-        type1: PokemonType = PokemonType.None,
-        type2: PokemonType = PokemonType.None,
+        type: PokemonType[] = [PokemonType.None],
         region: GameConstants.Region = player.region,
         ignoreRegionMultiplier = false,
         includeBreeding = false,
@@ -209,20 +206,17 @@ class Party implements Feature, TmpPartyType {
 
         // Check if the Pokemon is currently breeding (no attack)
         if (includeBreeding || !pokemon.breeding) {
-            if (type1 == PokemonType.None) {
+            if (type[0] == PokemonType.None) {
                 attack = pAttack * multiplier;
             } else {
-                attack = pAttack * TypeHelper.getAttackModifier(dataPokemon.type1, dataPokemon.type2, type1, type2) * multiplier;
+                attack = pAttack * TypeHelper.getAttackModifier(dataPokemon.type, type) * multiplier;
             }
         }
 
         // Weather boost
         const weather = Weather.weatherConditions[overrideWeather ?? Weather.currentWeather()];
         weather.multipliers?.forEach(value => {
-            if (value.type == dataPokemon.type1) {
-                attack *= value.multiplier;
-            }
-            if (value.type == dataPokemon.type2) {
+            if (dataPokemon.type.includes(value.type)) {
                 attack *= value.multiplier;
             }
         });
@@ -230,14 +224,11 @@ class Party implements Feature, TmpPartyType {
         // Should we take flute boost into account
         if (includeTempBonuses) {
             FluteEffectRunner.activeGemTypes().forEach(value => {
-                if (value == dataPokemon.type1) {
-                    attack *= GameConstants.FLUTE_TYPE_ATTACK_MULTIPLIER;
-                }
-                if (value == dataPokemon.type2) {
+                if (dataPokemon.type.includes(value)) {
                     attack *= GameConstants.FLUTE_TYPE_ATTACK_MULTIPLIER;
                 }
             });
-            attack *= App.game.zMoves.getMultiplier(dataPokemon.type1, dataPokemon.type2);
+            attack *= App.game.zMoves.getMultiplier(...dataPokemon.type);
         }
 
         return attack;

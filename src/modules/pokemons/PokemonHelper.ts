@@ -50,8 +50,7 @@ export function getPokemonByName(name: PokemonNameType): DataPokemon {
         return null;
     }
 
-    const type1 = basePokemon.type[0];
-    const type2: PokemonType = basePokemon.type[1] ?? PokemonType.None;
+    const type = basePokemon.type;
 
     const eggCycles: number = basePokemon.eggCycles || 20;
     return new DataPokemon(
@@ -59,8 +58,7 @@ export function getPokemonByName(name: PokemonNameType): DataPokemon {
         basePokemon.name,
         basePokemon.catchRate,
         basePokemon.evolutions,
-        type1,
-        type2,
+        type,
         basePokemon.attack,
         basePokemon.base.hitpoints,
         basePokemon.levelType,

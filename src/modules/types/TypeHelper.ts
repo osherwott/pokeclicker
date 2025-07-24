@@ -79,30 +79,27 @@ export default class TypeHelper {
         ];
     })();
 
-    public static getAttackModifier(a1: PokemonType, a2: PokemonType, d1: PokemonType, d2: PokemonType): number {
-        if (a1 === PokemonType.None || d1 === PokemonType.None) {
+    public static getAttackModifier(a: PokemonType[], d: PokemonType[]): number {
+        if (a[0] === PokemonType.None || d[0] === PokemonType.None || !a.length || !d.length) {
             return 1;
         }
 
-        // Apply second type as the first type when None
-        // eslint-disable-next-line no-param-reassign
-        a2 = a2 !== PokemonType.None ? a2 : a1;
-        // eslint-disable-next-line no-param-reassign
-        d2 = d2 !== PokemonType.None ? d2 : d1;
+        // Double up single types for usefulness
+        const attack = a.length < 2 ? [a[0], a[0]] : a;
+        const defend = d.length < 2 ? [d[0], d[0]] : d;
 
-        let m1 = TypeHelper.typeMatrix[a1][d1];
-        let m2 = TypeHelper.typeMatrix[a1][d2];
-        let m3 = TypeHelper.typeMatrix[a2][d1];
-        let m4 = TypeHelper.typeMatrix[a2][d2];
+        // Coalesce all type matchups
+        const effectiveness = [];
+        attack.forEach(att => {
+            let multiplier = 1;
+            defend.forEach(def => {
+                const eff = TypeHelper.typeMatrix[att][def];
+                multiplier *= (eff + (App.game.gems.getGemUpgrade(att, this.valueToType(eff)) * GEM_UPGRADE_STEP));
+            });
+            return effectiveness.push(multiplier);
+        });
 
-        if (!App.game.challenges.list.disableGems.active()) {
-            m1 += (App.game.gems.getGemUpgrade(a1, this.valueToType(m1)) * GEM_UPGRADE_STEP);
-            m2 += (App.game.gems.getGemUpgrade(a1, this.valueToType(m2)) * GEM_UPGRADE_STEP);
-            m3 += (App.game.gems.getGemUpgrade(a2, this.valueToType(m3)) * GEM_UPGRADE_STEP);
-            m4 += (App.game.gems.getGemUpgrade(a2, this.valueToType(m4)) * GEM_UPGRADE_STEP);
-        }
-
-        return Math.max(m1 * m2, m3 * m4);
+        return Math.max(...effectiveness);
     }
 
     public static typeToValue(type: TypeEffectiveness): TypeEffectivenessValue {

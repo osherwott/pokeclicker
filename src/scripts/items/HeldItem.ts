@@ -99,7 +99,7 @@ class TypeRestrictedAttackBonusHeldItem extends AttackBonusHeldItem {
         regionUnlocked: GameConstants.Region) {
         super(name, basePrice, currency, shopOptions, displayName, _attackBonus, regionUnlocked, `${GameHelper.anOrA(PokemonType[type])} ${PokemonType[type]}-type Pokémon`, (pokemon: PartyPokemon) => {
             const dataPokemon = PokemonHelper.getPokemonById(pokemon.id);
-            return dataPokemon.type1 == type || dataPokemon.type2 == type;
+            return dataPokemon.type.includes(type);
         }
         );
     }

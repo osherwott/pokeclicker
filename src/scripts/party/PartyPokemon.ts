@@ -166,8 +166,7 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
                 if (!egg.canHatch() && !egg.isNone()) {
                     const pokerus = App.game.party.getPokemon(pokemonMap[egg.pokemon].id)?.pokerus;
                     if (pokerus && pokerus >= GameConstants.Pokerus.Contagious) {
-                        eggTypes.add(PokemonHelper.getPokemonByName(pokemonMap[App.game.breeding.eggList[i]().pokemon].name).type1);
-                        eggTypes.add(PokemonHelper.getPokemonByName(pokemonMap[App.game.breeding.eggList[i]().pokemon].name).type2);
+                        PokemonHelper.getPokemonByName(pokemonMap[App.game.breeding.eggList[i]().pokemon].name).type.forEach(t => eggTypes.add(t));
                     }
                 }
             }
@@ -184,7 +183,7 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
             const pokemon = App.game.breeding.eggList[i]().partyPokemon();
             if (pokemon && pokemon.pokerus == GameConstants.Pokerus.Uninfected) {
                 const dataPokemon = PokemonHelper.getPokemonByName(pokemon.name);
-                if (eggTypes.has(dataPokemon.type1) || eggTypes.has(dataPokemon.type2)) {
+                if (dataPokemon.type.some(t => eggTypes.has(t))) {
                     pokemon.pokerus = GameConstants.Pokerus.Infected;
                 }
             }

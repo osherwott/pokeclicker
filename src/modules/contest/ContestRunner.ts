@@ -12,6 +12,7 @@ import ContestHelper from './ContestHelper';
 import ContestScore from './ContestScore';
 import ContestBattle from './ContestBattle';
 import GameHelper from '../GameHelper';
+import RibbonHelper from '../party/RibbonHelper';
 
 export default class ContestRunner {
     // Timers
@@ -207,6 +208,9 @@ export default class ContestRunner {
 
                 // Update statistics
                 GameHelper.incrementObservable(App.game.statistics.contestHighestRound[ContestRunner.rank()][ContestRunner.type()]);
+
+                // Give ribbons
+                RibbonHelper.gainContestRibbons(ContestRunner.rank(), ContestRunner.type());
             }
         }
     }

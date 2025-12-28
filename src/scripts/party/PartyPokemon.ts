@@ -1,5 +1,6 @@
 /// <reference path="../../declarations/party/LevelType.d.ts" />
 /// <reference path="../../declarations/contest/ContestHelper.d.ts" />
+/// <reference path="../../declarations/enums/Ribbons.d.ts" />
 
 enum PartyPokemonSaveKeys {
     attackBonusPercent = 0,
@@ -20,6 +21,7 @@ enum PartyPokemonSaveKeys {
     showShadowImage,
     contestExp,
     contestSaveData,
+    ribbons,
 }
 
 class PartyPokemon implements Saveable, TmpPartyPokemonType {
@@ -47,6 +49,7 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
         showShadowImage: false,
         contestExp: 0,
         contestSaveData: {},
+        ribbons: [],
     };
 
     // Saveable observables
@@ -69,6 +72,7 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
     _showShadowImage: KnockoutObservable<boolean>;
     _contestExp: KnockoutObservable<number>;
     contestSaveData: Record<ContestType, [KnockoutObservable<boolean>, KnockoutObservable<number>]>;
+    _ribbons: Record<RibbonEnums, KnockoutObservable<boolean>>;
 
     constructor(
         public id: number,
@@ -144,6 +148,9 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
                 this.removeCategory(0); // remove None category
             }
         });
+        this._ribbons = Object.fromEntries(GameHelper.enumNumbers(RibbonEnums).map((ribbon) => {
+            return [ribbon, ko.observable(false)];
+        })) as Record<RibbonEnums, KnockoutObservable<boolean>>;
     }
 
     public calculateAttack(ignoreLevel = false): number {
@@ -808,6 +815,15 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
         return `${this.contestExp} / ${ContestHelper.maxSheen()}`;
     });
 
+    public gainRibbon(r: RibbonEnums) {
+        this._ribbons[r](true);
+        return;
+    }
+
+    public hasRibbon(r: RibbonEnums) {
+        return this.ribbons.includes(r);
+    }
+
     public fromJSON(json: Record<string, any>): void {
         if (json == null) {
             return;
@@ -844,6 +860,7 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
             });
         }
         this.contestExp = json[PartyPokemonSaveKeys.contestExp] ?? this.defaults.contestExp;
+        this.ribbons = json[PartyPokemonSaveKeys.ribbons] ?? this.defaults.ribbons;
     }
 
     public toJSON() {
@@ -866,6 +883,7 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
             [PartyPokemonSaveKeys.showShadowImage]: this._showShadowImage(),
             [PartyPokemonSaveKeys.contestSaveData]: ko.toJS(this.contestSaveData),
             [PartyPokemonSaveKeys.contestExp]: this.contestExp,
+            [PartyPokemonSaveKeys.ribbons]: this.ribbons,
         };
 
         // Don't save anything that is the default option
@@ -1014,5 +1032,19 @@ class PartyPokemon implements Saveable, TmpPartyPokemonType {
 
     set showShadowImage(value: boolean) {
         this._showShadowImage(value);
+    }
+
+    get ribbons(): RibbonEnums[] {
+        return [...Object.entries(this._ribbons).filter(([r]) => this._ribbons[r]()).flatMap(r => Number(r[0]))];
+    }
+
+    set ribbons(ribs: RibbonEnums[]) {
+        Object.entries(this._ribbons).forEach(([r, v]) => {
+            if (ribs.includes(Number(r))) {
+                v(true);
+            } else {
+                v(false);
+            }
+        });
     }
 }

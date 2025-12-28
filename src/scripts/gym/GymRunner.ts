@@ -127,6 +127,10 @@ class GymRunner {
                 }
             }
 
+            if (GymRunner.gymObservable().flags.champion) {
+                RibbonHelper.gainRegionalChampionRibbons(player.town.region);
+            }
+
             // Award money for defeating gym
             App.game.wallet.gainMoney(gym.moneyReward);
             // Send the player back to a town state

@@ -37,6 +37,7 @@ import type BattlePokemon from './battles/BattlePokemon';
 import ContestType from './enums/ContestType';
 import ContestBattlePokemon from './contest/ContestBattlePokemon';
 import ContestTrainer from './contest/ContestTrainer';
+import RibbonEnums from './enums/Ribbons';
 
 /*
     These types are only temporary while we are converting things to modules. As things are converted,
@@ -313,6 +314,7 @@ export type TmpPartyPokemonType = {
     heldItem: KnockoutObservable<TmpHeldItemType>;
     defaultFemaleSprite: KnockoutObservable<boolean>;
     hideShinyImage: KnockoutObservable<boolean>;
+    ribbons: RibbonEnums[];
     canUseStone(stoneType: GameConstants.StoneType): boolean;
     addCategory(id: number): void;
     removeCategory(id: number): void;
@@ -320,6 +322,8 @@ export type TmpPartyPokemonType = {
     calculateEVAttackBonus(): number;
     contestSheen(): number;
     maxSheenTooltip(): string;
+    gainRibbon(r: RibbonEnums): void;
+    hasRibbon(r: RibbonEnums): boolean;
 };
 
 export type TmpPartyType = {

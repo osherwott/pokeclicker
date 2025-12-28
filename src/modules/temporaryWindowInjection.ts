@@ -26,6 +26,7 @@ import KeyItemType from './enums/KeyItemType';
 import MulchType from './enums/MulchType';
 import PlotStage from './enums/PlotStage';
 import QuestLineState from './quests/QuestLineState';
+import RibbonEnums from './enums/Ribbons';
 import WeatherForecastStatus from './enums/WeatherForecastStatus';
 import SafariEnvironments from './enums/SafariEnvironments';
 import FarmingTool from './enums/FarmingTool';
@@ -83,6 +84,7 @@ import GenericProxy from './utilities/GenericProxy';
 import { SpriteCredits, CodeCredits } from './Credits';
 import * as DisplayObservables from './utilities/DisplayObservables';
 import PokemonCategories from './party/Category';
+import RibbonHelper from './party/RibbonHelper';
 import Information from './utilities/Information';
 import TypeHelper from './types/TypeHelper';
 import ContestTypeHelper from './types/ContestTypeHelper';
@@ -278,6 +280,7 @@ Object.assign(<any>window, {
     MulchType,
     PlotStage,
     QuestLineState,
+    RibbonEnums,
     WeatherForecastStatus,
     SafariEnvironments,
     FarmingTool,
@@ -341,6 +344,7 @@ Object.assign(<any>window, {
     CodeCredits,
     DisplayObservables,
     PokemonCategories,
+    RibbonHelper,
     Information,
     TypeHelper,
     ContestTypeHelper,

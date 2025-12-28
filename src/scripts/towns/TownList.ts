@@ -2472,6 +2472,26 @@ const SlateportHoennRoamerNPC = new RoamerNPC('Reporter Gabby', [
     'Our sources indicate that roaming Pokémon are gathering on {ROUTE_NAME}!',
 ], GameConstants.Region.hoenn, RoamingPokemonList.findGroup(GameConstants.Region.hoenn, GameConstants.HoennSubRegions.Hoenn), 'assets/images/npcs/Reporter.png');
 
+// Available
+const SlatePortEffortRibbon1 = new RibbonGiftNPC('Shopkeeper', [
+//     'You have to go for it a little harder. If you do, I\'ll give your Pokémon something nice.',
+// ], [
+    'Oh? Your Pokémon... Went for it stupendously!',
+    'As a reward, please give them this Effort Ribbon!',
+], RibbonEnums.Effort, {
+    image: 'assets/images/npcs/Ace Trainer (female).png', // gen 3
+}
+);
+
+// Completed
+const SlatePortEffortRibbon2 = new NPC('Shopkeeper', [
+    'Oh! Your Pokémon, those Effort Ribbons look good on them!',
+], {
+    requirement: new CustomRequirement(ko.pureComputed(() => App.game.party.caughtPokemon.every(p => p.hasRibbon(RibbonEnums.Effort))), true, 'Requires all party Pokemon to have the Effort Ribbon.'),
+    image: 'assets/images/npcs/Ace Trainer (female).png', // gen 3
+}
+);
+
 const SkepticalFisherman = new NPC('Skeptical Fisherman', [
     'There\'s some salesman offering rare fish east of New Mauville, out on the water.',
     'I\'m a bit skeptical of his wares, especially since his shop isn\'t on any maps.',
@@ -3419,7 +3439,7 @@ TownList['Slateport City'] = new Town(
     [new ContestHall([ContestRank.Hyper]), SlateportCityShop, new ShardTraderShop(GameConstants.ShardTraderLocations['Slateport City']), ContestShopHyper],
     {
         requirements: [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Granite Cave'))],
-        npcs: [SlateportHoennRoamerNPC, MrStone1, MrStone2],
+        npcs: [SlateportHoennRoamerNPC, SlatePortEffortRibbon1, SlatePortEffortRibbon2, MrStone1, MrStone2],
     }
 );
 TownList['Mauville City'] = new Town(
